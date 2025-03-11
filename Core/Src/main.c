@@ -156,12 +156,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  const uint8_t CFG0 = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
-	  if (CFG0) {
-		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-	  } else {
-		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-	  }
+	  blink_led(freq_arr, CFG_PIN_MAX + 1, get_cfg_input());
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
