@@ -42,6 +42,15 @@ extern "C" {
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
 
+#define BLINK_1 1000
+#define BLINK_2 500
+#define BLINK_10 6
+#define BLINK_20 3
+#define BLINK_50 1.2
+#define BLINK_100 0.6
+#define BLINK_8 0.06
+#define CFG_PIN_MAX 8
+
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -57,6 +66,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define MCU_ACT_LED_Pin GPIO_PIN_11
+#define MCU_ACT_LED_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

@@ -62,6 +62,40 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+static uint8_t get_cfg_input()
+{
+	return (
+			HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)
+			+ HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1)
+			+ HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2)
+			+ HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3)
+			+ HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4)
+			+ HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5)
+			+ HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6)
+			+ HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7)
+		);
+}
+
+static void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, const uint8_t freq)
+{
+	assert((freq < freq_arr_size));
+
+	switch (freq)
+	{
+	case 0:
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+		break;
+	case 1:
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		break;
+	default:
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		HAL_Delay(freq_arr[freq]);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+		HAL_Delay(freq_arr[freq]);
+	}
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -72,6 +106,18 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+
+	uint32_t freq_arr[CFG_PIN_MAX + 1] = {
+			0,
+			0,
+			BLINK_1,
+			BLINK_2,
+			BLINK_10,
+			BLINK_20,
+			BLINK_50,
+			BLINK_100,
+			BLINK_1000
+	};
 
   /* USER CODE END 1 */
 
@@ -265,7 +311,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2|GPIO_PIN_3, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11|GPIO_PIN_4, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, MCU_ACT_LED_Pin|GPIO_PIN_4, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PC2 PC3 */
   GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_3;
@@ -282,18 +328,25 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PB11 PB4 */
-  GPIO_InitStruct.Pin = GPIO_PIN_11|GPIO_PIN_4;
+  /*Configure GPIO pin : MCU_ACT_LED_Pin */
+  GPIO_InitStruct.Pin = MCU_ACT_LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  HAL_GPIO_Init(MCU_ACT_LED_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PC11 */
   GPIO_InitStruct.Pin = GPIO_PIN_11;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PB4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
