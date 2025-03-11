@@ -76,9 +76,13 @@ static uint8_t get_cfg_input()
 		);
 }
 
-static void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, const uint8_t freq)
+static void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, const uint8_t num_cfg_on)
 {
-	assert((freq < freq_arr_size));
+	assert((num_cfg_on < freq_arr_size));
+
+#ifdef LOGS
+	printf("num_cfg_on: %s\n", num_cfg_on);
+#endif /* DEBUG */
 
 	switch (freq)
 	{
@@ -90,9 +94,9 @@ static void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, con
 		break;
 	default:
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-		HAL_Delay(freq_arr[freq]);
+		HAL_Delay(freq_arr[num_cfg_on]);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-		HAL_Delay(freq_arr[freq]);
+		HAL_Delay(freq_arr[num_cfg_on]);
 	}
 }
 

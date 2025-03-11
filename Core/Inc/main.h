@@ -51,6 +51,10 @@ extern "C" {
 #define BLINK_8 0.06
 #define CFG_PIN_MAX 8
 
+#ifndef LOGS
+#define LOGS
+#endif /* LOGS*/
+
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
