@@ -106,8 +106,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  const uint8_t CFG0 = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+	  if (CFG0) {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+	  } else {
+		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+	  }
     /* USER CODE END WHILE */
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, 1);
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -273,7 +279,7 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4
                           |GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB11 PB4 */
