@@ -64,7 +64,7 @@ static void MX_USART1_UART_Init(void);
 
 static uint8_t get_cfg_input()
 {
-	return (
+	return CFG_PIN_MAX - (
 			HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)
 			+ HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1)
 			+ HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2)
@@ -76,6 +76,24 @@ static uint8_t get_cfg_input()
 		);
 }
 
+static void get_cfg_input_bitwise() {
+
+	uint8_t input = 0;
+
+	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0));
+	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) << 1);
+	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) << 2);
+	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) << 3);
+	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) << 4);
+	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5) << 5);
+	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6) << 6);
+	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) << 7);
+
+	return input;
+}
+
+
+
 static void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, const uint8_t num_cfg_on)
 {
 	assert((num_cfg_on < freq_arr_size));
@@ -84,18 +102,18 @@ static void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, con
 	printf("num_cfg_on: %s\n", num_cfg_on);
 #endif /* DEBUG */
 
-	switch (freq)
+	switch (num_cfg_on)
 	{
 	case 0:
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
 		break;
 	case 1:
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
 		break;
 	default:
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-		HAL_Delay(freq_arr[num_cfg_on]);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+		HAL_Delay(freq_arr[num_cfg_on]);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
 		HAL_Delay(freq_arr[num_cfg_on]);
 	}
 }
