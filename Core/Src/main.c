@@ -80,14 +80,16 @@ static void get_cfg_input_bitwise() {
 
 	uint8_t input = 0;
 
-	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0));
-	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) << 1);
-	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) << 2);
-	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) << 3);
-	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) << 4);
-	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5) << 5);
-	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6) << 6);
-	input |= !(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) << 7);
+	input |= (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0));
+	input |= (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) << 1);
+	input |= (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) << 2);
+	input |= (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) << 3);
+	input |= (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) << 4);
+	input |= (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5) << 5);
+	input |= (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6) << 6);
+	input |= (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7) << 7);
+
+	input = ~(input);
 
 	return input;
 }
