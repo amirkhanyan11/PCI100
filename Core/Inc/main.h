@@ -44,11 +44,11 @@ extern "C" {
 
 #define BLINK_1 1000
 #define BLINK_2 500
-#define BLINK_10 6
-#define BLINK_20 3
-#define BLINK_50 1.2
-#define BLINK_100 0.6
-#define BLINK_8 0.06
+#define BLINK_10 100
+#define BLINK_20 50
+#define BLINK_50 20
+#define BLINK_100 10
+#define BLINK_1000 1
 #define CFG_PIN_MAX 8
 
 #ifndef LOGS
