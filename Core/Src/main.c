@@ -158,7 +158,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  blink_led(freq_arr, CFG_PIN_MAX + 1, get_cfg_input_bitwise());
+    blink_led(freq_arr, CFG_PIN_MAX + 1, get_cfg_input_bitwise());
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
