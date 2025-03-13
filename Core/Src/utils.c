@@ -59,6 +59,11 @@ static void display_help_prompt(void) {
     HAL_UART_Transmit(&huart1, prompt, strlen(prompt), 1000);
 }
 
+static void flushbuf(uint8_t *buf, uint16_t *pos) {
+    *pos = 0;
+    memset(buf, 0, BUFFER_SIZE);
+}
+
 
 void start_cli(void) {
     
@@ -68,8 +73,11 @@ void start_cli(void) {
     if (HAL_OK == HAL_UART_Receive(&huart1, (buf + pos), 1, 1000)) {
         if (!strcmp(buf, "help\r")) {
             display_help_prompt();
-            pos = 0;
-            memset(buf, 0, BUFFER_SIZE);
+            flushbuf(buf, &pos);
+        } else if (!strcmp(buf, "led on\r")) {
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+        } else if (!strcmp(buf, "led off\r")) {
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
         } else {
             ++pos;
         }
