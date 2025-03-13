@@ -2,6 +2,8 @@
 // Created by Artyom on 3/13/2025.
 //
 #include "utils.h"
+#include <stdint.h>
+#include <unistd.h>
 
 extern UART_HandleTypeDef huart1;
 
@@ -52,7 +54,8 @@ uint8_t get_cfg_input_bitwise(void) {
 }
 
 static void display_help_prompt(void) {
-    static const uint8_t prompt[] = "gri axpers\r\n";
+    static const uint8_t prompt[] = "led <on/off>\r\n";
+    HAL_UART_Transmit(&huart1, (const uint8_t *)"\r\n", 2, 1000);
     HAL_UART_Transmit(&huart1, prompt, strlen(prompt), 1000);
 }
 
@@ -60,12 +63,16 @@ static void display_help_prompt(void) {
 void start_cli(void) {
     
     static uint8_t buf[BUFFER_SIZE] = {0};
-    static uint16_t bufferptr = 0;
+    static uint16_t pos = 0;
 
-    if (HAL_OK == HAL_UART_Receive(&huart1, (buf + bufferptr), 1, 1000)) {
-        if (!strcmp(buf, "help\r\n")) {
+    if (HAL_OK == HAL_UART_Receive(&huart1, (buf + pos), 1, 1000)) {
+        if (!strcmp(buf, "help\r")) {
             display_help_prompt();
+            pos = 0;
+            memset(buf, 0, BUFFER_SIZE);
+        } else {
+            ++pos;
         }
-        ++bufferptr;
+
     }
 }

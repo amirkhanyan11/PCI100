@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <stdint.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -72,8 +73,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
-	uint32_t freq_arr[] = {
+	int freq_arr[] = {
 			0,
 			0,
 			BLINK_1,
