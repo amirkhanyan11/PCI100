@@ -64,7 +64,7 @@ static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN 0 */
 
 volatile uint32_t BLINK_FREQ = BLINK_10;
-volatile uint32_t LED_MODE = LED_OFF;
+volatile uint32_t LED_MODE = LED_ON;
 
 
 /* USER CODE END 0 */
