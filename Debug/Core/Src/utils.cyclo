@@ -1,0 +1,5 @@
+../Core/Src/utils.c:8:6:uart_echo	2
+../Core/Src/utils.c:17:6:blink_led	4
+../Core/Src/utils.c:38:9:get_cfg_input_bitwise	8
+../Core/Src/utils.c:54:13:display_help_prompt	1
+../Core/Src/utils.c:60:6:start_cli	3

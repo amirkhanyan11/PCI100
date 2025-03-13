@@ -62,46 +62,6 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-
-static uint8_t get_cfg_input_bitwise() {
-
-	uint8_t input = 0;
-
-	input |= (!HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0));
-	input |= (!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1)) << 1);
-	input |= (!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2)) << 2);
-	input |= (!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3)) << 3);
-	input |= (!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4)) << 4);
-	input |= (!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5)) << 5);
-	input |= (!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6)) << 6);
-	input |= (!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7)) << 7);
-
-	return input;
-}
-
-
-
-static void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, const uint8_t num_cfg_on)
-{
-  if (num_cfg_on >= freq_arr_size) {
-    return;
-  }
-	switch (num_cfg_on)
-	{
-	case 0:
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-		break;
-	case 1:
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-		break;
-	default:
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-		HAL_Delay(freq_arr[num_cfg_on]);
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-		HAL_Delay(freq_arr[num_cfg_on]);
-	}
-}
-
 /* USER CODE END 0 */
 
 /**
@@ -159,6 +119,9 @@ int main(void)
   while (1)
   {
     blink_led(freq_arr, CFG_PIN_MAX + 1, get_cfg_input_bitwise());
+    // uart_echo();
+    start_cli();
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

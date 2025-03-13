@@ -1,0 +1,5 @@
+../Core/Src/utils.c:8:6:uart_echo	16	static
+../Core/Src/utils.c:17:6:blink_led	16	static
+../Core/Src/utils.c:38:9:get_cfg_input_bitwise	16	static
+../Core/Src/utils.c:54:13:display_help_prompt	8	static
+../Core/Src/utils.c:60:6:start_cli	8	static
