@@ -76,17 +76,6 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	int __attribute__((unused)) freq_arr[] = {
-			0,
-			0,
-			BLINK_1,
-			BLINK_2,
-			BLINK_10,
-			BLINK_20,
-			BLINK_50,
-			BLINK_100,
-			BLINK_1000
-	};
 
   /* USER CODE END 1 */
 
@@ -123,7 +112,7 @@ int main(void)
   while (1)
   {
     if (LED_MODE == LED_ON) {
-      blink_led(freq_arr, CFG_PIN_MAX + 1, BLINK_FREQ);
+      blink_led(BLINK_FREQ);
     }
 
     start_cli();

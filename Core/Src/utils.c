@@ -17,11 +17,8 @@ void uart_echo(void) {
     }
 }
 
-void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, const uint8_t num_cfg_on)
+void blink_led(const uint8_t frequency)
 {
-    if (num_cfg_on >= freq_arr_size) {
-        return;
-    }
     switch (num_cfg_on)
     {
     case LED_ON:
@@ -31,10 +28,11 @@ void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, const uint
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
         break;
     default:
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-        HAL_Delay(freq_arr[num_cfg_on]);
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-        HAL_Delay(freq_arr[num_cfg_on]);
+        static uint32_t start = HAL_GetTick();
+        if (HAL_GetTick() >= start + frequency) {
+            HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
+            start = HAL_GetTick();
+        }
     }
 }
 
@@ -91,7 +89,7 @@ void start_cli(void) {
             BLINK_FREQ = LED_OFF;
         	display_prompt_and_flush("OK!", buf, &pos);
         } else if (!strcmp((const char*)buf, "set 10\r")) {
-            BLINK_FREQ = 4;
+            BLINK_FREQ = BLINK_10;
         	display_prompt_and_flush("led frequency set to 10", buf, &pos);
         } else if (buf[pos] == '\r'){
         	display_prompt_and_flush("command not found:(", buf, &pos);

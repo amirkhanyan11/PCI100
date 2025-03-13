@@ -23,7 +23,7 @@
 #define BUFFER_SIZE 1024
 
 void uart_echo(void);
-void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, const uint8_t num_cfg_on);
+void blink_led(const uint8_t num_cfg_on);
 uint8_t get_cfg_input_bitwise(void);
 void start_cli(void);
 
