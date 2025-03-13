@@ -125,7 +125,8 @@ int main(void)
     if (LED_MODE == LED_ON) {
       blink_led(freq_arr, CFG_PIN_MAX + 1, BLINK_FREQ);
     }
-	  start_cli();
+
+    start_cli();
 
     /* USER CODE END WHILE */
 

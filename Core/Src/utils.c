@@ -59,13 +59,9 @@ static void prompt_nl(void){
 }
 
 static void display_prompt(const char *msg) {
+	prompt_nl();
     HAL_UART_Transmit(&huart1, (const uint8_t *)msg, (const uint16_t)strlen(msg), 1000);
     prompt_nl();
-}
-
-static void display_prompt_and_flush(const char *msg, uint8_t *buf, uint16_t *pos) {
-    display_prompt(msg);
-    flushbuf(buf, pos);
 }
 
 static void flushbuf(uint8_t *buf, uint16_t *pos) {
@@ -73,27 +69,33 @@ static void flushbuf(uint8_t *buf, uint16_t *pos) {
     memset(buf, 0, BUFFER_SIZE);
 }
 
+static void display_prompt_and_flush(const char *msg, uint8_t *buf, uint16_t *pos) {
+    display_prompt(msg);
+    flushbuf(buf, pos);
+}
+
+
 void start_cli(void) {
     
     static uint8_t buf[BUFFER_SIZE] = {0};
     static uint16_t pos = 0;
 
     if (HAL_OK == HAL_UART_Receive(&huart1, (buf + pos), 1, 1000)) {
-    	if (buf[pos] == '\r'){
-    		prompt_nl();
-    	}
+
         if (!strcmp((const char*)buf, "help\r")) {
-            display_prompt_and_flush("led <on/off>", buf, pos);
+            display_prompt_and_flush("led <on/off>", buf, &pos);
         } else if (!strcmp((const char*)buf, "led on\r")) {
-            LED_MODE = LED_ON;
+            BLINK_FREQ = LED_ON;
             display_prompt_and_flush("OK!", buf, &pos);
         } else if (!strcmp((const char*)buf, "led off\r")) {
-            LED_MODE = LED_OFF;
+            BLINK_FREQ = LED_OFF;
         	display_prompt_and_flush("OK!", buf, &pos);
         } else if (!strcmp((const char*)buf, "set 10\r")) {
-            BLINK_FREQ = BLINK_10;
-        	display_prompt_and_flush("led frequency set to 10hz", buf, &pos);
-        } else {
+            BLINK_FREQ = 4;
+        	display_prompt_and_flush("led frequency set to 10", buf, &pos);
+        } else if (buf[pos] == '\r'){
+        	display_prompt_and_flush("command not found:(", buf, &pos);
+    	} else {
             HAL_UART_Transmit(&huart1, (buf + pos), 1, 1000);
             ++pos;
         }
