@@ -63,6 +63,9 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+volatile uint32_t LED_MODE = LED_ON;
+volatile uint32_t BLINK_FREQ = LED_ON;
+
 /* USER CODE END 0 */
 
 /**
@@ -116,11 +119,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
-//    blink_led(freq_arr, CFG_PIN_MAX + 1, get_cfg_input_bitwise());
-    // uart_echo();
-	 start_cli();
+    if (LED_MODE == LED_ON) {
+      blink_led(freq_arr, CFG_PIN_MAX + 1, BLINK_FREQ);
+    }
+	  start_cli();
 
     /* USER CODE END WHILE */
 

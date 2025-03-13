@@ -6,12 +6,13 @@
 #include <unistd.h>
 
 extern UART_HandleTypeDef huart1;
+extern uint32_t BLINK_FREQ;
+extern uint32_t LED_MODE;
 
 void uart_echo(void) {
     uint8_t rxbuf = 0;
 
-    if (HAL_OK == HAL_UART_Receive(&huart1, &rxbuf, 1, 1000))
-    {
+    if (HAL_OK == HAL_UART_Receive(&huart1, &rxbuf, 1, 1000)){
         HAL_UART_Transmit(&huart1, &rxbuf, 1, 1000);
     }
 }
@@ -23,10 +24,10 @@ void blink_led(const uint32_t *freq_arr, const uint8_t freq_arr_size, const uint
     }
     switch (num_cfg_on)
     {
-    case 0:
+    case LED_ON:
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
         break;
-    case 1:
+    case LED_OFF:
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
         break;
     default:
@@ -62,6 +63,11 @@ static void display_prompt(const char *msg) {
     prompt_nl();
 }
 
+static void display_prompt_and_flush(const char *msg, uint8_t *buf, uint16_t *pos) {
+    display_prompt(msg);
+    flushbuf(buf, pos);
+}
+
 static void flushbuf(uint8_t *buf, uint16_t *pos) {
     *pos = 0;
     memset(buf, 0, BUFFER_SIZE);
@@ -77,20 +83,19 @@ void start_cli(void) {
     		prompt_nl();
     	}
         if (!strcmp((const char*)buf, "help\r")) {
-            display_prompt("led <on/off>");
-            flushbuf(buf, &pos);
+            display_prompt_and_flush("led <on/off>", buf, pos);
         } else if (!strcmp((const char*)buf, "led on\r")) {
-            display_prompt("OK!");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-            flushbuf(buf, &pos);
+            LED_MODE = LED_ON;
+            display_prompt_and_flush("OK!", buf, &pos);
         } else if (!strcmp((const char*)buf, "led off\r")) {
-        	display_prompt("OK!");
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-            flushbuf(buf, &pos);
+            LED_MODE = LED_OFF;
+        	display_prompt_and_flush("OK!", buf, &pos);
+        } else if (!strcmp((const char*)buf, "set 10\r")) {
+            BLINK_FREQ = BLINK_10;
+        	display_prompt_and_flush("led frequency set to 10hz", buf, &pos);
         } else {
             HAL_UART_Transmit(&huart1, (buf + pos), 1, 1000);
             ++pos;
         }
-
     }
 }

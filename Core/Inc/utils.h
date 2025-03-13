@@ -9,6 +9,8 @@
 #include <stdint.h>
 #include "main.h"
 
+#define LED_ON 0
+#define LED_OFF 1
 #define BLINK_1 1000
 #define BLINK_2 500
 #define BLINK_10 100
