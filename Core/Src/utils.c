@@ -4,6 +4,7 @@
 #include "utils.h"
 #include <stdint.h>
 #include <unistd.h>
+#include <ctype.h>
 
 extern UART_HandleTypeDef huart1;
 extern uint32_t BLINK_FREQ;
@@ -72,25 +73,43 @@ static void display_prompt_and_flush(const char *msg, uint8_t *buf, uint16_t *po
     flushbuf(buf, pos);
 }
 
+static int32_t parse_set_expr(const char *s) {
+    if (!s) {
+        return -1;
+    }
+    const char *t = s;
+    while (*t && isdigit(*t)) {
+        ++t;
+    }
+    return (*s == '\r') ? atoi(t) : -1;
+}
+
 
 void start_cli(void) {
     
     static uint8_t buf[BUFFER_SIZE] = {0};
     static uint16_t pos = 0;
 
+    static const char *set_prompt = "led mode set ";
+    static const uint8_t set_promp_length = strlen(set_prompt);
+
     if (HAL_OK == HAL_UART_Receive(&huart1, (buf + pos), 1, 1000)) {
 
         if (!strcmp((const char*)buf, "help\r")) {
-            display_prompt_and_flush("led <on/off>", buf, &pos);
+            display_prompt("led <on/off>");
+            display_prompt_and_flush("led mode <get/set/reset>", buf, &pos);
         } else if (!strcmp((const char*)buf, "led on\r")) {
             BLINK_FREQ = LED_ON;
             display_prompt_and_flush("OK!", buf, &pos);
         } else if (!strcmp((const char*)buf, "led off\r")) {
             BLINK_FREQ = LED_OFF;
         	display_prompt_and_flush("OK!", buf, &pos);
-        } else if (!strcmp((const char*)buf, "set 10\r")) {
-            BLINK_FREQ = BLINK_10;
-        	display_prompt_and_flush("led frequency set to 10", buf, &pos);
+        } else if (!strncmp((const char*)buf, set_prompt, set_promp_length)) {
+            const int32_t freq = parse_set_expr(s);
+            if (-1 != freq) {
+                BLINK_FREQ = freq;
+            }
+            display_prompt_and_flush("OK!", buf, &pos);
         } else if (buf[pos] == '\r'){
         	display_prompt_and_flush("command not found:(", buf, &pos);
     	} else {
