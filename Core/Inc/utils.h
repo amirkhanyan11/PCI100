@@ -24,7 +24,7 @@
 
 void uart_echo(void);
 void blink_led(const uint8_t num_cfg_on);
-uint8_t get_cfg_input_bitwise(void);
+void set_led_config(void);
 void start_cli(void);
 
 #endif // UTILS_H

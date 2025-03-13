@@ -12,7 +12,6 @@ extern uint32_t LED_MODE;
 
 void uart_echo(void) {
     uint8_t rxbuf = 0;
-
     if (HAL_OK == HAL_UART_Receive(&huart1, &rxbuf, 1, 1000)){
         HAL_UART_Transmit(&huart1, &rxbuf, 1, 1000);
     }
@@ -20,24 +19,17 @@ void uart_echo(void) {
 
 void blink_led(const uint8_t frequency)
 {
-    switch (num_cfg_on)
-    {
-    case LED_ON:
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-        break;
-    case LED_OFF:
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-        break;
-    default:
-        static uint32_t start = HAL_GetTick();
-        if (HAL_GetTick() >= start + frequency) {
-            HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
-            start = HAL_GetTick();
-        }
+    if (LED_MODE == LED_OFF) {
+        return;
+    }
+    static uint32_t start = HAL_GetTick();
+    if (HAL_GetTick() >= start + frequency) {
+        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
+        start = HAL_GetTick();
     }
 }
 
-uint8_t get_cfg_input_bitwise(void) {
+void set_led_config(void) {
 
     uint8_t input = 0;
 
@@ -50,7 +42,27 @@ uint8_t get_cfg_input_bitwise(void) {
     input |= (!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6)) << 6);
     input |= (!(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7)) << 7);
 
-    return input;
+    static const uint16_t fmap[] = {
+        LED_OFF,
+        LED_ON,
+        BLINK_1,
+        BLINK_2,
+        BLINK_10,
+        BLINK_20,
+        BLINK_50,
+        BLINK_100,
+        BLINK_1000,
+    };
+
+    switch(input) 
+    {
+        case LED_OFF:
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+        case LED_ON:
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+        default:
+            blink_led(fmap[input]);
+    }
 }
 
 static void prompt_nl(void){
@@ -98,21 +110,32 @@ void start_cli(void) {
         if (!strcmp((const char*)buf, "help\r")) {
             display_prompt("led <on/off>");
             display_prompt_and_flush("led mode <get/set/reset>", buf, &pos);
+
         } else if (!strcmp((const char*)buf, "led on\r")) {
-            BLINK_FREQ = LED_ON;
+            LED_MODE = LED_ON;
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
             display_prompt_and_flush("OK!", buf, &pos);
+
         } else if (!strcmp((const char*)buf, "led off\r")) {
-            BLINK_FREQ = LED_OFF;
+            LED_MODE = LED_OFF;
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
         	display_prompt_and_flush("OK!", buf, &pos);
+
         } else if (!strncmp((const char*)buf, set_prompt, set_promp_length)) {
             const int32_t freq = parse_set_expr(s);
             if (-1 != freq) {
                 BLINK_FREQ = freq;
             }
             display_prompt_and_flush("OK!", buf, &pos);
+
         } else if (buf[pos] == '\r'){
         	display_prompt_and_flush("command not found:(", buf, &pos);
-    	} else {
+
+    	} else if (!strcmp((const char*)buf, "reset\r")) {
+            set_led_config();
+        	display_prompt_and_flush("led reset", buf, &pos);
+
+        } else {
             HAL_UART_Transmit(&huart1, (buf + pos), 1, 1000);
             ++pos;
         }
