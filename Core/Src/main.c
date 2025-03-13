@@ -73,7 +73,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	int freq_arr[] = {
+	int __attribute__((unused)) freq_arr[] = {
 			0,
 			0,
 			BLINK_1,
@@ -118,9 +118,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    blink_led(freq_arr, CFG_PIN_MAX + 1, get_cfg_input_bitwise());
+//    blink_led(freq_arr, CFG_PIN_MAX + 1, get_cfg_input_bitwise());
     // uart_echo();
-    start_cli();
+	 start_cli();
 
     /* USER CODE END WHILE */
 

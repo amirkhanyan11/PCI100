@@ -53,10 +53,13 @@ uint8_t get_cfg_input_bitwise(void) {
     return input;
 }
 
-static void display_help_prompt(void) {
-    static const uint8_t prompt[] = "led <on/off>\r\n";
-    HAL_UART_Transmit(&huart1, (const uint8_t *)"\r\n", 2, 1000);
-    HAL_UART_Transmit(&huart1, prompt, strlen(prompt), 1000);
+static void prompt_nl(void){
+	HAL_UART_Transmit(&huart1, (const uint8_t *)"\r\n", 2, 1000);
+}
+
+static void display_prompt(const char *msg) {
+    HAL_UART_Transmit(&huart1, (const uint8_t *)msg, (const uint16_t)strlen(msg), 1000);
+    prompt_nl();
 }
 
 static void flushbuf(uint8_t *buf, uint16_t *pos) {
@@ -64,21 +67,28 @@ static void flushbuf(uint8_t *buf, uint16_t *pos) {
     memset(buf, 0, BUFFER_SIZE);
 }
 
-
 void start_cli(void) {
     
     static uint8_t buf[BUFFER_SIZE] = {0};
     static uint16_t pos = 0;
 
     if (HAL_OK == HAL_UART_Receive(&huart1, (buf + pos), 1, 1000)) {
-        if (!strcmp(buf, "help\r")) {
-            display_help_prompt();
+    	if (buf[pos] == '\r'){
+    		prompt_nl();
+    	}
+        if (!strcmp((const char*)buf, "help\r")) {
+            display_prompt("led <on/off>");
             flushbuf(buf, &pos);
-        } else if (!strcmp(buf, "led on\r")) {
-            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-        } else if (!strcmp(buf, "led off\r")) {
+        } else if (!strcmp((const char*)buf, "led on\r")) {
+            display_prompt("OK!");
             HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+            flushbuf(buf, &pos);
+        } else if (!strcmp((const char*)buf, "led off\r")) {
+        	display_prompt("OK!");
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+            flushbuf(buf, &pos);
         } else {
+            HAL_UART_Transmit(&huart1, (buf + pos), 1, 1000);
             ++pos;
         }
 
