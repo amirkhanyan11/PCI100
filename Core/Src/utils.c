@@ -117,10 +117,6 @@ void start_cli(void) {
     static uint8_t buf[BUFFER_SIZE] = {0};
     static uint16_t pos = 0;
 
-    if (1) {
-    	return;
-    }
-
     if (HAL_OK == HAL_UART_Receive(&huart1, (buf + pos), 1, 10)) {
 
     	if (buf[pos] != '\r') {
