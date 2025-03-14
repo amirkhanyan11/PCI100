@@ -1,11 +1,10 @@
 //
 // Created by Artyom on 3/13/2025.
 //
-#include "utils.h"
+
 #include <stdint.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <ctype.h>
+#include "utils.h"
+
 
 extern UART_HandleTypeDef huart1;
 extern volatile uint32_t BLINK_FREQ;
@@ -15,8 +14,8 @@ static uint32_t start = 0;
 
 void uart_echo(void) {
     uint8_t rxbuf = 0;
-    if (HAL_OK == HAL_UART_Receive(&huart1, &rxbuf, 1, 1000)){
-        HAL_UART_Transmit(&huart1, &rxbuf, 1, 1000);
+    if (HAL_OK == HAL_UART_Receive(&huart1, &rxbuf, 1, 10)){
+        HAL_UART_Transmit(&huart1, &rxbuf, 1, 10);
     }
 }
 
@@ -25,13 +24,11 @@ void blink_led(const uint32_t frequency)
     if (LED_MODE == LED_OFF) {
         return;
     }
-    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
-    HAL_Delay(frequency);
-//    const uint32_t current_tick = HAL_GetTick();
-//    if (current_tick >= start + frequency) {
-//        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
-//        start = HAL_GetTick();
-//    }
+    const uint32_t current_tick = HAL_GetTick();
+    if (current_tick >= start + frequency) {
+        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
+        start = HAL_GetTick();
+    }
 }
 
 void set_led_config(void) {
@@ -76,12 +73,12 @@ void set_led_config(void) {
 }
 
 static void prompt_nl(void){
-	HAL_UART_Transmit(&huart1, (const uint8_t *)"\r\n", 2, 1000);
+	HAL_UART_Transmit(&huart1, (const uint8_t *)"\r\n", 2, 10);
 }
 
 static void display_prompt(const char *msg) {
 	prompt_nl();
-    HAL_UART_Transmit(&huart1, (const uint8_t *)msg, (const uint16_t)strlen(msg), 1000);
+    HAL_UART_Transmit(&huart1, (const uint8_t *)msg, (const uint16_t)strlen(msg), 10);
     prompt_nl();
 }
 
@@ -120,10 +117,10 @@ void start_cli(void) {
     	return;
     }
 
-    if (HAL_OK == HAL_UART_Receive(&huart1, (buf + pos), 1, 1000)) {
+    if (HAL_OK == HAL_UART_Receive(&huart1, (buf + pos), 1, 10)) {
 
     	if (buf[pos] != '\r') {
-    		HAL_UART_Transmit(&huart1, (buf + pos), 1, 1000);
+    		HAL_UART_Transmit(&huart1, (buf + pos), 1, 10);
     		++pos;
 
     	} else if (!strcmp((const char*)buf, "help\r")) {
