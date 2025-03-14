@@ -110,6 +110,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
+  set_led_config();
   while (1)
   {
     blink_led(BLINK_FREQ);

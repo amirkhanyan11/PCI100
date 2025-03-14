@@ -1,9 +1,9 @@
 ../Core/Src/utils.c:16:6:uart_echo	2
-../Core/Src/utils.c:23:6:blink_led	3
-../Core/Src/utils.c:35:6:set_led_config	10
-../Core/Src/utils.c:76:13:prompt_nl	1
-../Core/Src/utils.c:80:13:display_prompt	1
-../Core/Src/utils.c:86:13:flushbuf	1
-../Core/Src/utils.c:91:13:display_prompt_and_flush	1
-../Core/Src/utils.c:96:16:parse_set_expr	6
-../Core/Src/utils.c:112:6:start_cli	9
+../Core/Src/utils.c:23:6:blink_led	2
+../Core/Src/utils.c:37:6:set_led_config	10
+../Core/Src/utils.c:78:13:prompt_nl	1
+../Core/Src/utils.c:82:13:display_prompt	1
+../Core/Src/utils.c:88:13:flushbuf	1
+../Core/Src/utils.c:93:13:display_prompt_and_flush	1
+../Core/Src/utils.c:98:16:parse_set_expr	6
+../Core/Src/utils.c:114:6:start_cli	1

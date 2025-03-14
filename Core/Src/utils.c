@@ -8,8 +8,8 @@
 #include <ctype.h>
 
 extern UART_HandleTypeDef huart1;
-extern uint32_t BLINK_FREQ;
-extern uint32_t LED_MODE;
+extern volatile uint32_t BLINK_FREQ;
+extern volatile uint32_t LED_MODE;
 
 static uint32_t start = 0;
 
@@ -25,11 +25,13 @@ void blink_led(const uint32_t frequency)
     if (LED_MODE == LED_OFF) {
         return;
     }
-
-    if (HAL_GetTick() >= start + frequency) {
-        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
-        start = HAL_GetTick();
-    }
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
+    HAL_Delay(frequency);
+//    const uint32_t current_tick = HAL_GetTick();
+//    if (current_tick >= start + frequency) {
+//        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
+//        start = HAL_GetTick();
+//    }
 }
 
 void set_led_config(void) {
@@ -113,6 +115,10 @@ void start_cli(void) {
     
     static uint8_t buf[BUFFER_SIZE] = {0};
     static uint16_t pos = 0;
+
+    if (1) {
+    	return;
+    }
 
     if (HAL_OK == HAL_UART_Receive(&huart1, (buf + pos), 1, 1000)) {
 

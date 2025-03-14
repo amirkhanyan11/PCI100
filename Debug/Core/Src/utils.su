@@ -1,9 +1,9 @@
 ../Core/Src/utils.c:16:6:uart_echo	16	static
 ../Core/Src/utils.c:23:6:blink_led	16	static
-../Core/Src/utils.c:35:6:set_led_config	16	static
-../Core/Src/utils.c:76:13:prompt_nl	8	static
-../Core/Src/utils.c:80:13:display_prompt	16	static
-../Core/Src/utils.c:86:13:flushbuf	16	static
-../Core/Src/utils.c:91:13:display_prompt_and_flush	24	static
-../Core/Src/utils.c:96:16:parse_set_expr	24	static
-../Core/Src/utils.c:112:6:start_cli	16	static
+../Core/Src/utils.c:37:6:set_led_config	16	static
+../Core/Src/utils.c:78:13:prompt_nl	8	static
+../Core/Src/utils.c:82:13:display_prompt	16	static
+../Core/Src/utils.c:88:13:flushbuf	16	static
+../Core/Src/utils.c:93:13:display_prompt_and_flush	24	static
+../Core/Src/utils.c:98:16:parse_set_expr	24	static
+../Core/Src/utils.c:114:6:start_cli	4	static
