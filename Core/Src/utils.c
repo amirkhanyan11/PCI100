@@ -3,7 +3,11 @@
 //
 
 #include <stdint.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
 #include "utils.h"
+#include "main.h"
 
 
 extern UART_HandleTypeDef huart1;

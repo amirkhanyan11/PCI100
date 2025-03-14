@@ -5,7 +5,6 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <string.h>
 #include <stdint.h>
 #include "main.h"
 
