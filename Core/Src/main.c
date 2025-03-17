@@ -123,7 +123,7 @@ int main(void)
   HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
 
   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
-  set_led_config();
+  // set_led_config();
 
   while (1)
   {
