@@ -93,6 +93,9 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .data          0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .bss           0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+ .bss.LED_MODE  0x00000000        0x4 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+ .data.BLINK_FREQ
+                0x00000000        0x4 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .text          0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
  .data          0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
  .bss           0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
@@ -173,8 +176,47 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
  .data          0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
  .bss           0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .rodata.prompt_nl.str1.4
+                0x00000000        0x3 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .text.prompt_nl
+                0x00000000       0x18 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .text.display_prompt
+                0x00000000       0x24 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .text.parse_set_expr
+                0x00000000       0x44 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .text.flushbuf
+                0x00000000       0x12 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .text.display_prompt_and_flush
+                0x00000000       0x14 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
  .text.uart_echo
                 0x00000000       0x34 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .text.blink_led
+                0x00000000       0x40 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .text.set_led_config
+                0x00000000       0xe4 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .rodata.start_cli.str1.4
+                0x00000000       0x8c CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .text.start_cli
+                0x00000000      0x144 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .bss.buf.0     0x00000000      0x400 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .bss.pos.1     0x00000000        0x2 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .rodata.fmap.2
+                0x00000000       0x12 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .bss.start     0x00000000        0x4 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .debug_info    0x00000000      0xf9b CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .debug_abbrev  0x00000000      0x29c CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .debug_loclists
+                0x00000000      0x1ad CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .debug_aranges
+                0x00000000       0x60 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .debug_rnglists
+                0x00000000       0x45 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .debug_line    0x00000000      0x6b9 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .debug_str     0x00000000      0x89a CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .comment       0x00000000       0x46 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .debug_frame   0x00000000       0xfc CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+ .ARM.attributes
+                0x00000000       0x2e CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
  .text          0x00000000       0x14 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
  .data          0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
  .bss           0x00000000        0x0 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
@@ -375,16 +417,12 @@ Discarded input sections
                 0x00000000        0x2 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
  .text.HAL_DAC_DeInit
                 0x00000000       0x1c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
- .text.HAL_DAC_Start
-                0x00000000       0x6c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
  .text.HAL_DAC_Stop
                 0x00000000       0x26 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
  .text.HAL_DAC_Start_DMA
                 0x00000000       0xf0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
  .text.HAL_DAC_Stop_DMA
                 0x00000000       0x5c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
- .text.HAL_DAC_SetValue
-                0x00000000       0x32 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
  .text.HAL_DAC_ConvCpltCallbackCh1
                 0x00000000        0x2 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
  .text.DAC_DMAConvCpltCh1
@@ -675,6 +713,10 @@ Discarded input sections
  .bss           0x00000000        0x0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
  .text.HAL_GPIO_DeInit
                 0x00000000      0x134 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+ .text.HAL_GPIO_ReadPin
+                0x00000000        0xe CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+ .text.HAL_GPIO_TogglePin
+                0x00000000       0x12 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
  .text.HAL_GPIO_LockPin
                 0x00000000       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
  .text.HAL_GPIO_EXTI_Callback
@@ -1080,6 +1122,10 @@ Discarded input sections
                 0x00000000        0xa CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
  .text.HAL_UART_GetError
                 0x00000000        0x6 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+ .text.HAL_UART_Transmit
+                0x00000000       0xc6 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+ .text.HAL_UART_Receive
+                0x00000000      0x116 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
  .text.HAL_HalfDuplex_Init
                 0x00000000       0x6e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
  .text.HAL_LIN_Init
@@ -1139,7 +1185,11 @@ Discarded input sections
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
+ .text.atoi     0x00000000        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
  .text._atoi_r  0x00000000        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
+ .debug_frame   0x00000000       0x30 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
+ .ARM.attributes
+                0x00000000       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-exit.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-exit.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-exit.o)
@@ -1150,15 +1200,26 @@ Discarded input sections
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
+ .text._strtol_l.isra.0
+                0x00000000      0x138 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
  .text._strtol_r
                 0x00000000        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
  .text.strtol_l
                 0x00000000       0x18 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
+ .text.strtol   0x00000000       0x18 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
+ .debug_frame   0x00000000       0x80 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
+ .ARM.attributes
+                0x00000000       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
  .text.__set_ctype
                 0x00000000        0xc C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
+ .rodata._ctype_
+                0x00000000      0x101 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
+ .debug_frame   0x00000000       0x20 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
+ .ARM.attributes
+                0x00000000       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
@@ -1183,8 +1244,12 @@ Discarded input sections
  .text.__fp_unlock_all
                 0x00000000       0x24 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
  .data.__sglue  0x00000000        0xc C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+ .bss.__sf      0x00000000      0x138 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
  .bss.__stdio_exit_handler
                 0x00000000        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+ .debug_frame   0x00000000      0x13c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+ .ARM.attributes
+                0x00000000       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-fwalk.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-fwalk.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-fwalk.o)
@@ -1213,6 +1278,10 @@ Discarded input sections
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strncmp.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strncmp.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strncmp.o)
+ .text.strncmp  0x00000000       0x78 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strncmp.o)
+ .debug_frame   0x00000000       0x38 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strncmp.o)
+ .ARM.attributes
+                0x00000000       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strncmp.o)
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-closer.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-closer.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-closer.o)
@@ -1233,6 +1302,12 @@ Discarded input sections
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+ .data._impure_ptr
+                0x00000000        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+ .data._impure_data
+                0x00000000      0x140 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+ .ARM.attributes
+                0x00000000       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lseekr.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lseekr.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lseekr.o)
@@ -1259,6 +1334,10 @@ Discarded input sections
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+ .text.__errno  0x00000000        0xc C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+ .debug_frame   0x00000000       0x20 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
+ .ARM.attributes
+                0x00000000       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
@@ -1295,12 +1374,26 @@ Discarded input sections
                 0x00000000        0x1 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
  .bss.__lock___sfp_recursive_mutex
                 0x00000000        0x1 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+ .text          0x00000000      0x2e0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
  .ARM.extab     0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
+ .ARM.exidx     0x00000000        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
+ .debug_line_str
+                0x00000000       0xe3 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
+ .debug_frame   0x00000000       0x7c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
+ .ARM.attributes
+                0x00000000       0x1c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
+ .text          0x00000000       0xd8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
  .ARM.extab     0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
+ .ARM.exidx     0x00000000        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
+ .debug_line_str
+                0x00000000       0xe3 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
+ .debug_frame   0x00000000       0x30 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
+ .ARM.attributes
+                0x00000000       0x1c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
  .text          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
  .data          0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
  .bss           0x00000000        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
@@ -1458,552 +1551,475 @@ LOAD C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gc
                 0x08000000                g_pfnVectors
                 0x080001e0                        . = ALIGN (0x4)
 
-.text           0x08000200     0x3090
-                0x08000200                        . = ALIGN (0x4)
+.text           0x080001e0     0x2678
+                0x080001e0                        . = ALIGN (0x4)
  *(.text)
- .text          0x08000200       0x30 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
-                0x08000200                __aeabi_uldivmod
- .text          0x08000230        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_dvmd_tls.o)
-                0x08000230                __aeabi_idiv0
-                0x08000230                __aeabi_ldiv0
- *fill*         0x08000234        0xc 
- .text          0x08000240      0x2e0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
-                0x08000240                strcmp
- *fill*         0x08000520       0x20 
- .text          0x08000540       0xd8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
-                0x08000540                strlen
+ .text          0x080001e0       0x30 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
+                0x080001e0                __aeabi_uldivmod
+ .text          0x08000210        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_dvmd_tls.o)
+                0x08000210                __aeabi_idiv0
+                0x08000210                __aeabi_ldiv0
  *(.text*)
  .text.deregister_tm_clones
-                0x08000618       0x1c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+                0x08000214       0x1c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
  .text.register_tm_clones
-                0x08000634       0x24 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+                0x08000230       0x24 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
  .text.__do_global_dtors_aux
-                0x08000658       0x28 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+                0x08000254       0x28 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
  .text.frame_dummy
-                0x08000680       0x24 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+                0x0800027c       0x24 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
  .text.MPU_Config
-                0x080006a4       0x52 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
- *fill*         0x080006f6        0x2 
+                0x080002a0       0x52 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+ *fill*         0x080002f2        0x2 
  .text.MX_GPIO_Init
-                0x080006f8       0xec CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x080002f4       0xec CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .text.Error_Handler
-                0x080007e4        0x4 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                0x080007e4                Error_Handler
+                0x080003e0        0x4 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x080003e0                Error_Handler
  .text.MX_I2C1_Init
-                0x080007e8       0x54 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x080003e4       0x54 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .text.MX_USART1_UART_Init
-                0x0800083c       0x38 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x08000438       0x38 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .text.MX_ADC1_Init
-                0x08000874       0x68 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x08000470       0x68 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .text.MX_DAC_Init
-                0x080008dc       0x3c CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x080004d8       0x3c CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .text.SystemClock_Config
-                0x08000918       0x88 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                0x08000918                SystemClock_Config
- .text.main     0x080009a0       0x38 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                0x080009a0                main
+                0x08000514       0x88 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x08000514                SystemClock_Config
+ .text.main     0x0800059c       0x50 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x0800059c                main
  .text.HAL_MspInit
-                0x080009d8       0x30 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
-                0x080009d8                HAL_MspInit
+                0x080005ec       0x30 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
+                0x080005ec                HAL_MspInit
  .text.HAL_ADC_MspInit
-                0x08000a08       0x64 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
-                0x08000a08                HAL_ADC_MspInit
+                0x0800061c       0x64 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
+                0x0800061c                HAL_ADC_MspInit
  .text.HAL_DAC_MspInit
-                0x08000a6c       0x60 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
-                0x08000a6c                HAL_DAC_MspInit
+                0x08000680       0x60 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
+                0x08000680                HAL_DAC_MspInit
  .text.HAL_I2C_MspInit
-                0x08000acc       0x8c CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
-                0x08000acc                HAL_I2C_MspInit
+                0x080006e0       0x8c CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
+                0x080006e0                HAL_I2C_MspInit
  .text.HAL_UART_MspInit
-                0x08000b58       0x8c CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
-                0x08000b58                HAL_UART_MspInit
+                0x0800076c       0x8c CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
+                0x0800076c                HAL_UART_MspInit
  .text.NMI_Handler
-                0x08000be4        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
-                0x08000be4                NMI_Handler
+                0x080007f8        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+                0x080007f8                NMI_Handler
  .text.HardFault_Handler
-                0x08000be6        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
-                0x08000be6                HardFault_Handler
+                0x080007fa        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+                0x080007fa                HardFault_Handler
  .text.MemManage_Handler
-                0x08000be8        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
-                0x08000be8                MemManage_Handler
+                0x080007fc        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+                0x080007fc                MemManage_Handler
  .text.BusFault_Handler
-                0x08000bea        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
-                0x08000bea                BusFault_Handler
+                0x080007fe        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+                0x080007fe                BusFault_Handler
  .text.UsageFault_Handler
-                0x08000bec        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
-                0x08000bec                UsageFault_Handler
+                0x08000800        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+                0x08000800                UsageFault_Handler
  .text.SVC_Handler
-                0x08000bee        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
-                0x08000bee                SVC_Handler
+                0x08000802        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+                0x08000802                SVC_Handler
  .text.DebugMon_Handler
-                0x08000bf0        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
-                0x08000bf0                DebugMon_Handler
+                0x08000804        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+                0x08000804                DebugMon_Handler
  .text.PendSV_Handler
-                0x08000bf2        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
-                0x08000bf2                PendSV_Handler
+                0x08000806        0x2 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+                0x08000806                PendSV_Handler
  .text.SysTick_Handler
-                0x08000bf4        0x8 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
-                0x08000bf4                SysTick_Handler
+                0x08000808        0x8 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+                0x08000808                SysTick_Handler
  .text.SystemInit
-                0x08000bfc        0x2 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
-                0x08000bfc                SystemInit
- *fill*         0x08000bfe        0x2 
- .text.prompt_nl
-                0x08000c00       0x18 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .text.display_prompt
-                0x08000c18       0x24 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .text.parse_set_expr
-                0x08000c3c       0x44 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .text.flushbuf
-                0x08000c80       0x12 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .text.display_prompt_and_flush
-                0x08000c92       0x14 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- *fill*         0x08000ca6        0x2 
- .text.blink_led
-                0x08000ca8       0x40 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
-                0x08000ca8                blink_led
- .text.set_led_config
-                0x08000ce8       0xe4 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
-                0x08000ce8                set_led_config
- .text.start_cli
-                0x08000dcc      0x144 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
-                0x08000dcc                start_cli
+                0x08000810        0x2 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
+                0x08000810                SystemInit
+ *fill*         0x08000812        0x2 
  .text.Reset_Handler
-                0x08000f10       0x50 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
-                0x08000f10                Reset_Handler
+                0x08000814       0x50 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+                0x08000814                Reset_Handler
  .text.Default_Handler
-                0x08000f60        0x2 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
-                0x08000f60                RTC_Alarm_IRQHandler
-                0x08000f60                EXTI2_IRQHandler
-                0x08000f60                TIM8_CC_IRQHandler
-                0x08000f60                UART8_IRQHandler
-                0x08000f60                SPI4_IRQHandler
-                0x08000f60                TIM1_CC_IRQHandler
-                0x08000f60                DMA2_Stream5_IRQHandler
-                0x08000f60                DMA1_Stream5_IRQHandler
-                0x08000f60                PVD_IRQHandler
-                0x08000f60                TAMP_STAMP_IRQHandler
-                0x08000f60                EXTI3_IRQHandler
-                0x08000f60                TIM8_TRG_COM_TIM14_IRQHandler
-                0x08000f60                TIM1_UP_TIM10_IRQHandler
-                0x08000f60                TIM8_UP_TIM13_IRQHandler
-                0x08000f60                I2C3_ER_IRQHandler
-                0x08000f60                EXTI0_IRQHandler
-                0x08000f60                I2C2_EV_IRQHandler
-                0x08000f60                DMA1_Stream2_IRQHandler
-                0x08000f60                CAN1_RX0_IRQHandler
-                0x08000f60                FPU_IRQHandler
-                0x08000f60                OTG_HS_WKUP_IRQHandler
-                0x08000f60                DMA2_Stream2_IRQHandler
-                0x08000f60                SPI1_IRQHandler
-                0x08000f60                TIM6_DAC_IRQHandler
-                0x08000f60                TIM1_BRK_TIM9_IRQHandler
-                0x08000f60                DMA2_Stream3_IRQHandler
-                0x08000f60                SAI2_IRQHandler
-                0x08000f60                USART6_IRQHandler
-                0x08000f60                USART3_IRQHandler
-                0x08000f60                CAN1_RX1_IRQHandler
-                0x08000f60                UART5_IRQHandler
-                0x08000f60                DMA2_Stream0_IRQHandler
-                0x08000f60                TIM4_IRQHandler
-                0x08000f60                QUADSPI_IRQHandler
-                0x08000f60                I2C1_EV_IRQHandler
-                0x08000f60                DMA1_Stream6_IRQHandler
-                0x08000f60                DMA1_Stream1_IRQHandler
-                0x08000f60                UART4_IRQHandler
-                0x08000f60                TIM3_IRQHandler
-                0x08000f60                RCC_IRQHandler
-                0x08000f60                TIM8_BRK_TIM12_IRQHandler
-                0x08000f60                Default_Handler
-                0x08000f60                EXTI15_10_IRQHandler
-                0x08000f60                ADC_IRQHandler
-                0x08000f60                DMA1_Stream7_IRQHandler
-                0x08000f60                SPI5_IRQHandler
-                0x08000f60                TIM7_IRQHandler
-                0x08000f60                SDMMC1_IRQHandler
-                0x08000f60                TIM5_IRQHandler
-                0x08000f60                DMA2_Stream7_IRQHandler
-                0x08000f60                I2C3_EV_IRQHandler
-                0x08000f60                EXTI9_5_IRQHandler
-                0x08000f60                RTC_WKUP_IRQHandler
-                0x08000f60                SPI2_IRQHandler
-                0x08000f60                OTG_HS_EP1_IN_IRQHandler
-                0x08000f60                DMA1_Stream0_IRQHandler
-                0x08000f60                CAN1_TX_IRQHandler
-                0x08000f60                EXTI4_IRQHandler
-                0x08000f60                RNG_IRQHandler
-                0x08000f60                OTG_HS_EP1_OUT_IRQHandler
-                0x08000f60                WWDG_IRQHandler
-                0x08000f60                TIM2_IRQHandler
-                0x08000f60                OTG_FS_WKUP_IRQHandler
-                0x08000f60                TIM1_TRG_COM_TIM11_IRQHandler
-                0x08000f60                OTG_HS_IRQHandler
-                0x08000f60                EXTI1_IRQHandler
-                0x08000f60                SDMMC2_IRQHandler
-                0x08000f60                UART7_IRQHandler
-                0x08000f60                USART2_IRQHandler
-                0x08000f60                I2C2_ER_IRQHandler
-                0x08000f60                DMA2_Stream1_IRQHandler
-                0x08000f60                CAN1_SCE_IRQHandler
-                0x08000f60                FLASH_IRQHandler
-                0x08000f60                DMA2_Stream4_IRQHandler
-                0x08000f60                USART1_IRQHandler
-                0x08000f60                OTG_FS_IRQHandler
-                0x08000f60                SPI3_IRQHandler
-                0x08000f60                DMA1_Stream4_IRQHandler
-                0x08000f60                I2C1_ER_IRQHandler
-                0x08000f60                FMC_IRQHandler
-                0x08000f60                LPTIM1_IRQHandler
-                0x08000f60                DMA2_Stream6_IRQHandler
-                0x08000f60                SAI1_IRQHandler
-                0x08000f60                DMA1_Stream3_IRQHandler
- *fill*         0x08000f62        0x2 
+                0x08000864        0x2 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+                0x08000864                RTC_Alarm_IRQHandler
+                0x08000864                EXTI2_IRQHandler
+                0x08000864                TIM8_CC_IRQHandler
+                0x08000864                UART8_IRQHandler
+                0x08000864                SPI4_IRQHandler
+                0x08000864                TIM1_CC_IRQHandler
+                0x08000864                DMA2_Stream5_IRQHandler
+                0x08000864                DMA1_Stream5_IRQHandler
+                0x08000864                PVD_IRQHandler
+                0x08000864                TAMP_STAMP_IRQHandler
+                0x08000864                EXTI3_IRQHandler
+                0x08000864                TIM8_TRG_COM_TIM14_IRQHandler
+                0x08000864                TIM1_UP_TIM10_IRQHandler
+                0x08000864                TIM8_UP_TIM13_IRQHandler
+                0x08000864                I2C3_ER_IRQHandler
+                0x08000864                EXTI0_IRQHandler
+                0x08000864                I2C2_EV_IRQHandler
+                0x08000864                DMA1_Stream2_IRQHandler
+                0x08000864                CAN1_RX0_IRQHandler
+                0x08000864                FPU_IRQHandler
+                0x08000864                OTG_HS_WKUP_IRQHandler
+                0x08000864                DMA2_Stream2_IRQHandler
+                0x08000864                SPI1_IRQHandler
+                0x08000864                TIM6_DAC_IRQHandler
+                0x08000864                TIM1_BRK_TIM9_IRQHandler
+                0x08000864                DMA2_Stream3_IRQHandler
+                0x08000864                SAI2_IRQHandler
+                0x08000864                USART6_IRQHandler
+                0x08000864                USART3_IRQHandler
+                0x08000864                CAN1_RX1_IRQHandler
+                0x08000864                UART5_IRQHandler
+                0x08000864                DMA2_Stream0_IRQHandler
+                0x08000864                TIM4_IRQHandler
+                0x08000864                QUADSPI_IRQHandler
+                0x08000864                I2C1_EV_IRQHandler
+                0x08000864                DMA1_Stream6_IRQHandler
+                0x08000864                DMA1_Stream1_IRQHandler
+                0x08000864                UART4_IRQHandler
+                0x08000864                TIM3_IRQHandler
+                0x08000864                RCC_IRQHandler
+                0x08000864                TIM8_BRK_TIM12_IRQHandler
+                0x08000864                Default_Handler
+                0x08000864                EXTI15_10_IRQHandler
+                0x08000864                ADC_IRQHandler
+                0x08000864                DMA1_Stream7_IRQHandler
+                0x08000864                SPI5_IRQHandler
+                0x08000864                TIM7_IRQHandler
+                0x08000864                SDMMC1_IRQHandler
+                0x08000864                TIM5_IRQHandler
+                0x08000864                DMA2_Stream7_IRQHandler
+                0x08000864                I2C3_EV_IRQHandler
+                0x08000864                EXTI9_5_IRQHandler
+                0x08000864                RTC_WKUP_IRQHandler
+                0x08000864                SPI2_IRQHandler
+                0x08000864                OTG_HS_EP1_IN_IRQHandler
+                0x08000864                DMA1_Stream0_IRQHandler
+                0x08000864                CAN1_TX_IRQHandler
+                0x08000864                EXTI4_IRQHandler
+                0x08000864                RNG_IRQHandler
+                0x08000864                OTG_HS_EP1_OUT_IRQHandler
+                0x08000864                WWDG_IRQHandler
+                0x08000864                TIM2_IRQHandler
+                0x08000864                OTG_FS_WKUP_IRQHandler
+                0x08000864                TIM1_TRG_COM_TIM11_IRQHandler
+                0x08000864                OTG_HS_IRQHandler
+                0x08000864                EXTI1_IRQHandler
+                0x08000864                SDMMC2_IRQHandler
+                0x08000864                UART7_IRQHandler
+                0x08000864                USART2_IRQHandler
+                0x08000864                I2C2_ER_IRQHandler
+                0x08000864                DMA2_Stream1_IRQHandler
+                0x08000864                CAN1_SCE_IRQHandler
+                0x08000864                FLASH_IRQHandler
+                0x08000864                DMA2_Stream4_IRQHandler
+                0x08000864                USART1_IRQHandler
+                0x08000864                OTG_FS_IRQHandler
+                0x08000864                SPI3_IRQHandler
+                0x08000864                DMA1_Stream4_IRQHandler
+                0x08000864                I2C1_ER_IRQHandler
+                0x08000864                FMC_IRQHandler
+                0x08000864                LPTIM1_IRQHandler
+                0x08000864                DMA2_Stream6_IRQHandler
+                0x08000864                SAI1_IRQHandler
+                0x08000864                DMA1_Stream3_IRQHandler
+ *fill*         0x08000866        0x2 
  .text.HAL_InitTick
-                0x08000f64       0x4c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
-                0x08000f64                HAL_InitTick
+                0x08000868       0x4c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x08000868                HAL_InitTick
  .text.HAL_Init
-                0x08000fb0       0x16 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
-                0x08000fb0                HAL_Init
- *fill*         0x08000fc6        0x2 
+                0x080008b4       0x16 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x080008b4                HAL_Init
+ *fill*         0x080008ca        0x2 
  .text.HAL_IncTick
-                0x08000fc8       0x18 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
-                0x08000fc8                HAL_IncTick
+                0x080008cc       0x18 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x080008cc                HAL_IncTick
  .text.HAL_GetTick
-                0x08000fe0        0xc CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
-                0x08000fe0                HAL_GetTick
+                0x080008e4        0xc CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x080008e4                HAL_GetTick
  .text.ADC_Init
-                0x08000fec      0x134 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+                0x080008f0      0x134 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
  .text.HAL_ADC_Init
-                0x08001120       0x58 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
-                0x08001120                HAL_ADC_Init
+                0x08000a24       0x58 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+                0x08000a24                HAL_ADC_Init
  .text.HAL_ADC_ConfigChannel
-                0x08001178      0x1e4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
-                0x08001178                HAL_ADC_ConfigChannel
+                0x08000a7c      0x1e4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+                0x08000a7c                HAL_ADC_ConfigChannel
  .text.__NVIC_SetPriority
-                0x0800135c       0x24 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x08000c60       0x24 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
  .text.NVIC_EncodePriority
-                0x08001380       0x3e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
- *fill*         0x080013be        0x2 
+                0x08000c84       0x3e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+ *fill*         0x08000cc2        0x2 
  .text.HAL_NVIC_SetPriorityGrouping
-                0x080013c0       0x24 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
-                0x080013c0                HAL_NVIC_SetPriorityGrouping
+                0x08000cc4       0x24 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x08000cc4                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x080013e4       0x20 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
-                0x080013e4                HAL_NVIC_SetPriority
+                0x08000ce8       0x20 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x08000ce8                HAL_NVIC_SetPriority
  .text.HAL_SYSTICK_Config
-                0x08001404       0x28 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
-                0x08001404                HAL_SYSTICK_Config
+                0x08000d08       0x28 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x08000d08                HAL_SYSTICK_Config
  .text.HAL_MPU_Disable
-                0x0800142c       0x1c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
-                0x0800142c                HAL_MPU_Disable
+                0x08000d30       0x1c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x08000d30                HAL_MPU_Disable
  .text.HAL_MPU_Enable
-                0x08001448       0x20 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
-                0x08001448                HAL_MPU_Enable
+                0x08000d4c       0x20 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x08000d4c                HAL_MPU_Enable
  .text.HAL_MPU_ConfigRegion
-                0x08001468       0x58 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
-                0x08001468                HAL_MPU_ConfigRegion
+                0x08000d6c       0x58 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x08000d6c                HAL_MPU_ConfigRegion
  .text.HAL_DAC_Init
-                0x080014c0       0x24 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
-                0x080014c0                HAL_DAC_Init
+                0x08000dc4       0x24 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+                0x08000dc4                HAL_DAC_Init
+ .text.HAL_DAC_Start
+                0x08000de8       0x6c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+                0x08000de8                HAL_DAC_Start
+ .text.HAL_DAC_SetValue
+                0x08000e54       0x32 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+                0x08000e54                HAL_DAC_SetValue
  .text.HAL_DAC_ConfigChannel
-                0x080014e4       0x62 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
-                0x080014e4                HAL_DAC_ConfigChannel
- *fill*         0x08001546        0x2 
+                0x08000e86       0x62 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+                0x08000e86                HAL_DAC_ConfigChannel
  .text.HAL_GPIO_Init
-                0x08001548      0x1f0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
-                0x08001548                HAL_GPIO_Init
- .text.HAL_GPIO_ReadPin
-                0x08001738        0xe CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
-                0x08001738                HAL_GPIO_ReadPin
+                0x08000ee8      0x1f0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+                0x08000ee8                HAL_GPIO_Init
  .text.HAL_GPIO_WritePin
-                0x08001746        0xc CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
-                0x08001746                HAL_GPIO_WritePin
- .text.HAL_GPIO_TogglePin
-                0x08001752       0x12 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
-                0x08001752                HAL_GPIO_TogglePin
+                0x080010d8        0xc CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+                0x080010d8                HAL_GPIO_WritePin
  .text.HAL_I2C_Init
-                0x08001764       0xc8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
-                0x08001764                HAL_I2C_Init
+                0x080010e4       0xc8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+                0x080010e4                HAL_I2C_Init
  .text.HAL_I2CEx_ConfigAnalogFilter
-                0x0800182c       0x5a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
-                0x0800182c                HAL_I2CEx_ConfigAnalogFilter
+                0x080011ac       0x5a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+                0x080011ac                HAL_I2CEx_ConfigAnalogFilter
  .text.HAL_I2CEx_ConfigDigitalFilter
-                0x08001886       0x56 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
-                0x08001886                HAL_I2CEx_ConfigDigitalFilter
+                0x08001206       0x56 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+                0x08001206                HAL_I2CEx_ConfigDigitalFilter
  .text.HAL_RCC_OscConfig
-                0x080018dc      0x434 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
-                0x080018dc                HAL_RCC_OscConfig
+                0x0800125c      0x434 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+                0x0800125c                HAL_RCC_OscConfig
  .text.HAL_RCC_GetSysClockFreq
-                0x08001d10       0xa8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
-                0x08001d10                HAL_RCC_GetSysClockFreq
+                0x08001690       0xa8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+                0x08001690                HAL_RCC_GetSysClockFreq
  .text.HAL_RCC_ClockConfig
-                0x08001db8      0x16c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
-                0x08001db8                HAL_RCC_ClockConfig
+                0x08001738      0x16c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+                0x08001738                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetHCLKFreq
-                0x08001f24        0xc CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
-                0x08001f24                HAL_RCC_GetHCLKFreq
+                0x080018a4        0xc CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+                0x080018a4                HAL_RCC_GetHCLKFreq
  .text.HAL_RCC_GetPCLK1Freq
-                0x08001f30       0x20 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
-                0x08001f30                HAL_RCC_GetPCLK1Freq
+                0x080018b0       0x20 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+                0x080018b0                HAL_RCC_GetPCLK1Freq
  .text.HAL_RCC_GetPCLK2Freq
-                0x08001f50       0x20 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
-                0x08001f50                HAL_RCC_GetPCLK2Freq
+                0x080018d0       0x20 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+                0x080018d0                HAL_RCC_GetPCLK2Freq
  .text.HAL_RCCEx_PeriphCLKConfig
-                0x08001f70      0x4e4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
-                0x08001f70                HAL_RCCEx_PeriphCLKConfig
+                0x080018f0      0x4e4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
+                0x080018f0                HAL_RCCEx_PeriphCLKConfig
  .text.UART_EndRxTransfer
-                0x08002454       0x52 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
- *fill*         0x080024a6        0x2 
+                0x08001dd4       0x52 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+ *fill*         0x08001e26        0x2 
  .text.UART_SetConfig
-                0x080024a8      0x328 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
-                0x080024a8                UART_SetConfig
+                0x08001e28      0x328 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+                0x08001e28                UART_SetConfig
  .text.UART_AdvFeatureConfig
-                0x080027d0       0xca CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
-                0x080027d0                UART_AdvFeatureConfig
+                0x08002150       0xca CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+                0x08002150                UART_AdvFeatureConfig
  .text.UART_WaitOnFlagUntilTimeout
-                0x0800289a       0xa6 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
-                0x0800289a                UART_WaitOnFlagUntilTimeout
- .text.HAL_UART_Transmit
-                0x08002940       0xc6 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
-                0x08002940                HAL_UART_Transmit
- .text.HAL_UART_Receive
-                0x08002a06      0x116 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
-                0x08002a06                HAL_UART_Receive
+                0x0800221a       0xa6 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+                0x0800221a                UART_WaitOnFlagUntilTimeout
  .text.UART_CheckIdleState
-                0x08002b1c       0x68 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
-                0x08002b1c                UART_CheckIdleState
+                0x080022c0       0x68 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+                0x080022c0                UART_CheckIdleState
  .text.HAL_UART_Init
-                0x08002b84       0x62 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
-                0x08002b84                HAL_UART_Init
- *fill*         0x08002be6        0x2 
+                0x08002328       0x62 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+                0x08002328                HAL_UART_Init
+ *fill*         0x0800238a        0x2 
  .text.__udivmoddi4
-                0x08002be8      0x2f8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
-                0x08002be8                __udivmoddi4
- .text.atoi     0x08002ee0        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
-                0x08002ee0                atoi
- .text._strtol_l.isra.0
-                0x08002ee8      0x138 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
- .text.strtol   0x08003020       0x18 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
-                0x08003020                strtol
- .text.memset   0x08003038       0x9c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
-                0x08003038                memset
- .text.strncmp  0x080030d4       0x78 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strncmp.o)
-                0x080030d4                strncmp
- .text.__errno  0x0800314c        0xc C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
-                0x0800314c                __errno
+                0x0800238c      0x2f8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
+                0x0800238c                __udivmoddi4
+ .text.memset   0x08002684       0x9c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+                0x08002684                memset
  .text.__libc_init_array
-                0x08003158       0x50 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
-                0x08003158                __libc_init_array
+                0x08002720       0x50 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+                0x08002720                __libc_init_array
  .text.__retarget_lock_acquire_recursive
-                0x080031a8        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
-                0x080031a8                __retarget_lock_acquire_recursive
+                0x08002770        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+                0x08002770                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x080031ac        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
-                0x080031ac                __retarget_lock_release_recursive
+                0x08002774        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+                0x08002774                __retarget_lock_release_recursive
  .text.startup.register_fini
-                0x080031b0       0x14 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
- .text.atexit   0x080031c4        0xc C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
-                0x080031c4                atexit
+                0x08002778       0x14 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+ .text.atexit   0x0800278c        0xc C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+                0x0800278c                atexit
  .text.__libc_fini_array
-                0x080031d0       0x28 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
-                0x080031d0                __libc_fini_array
+                0x08002798       0x28 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+                0x08002798                __libc_fini_array
  .text.__register_exitproc
-                0x080031f8       0x80 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
-                0x080031f8                __register_exitproc
+                0x080027c0       0x80 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+                0x080027c0                __register_exitproc
  *(.glue_7)
- .glue_7        0x08003278        0x0 linker stubs
+ .glue_7        0x08002840        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08003278        0x0 linker stubs
+ .glue_7t       0x08002840        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08003278        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+ .eh_frame      0x08002840        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
  *(.init)
- .init          0x08003278        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crti.o
-                0x08003278                _init
- .init          0x0800327c        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtn.o
+ .init          0x08002840        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crti.o
+                0x08002840                _init
+ .init          0x08002844        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtn.o
  *(.fini)
- .fini          0x08003284        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crti.o
-                0x08003284                _fini
- .fini          0x08003288        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtn.o
-                0x08003290                        . = ALIGN (0x4)
-                0x08003290                        _etext = .
+ .fini          0x0800284c        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crti.o
+                0x0800284c                _fini
+ .fini          0x08002850        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtn.o
+                0x08002858                        . = ALIGN (0x4)
+                0x08002858                        _etext = .
 
-.vfp11_veneer   0x08003290        0x0
- .vfp11_veneer  0x08003290        0x0 linker stubs
+.vfp11_veneer   0x08002858        0x0
+ .vfp11_veneer  0x08002858        0x0 linker stubs
 
-.v4_bx          0x08003290        0x0
- .v4_bx         0x08003290        0x0 linker stubs
+.v4_bx          0x08002858        0x0
+ .v4_bx         0x08002858        0x0 linker stubs
 
-.iplt           0x08003290        0x0
- .iplt          0x08003290        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+.iplt           0x08002858        0x0
+ .iplt          0x08002858        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
 
-.rodata         0x08003290      0x1c0
-                0x08003290                        . = ALIGN (0x4)
+.rodata         0x08002858       0x18
+                0x08002858                        . = ALIGN (0x4)
  *(.rodata)
  *(.rodata*)
  .rodata.APBPrescTable
-                0x08003290        0x8 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
-                0x08003290                APBPrescTable
+                0x08002858        0x8 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
+                0x08002858                APBPrescTable
  .rodata.AHBPrescTable
-                0x08003298       0x10 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
-                0x08003298                AHBPrescTable
- .rodata.prompt_nl.str1.4
-                0x080032a8       0x90 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
-                                  0x3 (size before relaxing)
- .rodata.start_cli.str1.4
-                0x08003338       0x8c CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .rodata.fmap.2
-                0x08003338       0x12 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- *fill*         0x0800334a        0x2 
- .rodata._ctype_
-                0x0800334c      0x101 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
-                0x0800334c                _ctype_
-                0x08003450                        . = ALIGN (0x4)
- *fill*         0x0800344d        0x3 
+                0x08002860       0x10 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
+                0x08002860                AHBPrescTable
+                0x08002870                        . = ALIGN (0x4)
 
-.ARM.extab      0x08003450        0x0
-                0x08003450                        . = ALIGN (0x4)
+.ARM.extab      0x08002870        0x0
+                0x08002870                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08003450                        . = ALIGN (0x4)
+                0x08002870                        . = ALIGN (0x4)
 
-.ARM            0x08003450        0x8
-                0x08003450                        . = ALIGN (0x4)
-                0x08003450                        __exidx_start = .
+.ARM            0x08002870        0x8
+                0x08002870                        . = ALIGN (0x4)
+                0x08002870                        __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x08003450        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
- .ARM.exidx     0x08003458        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
-                                  0x8 (size before relaxing)
  .ARM.exidx.text.__udivmoddi4
-                0x08003458        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
-                                  0x8 (size before relaxing)
-                0x08003458                        __exidx_end = .
-                0x08003458                        . = ALIGN (0x4)
+                0x08002870        0x8 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
+                0x08002878                        __exidx_end = .
+                0x08002878                        . = ALIGN (0x4)
 
-.preinit_array  0x08003458        0x0
-                0x08003458                        . = ALIGN (0x4)
-                0x08003458                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x08002878        0x0
+                0x08002878                        . = ALIGN (0x4)
+                0x08002878                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08003458                        PROVIDE (__preinit_array_end = .)
-                0x08003458                        . = ALIGN (0x4)
+                0x08002878                        PROVIDE (__preinit_array_end = .)
+                0x08002878                        . = ALIGN (0x4)
 
-.init_array     0x08003458        0x8
-                0x08003458                        . = ALIGN (0x4)
-                0x08003458                        PROVIDE (__init_array_start = .)
+.init_array     0x08002878        0x8
+                0x08002878                        . = ALIGN (0x4)
+                0x08002878                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.00000
-                0x08003458        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+                0x08002878        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
  *(.init_array*)
- .init_array    0x0800345c        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
-                0x08003460                        PROVIDE (__init_array_end = .)
-                0x08003460                        . = ALIGN (0x4)
+ .init_array    0x0800287c        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+                0x08002880                        PROVIDE (__init_array_end = .)
+                0x08002880                        . = ALIGN (0x4)
 
-.fini_array     0x08003460        0x4
-                0x08003460                        . = ALIGN (0x4)
-                0x08003460                        PROVIDE (__fini_array_start = .)
+.fini_array     0x08002880        0x4
+                0x08002880                        . = ALIGN (0x4)
+                0x08002880                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08003460        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
-                0x08003464                        PROVIDE (__fini_array_end = .)
-                0x08003464                        . = ALIGN (0x4)
-                0x08003464                        _sidata = LOADADDR (.data)
+ .fini_array    0x08002880        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+                0x08002884                        PROVIDE (__fini_array_end = .)
+                0x08002884                        . = ALIGN (0x4)
+                0x08002884                        _sidata = LOADADDR (.data)
 
-.rel.dyn        0x08003464        0x0
- .rel.iplt      0x08003464        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+.rel.dyn        0x08002884        0x0
+ .rel.iplt      0x08002884        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
 
-.data           0x20000000      0x15c load address 0x08003464
+.data           0x20000000       0x10 load address 0x08002884
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
  *(.data*)
- .data.BLINK_FREQ
-                0x20000000        0x4 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                0x20000000                BLINK_FREQ
  .data.SystemCoreClock
-                0x20000004        0x4 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
-                0x20000004                SystemCoreClock
+                0x20000000        0x4 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
+                0x20000000                SystemCoreClock
  .data.uwTickFreq
-                0x20000008        0x1 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
-                0x20000008                uwTickFreq
- *fill*         0x20000009        0x3 
+                0x20000004        0x1 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x20000004                uwTickFreq
+ *fill*         0x20000005        0x3 
  .data.uwTickPrio
-                0x2000000c        0x4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
-                0x2000000c                uwTickPrio
- .data._impure_ptr
-                0x20000010        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
-                0x20000010                _impure_ptr
- *fill*         0x20000014        0x4 
- .data._impure_data
-                0x20000018      0x140 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
-                0x20000018                _impure_data
+                0x20000008        0x4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x20000008                uwTickPrio
  .data.__atexit_recursive_mutex
-                0x20000158        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
-                0x20000158                __atexit_recursive_mutex
+                0x2000000c        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+                0x2000000c                __atexit_recursive_mutex
  *(.RamFunc)
  *(.RamFunc*)
-                0x2000015c                        . = ALIGN (0x4)
-                0x2000015c                        _edata = .
+                0x20000010                        . = ALIGN (0x4)
+                0x20000010                        _edata = .
 
 .tm_clone_table
-                0x2000015c        0x0 load address 0x080035c0
+                0x20000010        0x0 load address 0x08002894
  .tm_clone_table
-                0x2000015c        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+                0x20000010        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
  .tm_clone_table
-                0x2000015c        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtend.o
+                0x20000010        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtend.o
 
-.igot.plt       0x2000015c        0x0 load address 0x080035c0
- .igot.plt      0x2000015c        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
-                0x2000015c                        . = ALIGN (0x4)
+.igot.plt       0x20000010        0x0 load address 0x08002894
+ .igot.plt      0x20000010        0x0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+                0x20000010                        . = ALIGN (0x4)
 
-.bss            0x2000015c      0x834 load address 0x080035c0
-                0x2000015c                        _sbss = .
-                0x2000015c                        __bss_start__ = _sbss
+.bss            0x20000010      0x2f0 load address 0x08002894
+                0x20000010                        _sbss = .
+                0x20000010                        __bss_start__ = _sbss
  *(.bss)
  *(.bss*)
  .bss.completed.1
-                0x2000015c        0x1 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
- *fill*         0x2000015d        0x3 
- .bss.object.0  0x20000160       0x18 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
- .bss.LED_MODE  0x20000178        0x4 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                0x20000178                LED_MODE
- .bss.huart1    0x2000017c       0x88 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                0x2000017c                huart1
- .bss.hi2c1     0x20000204       0x54 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                0x20000204                hi2c1
- .bss.hdac      0x20000258       0x14 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                0x20000258                hdac
- .bss.hadc1     0x2000026c       0x48 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                0x2000026c                hadc1
- .bss.buf.0     0x200002b4      0x400 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .bss.pos.1     0x200006b4        0x2 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- *fill*         0x200006b6        0x2 
- .bss.start     0x200006b8        0x4 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .bss.uwTick    0x200006bc        0x4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
-                0x200006bc                uwTick
- .bss.__sf      0x200006c0      0x138 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
-                0x200006c0                __sf
+                0x20000010        0x1 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+ *fill*         0x20000011        0x3 
+ .bss.object.0  0x20000014       0x18 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtbegin.o
+ .bss.huart1    0x2000002c       0x88 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x2000002c                huart1
+ .bss.hi2c1     0x200000b4       0x54 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x200000b4                hi2c1
+ .bss.hdac      0x20000108       0x14 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x20000108                hdac
+ .bss.hadc1     0x2000011c       0x48 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                0x2000011c                hadc1
+ .bss.uwTick    0x20000164        0x4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x20000164                uwTick
  .bss.__lock___atexit_recursive_mutex
-                0x200007f8        0x1 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
-                0x200007f8                __lock___atexit_recursive_mutex
- *fill*         0x200007f9        0x3 
- .bss.__atexit  0x200007fc        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
-                0x200007fc                __atexit
+                0x20000168        0x1 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+                0x20000168                __lock___atexit_recursive_mutex
+ *fill*         0x20000169        0x3 
+ .bss.__atexit  0x2000016c        0x4 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+                0x2000016c                __atexit
  .bss.__atexit0
-                0x20000800      0x190 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
-                0x20000800                __atexit0
+                0x20000170      0x190 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
+                0x20000170                __atexit0
  *(COMMON)
-                0x20000990                        . = ALIGN (0x4)
-                0x20000990                        _ebss = .
-                0x20000990                        __bss_end__ = _ebss
+                0x20000300                        . = ALIGN (0x4)
+                0x20000300                        _ebss = .
+                0x20000300                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20000990      0x600 load address 0x080035c0
-                0x20000990                        . = ALIGN (0x8)
+                0x20000300      0x600 load address 0x08002894
+                0x20000300                        . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
-                0x20000990                        PROVIDE (_end = .)
-                0x20000b90                        . = (. + _Min_Heap_Size)
- *fill*         0x20000990      0x200 
-                0x20000f90                        . = (. + _Min_Stack_Size)
- *fill*         0x20000b90      0x400 
-                0x20000f90                        . = ALIGN (0x8)
+                0x20000300                        PROVIDE (_end = .)
+                0x20000500                        . = (. + _Min_Heap_Size)
+ *fill*         0x20000300      0x200 
+                0x20000900                        . = (. + _Min_Stack_Size)
+ *fill*         0x20000500      0x400 
+                0x20000900                        . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
@@ -2026,114 +2042,121 @@ LOAD C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gc
  .ARM.attributes
                 0x000000d6       0x2e CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
  .ARM.attributes
-                0x00000104       0x2e CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+                0x00000104       0x21 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
  .ARM.attributes
-                0x00000132       0x21 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+                0x00000125       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
  .ARM.attributes
-                0x00000153       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x00000153       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
  .ARM.attributes
-                0x00000181       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+                0x00000181       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
  .ARM.attributes
-                0x000001af       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x000001af       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
  .ARM.attributes
-                0x000001dd       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+                0x000001dd       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
  .ARM.attributes
-                0x0000020b       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+                0x0000020b       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
  .ARM.attributes
-                0x00000239       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+                0x00000239       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
  .ARM.attributes
-                0x00000267       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+                0x00000267       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
  .ARM.attributes
-                0x00000295       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+                0x00000295       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
  .ARM.attributes
-                0x000002c3       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
+                0x000002c3       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
  .ARM.attributes
-                0x000002f1       0x2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+                0x000002f1       0x1e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
  .ARM.attributes
-                0x0000031f       0x1e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
+                0x0000030f       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
  .ARM.attributes
-                0x0000033d       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
+                0x0000033d       0x1e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_dvmd_tls.o)
  .ARM.attributes
-                0x0000036b       0x1e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_dvmd_tls.o)
+                0x0000035b       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
  .ARM.attributes
-                0x00000389       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
+                0x00000389       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
  .ARM.attributes
-                0x000003b7       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
+                0x000003b7       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
  .ARM.attributes
-                0x000003e5       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
+                0x000003e5       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
  .ARM.attributes
-                0x00000413       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
+                0x00000413       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
  .ARM.attributes
-                0x00000441       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+                0x00000441       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
  .ARM.attributes
-                0x0000046f       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strncmp.o)
+                0x0000046f       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
  .ARM.attributes
-                0x0000049d       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-impure.o)
+                0x0000049d       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtend.o
  .ARM.attributes
-                0x000004cb       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
- .ARM.attributes
-                0x000004f9       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
- .ARM.attributes
-                0x00000527       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
- .ARM.attributes
-                0x00000555       0x1c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
- .ARM.attributes
-                0x00000571       0x1c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
- .ARM.attributes
-                0x0000058d       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
- .ARM.attributes
-                0x000005bb       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
- .ARM.attributes
-                0x000005e9       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
- .ARM.attributes
-                0x00000617       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
- .ARM.attributes
-                0x00000645       0x2e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtend.o
- .ARM.attributes
-                0x00000673       0x1e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtn.o
+                0x000004cb       0x1e C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp/crtn.o
 OUTPUT(test.elf elf32-littlearm)
 LOAD linker stubs
 LOAD C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libc.a
 LOAD C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libm.a
 LOAD C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a
 
-.debug_info     0x00000000    0x12df2
- .debug_info    0x00000000     0x1930 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
- .debug_info    0x00001930     0x1632 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
- .debug_info    0x00002f62      0x11c CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
- .debug_info    0x0000307e      0x358 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
- .debug_info    0x000033d6      0xf9b CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .debug_info    0x00004371       0x30 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
- .debug_info    0x000043a1      0xa2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
- .debug_info    0x00004dcf      0xe1b CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
- .debug_info    0x00005bea     0x1197 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
- .debug_info    0x00006d81      0xb46 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
- .debug_info    0x000078c7      0x728 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
- .debug_info    0x00007fef     0x4341 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
- .debug_info    0x0000c330      0x934 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
- .debug_info    0x0000cc64      0xb22 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
- .debug_info    0x0000d786      0x7d6 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
- .debug_info    0x0000df5c     0x4e96 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+.debug_info     0x00000000    0x11ea3
+ .debug_info    0x00000000     0x197c CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+ .debug_info    0x0000197c     0x1632 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
+ .debug_info    0x00002fae      0x11c CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+ .debug_info    0x000030ca      0x358 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
+ .debug_info    0x00003422       0x30 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+ .debug_info    0x00003452      0xa2e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+ .debug_info    0x00003e80      0xe1b CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+ .debug_info    0x00004c9b     0x1197 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+ .debug_info    0x00005e32      0xb46 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+ .debug_info    0x00006978      0x728 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+ .debug_info    0x000070a0     0x4341 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+ .debug_info    0x0000b3e1      0x934 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+ .debug_info    0x0000bd15      0xb22 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+ .debug_info    0x0000c837      0x7d6 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
+ .debug_info    0x0000d00d     0x4e96 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
 
-.debug_abbrev   0x00000000     0x2195
+.debug_abbrev   0x00000000     0x1ef9
  .debug_abbrev  0x00000000      0x2f3 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .debug_abbrev  0x000002f3      0x244 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
  .debug_abbrev  0x00000537       0x7c CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
  .debug_abbrev  0x000005b3      0x120 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
- .debug_abbrev  0x000006d3      0x29c CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .debug_abbrev  0x0000096f       0x24 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
- .debug_abbrev  0x00000993      0x23f CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
- .debug_abbrev  0x00000bd2      0x267 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
- .debug_abbrev  0x00000e39      0x392 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
- .debug_abbrev  0x000011cb      0x20a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
- .debug_abbrev  0x000013d5      0x202 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
- .debug_abbrev  0x000015d7      0x299 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
- .debug_abbrev  0x00001870      0x1c4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
- .debug_abbrev  0x00001a34      0x28e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
- .debug_abbrev  0x00001cc2      0x1b9 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
- .debug_abbrev  0x00001e7b      0x31a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+ .debug_abbrev  0x000006d3       0x24 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+ .debug_abbrev  0x000006f7      0x23f CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+ .debug_abbrev  0x00000936      0x267 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+ .debug_abbrev  0x00000b9d      0x392 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+ .debug_abbrev  0x00000f2f      0x20a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+ .debug_abbrev  0x00001139      0x202 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+ .debug_abbrev  0x0000133b      0x299 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+ .debug_abbrev  0x000015d4      0x1c4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+ .debug_abbrev  0x00001798      0x28e CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+ .debug_abbrev  0x00001a26      0x1b9 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
+ .debug_abbrev  0x00001bdf      0x31a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
 
-.debug_aranges  0x00000000      0xb90
+.debug_loclists
+                0x00000000     0x8bdb
+ .debug_loclists
+                0x00000000       0x31 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+ .debug_loclists
+                0x00000031      0x185 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
+ .debug_loclists
+                0x000001b6       0xe7 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
+ .debug_loclists
+                0x0000029d       0xe1 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+ .debug_loclists
+                0x0000037e      0x813 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+ .debug_loclists
+                0x00000b91      0x512 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+ .debug_loclists
+                0x000010a3      0x595 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+ .debug_loclists
+                0x00001638      0x386 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+ .debug_loclists
+                0x000019be     0x3c62 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+ .debug_loclists
+                0x00005620       0xc9 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+ .debug_loclists
+                0x000056e9      0x474 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+ .debug_loclists
+                0x00005b5d      0x4a0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
+ .debug_loclists
+                0x00005ffd     0x2bde CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+
+.debug_aranges  0x00000000      0xb30
  .debug_aranges
                 0x00000000       0x60 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .debug_aranges
@@ -2143,32 +2166,30 @@ LOAD C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gc
  .debug_aranges
                 0x00000120       0x28 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
  .debug_aranges
-                0x00000148       0x60 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+                0x00000148       0x28 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
  .debug_aranges
-                0x000001a8       0x28 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+                0x00000170      0x100 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
  .debug_aranges
-                0x000001d0      0x100 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x00000270       0xe8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
  .debug_aranges
-                0x000002d0       0xe8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+                0x00000358       0xe8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
  .debug_aranges
-                0x000003b8       0xe8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x00000440       0xc0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
  .debug_aranges
-                0x000004a0       0xc0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+                0x00000500       0x58 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
  .debug_aranges
-                0x00000560       0x58 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+                0x00000558      0x2a0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
  .debug_aranges
-                0x000005b8      0x2a0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+                0x000007f8       0x38 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
  .debug_aranges
-                0x00000858       0x38 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+                0x00000830       0x88 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
  .debug_aranges
-                0x00000890       0x88 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+                0x000008b8       0x50 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
  .debug_aranges
-                0x00000918       0x50 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
- .debug_aranges
-                0x00000968      0x228 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+                0x00000908      0x228 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
 
 .debug_rnglists
-                0x00000000      0x8c0
+                0x00000000      0x87b
  .debug_rnglists
                 0x00000000       0x45 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .debug_rnglists
@@ -2178,66 +2199,62 @@ LOAD C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gc
  .debug_rnglists
                 0x000000cd       0x1a CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
  .debug_rnglists
-                0x000000e7       0x45 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
+                0x000000e7       0x19 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
  .debug_rnglists
-                0x0000012c       0x19 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+                0x00000100       0xbb CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
  .debug_rnglists
-                0x00000145       0xbb CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+                0x000001bb       0xb0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
  .debug_rnglists
-                0x00000200       0xb0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+                0x0000026b       0xa9 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
  .debug_rnglists
-                0x000002b0       0xa9 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+                0x00000314       0x8c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
  .debug_rnglists
-                0x00000359       0x8c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+                0x000003a0       0x3f CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
  .debug_rnglists
-                0x000003e5       0x3f CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+                0x000003df      0x21c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
  .debug_rnglists
-                0x00000424      0x21c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+                0x000005fb       0x25 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
  .debug_rnglists
-                0x00000640       0x25 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+                0x00000620       0x67 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
  .debug_rnglists
-                0x00000665       0x67 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+                0x00000687       0x3a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
  .debug_rnglists
-                0x000006cc       0x3a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
- .debug_rnglists
-                0x00000706      0x1ba CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+                0x000006c1      0x1ba CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
 
-.debug_line     0x00000000     0xf531
- .debug_line    0x00000000      0x831 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
- .debug_line    0x00000831      0x5d7 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
- .debug_line    0x00000e08      0x1a3 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
- .debug_line    0x00000fab      0x29d CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
- .debug_line    0x00001248      0x6b9 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .debug_line    0x00001901       0x7a CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
- .debug_line    0x0000197b      0x681 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
- .debug_line    0x00001ffc     0x10dc CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
- .debug_line    0x000030d8      0x8e5 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
- .debug_line    0x000039bd      0x8b1 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
- .debug_line    0x0000426e      0x7ba CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
- .debug_line    0x00004a28     0x4e56 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
- .debug_line    0x0000987e      0x3a6 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
- .debug_line    0x00009c24      0xdf8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
- .debug_line    0x0000aa1c      0xbbd CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
- .debug_line    0x0000b5d9     0x3f58 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+.debug_line     0x00000000     0xee46
+ .debug_line    0x00000000      0x7ff CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+ .debug_line    0x000007ff      0x5d7 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
+ .debug_line    0x00000dd6      0x1a3 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+ .debug_line    0x00000f79      0x29d CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
+ .debug_line    0x00001216       0x7a CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+ .debug_line    0x00001290      0x681 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+ .debug_line    0x00001911     0x10dc CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+ .debug_line    0x000029ed      0x8e5 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+ .debug_line    0x000032d2      0x8b1 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+ .debug_line    0x00003b83      0x7ba CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+ .debug_line    0x0000433d     0x4e56 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+ .debug_line    0x00009193      0x3a6 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+ .debug_line    0x00009539      0xdf8 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+ .debug_line    0x0000a331      0xbbd CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
+ .debug_line    0x0000aeee     0x3f58 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
 
-.debug_str      0x00000000     0x4035
- .debug_str     0x00000000     0x4035 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
-                               0x11b3 (size before relaxing)
- .debug_str     0x00004035     0x10db CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
- .debug_str     0x00004035      0x277 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
- .debug_str     0x00004035      0x386 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
- .debug_str     0x00004035      0x89a CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .debug_str     0x00004035       0xb9 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
- .debug_str     0x00004035      0xc1a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
- .debug_str     0x00004035      0x99c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
- .debug_str     0x00004035      0xd97 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
- .debug_str     0x00004035      0x83f CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
- .debug_str     0x00004035      0x545 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
- .debug_str     0x00004035     0x10b5 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
- .debug_str     0x00004035      0x935 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
- .debug_str     0x00004035      0x76d CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
- .debug_str     0x00004035      0x73a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
- .debug_str     0x00004035     0x105a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+.debug_str      0x00000000     0x3f42
+ .debug_str     0x00000000     0x3f42 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
+                               0x11b9 (size before relaxing)
+ .debug_str     0x00003f42     0x10db CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
+ .debug_str     0x00003f42      0x277 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
+ .debug_str     0x00003f42      0x386 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
+ .debug_str     0x00003f42       0xb9 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+ .debug_str     0x00003f42      0xc1a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+ .debug_str     0x00003f42      0x99c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+ .debug_str     0x00003f42      0xd97 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+ .debug_str     0x00003f42      0x83f CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+ .debug_str     0x00003f42      0x545 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+ .debug_str     0x00003f42     0x10b5 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+ .debug_str     0x00003f42      0x935 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+ .debug_str     0x00003f42      0x76d CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+ .debug_str     0x00003f42      0x73a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
+ .debug_str     0x00003f42     0x105a CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
 
 .comment        0x00000000       0x45
  .comment       0x00000000       0x45 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
@@ -2245,7 +2262,6 @@ LOAD C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gc
  .comment       0x00000045       0x46 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
  .comment       0x00000045       0x46 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
  .comment       0x00000045       0x46 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
- .comment       0x00000045       0x46 CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
  .comment       0x00000045       0x46 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
  .comment       0x00000045       0x46 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
  .comment       0x00000045       0x46 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
@@ -2257,79 +2273,37 @@ LOAD C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gc
  .comment       0x00000045       0x46 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
  .comment       0x00000045       0x46 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
 
-.debug_frame    0x00000000     0x2488
+.debug_frame    0x00000000     0x207c
  .debug_frame   0x00000000      0x110 CMakeFiles/test.elf.dir/Core/Src/main.c.obj
  .debug_frame   0x00000110      0x110 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
  .debug_frame   0x00000220       0xa8 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_it.c.obj
  .debug_frame   0x000002c8       0x30 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
- .debug_frame   0x000002f8       0xfc CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .debug_frame   0x000003f4      0x20c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
- .debug_frame   0x00000600      0x268 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
- .debug_frame   0x00000868      0x1ec CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
- .debug_frame   0x00000a54      0x1f0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
- .debug_frame   0x00000c44       0xd4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
- .debug_frame   0x00000d18      0x988 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
- .debug_frame   0x000016a0       0x60 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
- .debug_frame   0x00001700      0x178 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
- .debug_frame   0x00001878       0xc0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
- .debug_frame   0x00001938      0x5f4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
- .debug_frame   0x00001f2c       0x2c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x00001f58       0x34 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
- .debug_frame   0x00001f8c       0x30 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atoi.o)
- .debug_frame   0x00001fbc       0x80 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strtol.o)
- .debug_frame   0x0000203c       0x20 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-ctype_.o)
- .debug_frame   0x0000205c      0x13c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-findfp.o)
- .debug_frame   0x00002198       0x2c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
- .debug_frame   0x000021c4       0x38 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strncmp.o)
- .debug_frame   0x000021fc       0x20 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-errno.o)
- .debug_frame   0x0000221c       0x2c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
- .debug_frame   0x00002248       0xb0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
- .debug_frame   0x000022f8       0x7c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
- .debug_frame   0x00002374       0x30 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
- .debug_frame   0x000023a4       0x5c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
- .debug_frame   0x00002400       0x20 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
- .debug_frame   0x00002420       0x34 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
- .debug_frame   0x00002454       0x34 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
-
-.debug_loclists
-                0x00000000     0x8d57
- .debug_loclists
-                0x00000000      0x185 CMakeFiles/test.elf.dir/Core/Src/stm32f7xx_hal_msp.c.obj
- .debug_loclists
-                0x00000185       0xe7 CMakeFiles/test.elf.dir/Core/Src/system_stm32f7xx.c.obj
- .debug_loclists
-                0x0000026c      0x1ad CMakeFiles/test.elf.dir/Core/Src/utils.c.obj
- .debug_loclists
-                0x00000419       0xe1 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
- .debug_loclists
-                0x000004fa      0x813 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
- .debug_loclists
-                0x00000d0d      0x512 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
- .debug_loclists
-                0x0000121f      0x595 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
- .debug_loclists
-                0x000017b4      0x386 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
- .debug_loclists
-                0x00001b3a     0x3c62 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
- .debug_loclists
-                0x0000579c       0xc9 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
- .debug_loclists
-                0x00005865      0x474 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
- .debug_loclists
-                0x00005cd9      0x4a0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
- .debug_loclists
-                0x00006179     0x2bde CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+ .debug_frame   0x000002f8      0x20c CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c.obj
+ .debug_frame   0x00000504      0x268 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c.obj
+ .debug_frame   0x0000076c      0x1ec CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c.obj
+ .debug_frame   0x00000958      0x1f0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c.obj
+ .debug_frame   0x00000b48       0xd4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c.obj
+ .debug_frame   0x00000c1c      0x988 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj
+ .debug_frame   0x000015a4       0x60 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c.obj
+ .debug_frame   0x00001604      0x178 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c.obj
+ .debug_frame   0x0000177c       0xc0 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c.obj
+ .debug_frame   0x0000183c      0x5f4 CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj
+ .debug_frame   0x00001e30       0x2c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x00001e5c       0x34 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00001e90       0x2c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-memset.o)
+ .debug_frame   0x00001ebc       0x2c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-init.o)
+ .debug_frame   0x00001ee8       0xb0 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-lock.o)
+ .debug_frame   0x00001f98       0x5c C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__call_atexit.o)
+ .debug_frame   0x00001ff4       0x20 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-atexit.o)
+ .debug_frame   0x00002014       0x34 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-fini.o)
+ .debug_frame   0x00002048       0x34 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-__atexit.o)
 
 .debug_line_str
-                0x00000000      0x265
+                0x00000000      0x173
  .debug_line_str
-                0x00000000      0x265 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
+                0x00000000      0x173 CMakeFiles/test.elf.dir/Core/Startup/startup_stm32f722rctx.s.obj
                                  0x9d (size before relaxing)
  .debug_line_str
-                0x00000265       0xca C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
+                0x00000173       0xca C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_aeabi_uldivmod.o)
  .debug_line_str
-                0x00000265       0xce C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_dvmd_tls.o)
- .debug_line_str
-                0x00000265       0xe3 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strcmp.o)
- .debug_line_str
-                0x00000265       0xe3 C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libg.a(libc_a-strlen.o)
+                0x00000173       0xce C:/arm-gnu-toolchain-14.2.rel1-mingw-w64-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7e-m/nofp\libgcc.a(_dvmd_tls.o)
