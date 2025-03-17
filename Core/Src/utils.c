@@ -83,7 +83,7 @@ static void display_prompt(const char* msg) {
   prompt_nl();
 }
 
-static void flushbuf(uint8_t* buf, uint16_t* pos) {
+void flushbuf(uint8_t* buf, uint16_t* pos) {
   *pos = 0;
   memset(buf, 0, BUFFER_SIZE);
 }

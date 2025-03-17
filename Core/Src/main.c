@@ -23,6 +23,9 @@
 /* USER CODE BEGIN Includes */
 #include <stdint.h>
 #include "utils.h"
+#include <cli.h>
+
+#include "dac.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -70,6 +73,7 @@ static void MX_DAC_Init(void);
 
 volatile uint32_t BLINK_FREQ = BLINK_10;
 volatile uint32_t LED_MODE = LED_ON;
+volatile uint16_t dac_value = 0;
 
 
 /* USER CODE END 0 */
@@ -118,7 +122,6 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  uint16_t dac_value = 0;
 
   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
 
@@ -128,6 +131,8 @@ int main(void)
   {
     // blink_led(BLINK_FREQ);
     // start_cli();
+
+    dac_cli();
 
     HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
 
