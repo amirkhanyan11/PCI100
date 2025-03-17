@@ -58,3 +58,5 @@
 1272	1724	7639030325160967	CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c.obj	69d7dc28b58182dd
 1029	1791	7639030322730947	CMakeFiles/test.elf.dir/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c.obj	9670628fecdf444e
 1792	1918	7639030330350935	test.elf	c49f7191ae98b426
+4	138	7639037227251135	CMakeFiles/test.elf.dir/Core/Src/main.c.obj	45d4db7445f6d920
+138	273	7639037228591163	test.elf	c49f7191ae98b426
