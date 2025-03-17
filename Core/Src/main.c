@@ -122,13 +122,14 @@ int main(void)
 
   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
 
-  HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
   // set_led_config();
 
   while (1)
   {
     // blink_led(BLINK_FREQ);
     // start_cli();
+
+    HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
 
     if (dac_value < 4095) {
       ++dac_value;
