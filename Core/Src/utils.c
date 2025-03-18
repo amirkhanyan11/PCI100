@@ -67,9 +67,13 @@ void set_led_config(void) {
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
     LED_MODE = LED_OFF;
     break;
-  default:
+  case 2 ... 8:
     LED_MODE = LED_ON;
     BLINK_FREQ = fmap[input];
+    break;
+  default:
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+	  LED_MODE = LED_OFF;
   }
 }
 //
@@ -97,14 +101,14 @@ static int32_t parse_set_expr(const char* s) {
   if (!s) {
     return -1;
   }
-  while (*s && !isdigit(*s)) {
+  while (*s && !isdigit((uint8_t)*s)) {
     ++s;
   }
   const int32_t res = atoi(s);
-  while (isdigit(*s)) {
+  while (isdigit((uint8_t)*s)) {
     ++s;
   }
-  return (*s == '\r') ? res : -1;
+  return (*s == '\0') ? res : -1;
 }
 
 
