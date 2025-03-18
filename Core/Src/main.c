@@ -125,10 +125,16 @@ int main(void)
 
   while (1)
   {
-    uint32_t x = 0;
-    if (HAL_OK == HAL_I2C_IsDeviceReady(&hi2c1, PEX_SLAVE_ADDRESS, 10, 1000)) {
+    uint32_t x = HAL_I2C_IsDeviceReady(&hi2c1, PEX_SLAVE_ADDRESS, 10, 1000);
+    if (HAL_OK == x) {
       x = 1;
+    } else if (HAL_BUSY == x) {
+      x = 2;
+    } else if (HAL_ERROR == x) {
+      x = 3;
     }
+
+    const uint32_t y = x;
 
     /* USER CODE END WHILE */
 
