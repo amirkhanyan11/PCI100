@@ -122,8 +122,8 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  static char TX_Buffer[16] = {0};
-  static char RX_Buffer[16] = {0};
+  static uint8_t TX_Buffer[16] = {0};
+  static uint8_t RX_Buffer[16] = {0};
 
   while (1)
   {
