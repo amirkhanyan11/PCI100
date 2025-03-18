@@ -1,0 +1,4 @@
+../Core/Src/cli.c:7:6:cli_engine	16	static
+../Core/Src/cli.c:26:6:cli_putsnl	16	static
+../Core/Src/cli.c:31:6:cli_puts	16	static
+../Core/Src/cli.c:35:6:cli_putnl	16	static

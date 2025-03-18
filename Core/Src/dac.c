@@ -25,13 +25,18 @@ static void dac_cli_handler(const char *message) {
 
   if (!strcmp(message, "help")) {
     cli_putsnl(&huart1, "to set DAC value, type `dac set <12 bit value>`");
+
   }
 
   else if (!strncmp(message, "dac set ", strlen("dac set "))) {
     const uint32_t value = parse_expr(message + strlen("dac set "));
-    if (-1 != value && value < 4096) {
+    if (-1 != value && value < DAC12_MAX) {
       dac_value = value;
     }
+  }
+
+  else {
+    cli_putsnl(&huart1, "error: command not found");
   }
 }
 

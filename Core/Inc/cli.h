@@ -11,6 +11,9 @@
 #define UART_RECEIVE_TIMEOUT 10
 #define UART_TRANSMIT_TIMEOUT 10
 
+// error codes
+#define CLI_COMMAND_NOT_FOUND 127
+
 typedef void(*message_handler_t)(const char*);
 
 void cli_engine(UART_HandleTypeDef *huartx, message_handler_t handle);
