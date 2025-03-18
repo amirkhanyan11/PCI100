@@ -11,6 +11,8 @@ void cli_engine(UART_HandleTypeDef *huartx, message_handler_t handle) {
 
   if (HAL_OK == HAL_UART_Receive(huartx, buf, 1, UART_RECEIVE_TIMEOUT)) {
     if (buf[pos] == '\r') {
+      buf[pos] = '\0';
+      cli_putnl(huartx);
       handle((const char *)buf);
       memset(buf, 0, UART_BUFFER_SIZE);
       pos = 0;
