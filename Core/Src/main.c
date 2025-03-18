@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdint.h>
 #include "led.h"
+#include "pex.h"
 
 #include "dac.h"
 /* USER CODE END Includes */
@@ -122,24 +123,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
 
-//   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
-
-//  set_led_config();
-
   while (1)
   {
-//    blink_led(BLINK_FREQ);
-    led_cli();
-
-//     dac_cli();
-//
-//     HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
-//
-//     if (dac_value < 4095) {
-//       ++dac_value;
-//     } else {
-//       dac_value = 0;
-//     }
+    uint32_t x = 0;
+    if (HAL_OK == HAL_I2C_IsDeviceReady(&hi2c1, PEX_SLAVE_ADDRESS, 10, 1000)) {
+      x = 1;
+    }
 
     /* USER CODE END WHILE */
 
