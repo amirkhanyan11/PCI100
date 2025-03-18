@@ -9,12 +9,17 @@
 #include "led.h"
 #include "main.h"
 #include "cli.h"
+#include "utils.h"
 
 extern UART_HandleTypeDef huart1;
 extern volatile uint32_t BLINK_FREQ;
 extern volatile uint32_t LED_MODE;
 
 static uint32_t start = 0;
+
+static void get_led_config() {
+
+}
 
 void blink_led(const uint32_t frequency) {
   if (LED_MODE == LED_OFF) {
@@ -115,6 +120,10 @@ static void led_cli_handler(const char *message) {
     cli_putsnl(&huart1, "led mode is now configured by physical pins");
   }
 
+  else if (!strcmp(message, "led mode get")) {
+    cli_puts(&huart1, "led mode is: ");
+    cli_putsnl(&huart1, static_itoa(BLINK_FREQ));
+  }
   else {
     cli_putsnl(&huart1, "error: command not found");
   }

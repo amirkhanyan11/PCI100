@@ -8,5 +8,6 @@
 #include "main.h"
 
 void uart_echo(void);
+const char *static_itoa(uint32_t n);
 
 #endif //LED_H
