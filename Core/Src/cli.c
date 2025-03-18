@@ -9,7 +9,7 @@ void cli_engine(UART_HandleTypeDef *huartx, message_handler_t handle) {
   static uint8_t buf[UART_BUFFER_SIZE] = {0};
   static uint16_t pos = 0;
 
-  if (HAL_OK == HAL_UART_Receive(huartx, buf, 1, UART_RECEIVE_TIMEOUT)) {
+  if (HAL_OK == HAL_UART_Receive(huartx, buf + pos, 1, UART_RECEIVE_TIMEOUT)) {
     if (buf[pos] == '\r') {
       buf[pos] = '\0';
       cli_putnl(huartx);
@@ -33,5 +33,5 @@ void cli_puts(UART_HandleTypeDef *huartx, const char *s) {
 }
 
 void cli_putnl(UART_HandleTypeDef *huartx) {
-  HAL_UART_Transmit(huartx, "\r\n", 2, UART_TRANSMIT_TIMEOUT);
+  HAL_UART_Transmit(huartx, (const uint8_t *)"\r\n", 2, UART_TRANSMIT_TIMEOUT);
 }

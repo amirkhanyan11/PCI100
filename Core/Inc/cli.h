@@ -8,8 +8,8 @@
 #include "main.h"
 
 #define UART_BUFFER_SIZE 1024
-#define UART_RECEIVE_TIMEOUT 10
-#define UART_TRANSMIT_TIMEOUT 10
+#define UART_RECEIVE_TIMEOUT 100
+#define UART_TRANSMIT_TIMEOUT 100
 
 // error codes
 #define CLI_COMMAND_NOT_FOUND 127

@@ -122,24 +122,24 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
 
-  // HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
+   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
 
-  set_led_config();
+//  set_led_config();
 
   while (1)
   {
-    blink_led(BLINK_FREQ);
-    led_cli();
+//    blink_led(BLINK_FREQ);
+//    led_cli();
 
-    // dac_cli();
-    //
-    // HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
-    //
-    // if (dac_value < 4095) {
-    //   ++dac_value;
-    // } else {
-    //   dac_value = 0;
-    // }
+     dac_cli();
+
+     HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
+
+     if (dac_value < 4095) {
+       ++dac_value;
+     } else {
+       dac_value = 0;
+     }
 
     /* USER CODE END WHILE */
 

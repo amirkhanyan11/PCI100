@@ -15,10 +15,10 @@ static int32_t parse_expr(const char* s) {
     return -1;
   }
   const int32_t res = atoi(s);
-  while (isdigit(*s)) {
+  while (isdigit((uint8_t)*s)) {
     ++s;
   }
-  return (*s == '\r') ? res : -1;
+  return (*s == '\0') ? res : -1;
 }
 
 static void dac_cli_handler(const char *message) {
