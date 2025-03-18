@@ -17,10 +17,6 @@ extern volatile uint32_t LED_MODE;
 
 static uint32_t start = 0;
 
-static void get_led_config() {
-
-}
-
 void blink_led(const uint32_t frequency) {
   if (LED_MODE == LED_OFF) {
     return;
@@ -59,10 +55,12 @@ void set_led_config(void) {
   switch (input) {
   case 0:
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+    BLINK_FREQ = 0;
     LED_MODE = LED_OFF;
     break;
   case 1:
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+    BLINK_FREQ = 1;
     LED_MODE = LED_OFF;
     break;
   case 2 ... 8:
@@ -71,6 +69,7 @@ void set_led_config(void) {
   default:
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
     LED_MODE = LED_OFF;
+    BLINK_FREQ = 0;
   }
 }
 
@@ -78,14 +77,14 @@ static int32_t parse_set_expr(const char* s) {
   if (!s) {
     return -1;
   }
-  while (*s && !isdigit(*s)) {
+  while (*s && !isdigit((const uint8_t)*s)) {
     ++s;
   }
   const int32_t res = atoi(s);
-  while (isdigit(*s)) {
+  while (isdigit((const uint8_t)*s)) {
     ++s;
   }
-  return (*s == '\r') ? res : -1;
+  return (*s == '\0') ? res : -1;
 }
 
 
