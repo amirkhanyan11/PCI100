@@ -138,11 +138,12 @@ int main(void)
     uint8_t I2C_Slave_Address = -1;
 
     for (uint8_t i = 0; i < 128; ++i) {
-    	if (HAL_OK == HAL_I2C_IsDeviceReady(&hi2c1, PEX_SLAVE_ADDRESS, 100, 3000)) {
-    		I2C_Slave_Address = i;
-    		break;
-    	}
+      if (HAL_OK == HAL_I2C_IsDeviceReady(&hi2c1, i, 1000, 3000)) {
+        I2C_Slave_Address = i;
+      }
     }
+
+    uint8_t x = I2C_Slave_Address;
 
     /* USER CODE END WHILE */
 
