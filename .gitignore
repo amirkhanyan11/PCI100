@@ -1,2 +1,2 @@
 cmake-build-debug
-**/*.elf
+**/*.{o,exe,elf}
