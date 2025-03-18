@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "main.h": "c",
-        "utils.h": "c",
-        "stm32f7xx_hal.h": "c"
-    },
-    "C_Cpp.errorSquiggles": "disabled"
-}

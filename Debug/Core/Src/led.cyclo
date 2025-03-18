@@ -1,0 +1,5 @@
+../Core/Src/led.c:20:6:blink_led	3
+../Core/Src/led.c:31:6:set_led_config	12
+../Core/Src/led.c:76:16:parse_set_expr	6
+../Core/Src/led.c:91:13:led_cli_handler	8
+../Core/Src/led.c:131:6:led_cli	1
