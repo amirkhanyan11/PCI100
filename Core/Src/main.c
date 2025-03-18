@@ -122,19 +122,14 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
+  static char TX_Buffer[16] = {0};
+  static char RX_Buffer[16] = {0};
 
   while (1)
   {
-    uint32_t x = HAL_I2C_IsDeviceReady(&hi2c1, PEX_SLAVE_ADDRESS, 10, 1000);
-    if (HAL_OK == x) {
-      x = 1;
-    } else if (HAL_BUSY == x) {
-      x = 2;
-    } else if (HAL_ERROR == x) {
-      x = 3;
+    if (HAL_OK == HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, TX_Buffer, 1, 1000)) {
+      HAL_I2C_Master_Receive(&hi2c1, PEX_SLAVE_ADDRESS, RX_Buffer, 1, 1000);
     }
-
-    const uint32_t y = x;
 
     /* USER CODE END WHILE */
 
