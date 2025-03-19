@@ -2,6 +2,7 @@
 "./Core/Src/dac.o"
 "./Core/Src/led.o"
 "./Core/Src/main.o"
+"./Core/Src/pex.o"
 "./Core/Src/stm32f7xx_hal_msp.o"
 "./Core/Src/stm32f7xx_it.o"
 "./Core/Src/syscalls.o"

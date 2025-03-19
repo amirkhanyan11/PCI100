@@ -127,12 +127,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
   uint8_t TX_Buffer = 5;
-  uint8_t pgood = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_3);
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+//  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+
   while (1)
   {
 
-    HAL_I2C_Master_Receive(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
+    HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
+//    HAL_Delay(1000);
 
     /* USER CODE END WHILE */
 

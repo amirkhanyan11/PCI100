@@ -5,6 +5,6 @@
 #ifndef PEX_H
 #define PEX_H
 
-#define PEX_SLAVE_ADDRESS 0x5E
+#define PEX_SLAVE_ADDRESS (0x5E << 1)
 
 #endif //PEX_H
