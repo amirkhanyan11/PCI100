@@ -126,24 +126,13 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-//  static uint8_t TX_Buffer[16] = {0};
-//  static uint8_t RX_Buffer[16] = {0};
-
+  uint8_t TX_Buffer = 5;
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
   while (1)
   {
-    // if (HAL_OK == HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, TX_Buffer, 1, 1000)) {
-    //   HAL_I2C_Master_Receive(&hi2c1, PEX_SLAVE_ADDRESS, RX_Buffer, 1, 1000);
-    // }
 
-    uint8_t I2C_Slave_Address = -1;
-
-    for (uint8_t i = 0; i < 128; ++i) {
-      if (HAL_OK == HAL_I2C_IsDeviceReady(&hi2c1, i, 1000, 3000)) {
-        I2C_Slave_Address = i;
-      }
-    }
-
-    uint8_t x = I2C_Slave_Address;
+    HAL_I2C_Master_Receive(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 
     /* USER CODE END WHILE */
 
