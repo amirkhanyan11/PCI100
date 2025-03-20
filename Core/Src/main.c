@@ -129,9 +129,10 @@ int main(void)
 
   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
   set_led_config();
+
   while (1)
   {
-    blink_led(BLINK_FREQ);
+    pci100();
     // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 //    HAL_Delay(1000);
 

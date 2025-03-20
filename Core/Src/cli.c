@@ -25,6 +25,11 @@ void cli_engine(UART_HandleTypeDef *huartx, message_handler_t handle) {
   }
 }
 
+uint8_t command_not_found_handler(const char *message) {
+	cli_writeline(&huart1, "error: command not found");
+	return CLI_COMMAND_NOT_FOUND;
+}
+
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s) {
   cli_puts(huartx, s);
   cli_putnl(huartx);
