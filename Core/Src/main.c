@@ -24,7 +24,7 @@
 #include <stdint.h>
 #include "led.h"
 #include "pex.h"
-
+#include "pci100.h"
 #include "dac.h"
 /* USER CODE END Includes */
 
@@ -73,9 +73,6 @@ static void MX_DAC_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-volatile uint32_t BLINK_FREQ = BLINK_10;
-volatile uint32_t LED_MODE = BLINK_ON;
 
 /* USER CODE END 0 */
 
@@ -132,7 +129,7 @@ int main(void)
 
   while (1)
   {
-    pci100();
+	  pci100_cli();
     // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 //    HAL_Delay(1000);
 

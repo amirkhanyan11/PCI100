@@ -8,8 +8,12 @@ void cli_engine(UART_HandleTypeDef *huartx, message_handler_t handle) {
 
   static uint8_t buf[UART_BUFFER_SIZE] = {0};
   static uint16_t pos = 0;
+  static uint8_t prompt = 1;
 
-  HAL_UART_Transmit(huartx, PROMPT, strlen(PROMPT), UART_TRANSMIT_TIMEOUT);
+  if (prompt) {
+	  prompt = 0;
+	  HAL_UART_Transmit(huartx, (uint8_t *)PROMPT, 9, 100);
+  }
 
   if (HAL_OK == HAL_UART_Receive(huartx, buf + pos, 1, UART_RECEIVE_TIMEOUT)) {
     if (buf[pos] == '\r') {
@@ -18,6 +22,7 @@ void cli_engine(UART_HandleTypeDef *huartx, message_handler_t handle) {
       handle((const char *)buf);
       memset(buf, 0, UART_BUFFER_SIZE);
       pos = 0;
+      prompt = 1;
     } else {
       HAL_UART_Transmit(huartx, buf + pos, 1, UART_TRANSMIT_TIMEOUT);
       ++pos;
@@ -25,10 +30,6 @@ void cli_engine(UART_HandleTypeDef *huartx, message_handler_t handle) {
   }
 }
 
-uint8_t command_not_found_handler(const char *message) {
-	cli_writeline(&huart1, "error: command not found");
-	return CLI_COMMAND_NOT_FOUND;
-}
 
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s) {
   cli_puts(huartx, s);

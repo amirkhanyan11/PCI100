@@ -12,7 +12,7 @@ extern UART_HandleTypeDef huart1;
 extern volatile uint32_t BLINK_FREQ;
 extern volatile uint32_t LED_MODE;
 
-static message_handler_t HANDLERS[] = {
+static uint8_t (*HANDLERS[])(const char *) = {
 		led_message_handler,
 		dac_message_handler,
 		command_not_found_handler,
@@ -37,7 +37,13 @@ void pci100_message_handler(const char *message) {
 }
 
 
-void pci100(void) {
-  blink_led(BLINK_FREQ);
-  cli_engine(&huart1, pci100_message_handler);
+void pci100_cli(void) {
+	blink_led(BLINK_FREQ);
+	cli_engine(&huart1, pci100_message_handler);
+}
+
+
+uint8_t command_not_found_handler(const char *message) {
+	cli_writeline(&huart1, "error: command not found");
+	return CLI_COMMAND_NOT_FOUND;
 }

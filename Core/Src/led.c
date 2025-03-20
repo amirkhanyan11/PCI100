@@ -12,18 +12,24 @@
 #include "utils.h"
 
 extern UART_HandleTypeDef huart1;
-volatile uint32_t BLINK_FREQ;
-volatile uint32_t LED_MODE = BLINK_OFF;
+uint32_t BLINK_FREQ;
+uint8_t BLINK_MODE = BLINK_OFF;
+uint8_t LED_STATE = LED_OFF;
 
 static uint32_t start = 0;
 
-
 static const char *get_led_mode(void) {
-  return static_itoa(BLINK_FREQ);
+  if (LED_STATE == LED_OFF) {
+	  return "off";
+  } else if (LED_STATE == LED_ON && BLINK_MODE == BLINK_OFF) {
+	  return "on";
+  } else {
+	  return static_itoa(BLINK_FREQ);
+  }
 }
 
 void blink_led(const uint32_t frequency) {
-  if (LED_MODE == BLINK_OFF) {
+  if (BLINK_MODE == BLINK_OFF) {
     return;
   }
   const uint32_t current_tick = HAL_GetTick();
@@ -61,19 +67,19 @@ void set_led_config(void) {
   case 0:
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
     BLINK_FREQ = 0;
-    LED_MODE = BLINK_OFF;
+    BLINK_MODE = BLINK_OFF;
     break;
   case 1:
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
     BLINK_FREQ = 1;
-    LED_MODE = BLINK_OFF;
+    BLINK_MODE = BLINK_OFF;
     break;
   case 2 ... 8:
-    LED_MODE = BLINK_ON;
+    BLINK_MODE = BLINK_ON;
     BLINK_FREQ = fmap[input];
   default:
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-    LED_MODE = BLINK_OFF;
+    BLINK_MODE = BLINK_OFF;
     BLINK_FREQ = 0;
   }
 }
@@ -98,26 +104,27 @@ static uint8_t led_blink_handler(const int32_t val) {
 		return CLI_ERROR;
 	}
 
-	LED_MODE = BLINK_ON;
-	BLINK_FREQ = freq;
+	BLINK_MODE = BLINK_ON;
+	BLINK_FREQ = val;
 	cli_puts(&huart1, "Led frequency set to ");
-	cli_puts(&huart1, get_led_mode());
-	cli_writeline(&huart1, "hz");
+	cli_writeline(&huart1, get_led_mode());
 
 	return CLI_OK;
 }
 
-uint8_t led_cli_handler(const char *message) {
+uint8_t led_message_handler(const char *message) {
 
   if (!strcmp(message, "led on")) {
-    LED_MODE = BLINK_OFF;
+    BLINK_MODE = BLINK_OFF;
+    LED_STATE = LED_ON;
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
     cli_writeline(&huart1, "Led is now on");
     return CLI_OK;
   }
 
   if (!strcmp(message, "led off")) {
-    LED_MODE = BLINK_OFF;
+    BLINK_MODE = BLINK_OFF;
+    LED_STATE = LED_OFF;
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
     cli_writeline(&huart1, "Led is now off");
     return CLI_OK;
@@ -135,7 +142,7 @@ uint8_t led_cli_handler(const char *message) {
   }
 
   if (!strcmp(message, "led get state")) {
-    cli_puts(&huart1, "led mode is: ");
+    cli_puts(&huart1, "led mode is ");
     cli_writeline(&huart1, get_led_mode());
     return CLI_OK;
   }

@@ -25,6 +25,5 @@ void cli_engine(UART_HandleTypeDef *huartx, message_handler_t handle);
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s);
 void cli_puts(UART_HandleTypeDef *huartx, const char *s);
 void cli_putnl(UART_HandleTypeDef *huartx);
-uint8_t command_not_found_handler(const char *message);
 
 #endif //CLI_H
