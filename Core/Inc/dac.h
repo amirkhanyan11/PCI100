@@ -11,6 +11,6 @@
 #define INVALID_DAC_VALUE 70
 #define DAC12_MAX 4096
 
-void dac_cli();
+uint8_t dac_message_handler(const char *message);
 
 #endif //DAC_H

@@ -7,8 +7,8 @@
 
 #include <stdint.h>
 
-#define LED_ON 0
-#define LED_OFF 1
+#define BLINK_ON 0
+#define BLINK_OFF 1
 #define BLINK_1 1000
 #define BLINK_2 500
 #define BLINK_10 100
@@ -21,7 +21,7 @@
 #define BUFFER_SIZE 1024
 
 void blink_led(const uint32_t num_cfg_on);
+uint8_t led_message_handler(const char *message);
 void set_led_config(void);
-void led_cli();
 
 #endif // UTILS_H

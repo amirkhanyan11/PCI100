@@ -3,12 +3,17 @@
 //
 
 #include "dac.h"
+#include "cli.h"
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 
 extern UART_HandleTypeDef huart1;
-extern volatile uint16_t dac_value;
+extern DAC_HandleTypeDef hdac;
+
+static void dac_write(uint16_t dac_value) {
+	HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
+}
 
 static int32_t parse_expr(const char* s) {
   if (!s) {
@@ -21,24 +26,22 @@ static int32_t parse_expr(const char* s) {
   return (*s == '\0') ? res : -1;
 }
 
-static void dac_cli_handler(const char *message) {
+uint8_t dac_message_handler(const char *message) {
 
   if (!strcmp(message, "help")) {
-    cli_putsnl(&huart1, "to set DAC value, type `dac write <value>`");
+    cli_writeline(&huart1, "to set DAC value, type `dac write <value>`");
+    return CLI_OK;
   }
 
-  else if (!strncmp(message, "dac write ", strlen("dac write "))) {
+  else if (starts_with(message, "dac write ")) {
     const uint32_t value = parse_expr(message + strlen("dac write "));
     if (-1 != value && value < DAC12_MAX) {
-      dac_value = value;
+      dac_write(value);
     }
+    return CLI_OK;
   }
 
-  else {
-    cli_putsnl(&huart1, "error: command not found");
-  }
+  return CLI_COMMAND_NOT_FOUND;
 }
 
-void dac_cli() {
-  cli_engine(&huart1, dac_cli_handler);
-}
+

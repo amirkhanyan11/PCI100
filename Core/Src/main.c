@@ -75,9 +75,7 @@ static void MX_DAC_Init(void);
 /* USER CODE BEGIN 0 */
 
 volatile uint32_t BLINK_FREQ = BLINK_10;
-volatile uint32_t LED_MODE = LED_ON;
-volatile uint16_t dac_value = 0;
-
+volatile uint32_t LED_MODE = BLINK_ON;
 
 /* USER CODE END 0 */
 
@@ -126,13 +124,15 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  uint8_t TX_Buffer = 5;
-//  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+  // uint8_t TX_Buffer = 5;
+  // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
+  HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
+  set_led_config();
   while (1)
   {
-
-    HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
+    blink_led(BLINK_FREQ);
+    // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 //    HAL_Delay(1000);
 
     /* USER CODE END WHILE */
