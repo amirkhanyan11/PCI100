@@ -72,15 +72,11 @@ void set_led_config(void) {
   case 1:
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
     BLINK_FREQ = 1;
-    BLINK_MODE = BLINK_OFF;
+    BLINK_MODE = BLINK_ON;
     break;
   case 2 ... 8:
     BLINK_MODE = BLINK_ON;
     BLINK_FREQ = fmap[input];
-  default:
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-    BLINK_MODE = BLINK_OFF;
-    BLINK_FREQ = 0;
   }
 }
 
@@ -101,13 +97,27 @@ static int32_t parse_set_expr(const char* s) {
 
 static uint8_t led_blink_handler(const int32_t val) {
 	if (-1 == val) {
+		cli_writeline(&huart1, "error: bad frequency value: Available values are 1, 10, 20, 50, 100, 500, 1000");
 		return CLI_ERROR;
 	}
-
-	BLINK_MODE = BLINK_ON;
-	BLINK_FREQ = val;
-	cli_puts(&huart1, "Led frequency set to ");
-	cli_writeline(&huart1, get_led_mode());
+	switch(val) {
+	case 1:
+	case 10:
+	case 20:
+	case 50:
+	case 100:
+	case 500:
+	case 1000:
+		BLINK_MODE = BLINK_ON;
+		LED_STATE = LED_ON;
+		BLINK_FREQ = val;
+		cli_puts(&huart1, "Led frequency set to ");
+		cli_writeline(&huart1, get_led_mode());
+		break;
+	default:
+		cli_writeline(&huart1, "error: frequency not supported");
+		return CLI_ERROR;
+	}
 
 	return CLI_OK;
 }
