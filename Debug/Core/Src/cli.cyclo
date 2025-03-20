@@ -1,5 +1,0 @@
-../Core/Src/cli.c:7:6:cli_engine	4
-../Core/Src/cli.c:34:6:cli_writeline	1
-../Core/Src/cli.c:39:6:cli_puts	1
-../Core/Src/cli.c:43:6:cli_putnl	1
-../Core/Src/cli.c:47:9:starts_with	1

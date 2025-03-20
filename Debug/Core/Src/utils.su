@@ -1,2 +1,0 @@
-../Core/Src/utils.c:11:6:uart_echo	16	static
-../Core/Src/utils.c:18:13:static_itoa	24	static
