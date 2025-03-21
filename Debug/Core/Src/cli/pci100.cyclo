@@ -1,3 +1,0 @@
-../Core/Src/cli/pci100.c:23:6:pci100_message_handler	4
-../Core/Src/cli/pci100.c:40:6:pci100_cli	1
-../Core/Src/cli/pci100.c:46:9:command_not_found_handler	1

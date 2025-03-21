@@ -31,8 +31,8 @@ Core/Src/cli/cli.o: ../Core/Src/cli/cli.c ../Core/Src/cli/cli.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- ../Core/Src/cli/./handlers/handlers.h \
- ../Core/Src/cli/./handlers/../cli.h
+ ../Core/Src/cli/../bsp/handlers/handlers.h \
+ ../Core/Src/cli/../bsp/handlers/../../cli/cli.h
 ../Core/Src/cli/cli.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
@@ -67,5 +67,5 @@ Core/Src/cli/cli.o: ../Core/Src/cli/cli.c ../Core/Src/cli/cli.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
-../Core/Src/cli/./handlers/handlers.h:
-../Core/Src/cli/./handlers/../cli.h:
+../Core/Src/cli/../bsp/handlers/handlers.h:
+../Core/Src/cli/../bsp/handlers/../../cli/cli.h:

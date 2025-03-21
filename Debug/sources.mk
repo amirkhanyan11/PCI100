@@ -22,8 +22,9 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/Src/bsp \
+Core/Src/bsp/handlers \
 Core/Src/cli \
-Core/Src/cli/handlers \
 Core/Src/dac \
 Core/Src/led \
 Core/Src \

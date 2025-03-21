@@ -96,7 +96,7 @@ static int32_t parse_set_expr(const char* s) {
 
 
 static uint8_t led_blink_handler(const int32_t val) {
-	if (-1 == val) {
+	if (val < 0) {
 		cli_writeline(&huart1, "error: bad frequency value: Available values are 1, 10, 20, 50, 100, 500, 1000");
 		return CLI_ERROR;
 	}
@@ -122,41 +122,35 @@ static uint8_t led_blink_handler(const int32_t val) {
 	return CLI_OK;
 }
 
-uint8_t led_message_handler(const char *message) {
+void led_message_handler(const char *message) {
 
   if (!strcmp(message, "led on")) {
     BLINK_MODE = BLINK_OFF;
     LED_STATE = LED_ON;
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
     cli_writeline(&huart1, "Led is now on");
-    return CLI_OK;
   }
 
-  if (!strcmp(message, "led off")) {
+  else if (!strcmp(message, "led off")) {
     BLINK_MODE = BLINK_OFF;
     LED_STATE = LED_OFF;
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
     cli_writeline(&huart1, "Led is now off");
-    return CLI_OK;
   }
 
-  if (starts_with(message, "led blink ")) {
+  else if (starts_with(message, "led blink ")) {
     led_blink_handler(parse_set_expr(message));
-    return CLI_OK;
   }
 
-  if (!strcmp(message, "led reset")) {
+  else if (!strcmp(message, "led reset")) {
     set_led_config();
     cli_writeline(&huart1, "led mode is now configured by physical switches");
-    return CLI_OK;
   }
 
-  if (!strcmp(message, "led get state")) {
+  else if (!strcmp(message, "led get state")) {
     cli_puts(&huart1, "led mode is ");
     cli_writeline(&huart1, get_led_mode());
-    return CLI_OK;
   }
 
-  return CLI_COMMAND_NOT_FOUND;
 }
 

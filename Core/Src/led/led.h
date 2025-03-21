@@ -23,7 +23,7 @@
 #define BUFFER_SIZE 1024
 
 void blink_led(const uint32_t num_cfg_on);
-uint8_t led_message_handler(const char *message);
+void led_message_handler(const char *message);
 void set_led_config(void);
 
 #endif // UTILS_H

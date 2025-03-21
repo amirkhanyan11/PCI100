@@ -19,7 +19,7 @@ void engine_handle_nl(cli_engine_t * const engine) {
 	engine->handle((const char *)engine->buf);
 
 	// flush the buffer, reset the position
-	memset(engine->buf, 0, UART_BUFFER_SIZE);
+	memset(engine->buf, 0, CLI_BUFFER_SIZE);
 	engine->pos = 0;
 	engine->prompt_trigger = 1;
 }

@@ -1,6 +1,6 @@
+"./Core/Src/bsp/bsp.o"
+"./Core/Src/bsp/handlers/handlers.o"
 "./Core/Src/cli/cli.o"
-"./Core/Src/cli/pci100.o"
-"./Core/Src/cli/handlers/handlers.o"
 "./Core/Src/dac/dac.o"
 "./Core/Src/led/led.o"
 "./Core/Src/main.o"

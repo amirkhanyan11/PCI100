@@ -55,18 +55,16 @@ static int8_t handle_write(const char *message) {
 	return CLI_OK;
 }
 
-uint8_t dac_message_handler(const char *message) {
+void dac_message_handler(const char *message) {
 
   if (!strcmp(message, "help")) {
     cli_writeline(&huart1, "to set DAC value, type `dac write <value>`");
-    return CLI_OK;
   }
 
   else if (starts_with(message, "dac write ")) {
-    return handle_write(message);
+    handle_write(message);
   }
 
-  return CLI_COMMAND_NOT_FOUND;
 }
 
 

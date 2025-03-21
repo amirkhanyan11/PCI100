@@ -3,19 +3,17 @@
 //
 #include "cli.h"
 #include <string.h>
-#include "./handlers/handlers.h"
+#include "../bsp/handlers/handlers.h"
 
 
-cli_engine_t make_cli_engine(UART_HandleTypeDef *huartx, message_handler_t handle) {
+void make_cli_engine(cli_engine_t *engine, UART_HandleTypeDef *huartx, message_handler_t handle) {
 
-	cli_engine_t engine = {
-			.handle = handle,
-			.huartx = huartx,
-			.prompt_trigger = 1,
-			.buf = {0},
-			.pos = 0
-	};
-	return engine;
+
+	engine->handle = handle;
+	engine ->huartx = huartx;
+	engine->prompt_trigger = 1;
+	engine->pos = 0;
+	memset(engine->buf, 0, CLI_BUFFER_SIZE);
 }
 
 

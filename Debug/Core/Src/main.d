@@ -32,12 +32,11 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
  ../Core/Src/./led/led.h ../Core/Src/./pex/pex.h \
- ../Core/Src/./pex/../cli/cli.h ../Core/Src/./cli/pci100.h \
- ../Core/Src/./cli/../led/led.h ../Core/Src/./cli/../dac/dac.h \
- ../Core/Src/./cli/../dac/../cli/cli.h \
- ../Core/Src/./cli/../dac/../utils/utils.h \
- ../Core/Src/./cli/../dac/../led/led.h ../Core/Src/./cli/../cli/cli.h \
- ../Core/Src/./cli/../utils/utils.h ../Core/Src/./dac/dac.h
+ ../Core/Src/./pex/../cli/cli.h ../Core/Src/./dac/dac.h \
+ ../Core/Src/./dac/../cli/cli.h ../Core/Src/./dac/../utils/utils.h \
+ ../Core/Src/./dac/../led/led.h ../Core/Src/bsp/bsp.h \
+ ../Core/Src/bsp/../led/led.h ../Core/Src/bsp/../dac/dac.h \
+ ../Core/Src/bsp/../cli/cli.h ../Core/Src/bsp/../utils/utils.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -74,12 +73,12 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Src/./led/led.h:
 ../Core/Src/./pex/pex.h:
 ../Core/Src/./pex/../cli/cli.h:
-../Core/Src/./cli/pci100.h:
-../Core/Src/./cli/../led/led.h:
-../Core/Src/./cli/../dac/dac.h:
-../Core/Src/./cli/../dac/../cli/cli.h:
-../Core/Src/./cli/../dac/../utils/utils.h:
-../Core/Src/./cli/../dac/../led/led.h:
-../Core/Src/./cli/../cli/cli.h:
-../Core/Src/./cli/../utils/utils.h:
 ../Core/Src/./dac/dac.h:
+../Core/Src/./dac/../cli/cli.h:
+../Core/Src/./dac/../utils/utils.h:
+../Core/Src/./dac/../led/led.h:
+../Core/Src/bsp/bsp.h:
+../Core/Src/bsp/../led/led.h:
+../Core/Src/bsp/../dac/dac.h:
+../Core/Src/bsp/../cli/cli.h:
+../Core/Src/bsp/../utils/utils.h:

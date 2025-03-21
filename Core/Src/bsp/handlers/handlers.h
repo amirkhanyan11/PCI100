@@ -8,7 +8,7 @@
 #ifndef SRC_CLI_HANDLERS_HANDLERS_H_
 #define SRC_CLI_HANDLERS_HANDLERS_H_
 
-#include "../cli.h"
+#include "../../cli/cli.h"
 
 void engine_handle_nl(cli_engine_t * const engine);
 void engine_handle_backspace(cli_engine_t * const engine);

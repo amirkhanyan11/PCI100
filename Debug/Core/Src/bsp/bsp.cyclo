@@ -1,0 +1,7 @@
+../Core/Src/bsp/bsp.c:20:19:bsp_cmd_find	3
+../Core/Src/bsp/bsp.c:30:9:bsp_cmd_push	2
+../Core/Src/bsp/bsp.c:43:9:bsp_cmd_pop	2
+../Core/Src/bsp/bsp.c:56:6:bsp_message_handler	3
+../Core/Src/bsp/bsp.c:84:6:bsp_config	1
+../Core/Src/bsp/bsp.c:97:6:bsp_run	1
+../Core/Src/bsp/bsp.c:103:9:command_not_found_handler	1

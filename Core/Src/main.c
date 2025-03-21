@@ -23,8 +23,8 @@
 /* USER CODE BEGIN Includes */
 #include "./led/led.h"
 #include "./pex/pex.h"
-#include "./cli/pci100.h"
 #include "./dac/dac.h"
+#include "bsp/bsp.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -126,11 +126,14 @@ int main(void)
   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
   set_led_config();
 
-  cli_engine_t engine = make_cli_engine(&huart1, pci100_message_handler);
+  cli_engine_t engine;
+  make_cli_engine(&engine, &huart1, bsp_message_handler);
+
+  bsp_config();
 
   while (1)
   {
-	  pci100_cli(&engine);
+	  bsp_run(&engine);
     // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 //    HAL_Delay(1000);
 
