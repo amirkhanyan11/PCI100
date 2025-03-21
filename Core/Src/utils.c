@@ -5,8 +5,9 @@
 #include "utils.h"
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
-int32_t strtouint(const char* s, const char delimiter) {
+int32_t stouint(const char* s, const char delimiter) {
   if (!s) {
     return -1;
   }
@@ -25,6 +26,10 @@ int32_t strtouint(const char* s, const char delimiter) {
   }
 
   return res;
+}
+
+uint8_t starts_with(const char *s1, const char *s2) {
+  return (strncmp(s1, s2, strlen(s2)) == 0);
 }
 
 /*

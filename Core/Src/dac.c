@@ -46,7 +46,7 @@ static int8_t handle_write(const char *message) {
 	}
 
 
-	const int32_t value = strtouint(strvalue, ' ');
+	const int32_t value = stouint(strvalue, ' ');
 
     if (value > 0 && value < DAC12_MAX) {
       dac_write(dac_id, value);

@@ -127,9 +127,11 @@ int main(void)
   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
   set_led_config();
 
+  cli_engine_t engine = make_cli_engine(&huart1, pci100_message_handler);
+
   while (1)
   {
-	  pci100_cli();
+	  pci100_cli(&engine);
     // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 //    HAL_Delay(1000);
 

@@ -37,9 +37,9 @@ void pci100_message_handler(const char *message) {
 }
 
 
-void pci100_cli(void) {
+void pci100_cli(cli_engine_t *engine) {
 	blink_led(BLINK_FREQ);
-	cli_engine(&huart1, pci100_message_handler);
+	cli_process(engine);
 }
 
 

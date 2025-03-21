@@ -1,0 +1,5 @@
+../Core/Src/cli.c:16:14:make_cli_engine	1
+../Core/Src/cli.c:29:6:cli_process	6
+../Core/Src/cli.c:67:6:cli_writeline	1
+../Core/Src/cli.c:72:6:cli_puts	1
+../Core/Src/cli.c:76:6:cli_putnl	1

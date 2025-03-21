@@ -11,7 +11,7 @@
 #include "cli.h"
 #include "utils.h"
 
-void pci100_cli(void);
+void pci100_cli(cli_engine_t *engine);
 void pci100_message_handler(const char *);
 uint8_t command_not_found_handler(const char *message);
 

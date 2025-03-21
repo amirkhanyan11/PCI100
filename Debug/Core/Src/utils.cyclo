@@ -1,3 +1,4 @@
-../Core/Src/utils.c:9:9:strtouint	6
-../Core/Src/utils.c:33:13:goto_word	6
-../Core/Src/utils.c:61:13:static_itoa	3
+../Core/Src/utils.c:10:9:stouint	6
+../Core/Src/utils.c:31:9:starts_with	1
+../Core/Src/utils.c:38:13:goto_word	6
+../Core/Src/utils.c:66:13:static_itoa	3
