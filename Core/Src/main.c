@@ -21,11 +21,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdint.h>
-#include "led.h"
-#include "pex.h"
-#include "pci100.h"
-#include "dac.h"
+#include "./led/led.h"
+#include "./pex/pex.h"
+#include "./cli/pci100.h"
+#include "./dac/dac.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

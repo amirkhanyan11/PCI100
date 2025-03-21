@@ -1,0 +1,5 @@
+../Core/Src/utils/utils.c:10:6:static_strtrim	7
+../Core/Src/utils/utils.c:43:9:stouint	6
+../Core/Src/utils/utils.c:64:9:starts_with	1
+../Core/Src/utils/utils.c:71:13:goto_word	6
+../Core/Src/utils/utils.c:99:13:static_itoa	3

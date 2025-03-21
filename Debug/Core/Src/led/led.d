@@ -1,5 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
+Core/Src/led/led.o: ../Core/Src/led/led.c ../Core/Src/led/led.h \
+ ../Core/Inc/main.h ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../Core/Inc/stm32f7xx_hal_conf.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h \
@@ -31,13 +31,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- ../Core/Src/./led/led.h ../Core/Src/./pex/pex.h \
- ../Core/Src/./pex/../cli/cli.h ../Core/Src/./cli/pci100.h \
- ../Core/Src/./cli/../led/led.h ../Core/Src/./cli/../dac/dac.h \
- ../Core/Src/./cli/../dac/../cli/cli.h \
- ../Core/Src/./cli/../dac/../utils/utils.h \
- ../Core/Src/./cli/../dac/../led/led.h ../Core/Src/./cli/../cli/cli.h \
- ../Core/Src/./cli/../utils/utils.h ../Core/Src/./dac/dac.h
+ ../Core/Src/led/../cli/cli.h ../Core/Src/led/../utils/utils.h
+../Core/Src/led/led.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -71,15 +66,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
-../Core/Src/./led/led.h:
-../Core/Src/./pex/pex.h:
-../Core/Src/./pex/../cli/cli.h:
-../Core/Src/./cli/pci100.h:
-../Core/Src/./cli/../led/led.h:
-../Core/Src/./cli/../dac/dac.h:
-../Core/Src/./cli/../dac/../cli/cli.h:
-../Core/Src/./cli/../dac/../utils/utils.h:
-../Core/Src/./cli/../dac/../led/led.h:
-../Core/Src/./cli/../cli/cli.h:
-../Core/Src/./cli/../utils/utils.h:
-../Core/Src/./dac/dac.h:
+../Core/Src/led/../cli/cli.h:
+../Core/Src/led/../utils/utils.h:
