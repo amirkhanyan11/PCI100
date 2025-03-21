@@ -7,7 +7,11 @@
 
 #include "main.h"
 
-void uart_echo(void);
+#define UINT32_MAX_DIGITS 10
+
 const char *static_itoa(uint32_t n);
+const char *goto_word(const char *s, const char delimiter, const uint32_t n);
+int32_t strtouint(const char* s, const char delimiter);
+
 
 #endif //LED_H
