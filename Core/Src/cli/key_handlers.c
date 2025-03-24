@@ -9,18 +9,24 @@
 #include <errno.h>
 #include <string.h>
 #include "../cmd/cmd.h"
+#include "../lexer/lexer.h"
+#include "../utils/utils.h"
 
 uint8_t handle_nl(cli_engine_t * const engine) {
 	 engine->buf[engine->pos] = '\0';
 	 cli_putnl(engine->huartx);
 
-	 cmd_t cmd;
-	 if (ESRCH == make_cmd(&cmd, engine->bsp, (char *)engine->buf)) {
-		 cli_writeline(engine->huartx, "error: command not found");
-	 } else {
-		 cmd.exec(&cmd);
-	 }
+	 char * const input = (char *)engine->buf;
+	 strtrim(input, WHITESPACE);
 
+	 if (strlen(input) != 0) {
+		 cmd_t cmd;
+		 if (ESRCH == make_cmd(&cmd, engine->bsp, (char *)engine->buf)) {
+			 cli_writeline(engine->huartx, "error: command not found");
+		 } else {
+			 cmd.exec(&cmd);
+		 }
+	 }
 
 	 memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
 	 engine->pos = 0;

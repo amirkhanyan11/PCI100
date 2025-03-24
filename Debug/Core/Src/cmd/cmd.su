@@ -1,0 +1,2 @@
+../Core/Src/cmd/cmd.c:15:16:bind_exec	24	static
+../Core/Src/cmd/cmd.c:32:9:make_cmd	32	static

@@ -13,6 +13,7 @@
 #include <errno.h>
 
 static uint8_t bind_exec(cmd_t * const cmd) {
+
 	exec_t e = bsp_cmd_get(cmd->bsp, cmd->name);
 
 	if (NULL == e) {

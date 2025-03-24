@@ -1,0 +1,4 @@
+../Core/Src/cli/key_handlers.c:15:9:handle_nl	3
+../Core/Src/cli/key_handlers.c:38:9:handle_bs	2
+../Core/Src/cli/key_handlers.c:51:9:handle_no_op	1
+../Core/Src/cli/key_handlers.c:55:9:handle_alnum	2

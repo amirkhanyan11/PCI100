@@ -1,0 +1,4 @@
+../Core/Src/led/led.c:23:9:exec_led	1
+../Core/Src/led/led.c:30:20:get_led_mode	4
+../Core/Src/led/led.c:40:6:blink_led	3
+../Core/Src/led/led.c:51:6:set_led_config	12

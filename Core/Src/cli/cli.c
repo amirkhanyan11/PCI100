@@ -15,7 +15,7 @@ void make_cli_engine(cli_engine_t *engine, UART_HandleTypeDef *huartx) {
 	for (uint16_t i = 0; i < UINT8_MAX; ++i) {
 		if (isalnum(i) || i == ' ') {
 			engine->handlers[i] = &handle_alnum;
-		} else if (i == '\n') {
+		} else if (i == '\r') {
 			engine->handlers[i] = &handle_nl;
 		} else if (i == '\b') {
 			engine->handlers[i] = &handle_bs;
@@ -29,7 +29,7 @@ void cli_process(cli_engine_t *engine) {
 
   if (engine->prompt_trigger) {
 	  engine->prompt_trigger = 0;
-	  cli_writeline(engine->huartx, PROMPT);
+	  cli_puts(engine->huartx, PROMPT);
   }
 
   if (HAL_OK == HAL_UART_Receive(engine->huartx, engine->buf + engine->pos, 1, UART_RECEIVE_TIMEOUT)) {

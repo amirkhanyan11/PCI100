@@ -31,7 +31,7 @@ uint8_t bsp_cmd_add(bsp_t * const bsp, const char *name, exec_t exec) {
 		return EINVAL;
 	}
 
-	if (bsp->cmds_length == BSP_MAX_CMDS || name > TOKEN_MAX_LENGTH) {
+	if (bsp->cmds_length == BSP_MAX_CMDS || strlen(name) > TOKEN_MAX_LENGTH) {
 		return EINVAL;
 	}
 
@@ -47,7 +47,7 @@ uint8_t bsp_cmd_add(bsp_t * const bsp, const char *name, exec_t exec) {
 
 exec_t bsp_cmd_get(bsp_t * const bsp, const char *name) {
 	if (!bsp || !name) {
-		return EINVAL;
+		return NULL;
 	}
 
 	for (uint8_t i = 0; i < bsp->cmds_length; ++i) {

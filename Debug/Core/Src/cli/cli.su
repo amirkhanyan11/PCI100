@@ -1,0 +1,5 @@
+../Core/Src/cli/cli.c:8:6:make_cli_engine	24	static
+../Core/Src/cli/cli.c:28:6:cli_process	24	static
+../Core/Src/cli/cli.c:43:6:cli_writeline	16	static
+../Core/Src/cli/cli.c:48:6:cli_puts	16	static
+../Core/Src/cli/cli.c:52:6:cli_putnl	16	static

@@ -1,6 +1,6 @@
 "./Core/Src/bsp/bsp.o"
 "./Core/Src/cli/cli.o"
-"./Core/Src/cli/handlers.o"
+"./Core/Src/cli/key_handlers.o"
 "./Core/Src/cmd/cmd.o"
 "./Core/Src/dac/dac.o"
 "./Core/Src/led/led.o"

@@ -6,15 +6,15 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Src/cli/cli.c \
-../Core/Src/cli/handlers.c 
+../Core/Src/cli/key_handlers.c 
 
 OBJS += \
 ./Core/Src/cli/cli.o \
-./Core/Src/cli/handlers.o 
+./Core/Src/cli/key_handlers.o 
 
 C_DEPS += \
 ./Core/Src/cli/cli.d \
-./Core/Src/cli/handlers.d 
+./Core/Src/cli/key_handlers.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,7 +24,7 @@ Core/Src/cli/%.o Core/Src/cli/%.su Core/Src/cli/%.cyclo: ../Core/Src/cli/%.c Cor
 clean: clean-Core-2f-Src-2f-cli
 
 clean-Core-2f-Src-2f-cli:
-	-$(RM) ./Core/Src/cli/cli.cyclo ./Core/Src/cli/cli.d ./Core/Src/cli/cli.o ./Core/Src/cli/cli.su ./Core/Src/cli/handlers.cyclo ./Core/Src/cli/handlers.d ./Core/Src/cli/handlers.o ./Core/Src/cli/handlers.su
+	-$(RM) ./Core/Src/cli/cli.cyclo ./Core/Src/cli/cli.d ./Core/Src/cli/cli.o ./Core/Src/cli/cli.su ./Core/Src/cli/key_handlers.cyclo ./Core/Src/cli/key_handlers.d ./Core/Src/cli/key_handlers.o ./Core/Src/cli/key_handlers.su
 
 .PHONY: clean-Core-2f-Src-2f-cli
 
