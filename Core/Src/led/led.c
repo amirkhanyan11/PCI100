@@ -18,6 +18,14 @@ uint8_t LED_STATE = LED_OFF;
 
 static uint32_t start = 0;
 
+
+
+uint8_t exec_led(cmd_t * const cmd) {
+	return 0;
+}
+
+
+
 static const char *get_led_mode(void) {
   if (LED_STATE == LED_OFF) {
 	  return "off";
@@ -78,79 +86,5 @@ void set_led_config(void) {
     BLINK_MODE = BLINK_ON;
     BLINK_FREQ = fmap[input];
   }
-}
-
-static int32_t parse_set_expr(const char* s) {
-  if (!s) {
-    return -1;
-  }
-  while (*s && !isdigit((const uint8_t)*s)) {
-    ++s;
-  }
-  const int32_t res = atoi(s);
-  while (isdigit((const uint8_t)*s)) {
-    ++s;
-  }
-  return (*s == '\0') ? res : -1;
-}
-
-
-static uint8_t led_blink_handler(const int32_t val) {
-	if (val < 0) {
-		cli_writeline(&huart1, "error: bad frequency value: Available values are 1, 10, 20, 50, 100, 500, 1000");
-		return CLI_ERROR;
-	}
-	switch(val) {
-	case 1:
-	case 10:
-	case 20:
-	case 50:
-	case 100:
-	case 500:
-	case 1000:
-		BLINK_MODE = BLINK_ON;
-		LED_STATE = LED_ON;
-		BLINK_FREQ = val;
-		cli_puts(&huart1, "Led frequency set to ");
-		cli_writeline(&huart1, get_led_mode());
-		break;
-	default:
-		cli_writeline(&huart1, "error: frequency not supported");
-		return CLI_ERROR;
-	}
-
-	return CLI_OK;
-}
-
-void led_message_handler(const char *message) {
-
-  if (!strcmp(message, "led on")) {
-    BLINK_MODE = BLINK_OFF;
-    LED_STATE = LED_ON;
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-    cli_writeline(&huart1, "Led is now on");
-  }
-
-  else if (!strcmp(message, "led off")) {
-    BLINK_MODE = BLINK_OFF;
-    LED_STATE = LED_OFF;
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-    cli_writeline(&huart1, "Led is now off");
-  }
-
-  else if (starts_with(message, "led blink ")) {
-    led_blink_handler(parse_set_expr(message));
-  }
-
-  else if (!strcmp(message, "led reset")) {
-    set_led_config();
-    cli_writeline(&huart1, "led mode is now configured by physical switches");
-  }
-
-  else if (!strcmp(message, "led get state")) {
-    cli_puts(&huart1, "led mode is ");
-    cli_writeline(&huart1, get_led_mode());
-  }
-
 }
 

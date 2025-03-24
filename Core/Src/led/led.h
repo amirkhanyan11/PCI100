@@ -6,6 +6,7 @@
 #define UTILS_H
 
 #include <stdint.h>
+#include "../cmd/cmd.h"
 
 #define LED_ON 0
 #define LED_OFF 1
@@ -23,7 +24,7 @@
 #define BUFFER_SIZE 1024
 
 void blink_led(const uint32_t num_cfg_on);
-void led_message_handler(const char *message);
 void set_led_config(void);
+uint8_t exec_led(cmd_t * const cmd);
 
 #endif // UTILS_H

@@ -6,6 +6,7 @@
 #define DAC_H
 
 #include "main.h"
+#include "../cmd/cmd.h"
 #include "../cli/cli.h"
 #include "../utils/utils.h"
 #include "../led/led.h"
@@ -14,6 +15,6 @@
 #define DAC12_MAX 4096
 #define DAC_COUNT 1
 
-void dac_message_handler(const char *message);
+uint8_t exec_dac(cmd_t * const cmd);
 
 #endif //DAC_H

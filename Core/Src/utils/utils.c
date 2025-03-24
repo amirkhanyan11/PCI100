@@ -7,7 +7,7 @@
 #include <ctype.h>
 #include <string.h>
 
-void static_strtrim(char *str, const char *set) {
+void strtrim(char *str, const char *set) {
 	if (!str || !set) {
 		return;
 	}
@@ -61,14 +61,10 @@ int32_t stouint(const char* s, const char delimiter) {
   return res;
 }
 
-uint8_t starts_with(const char *s1, const char *s2) {
-  return (strncmp(s1, s2, strlen(s2)) == 0);
-}
-
 /*
  * returns a pointer to the n'th word in a string (starting from 0) delimited by a custom character
  * */
-const char *goto_word(const char *s, const char delimiter, const uint32_t n) {
+const char *goto_token(const char *s, const char delimiter, const uint32_t n) {
 	if (!s) {
 		return NULL;
 	}

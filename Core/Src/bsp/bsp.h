@@ -1,34 +1,34 @@
-//
-// Created by Artyom on 3/20/2025.
-//
+/*
+ * bsp.h
+ *
+ *  Created on: Mar 24, 2025
+ *      Author: artyom
+ */
 
-#ifndef PCI100_H
-#define PCI100_H
+#ifndef SRC_BSP_BSP_H_
+#define SRC_BSP_BSP_H_
+
 
 #include "main.h"
-#include "../led/led.h"
-#include "../dac/dac.h"
-#include "../cli/cli.h"
-#include "../utils/utils.h"
+#include "../cmd/cmd.h"
 
-#define BSP_COMMANDS_MAX 1024
-
-// error codes
-#define BSP_OK 0
-#define BSP_ERROR 1
+#define BSP_MAX_CMDS 128
 
 typedef struct
 {
-	cmd_handler_t arr[BSP_COMMANDS_MAX];
-	uint32_t length;
-} bsp_cmdmap_t;
+	char name[TOKEN_MAX_LENGTH];
+	exec_t exec;
+} bsp_cmd_t;
 
 
-void bsp_config();
-void bsp_run(cli_engine_t *engine);
-void bsp_message_handler(const char *);
-uint8_t bsp_cmd_push(cmd_handler_t c);
-uint8_t bsp_cmd_pop();
-uint8_t command_not_found_handler(const char *message);
+typedef struct
+{
+	cli_engine_t engine;
+	bsp_cmd_t cmds[BSP_MAX_CMDS];
+	uint8_t cmds_length;
+} bsp_t;
 
-#endif //PCI100_H
+uint8_t bsp_cmd_add(bsp_t * const bsp, const char *name, exec_t exec);
+exec_t bsp_cmd_get(bsp_t * const bsp, const char *name);
+
+#endif /* SRC_BSP_BSP_H_ */

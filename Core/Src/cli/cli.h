@@ -22,11 +22,6 @@
 
 typedef void(*message_handler_t)(const char*);
 
-typedef struct
-{
-	char name[CMD_MAX_LENGTH];
-	message_handler_t handle;
-} cmd_handler_t;
 
 typedef struct
 {

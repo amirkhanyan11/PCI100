@@ -25,6 +25,7 @@
 #include "./pex/pex.h"
 #include "./dac/dac.h"
 #include "bsp/bsp.h"
+#include "cmd/cmd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
