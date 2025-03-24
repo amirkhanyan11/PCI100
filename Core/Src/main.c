@@ -73,6 +73,14 @@ static void MX_DAC_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+cli_engine_t engine;
+
+PUTCHAR_PROTOTYPE
+{
+  HAL_UART_Transmit(engine.huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
+  return ch;
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -124,9 +132,7 @@ int main(void)
   // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
-  set_led_config();
 
-  cli_engine_t engine;
   make_cli_engine(&engine, &huart1);
 
   bsp_t bsp;
@@ -137,6 +143,7 @@ int main(void)
   {
 
 	  bsp_run(&bsp);
+
 
     // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 //    HAL_Delay(1000);

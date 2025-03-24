@@ -23,8 +23,14 @@
 
 #define BUFFER_SIZE 1024
 
-void blink_led(const uint32_t num_cfg_on);
-void set_led_config(void);
+uint8_t led_on(cmd_t * const cmd);
+uint8_t led_off(cmd_t * const cmd);
+uint8_t led_blink(cmd_t * const cmd);
+const char *get_led_mode(bsp_t * const bsp);
+void blink_led(bsp_t * const bsp);
+void set_led_config(bsp_t * const bsp);
 uint8_t exec_led(cmd_t * const cmd);
+uint8_t led_reset(cmd_t *const cmd);
+uint8_t led_get(cmd_t *const cmd);
 
 #endif // UTILS_H

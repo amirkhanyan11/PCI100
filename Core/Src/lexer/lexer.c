@@ -17,8 +17,8 @@ uint8_t parse(cmd_t * const cmd, char *input) {
 		return EINVAL;
 	}
 
-	char tokens[TOKEN_MAX_COUNT][TOKEN_MAX_LENGTH];
-	memset(tokens, 0, TOKEN_MAX_COUNT * TOKEN_MAX_LENGTH);
+	char tokens[ARG_MAX_COUNT][TOKEN_MAX_LENGTH];
+	memset(tokens, 0, ARG_MAX_COUNT * TOKEN_MAX_LENGTH);
 
 	const uint8_t s = tokenize(tokens, input);
 
@@ -28,15 +28,19 @@ uint8_t parse(cmd_t * const cmd, char *input) {
 
 	strcpy(cmd->name, tokens[0]);
 
-	for (uint8_t i = 1; tokens[i][0] != '\0'; ++i) {
+	uint8_t i = 1;
+	while (tokens[i][0] != '\0') {
 		strcpy(cmd->args[i - 1], tokens[i]);
+		++i;
 	}
+
+	cmd->argc = i - 1;
 
 	return 0;
 }
 
 
-uint8_t tokenize(char tokens[TOKEN_MAX_COUNT][TOKEN_MAX_LENGTH], char *input) {
+uint8_t tokenize(char tokens[ARG_MAX_COUNT][TOKEN_MAX_LENGTH], char *input) {
 	if (!tokens || !input) {
 		return EINVAL;
 	}
@@ -48,11 +52,11 @@ uint8_t tokenize(char tokens[TOKEN_MAX_COUNT][TOKEN_MAX_LENGTH], char *input) {
 		strcpy(tokens[i++], t);
 	}
 	// tokenizing the user input
-	while((t = strtok(NULL, WHITESPACE)) != NULL && i < TOKEN_MAX_COUNT) {
+	while((t = strtok(NULL, WHITESPACE)) != NULL && i < ARG_MAX_COUNT) {
 		strcpy(tokens[i++], t);
 	}
 
-	if (i >= TOKEN_MAX_COUNT - 1) {
+	if (i >= ARG_MAX_COUNT - 1) {
 		return E2BIG;
 	}
 

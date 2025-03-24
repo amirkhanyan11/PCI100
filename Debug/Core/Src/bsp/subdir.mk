@@ -5,13 +5,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/bsp/bsp.c 
+../Core/Src/bsp/bsp.c \
+../Core/Src/bsp/help.c 
 
 OBJS += \
-./Core/Src/bsp/bsp.o 
+./Core/Src/bsp/bsp.o \
+./Core/Src/bsp/help.o 
 
 C_DEPS += \
-./Core/Src/bsp/bsp.d 
+./Core/Src/bsp/bsp.d \
+./Core/Src/bsp/help.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +24,7 @@ Core/Src/bsp/%.o Core/Src/bsp/%.su Core/Src/bsp/%.cyclo: ../Core/Src/bsp/%.c Cor
 clean: clean-Core-2f-Src-2f-bsp
 
 clean-Core-2f-Src-2f-bsp:
-	-$(RM) ./Core/Src/bsp/bsp.cyclo ./Core/Src/bsp/bsp.d ./Core/Src/bsp/bsp.o ./Core/Src/bsp/bsp.su
+	-$(RM) ./Core/Src/bsp/bsp.cyclo ./Core/Src/bsp/bsp.d ./Core/Src/bsp/bsp.o ./Core/Src/bsp/bsp.su ./Core/Src/bsp/help.cyclo ./Core/Src/bsp/help.d ./Core/Src/bsp/help.o ./Core/Src/bsp/help.su
 
 .PHONY: clean-Core-2f-Src-2f-bsp
 

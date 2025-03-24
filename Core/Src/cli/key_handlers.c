@@ -15,18 +15,8 @@
 uint8_t handle_nl(cli_engine_t * const engine) {
 	 engine->buf[engine->pos] = '\0';
 	 cli_putnl(engine->huartx);
-
-	 char * const input = (char *)engine->buf;
-	 strtrim(input, WHITESPACE);
-
-	 if (strlen(input) != 0) {
-		 cmd_t cmd;
-		 if (ESRCH == make_cmd(&cmd, engine->bsp, (char *)engine->buf)) {
-			 cli_writeline(engine->huartx, "error: command not found");
-		 } else {
-			 cmd.exec(&cmd);
-		 }
-	 }
+	 fflush(stdout);
+	 bsp_exec(engine->bsp, (char *)engine->buf);
 
 	 memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
 	 engine->pos = 0;
@@ -41,9 +31,9 @@ uint8_t handle_bs(cli_engine_t * const engine) {
 	}
 	engine->buf[engine->pos] = '\0';
 	engine->pos -= 1;
-	cli_writeline(engine->huartx, "\b");
-	cli_writeline(engine->huartx, " ");
-	cli_writeline(engine->huartx, "\b");
+	cli_puts(engine->huartx, "\b");
+	cli_puts(engine->huartx, " ");
+	cli_puts(engine->huartx, "\b");
 
 	return 0;
 }

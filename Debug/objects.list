@@ -1,4 +1,5 @@
 "./Core/Src/bsp/bsp.o"
+"./Core/Src/bsp/help.o"
 "./Core/Src/cli/cli.o"
 "./Core/Src/cli/key_handlers.o"
 "./Core/Src/cmd/cmd.o"

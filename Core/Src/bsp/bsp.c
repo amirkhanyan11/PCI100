@@ -11,18 +11,46 @@
 #include "../cmd/cmd.h"
 #include "../led/led.h"
 #include "../dac/dac.h"
+#include "../led/led.h"
 
 void bsp_run(bsp_t * const bsp) {
+	blink_led(bsp);
 	cli_process(bsp->engine);
 }
 
+uint8_t bsp_exec(bsp_t * const bsp, char *input) {
+	 strtrim(input, WHITESPACE);
+
+	 if (strlen(input) == 0) {
+		 return 0;
+	 }
+
+	 cmd_t cmd;
+
+	 if (ESRCH == make_cmd(&cmd, bsp, (char *)bsp->engine->buf)) {
+		 printf("error: command not found\r\n");
+	 } else {
+		 cmd.exec(&cmd);
+	 }
+
+	 return 0;
+}
+
 uint8_t make_bsp(bsp_t * const bsp, struct cli_engine_s * const engine) {
-	  bsp_cmd_add(bsp, "led", &exec_led);
-	  bsp_cmd_add(bsp, "dac", &exec_dac);
+	  bsp->cmds_length = 0;
 
 	  bsp->engine = engine;
 	  bsp->engine->bsp = bsp;
 
+	  bsp->blink_frequency = 0;
+	  bsp->blink_mode = BLINK_OFF;
+	  bsp->led_state = LED_OFF;
+
+	  bsp_cmd_add(bsp, "led", &exec_led);
+	  bsp_cmd_add(bsp, "dac", &exec_dac);
+	  bsp_cmd_add(bsp, "help", &exec_help);
+
+	  set_led_config(bsp);
 	  return 0;
 }
 

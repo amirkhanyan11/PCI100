@@ -8,6 +8,10 @@
 #include "main.h"
 #include "typedefs.h"
 
+
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+
+
 #define ENGINE_BUFFER_SIZE 1024
 #define UART_RECEIVE_TIMEOUT 100
 #define UART_TRANSMIT_TIMEOUT 100
