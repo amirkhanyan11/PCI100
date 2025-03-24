@@ -11,6 +11,7 @@
 #include "../utils/utils.h"
 #include <errno.h>
 #include "led.h"
+#include "../cli/cli_string_literals.h"
 
 uint8_t exec_led(cmd_t * const cmd) {
 
@@ -36,14 +37,14 @@ uint8_t exec_led(cmd_t * const cmd) {
 		return led_get(cmd);
 	}
 
-	printf("error: command not found\r\n");
+	printf(CLI_COMMAND_NOT_FOUND);
 
 	return 127;
 }
 
 uint8_t led_get(cmd_t *const cmd) {
 	if (cmd->argc != 1) {
-		printf("led: error: invalid options\r\n");
+		printf("led: %s", CLI_INVALID_OPTIONS);
 		return EINVAL;
 	}
 	bsp_t * const bsp = cmd->bsp;
@@ -62,7 +63,7 @@ uint8_t led_get(cmd_t *const cmd) {
 uint8_t led_reset(cmd_t *const cmd) {
 
 	if (cmd->argc != 1) {
-		printf("led: error: invalid options\r\n");
+		printf("led: %s", CLI_INVALID_OPTIONS);
 		return EINVAL;
 	}
 
@@ -75,7 +76,7 @@ uint8_t led_reset(cmd_t *const cmd) {
 
 uint8_t led_blink(cmd_t *const cmd) {
 	if (cmd->argc != 2) {
-		printf("led: error: invalid options\r\n");
+		printf("led: %s", CLI_INVALID_OPTIONS);
 		return EINVAL;
 	}
 
@@ -106,7 +107,7 @@ uint8_t led_blink(cmd_t *const cmd) {
 uint8_t led_off(cmd_t * const cmd) {
 
 	if (cmd->argc != 1) {
-		printf("led: error: invalid options\r\n");
+		printf("led: %s", CLI_INVALID_OPTIONS);
 		return EINVAL;
 	}
 
@@ -122,7 +123,7 @@ uint8_t led_off(cmd_t * const cmd) {
 uint8_t led_on(cmd_t * const cmd) {
 
 	if (cmd->argc != 1) {
-		printf("led: error: invalid options\r\n");
+		printf("led: %s", CLI_INVALID_OPTIONS);
 		return EINVAL;
 	}
 

@@ -20,12 +20,9 @@
 #define PROMPT "PCI100$> "
 #define CLI_WHITESPACE_DELIMITERS " \t"
 
-
 // error codes
 #define CLI_OK 0
 #define CLI_ERROR 1
-#define CLI_COMMAND_NOT_FOUND 127
-
 
 struct cli_engine_s
 {

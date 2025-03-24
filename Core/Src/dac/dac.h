@@ -11,10 +11,10 @@
 #include "../utils/utils.h"
 #include "../led/led.h"
 
-#define INVALID_DAC_VALUE 70
-#define DAC12_MAX 4096
+#define DAC12_MAX 4095
 #define DAC_COUNT 1
 
 uint8_t exec_dac(cmd_t * const cmd);
+uint8_t dac_write(cmd_t * const cmd);
 
 #endif //DAC_H

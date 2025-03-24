@@ -3,7 +3,11 @@
 //
 
 #include "dac.h"
+#include "../cli/cli.h"
+#include "../cli/cli_string_literals.h"
+#include <stdio.h>
 #include <ctype.h>
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -11,15 +15,41 @@ extern UART_HandleTypeDef huart1;
 extern DAC_HandleTypeDef hdac;
 
 uint8_t exec_dac(cmd_t * const cmd) {
+
+	const char * const option = cmd->args[0];
+
+	if (!strcmp(option, "write")) {
+		return dac_write(cmd);
+	}
+
+	printf(CLI_COMMAND_NOT_FOUND);
+	return 127;
+}
+
+uint8_t dac_write(cmd_t * const cmd) {
+
+	if (cmd->argc != 3) {
+		printf(CLI_INVALID_OPTIONS);
+		return EINVAL;
+	}
+
+	const uint8_t dac_id = atoi(cmd->args[1]);
+
+	if (dac_id != 1) {
+		printf(CLI_INVALID_OPTIONS);
+		return EINVAL;
+	}
+
+	const uint16_t dac_value = atoi(cmd->args[2]);
+
+	// the value is 0 but the user entered a different value or is in invalid range
+	if ((0 == dac_value && cmd->args[1][0] != '0') || dac_value < 0 || dac_value > DAC12_MAX) {
+		printf(CLI_INVALID_OPTIONS);
+		return EINVAL;
+	}
+
+	HAL_DAC_SetValue(cmd->bsp->hdacx, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
+
 	return 0;
 }
 
-static void dac_write(uint32_t dac_id, uint16_t dac_value) {
-
-	static DAC_HandleTypeDef dac_map[DAC_COUNT] = {0};
-
-	dac_map[0] = hdac;
-
-	// mapping dac objects to id's with offset of 1. Dac with id 1 will be in the 0'th position.
-	HAL_DAC_SetValue((dac_map + dac_id - 1), DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
-}

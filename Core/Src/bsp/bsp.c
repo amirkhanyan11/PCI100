@@ -36,11 +36,13 @@ uint8_t bsp_exec(bsp_t * const bsp, char *input) {
 	 return 0;
 }
 
-uint8_t make_bsp(bsp_t * const bsp, struct cli_engine_s * const engine) {
+uint8_t make_bsp(bsp_t * const bsp, struct cli_engine_s * const engine, DAC_HandleTypeDef *hdacx) {
 	  bsp->cmds_length = 0;
 
 	  bsp->engine = engine;
 	  bsp->engine->bsp = bsp;
+
+	  bsp->hdacx = hdacx;
 
 	  bsp->blink_frequency = 0;
 	  bsp->blink_mode = BLINK_OFF;

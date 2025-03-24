@@ -137,7 +137,7 @@ int main(void)
 
   bsp_t bsp;
 
-  make_bsp(&bsp, &engine);
+  make_bsp(&bsp, &engine, &hdac);
 
   while (1)
   {

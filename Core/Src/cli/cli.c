@@ -2,6 +2,7 @@
 // Created by Artyom on 3/17/2025.
 //
 #include "cli.h"
+#include "cli_string_literals.h"
 #include <string.h>
 #include <ctype.h>
 
