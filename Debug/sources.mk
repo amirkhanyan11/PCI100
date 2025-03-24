@@ -29,6 +29,7 @@ Core/Src/dac \
 Core/Src/led \
 Core/Src/lexer \
 Core/Src \
+Core/Src/pex \
 Core/Src/utils \
 Core/Startup \
 Drivers/STM32F7xx_HAL_Driver/Src \

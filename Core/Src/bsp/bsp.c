@@ -12,6 +12,7 @@
 #include "../led/led.h"
 #include "../dac/dac.h"
 #include "../led/led.h"
+#include "../pex/pex.h"
 
 void bsp_run(bsp_t * const bsp) {
 	bsp_blink_led(bsp);
@@ -37,6 +38,7 @@ uint8_t bsp_exec(bsp_t * const bsp, char *input) {
 }
 
 uint8_t make_bsp(bsp_t * const bsp, struct cli_engine_s * const engine, DAC_HandleTypeDef *hdacx) {
+
 	  bsp->cmds_length = 0;
 
 	  bsp->engine = engine;
@@ -51,6 +53,7 @@ uint8_t make_bsp(bsp_t * const bsp, struct cli_engine_s * const engine, DAC_Hand
 	  bsp_cmd_add(bsp, "led", &exec_led);
 	  bsp_cmd_add(bsp, "dac", &exec_dac);
 	  bsp_cmd_add(bsp, "help", &exec_help);
+	  bsp_cmd_add(bsp, "pex", &exec_pex);
 
 	  set_led_config(bsp);
 	  return 0;
