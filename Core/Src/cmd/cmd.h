@@ -13,16 +13,14 @@
 #define TOKEN_MAX_COUNT 16
 #define TOKEN_MAX_LENGTH 32
 
-typedef struct cmd_t;
-
 typedef uint8_t (*exec_t)(cmd_t * const);
 
-struct cmd_t
+typedef struct
 {
 	char name[TOKEN_MAX_LENGTH];
 	char args[TOKEN_MAX_COUNT - 1][TOKEN_MAX_LENGTH];
 	exec_t exec;
-};
+} cmd_t;
 
 uint8_t make_cmd(cmd_t * const cmd, char *input);
 

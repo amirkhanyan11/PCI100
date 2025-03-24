@@ -3,19 +3,27 @@
 //
 #include "cli.h"
 #include <string.h>
-#include "../bsp/handlers/handlers.h"
-
+#include <ctype.h>
 
 void make_cli_engine(cli_engine_t *engine, UART_HandleTypeDef *huartx, message_handler_t handle) {
-
-
 	engine->handle = handle;
 	engine ->huartx = huartx;
 	engine->prompt_trigger = 1;
 	engine->pos = 0;
-	memset(engine->buf, 0, CLI_BUFFER_SIZE);
-}
+	memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
 
+	for (uint16_t i = 0; i < UINT8_MAX; ++i) {
+		if (isalnum(i) || i == ' ') {
+			engine->handlers[i] = &handle_alnum;
+		} else if (i == '\n') {
+			engine->handlers[i] = &handle_nl;
+		} else if (i == '\b') {
+			engine->handlers[i] = &handle_bs;
+		} else {
+			engine->handlers[i] = &handle_no_op;
+		}
+	}
+}
 
 void cli_process(cli_engine_t *engine) {
 
@@ -25,18 +33,10 @@ void cli_process(cli_engine_t *engine) {
   }
 
   if (HAL_OK == HAL_UART_Receive(engine->huartx, engine->buf + engine->pos, 1, UART_RECEIVE_TIMEOUT)) {
-    if (engine->buf[engine->pos] == '\r') {
-    	engine_handle_nl(engine);
-    }
+	  const uint8_t key = engine->buffer[engine->pos];
 
-    else if (engine->buf[engine->pos] == '\b') {
-    	engine_handle_backspace(engine);
-    }
-
-    else {
-      HAL_UART_Transmit(engine->huartx, engine->buf + engine->pos, 1, UART_TRANSMIT_TIMEOUT);
-      engine->pos += 1;
-    }
+	  // handling each key
+	  engine->handlers[key](engine);
   }
 }
 

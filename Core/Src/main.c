@@ -130,11 +130,16 @@ int main(void)
   cli_engine_t engine;
   make_cli_engine(&engine, &huart1, bsp_message_handler);
 
-  bsp_config();
+  bsp_t bsp;
+
+  bsp_cmd_add(&bsp, "led", &exec_led);
+  bsp_cmd_add(&bsp, "dac", &exec_dac);
+
+  bsp->engine = engine;
 
   while (1)
   {
-	  bsp_run(&engine);
+
     // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 //    HAL_Delay(1000);
 

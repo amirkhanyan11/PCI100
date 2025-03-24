@@ -10,6 +10,10 @@
 #include <errno.h>
 #include "../cmd/cmd.h"
 
+void bsp_run(void) {
+
+}
+
 uint8_t bsp_cmd_add(bsp_t * const bsp, const char *name, exec_t exec) {
 	if (!bsp || !name || !exec) {
 		return EINVAL;

@@ -30,5 +30,6 @@ typedef struct
 
 uint8_t bsp_cmd_add(bsp_t * const bsp, const char *name, exec_t exec);
 exec_t bsp_cmd_get(bsp_t * const bsp, const char *name);
+void bsp_run(void);
 
 #endif /* SRC_BSP_BSP_H_ */
