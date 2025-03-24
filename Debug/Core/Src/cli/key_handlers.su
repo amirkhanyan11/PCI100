@@ -1,4 +1,0 @@
-../Core/Src/cli/key_handlers.c:15:9:handle_nl	544	static
-../Core/Src/cli/key_handlers.c:38:9:handle_bs	16	static
-../Core/Src/cli/key_handlers.c:51:9:handle_no_op	16	static
-../Core/Src/cli/key_handlers.c:55:9:handle_alnum	16	static

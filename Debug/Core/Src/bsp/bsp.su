@@ -1,4 +1,0 @@
-../Core/Src/bsp/bsp.c:15:6:bsp_run	16	static
-../Core/Src/bsp/bsp.c:19:9:make_bsp	16	static
-../Core/Src/bsp/bsp.c:29:9:bsp_cmd_add	24	static
-../Core/Src/bsp/bsp.c:48:8:bsp_cmd_get	24	static

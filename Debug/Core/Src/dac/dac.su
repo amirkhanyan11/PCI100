@@ -1,2 +1,0 @@
-../Core/Src/dac/dac.c:13:9:exec_dac	16	static
-../Core/Src/dac/dac.c:17:13:dac_write	24	static
