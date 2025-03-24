@@ -1,4 +1,0 @@
-../Core/Src/utils/utils.c:10:6:strtrim	24	static
-../Core/Src/utils/utils.c:43:9:stouint	24	static
-../Core/Src/utils/utils.c:67:13:goto_token	40	static
-../Core/Src/utils/utils.c:95:13:static_itoa	24	static
