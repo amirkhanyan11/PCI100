@@ -26,9 +26,9 @@ uint8_t parse(cmd_t * const cmd, char *input) {
 		return s;
 	}
 
-	cmd->name = tokens[0];
+	strcpy(cmd->name, tokens[0]);
 
-	for (uint8_t i = 1; tokens[i]; ++i) {
+	for (uint8_t i = 1; tokens[i][0] != '\0'; ++i) {
 		strcpy(cmd->args[i - 1], tokens[i]);
 	}
 

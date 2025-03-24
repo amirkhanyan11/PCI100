@@ -1,6 +1,4 @@
-../Core/Src/led/led.c:21:20:get_led_mode	4
-../Core/Src/led/led.c:31:6:blink_led	3
-../Core/Src/led/led.c:42:6:set_led_config	12
-../Core/Src/led/led.c:83:16:parse_set_expr	6
-../Core/Src/led/led.c:98:16:led_blink_handler	14
-../Core/Src/led/led.c:125:6:led_message_handler	6
+../Core/Src/led/led.c:23:9:exec_led	1
+../Core/Src/led/led.c:30:20:get_led_mode	4
+../Core/Src/led/led.c:40:6:blink_led	3
+../Core/Src/led/led.c:51:6:set_led_config	12

@@ -31,12 +31,15 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- ../Core/Src/./led/led.h ../Core/Src/./pex/pex.h \
- ../Core/Src/./pex/../cli/cli.h ../Core/Src/./dac/dac.h \
- ../Core/Src/./dac/../cli/cli.h ../Core/Src/./dac/../utils/utils.h \
- ../Core/Src/./dac/../led/led.h ../Core/Src/bsp/bsp.h \
- ../Core/Src/bsp/../led/led.h ../Core/Src/bsp/../dac/dac.h \
- ../Core/Src/bsp/../cli/cli.h ../Core/Src/bsp/../utils/utils.h
+ ../Core/Src/./led/led.h ../Core/Src/./led/../cmd/cmd.h \
+ ../Core/Src/./led/../cmd/../bsp/bsp.h \
+ ../Core/Src/./led/../cmd/../bsp/../cli/cli.h ../Core/Inc/typedefs.h \
+ ../Core/Src/./led/../cmd/../bsp/../cmd/cmd.h \
+ ../Core/Src/./led/../cmd/../bsp/../lexer/lexer.h \
+ ../Core/Src/./led/../cmd/../lexer/lexer.h ../Core/Src/./dac/dac.h \
+ ../Core/Src/./dac/../cmd/cmd.h ../Core/Src/./dac/../cli/cli.h \
+ ../Core/Src/./dac/../utils/utils.h ../Core/Src/./dac/../led/led.h \
+ ../Core/Src/bsp/bsp.h ../Core/Src/cmd/cmd.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -71,14 +74,17 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
 ../Core/Src/./led/led.h:
-../Core/Src/./pex/pex.h:
-../Core/Src/./pex/../cli/cli.h:
+../Core/Src/./led/../cmd/cmd.h:
+../Core/Src/./led/../cmd/../bsp/bsp.h:
+../Core/Src/./led/../cmd/../bsp/../cli/cli.h:
+../Core/Inc/typedefs.h:
+../Core/Src/./led/../cmd/../bsp/../cmd/cmd.h:
+../Core/Src/./led/../cmd/../bsp/../lexer/lexer.h:
+../Core/Src/./led/../cmd/../lexer/lexer.h:
 ../Core/Src/./dac/dac.h:
+../Core/Src/./dac/../cmd/cmd.h:
 ../Core/Src/./dac/../cli/cli.h:
 ../Core/Src/./dac/../utils/utils.h:
 ../Core/Src/./dac/../led/led.h:
 ../Core/Src/bsp/bsp.h:
-../Core/Src/bsp/../led/led.h:
-../Core/Src/bsp/../dac/dac.h:
-../Core/Src/bsp/../cli/cli.h:
-../Core/Src/bsp/../utils/utils.h:
+../Core/Src/cmd/cmd.h:

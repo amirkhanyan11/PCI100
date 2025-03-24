@@ -6,10 +6,22 @@
  */
 
 #include "cli.h"
+#include <errno.h>
+#include <string.h>
+#include "../cmd/cmd.h"
 
 uint8_t handle_nl(cli_engine_t * const engine) {
 	 engine->buf[engine->pos] = '\0';
-	 cli_putnl(huartx);
+	 cli_putnl(engine->huartx);
+
+	 cmd_t cmd;
+	 if (ESRCH == make_cmd(&cmd, engine->bsp, (char *)engine->buf)) {
+		 cli_writeline(engine->huartx, "error: command not found");
+	 } else {
+		 cmd.exec(&cmd);
+	 }
+
+
 	 memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
 	 engine->pos = 0;
 	 engine->prompt_trigger = 1;
@@ -19,13 +31,13 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 
 uint8_t handle_bs(cli_engine_t * const engine) {
 	if (0 == engine->pos) {
-		return;
+		return EAGAIN;
 	}
 	engine->buf[engine->pos] = '\0';
 	engine->pos -= 1;
-	cli_writeline(engine->huartx, (const uint8_t *)"\b");
-	cli_writeline(engine->huartx, (const uint8_t *)" ");
-	cli_writeline(engine->huartx, (const uint8_t *)"\b");
+	cli_writeline(engine->huartx, "\b");
+	cli_writeline(engine->huartx, " ");
+	cli_writeline(engine->huartx, "\b");
 
 	return 0;
 }
@@ -38,10 +50,10 @@ uint8_t handle_alnum(cli_engine_t * const engine) {
 	if (engine->pos == ENGINE_BUFFER_SIZE - 1) {
 		 memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
 		 engine->pos = 0;
-		 return 1;
+		 return EAGAIN;
 	}
 
-	HAL_UART_Transmit(engine->huartx, buf + pos, 1, UART_TRANSMIT_TIMEOUT);
+	HAL_UART_Transmit(engine->huartx, engine->buf + engine->pos, 1, UART_TRANSMIT_TIMEOUT);
 	engine->pos += 1;
 
 	return 0;

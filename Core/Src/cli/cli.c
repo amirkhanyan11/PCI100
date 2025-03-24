@@ -5,11 +5,11 @@
 #include <string.h>
 #include <ctype.h>
 
-void make_cli_engine(cli_engine_t *engine, UART_HandleTypeDef *huartx, message_handler_t handle) {
-	engine->handle = handle;
+void make_cli_engine(cli_engine_t *engine, UART_HandleTypeDef *huartx) {
 	engine ->huartx = huartx;
 	engine->prompt_trigger = 1;
 	engine->pos = 0;
+	engine->bsp = NULL;
 	memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
 
 	for (uint16_t i = 0; i < UINT8_MAX; ++i) {
@@ -33,13 +33,12 @@ void cli_process(cli_engine_t *engine) {
   }
 
   if (HAL_OK == HAL_UART_Receive(engine->huartx, engine->buf + engine->pos, 1, UART_RECEIVE_TIMEOUT)) {
-	  const uint8_t key = engine->buffer[engine->pos];
+	  const uint8_t key = engine->buf[engine->pos];
 
 	  // handling each key
 	  engine->handlers[key](engine);
   }
 }
-
 
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s) {
   cli_puts(huartx, s);

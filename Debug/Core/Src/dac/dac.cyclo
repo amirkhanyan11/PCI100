@@ -1,3 +1,2 @@
-../Core/Src/dac/dac.c:13:13:dac_write	1
-../Core/Src/dac/dac.c:23:15:handle_write	8
-../Core/Src/dac/dac.c:58:6:dac_message_handler	3
+../Core/Src/dac/dac.c:13:9:exec_dac	1
+../Core/Src/dac/dac.c:17:13:dac_write	1

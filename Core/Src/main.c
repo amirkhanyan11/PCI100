@@ -22,7 +22,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "./led/led.h"
-#include "./pex/pex.h"
 #include "./dac/dac.h"
 #include "bsp/bsp.h"
 #include "cmd/cmd.h"
@@ -128,17 +127,16 @@ int main(void)
   set_led_config();
 
   cli_engine_t engine;
-  make_cli_engine(&engine, &huart1, bsp_message_handler);
+  make_cli_engine(&engine, &huart1);
 
   bsp_t bsp;
 
-  bsp_cmd_add(&bsp, "led", &exec_led);
-  bsp_cmd_add(&bsp, "dac", &exec_dac);
-
-  bsp->engine = engine;
+  make_bsp(&bsp, &engine);
 
   while (1)
   {
+
+	  bsp_run(&bsp);
 
     // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 //    HAL_Delay(1000);

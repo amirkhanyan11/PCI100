@@ -6,33 +6,36 @@
  */
 
 #include "cmd.h"
+#include "../bsp/bsp.h"
 #include "../led/led.h"
 #include "../lexer/lexer.h"
 #include <string.h>
+#include <errno.h>
 
 static uint8_t bind_exec(cmd_t * const cmd) {
-	exec_t e = bsp_cmd_get(name);
+	exec_t e = bsp_cmd_get(cmd->bsp, cmd->name);
 
 	if (NULL == e) {
-		return EINVAL;
+		return ESRCH;
 	}
 
-	cmd->exec = exec;
+	cmd->exec = e;
 
 	return 0;
 }
-
 
 /*
  * cmd - pointer to already allocated command structure
  * input - user input string
  * */
-uint8_t make_cmd(cmd_t * const cmd, char *input) {
+uint8_t make_cmd(cmd_t * const cmd, bsp_t * const bsp, char *input) {
 	if (!cmd || !input) {
 		return EINVAL;
 	}
 
 	memset(cmd, 0, sizeof(cmd_t));
+
+	cmd->bsp = bsp;
 
 	const uint8_t parse_status = parse(cmd, input);
 
@@ -40,15 +43,11 @@ uint8_t make_cmd(cmd_t * const cmd, char *input) {
 		return parse_status;
 	}
 
-	const uint8_t bind_exec_status = bind_exec_status(cmd);
+	const uint8_t bind_exec_status = bind_exec(cmd);
 
-	switch (bind_exec_status)
-	{
-	case EINVAL:
-		// printf cmd not found
-	default:
-		return bind_exec_status;
-	}
-
-	return 0;
+	return bind_exec_status;
 }
+
+
+
+

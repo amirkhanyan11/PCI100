@@ -9,9 +9,21 @@
 #include "string.h"
 #include <errno.h>
 #include "../cmd/cmd.h"
+#include "../led/led.h"
+#include "../dac/dac.h"
 
-void bsp_run(void) {
+void bsp_run(bsp_t * const bsp) {
+	cli_process(bsp->engine);
+}
 
+uint8_t make_bsp(bsp_t * const bsp, struct cli_engine_s * const engine) {
+	  bsp_cmd_add(bsp, "led", &exec_led);
+	  bsp_cmd_add(bsp, "dac", &exec_dac);
+
+	  bsp->engine = engine;
+	  bsp->engine->bsp = bsp;
+
+	  return 0;
 }
 
 uint8_t bsp_cmd_add(bsp_t * const bsp, const char *name, exec_t exec) {

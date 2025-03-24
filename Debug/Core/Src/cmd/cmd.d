@@ -1,6 +1,5 @@
-Core/Src/pex/pex.o: ../Core/Src/pex/pex.c ../Core/Src/pex/pex.h \
- ../Core/Src/pex/../cli/cli.h ../Core/Inc/main.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
+Core/Src/cmd/cmd.o: ../Core/Src/cmd/cmd.c ../Core/Src/cmd/cmd.h \
+ ../Core/Inc/main.h ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../Core/Inc/stm32f7xx_hal_conf.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h \
@@ -31,9 +30,12 @@ Core/Src/pex/pex.o: ../Core/Src/pex/pex.c ../Core/Src/pex/pex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
-../Core/Src/pex/pex.h:
-../Core/Src/pex/../cli/cli.h:
+ ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
+ ../Core/Src/cmd/../bsp/bsp.h ../Core/Src/cmd/../bsp/../cli/cli.h \
+ ../Core/Inc/typedefs.h ../Core/Src/cmd/../bsp/../cmd/cmd.h \
+ ../Core/Src/cmd/../bsp/../lexer/lexer.h ../Core/Src/cmd/../lexer/lexer.h \
+ ../Core/Src/cmd/../led/led.h ../Core/Src/cmd/../led/../cmd/cmd.h
+../Core/Src/cmd/cmd.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -67,3 +69,11 @@ Core/Src/pex/pex.o: ../Core/Src/pex/pex.c ../Core/Src/pex/pex.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
+../Core/Src/cmd/../bsp/bsp.h:
+../Core/Src/cmd/../bsp/../cli/cli.h:
+../Core/Inc/typedefs.h:
+../Core/Src/cmd/../bsp/../cmd/cmd.h:
+../Core/Src/cmd/../bsp/../lexer/lexer.h:
+../Core/Src/cmd/../lexer/lexer.h:
+../Core/Src/cmd/../led/led.h:
+../Core/Src/cmd/../led/../cmd/cmd.h:

@@ -9,7 +9,10 @@
 #define SRC_LEXER_LEXER_H_
 #define WHITESPACE " \t\v\n\f\r"
 
-#include "../cmd/cmd.h"
+#define TOKEN_MAX_COUNT 16
+#define TOKEN_MAX_LENGTH 32
+
+#include "typedefs.h"
 
 uint8_t tokenize(char tokens[TOKEN_MAX_COUNT][TOKEN_MAX_LENGTH], char *input);
 uint8_t parse(cmd_t * const cmd, char *input);

@@ -21,6 +21,7 @@ static uint32_t start = 0;
 
 
 uint8_t exec_led(cmd_t * const cmd) {
+	cli_writeline(&huart1, "called led logic");
 	return 0;
 }
 

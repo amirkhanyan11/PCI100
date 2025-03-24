@@ -1,0 +1,4 @@
+../Core/Src/cli/handlers.c:13:9:handle_nl	2
+../Core/Src/cli/handlers.c:32:9:handle_bs	2
+../Core/Src/cli/handlers.c:45:9:handle_no_op	1
+../Core/Src/cli/handlers.c:49:9:handle_alnum	2

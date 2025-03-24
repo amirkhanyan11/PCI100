@@ -1,4 +1,4 @@
-Core/Src/cli/cli.o: ../Core/Src/cli/cli.c ../Core/Src/cli/cli.h \
+Core/Src/cli/handlers.o: ../Core/Src/cli/handlers.c ../Core/Src/cli/cli.h \
  ../Core/Inc/main.h ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../Core/Inc/stm32f7xx_hal_conf.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
@@ -31,7 +31,12 @@ Core/Src/cli/cli.o: ../Core/Src/cli/cli.c ../Core/Src/cli/cli.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- ../Core/Inc/typedefs.h
+ ../Core/Inc/typedefs.h ../Core/Src/cli/../cmd/cmd.h \
+ ../Core/Src/cli/../cmd/../bsp/bsp.h \
+ ../Core/Src/cli/../cmd/../bsp/../cli/cli.h \
+ ../Core/Src/cli/../cmd/../bsp/../cmd/cmd.h \
+ ../Core/Src/cli/../cmd/../bsp/../lexer/lexer.h \
+ ../Core/Src/cli/../cmd/../lexer/lexer.h
 ../Core/Src/cli/cli.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
@@ -67,3 +72,9 @@ Core/Src/cli/cli.o: ../Core/Src/cli/cli.c ../Core/Src/cli/cli.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
 ../Core/Inc/typedefs.h:
+../Core/Src/cli/../cmd/cmd.h:
+../Core/Src/cli/../cmd/../bsp/bsp.h:
+../Core/Src/cli/../cmd/../bsp/../cli/cli.h:
+../Core/Src/cli/../cmd/../bsp/../cmd/cmd.h:
+../Core/Src/cli/../cmd/../bsp/../lexer/lexer.h:
+../Core/Src/cli/../cmd/../lexer/lexer.h:

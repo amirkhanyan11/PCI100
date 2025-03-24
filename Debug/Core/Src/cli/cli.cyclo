@@ -1,5 +1,5 @@
-../Core/Src/cli/cli.c:9:6:make_cli_engine	1
-../Core/Src/cli/cli.c:20:6:cli_process	5
-../Core/Src/cli/cli.c:44:6:cli_writeline	1
-../Core/Src/cli/cli.c:49:6:cli_puts	1
-../Core/Src/cli/cli.c:53:6:cli_putnl	1
+../Core/Src/cli/cli.c:8:6:make_cli_engine	6
+../Core/Src/cli/cli.c:28:6:cli_process	3
+../Core/Src/cli/cli.c:43:6:cli_writeline	1
+../Core/Src/cli/cli.c:48:6:cli_puts	1
+../Core/Src/cli/cli.c:52:6:cli_putnl	1
