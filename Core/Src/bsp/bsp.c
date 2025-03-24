@@ -14,7 +14,7 @@
 #include "../led/led.h"
 
 void bsp_run(bsp_t * const bsp) {
-	blink_led(bsp);
+	bsp_blink_led(bsp);
 	cli_process(bsp->engine);
 }
 
@@ -85,4 +85,20 @@ exec_t bsp_cmd_get(bsp_t * const bsp, const char *name) {
 	}
 
 	return NULL;
+}
+
+void bsp_blink_led(bsp_t * const bsp) {
+
+	if (bsp->blink_mode == BLINK_OFF) {
+		return;
+	}
+
+	static uint32_t start = 0;
+
+	const uint32_t current_tick = HAL_GetTick();
+
+	if (current_tick >= start + bsp->blink_frequency) {
+		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
+		start = HAL_GetTick();
+	}
 }

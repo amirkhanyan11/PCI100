@@ -36,27 +36,24 @@ uint8_t exec_led(cmd_t * const cmd) {
 		return led_get(cmd);
 	}
 
-	cli_writeline(cmd->bsp->engine->huartx, "error: command not found");
+	printf("error: command not found\r\n");
 
 	return 127;
 }
 
 uint8_t led_get(cmd_t *const cmd) {
 	if (cmd->argc != 1) {
-		cli_writeline(cmd->bsp->engine->huartx, "led: error: invalid options");
+		printf("led: error: invalid options\r\n");
 		return EINVAL;
-
 	}
 	bsp_t * const bsp = cmd->bsp;
 
 	if (bsp->led_state == LED_OFF) {
-		cli_writeline(bsp->engine->huartx, "led is off");
+		printf("led is off\r\n");
 	} else if (bsp->led_state == LED_ON && bsp->blink_mode == BLINK_OFF) {
-		cli_writeline(bsp->engine->huartx, "led is on");
+		printf("led is on\r\n");
 	} else {
-		cli_puts(bsp->engine->huartx, "led is blinking at ");
-		cli_puts(bsp->engine->huartx, static_itoa(bsp->blink_frequency));
-		cli_writeline(bsp->engine->huartx, "hz");
+		printf("led is blinking at %lu hz\r\n", bsp->blink_frequency);
 	}
 
 	return 0;
@@ -65,12 +62,12 @@ uint8_t led_get(cmd_t *const cmd) {
 uint8_t led_reset(cmd_t *const cmd) {
 
 	if (cmd->argc != 1) {
-		cli_writeline(cmd->bsp->engine->huartx, "led: error: invalid options");
+		printf("led: error: invalid options\r\n");
 		return EINVAL;
 	}
 
 	set_led_config(cmd->bsp);
-	cli_writeline(cmd->bsp->engine->huartx, "led mode is now configured by physical switches");
+	printf("led mode is now configured by physical switches\r\n");
 
 	return 0;
 }
@@ -78,7 +75,7 @@ uint8_t led_reset(cmd_t *const cmd) {
 
 uint8_t led_blink(cmd_t *const cmd) {
 	if (cmd->argc != 2) {
-		cli_writeline(cmd->bsp->engine->huartx, "led: error: invalid options");
+		printf("led: error: invalid options\r\n");
 		return EINVAL;
 	}
 
@@ -96,12 +93,10 @@ uint8_t led_blink(cmd_t *const cmd) {
 		bsp->blink_mode = BLINK_ON;
 		bsp->led_state = LED_ON;
 		bsp->blink_frequency = frequency;
-		cli_puts(bsp->engine->huartx, "Led frequency set to ");
-		cli_puts(bsp->engine->huartx, cmd->args[1]);
-		cli_writeline(bsp->engine->huartx, "hz");
+		printf("Led frequency set to %s hz\r\n", cmd->args[1]);
 		break;
 	default:
-		cli_writeline(bsp->engine->huartx, "error: frequency not supported");
+		printf("error: frequency not supported\r\n");
 		return EINVAL;
 	}
 
@@ -111,14 +106,15 @@ uint8_t led_blink(cmd_t *const cmd) {
 uint8_t led_off(cmd_t * const cmd) {
 
 	if (cmd->argc != 1) {
-		cli_writeline(cmd->bsp->engine->huartx, "led: error: invalid options");
+		printf("led: error: invalid options\r\n");
+		return EINVAL;
 	}
 
 	cmd->bsp->led_state = LED_OFF;
 	cmd->bsp->blink_mode = BLINK_OFF;
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
 
-	cli_writeline(cmd->bsp->engine->huartx, "Led is now off");
+	printf("Led is now off\r\n");
 	return 0;
 }
 
@@ -126,30 +122,15 @@ uint8_t led_off(cmd_t * const cmd) {
 uint8_t led_on(cmd_t * const cmd) {
 
 	if (cmd->argc != 1) {
-		cli_writeline(cmd->bsp->engine->huartx, "led: error: invalid options");
+		printf("led: error: invalid options\r\n");
+		return EINVAL;
 	}
 
 	cmd->bsp->led_state = LED_ON;
 	cmd->bsp->blink_mode = BLINK_OFF;
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-	cli_writeline(cmd->bsp->engine->huartx, "Led is now on");
+	printf("Led is now on\r\n");
 	return 0;
-}
-
-void blink_led(bsp_t * const bsp) {
-
-	if (bsp->blink_mode == BLINK_OFF) {
-		return;
-	}
-
-	static uint32_t start = 0;
-
-	const uint32_t current_tick = HAL_GetTick();
-
-	if (current_tick >= start + bsp->blink_frequency) {
-		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
-		start = HAL_GetTick();
-	}
 }
 
 void set_led_config(bsp_t * const bsp) {

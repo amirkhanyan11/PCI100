@@ -27,7 +27,6 @@ uint8_t led_on(cmd_t * const cmd);
 uint8_t led_off(cmd_t * const cmd);
 uint8_t led_blink(cmd_t * const cmd);
 const char *get_led_mode(bsp_t * const bsp);
-void blink_led(bsp_t * const bsp);
 void set_led_config(bsp_t * const bsp);
 uint8_t exec_led(cmd_t * const cmd);
 uint8_t led_reset(cmd_t *const cmd);

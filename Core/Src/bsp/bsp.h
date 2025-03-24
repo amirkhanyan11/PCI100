@@ -39,7 +39,7 @@ uint8_t bsp_cmd_add(bsp_t * const bsp, const char *name, exec_t exec);
 exec_t bsp_cmd_get(bsp_t * const bsp, const char *name);
 void bsp_run(bsp_t * const bsp);
 uint8_t make_bsp(bsp_t * const bsp, struct cli_engine_s * const engine);
-
+void bsp_blink_led(bsp_t * const bsp);
 uint8_t exec_help(cmd_t * const cmd);
 
 #endif /* SRC_BSP_BSP_H_ */

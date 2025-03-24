@@ -15,9 +15,10 @@
 uint8_t handle_nl(cli_engine_t * const engine) {
 	 engine->buf[engine->pos] = '\0';
 	 cli_putnl(engine->huartx);
-	 fflush(stdout);
+
 	 bsp_exec(engine->bsp, (char *)engine->buf);
 
+	 fflush(stdout);
 	 memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
 	 engine->pos = 0;
 	 engine->prompt_trigger = 1;
