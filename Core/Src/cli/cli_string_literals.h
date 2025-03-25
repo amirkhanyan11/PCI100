@@ -8,7 +8,7 @@
 #ifndef SRC_CLI_CLI_STRING_LITERALS_H_
 #define SRC_CLI_CLI_STRING_LITERALS_H_
 
-#define CLI_COMMAND_NOT_FOUND "error: command not found"
+#define CLI_COMMAND_NOT_FOUND "error: command not found\r\n"
 #define CLI_INVALID_OPTIONS "error: invalid options\r\n"
 
 

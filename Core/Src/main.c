@@ -78,24 +78,16 @@ static bsp_t bsp;
 
 PUTCHAR_PROTOTYPE
 {
-  HAL_UART_Transmit_IT(bsp.engine.huartx, (uint8_t *)&ch, 1);
+  HAL_UART_Transmit(bsp.engine.huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
   return ch;
 }
 
-//void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
-//{
-//	HAL_UART_Transmit_IT(bsp.engine.huartx, bsp.engine.buf + bsp.engine.pos, 1);
-//}
-
-uint8_t ch = 'a';
-
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	bsp.engine.buf[bsp.engine.pos] = ch;
-	bsp.engine.handlers[ch](&bsp.engine);
-//	  bsp.engine.pos += 1;
-	HAL_UART_Receive_IT(&huart1, &ch, 1);
+	cli_process(&bsp.engine);
+	HAL_UART_Receive_IT(bsp.engine.huartx, bsp.engine.buf + bsp.engine.pos, 1);
 }
+
 
 /* USER CODE END 0 */
 
@@ -148,8 +140,8 @@ int main(void)
   // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
   bsp_init(&bsp, &hdac, &huart1);
-
-  HAL_UART_Receive_IT(&huart1, &ch, 1);
+  HAL_UART_Transmit_IT(bsp.engine.huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
+  HAL_UART_Receive_IT(bsp.engine.huartx, bsp.engine.buf + bsp.engine.pos, 1);
 
   while (1)
   {

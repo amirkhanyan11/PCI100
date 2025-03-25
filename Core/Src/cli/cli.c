@@ -27,18 +27,13 @@ void engine_init(cli_engine_t *engine, UART_HandleTypeDef *huartx) {
 }
 
 void cli_process(cli_engine_t *engine) {
+//
+//  if (engine->prompt_trigger) {
+//	  engine->prompt_trigger = 0;
+//	  HAL_UART_Transmit_IT(engine->huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
+//  }
 
-  if (engine->prompt_trigger) {
-	  engine->prompt_trigger = 0;
-	  printf(PROMPT);
-  }
-
-  if (HAL_OK == HAL_UART_Receive_IT(engine->huartx, engine->buf + engine->pos, 1)) {
-	  const uint8_t key = engine->buf[engine->pos];
-
-	  // handling each key
-	  engine->handlers[key](engine);
-  }
+  engine->handlers[engine->buf[engine->pos]](engine);
 }
 
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s) {

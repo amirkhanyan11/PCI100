@@ -14,9 +14,7 @@
 
 uint8_t handle_nl(cli_engine_t * const engine) {
 	 engine->buf[engine->pos] = '\0';
-//	 cli_putnl(engine->huartx);
-
-	 HAL_UART_Transmit_IT(engine->huartx, "\r\n", 2);
+	 cli_putnl(engine->huartx);
 
 	 bsp_exec(engine->bsp, (char *)engine->buf);
 
@@ -24,6 +22,8 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 	 memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
 	 engine->pos = 0;
 	 engine->prompt_trigger = 1;
+
+	 HAL_UART_Transmit_IT(engine->huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
 
 	 return 0;
 }
@@ -34,7 +34,7 @@ uint8_t handle_bs(cli_engine_t * const engine) {
 	}
 	engine->buf[engine->pos] = '\0';
 	engine->pos -= 1;
-//	cli_puts(engine->huartx, "\b");
+	cli_puts(engine->huartx, "\b \b");
 //	cli_puts(engine->huartx, " ");
 //	cli_puts(engine->huartx, "\b");
 
@@ -52,7 +52,7 @@ uint8_t handle_alnum(cli_engine_t * const engine) {
 		 return EAGAIN;
 	}
 
-	HAL_UART_Transmit_IT(engine->huartx, engine->buf + engine->pos, 1);
+	HAL_UART_Transmit(engine->huartx, engine->buf + engine->pos, 1, UART_TRANSMIT_TIMEOUT);
 	engine->pos += 1;
 
 	return 0;
