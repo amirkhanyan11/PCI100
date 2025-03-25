@@ -43,16 +43,7 @@ uint8_t led_get(cmd_t *const cmd) {
 		printf("led: %s", CLI_INVALID_OPTIONS);
 		return EINVAL;
 	}
-	bsp_t * const bsp = cmd->bsp;
-
-	if (bsp->led_state == LED_OFF) {
-		printf("led is off\r\n");
-	} else if (bsp->led_state == LED_ON && bsp->blink_mode == BLINK_OFF) {
-		printf("led is on\r\n");
-	} else {
-		printf("led is blinking at %lu hz\r\n", bsp->blink_frequency);
-	}
-
+	printf("%s\n\r", get_led_state(cmd->bsp));
 	return 0;
 }
 
@@ -64,8 +55,8 @@ uint8_t led_reset(cmd_t *const cmd) {
 	}
 
 	set_led_config(cmd->bsp);
-	printf("led mode is now configured by physical switches\r\n");
-
+	printf("led mode is now configured by physical switches. ");
+	printf("%s\n\r", get_led_state(cmd->bsp));
 	return 0;
 }
 
@@ -79,22 +70,13 @@ uint8_t led_blink(cmd_t *const cmd) {
 	bsp_t * const bsp = cmd->bsp;
 	const uint32_t frequency = atoi(cmd->args[1]);
 
-	switch(frequency) {
-	case 1:
-	case 10:
-	case 20:
-	case 50:
-	case 100:
-	case 500:
-	case 1000:
+	if (frequency > 1 && frequency < 1000) {
 		bsp->blink_mode = BLINK_ON;
 		bsp->led_state = LED_ON;
 		bsp->blink_frequency = frequency;
 		printf("Led frequency set to %s hz\r\n", cmd->args[1]);
-		break;
-	default:
-		printf("error: frequency not supported\r\n");
-		return EINVAL;
+	} else {
+		printf("led: error: invalid frequency. Valid frequency range: [1 ... 1000]\r\n");
 	}
 
 	return 0;
@@ -111,7 +93,7 @@ uint8_t led_off(cmd_t * const cmd) {
 	cmd->bsp->blink_mode = BLINK_OFF;
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
 
-	printf("Led is now off\r\n");
+	printf("%s\n\r", get_led_state(cmd->bsp));
 	return 0;
 }
 
@@ -126,7 +108,7 @@ uint8_t led_on(cmd_t * const cmd) {
 	cmd->bsp->led_state = LED_ON;
 	cmd->bsp->blink_mode = BLINK_OFF;
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-	printf("Led is now on\r\n");
+	printf("%s\n\r", get_led_state(cmd->bsp));
 	return 0;
 }
 
@@ -171,3 +153,18 @@ void set_led_config(bsp_t * const bsp) {
   }
 }
 
+
+const char *get_led_state(bsp_t * const bsp) {
+
+	static char message[128];
+
+	if (bsp->led_state == LED_OFF) {
+		sprintf(message, "Led is off");
+	} else if (bsp->led_state == LED_ON && bsp->blink_mode == BLINK_OFF) {
+		sprintf(message, "Led is on");
+	} else {
+		sprintf(message, "Led is blinking at %lu hz", bsp->blink_frequency);
+	}
+
+	return message;
+}
