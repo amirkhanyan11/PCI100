@@ -57,6 +57,7 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define PEX_SLAVE_ADDRESS 0x5E
 #define MCU_ACT_LED_Pin GPIO_PIN_11
 #define MCU_ACT_LED_GPIO_Port GPIOB
 
