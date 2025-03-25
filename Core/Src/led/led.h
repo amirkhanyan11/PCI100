@@ -31,5 +31,6 @@ void set_led_config(bsp_t * const bsp);
 uint8_t exec_led(cmd_t * const cmd);
 uint8_t led_reset(cmd_t *const cmd);
 uint8_t led_get(cmd_t *const cmd);
+const char *get_led_state(bsp_t * const bsp);
 
 #endif // UTILS_H

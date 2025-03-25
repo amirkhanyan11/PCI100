@@ -16,13 +16,13 @@ uint8_t exec_help(cmd_t * const cmd) {
 	}
 	printf("\r\n");
 	printf("Available commands:\r\n\n");
-	printf("  led <on/off>             - Turn the LED on or off\r\n\n");
-	printf("  led reset                - Reset the LED mode to the one selected by MCU_CFG\r\n\n");
-	printf("  led get                  - Get the current state of the LED\r\n\n");
-	printf("  pex write <addr> <val>   - Write a value to the PEX register at the specified address\r\n\n");
-	printf("  pex read <addr>          - Read a value from the PEX register at the specified address\r\n\n");
-	printf("  dac write <dac_id> <val> - Write a value to the DAC with the specified ID\r\n\n");
-	printf("  led blink <hz>           - Set the LED blink frequency (in Hz). Available blink frequencies: [ 1Hz, 2Hz, 10Hz, 20Hz, 50Hz, 100Hz, 1000Hz ] \r\n\n");
+	printf("  led <on/off>             - Turn the LED ON or OFF\r\n");
+	printf("  led reset                - Reset the LED mode to the one selected by MCU_CFG\r\n");
+	printf("  led get                  - Get the current state of the LED\r\n");
+	printf("  pex write <addr> <val>   - Write a value to the PEX register at the specified address\r\n");
+	printf("  pex read <addr>          - Read a value from the PEX register at the specified address\r\n");
+	printf("  dac write <dac_id> <val> - Write a value to the DAC with the specified ID\r\n");
+	printf("  led blink <hz>           - Set the LED blink frequency (in Hz). Available frequency range: [ 1 ... 1000 ] \r\n");
 	printf("\r\n");
 
 
