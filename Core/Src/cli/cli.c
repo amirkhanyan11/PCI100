@@ -6,7 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 
-void make_cli_engine(cli_engine_t *engine, UART_HandleTypeDef *huartx) {
+void engine_init(cli_engine_t *engine, UART_HandleTypeDef *huartx) {
 	engine ->huartx = huartx;
 	engine->prompt_trigger = 1;
 	engine->pos = 0;
@@ -16,14 +16,13 @@ void make_cli_engine(cli_engine_t *engine, UART_HandleTypeDef *huartx) {
 	for (uint16_t i = 0; i < UINT8_MAX; ++i) {
 		if (isalnum(i) || i == ' ') {
 			engine->handlers[i] = &handle_alnum;
-		} else if (i == '\r') {
-			engine->handlers[i] = &handle_nl;
-		} else if (i == '\b') {
-			engine->handlers[i] = &handle_bs;
 		} else {
 			engine->handlers[i] = &handle_no_op;
 		}
 	}
+
+	engine->handlers['\r'] = &handle_nl;
+	engine->handlers['\b'] = &handle_bs;
 }
 
 void cli_process(cli_engine_t *engine) {

@@ -20,19 +20,15 @@ uint8_t exec_led(cmd_t * const cmd) {
 	if (!strcmp(option, "on")) {
 		return led_on(cmd);
 	}
-
 	else if (!strcmp(option, "off")) {
 		return led_off(cmd);
 	}
-
 	else if (!strcmp(option, "blink")) {
 		return led_blink(cmd);
 	}
-
 	else if (!strcmp(option, "reset")) {
 		return led_reset(cmd);
 	}
-
 	else if (!strcmp(option, "get")) {
 		return led_get(cmd);
 	}

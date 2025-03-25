@@ -39,8 +39,8 @@ void cli_process(cli_engine_t *engine);
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s);
 void cli_puts(UART_HandleTypeDef *huartx, const char *s);
 void cli_putnl(UART_HandleTypeDef *huartx);
-void make_cli_engine(cli_engine_t *engine, UART_HandleTypeDef *huartx);
-
+void engine_init(cli_engine_t *engine, UART_HandleTypeDef *huartx);
+cli_engine_t *get_engine(void);
 
 
 // handle keys
