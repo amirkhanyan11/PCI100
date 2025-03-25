@@ -25,6 +25,7 @@
 #include "./dac/dac.h"
 #include "bsp/bsp.h"
 #include "cmd/cmd.h"
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -77,10 +78,24 @@ static bsp_t bsp;
 
 PUTCHAR_PROTOTYPE
 {
-  HAL_UART_Transmit(bsp.engine.huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
+  HAL_UART_Transmit_IT(bsp.engine.huartx, (uint8_t *)&ch, 1);
   return ch;
 }
 
+//void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+//{
+//	HAL_UART_Transmit_IT(bsp.engine.huartx, bsp.engine.buf + bsp.engine.pos, 1);
+//}
+
+uint8_t ch = 'a';
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	bsp.engine.buf[bsp.engine.pos] = ch;
+	bsp.engine.handlers[ch](&bsp.engine);
+//	  bsp.engine.pos += 1;
+	HAL_UART_Receive_IT(&huart1, &ch, 1);
+}
 
 /* USER CODE END 0 */
 
@@ -134,11 +149,13 @@ int main(void)
 
   bsp_init(&bsp, &hdac, &huart1);
 
+  HAL_UART_Receive_IT(&huart1, &ch, 1);
+
   while (1)
   {
 
-	  bsp_run(&bsp);
-    // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
+	  //	  bsp_run(&bsp);
+	  // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 //    HAL_Delay(1000);
 
     /* USER CODE END WHILE */

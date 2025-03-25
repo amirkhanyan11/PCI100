@@ -5,6 +5,7 @@
 #include "cli_string_literals.h"
 #include <string.h>
 #include <ctype.h>
+#include <stdio.h>
 
 void engine_init(cli_engine_t *engine, UART_HandleTypeDef *huartx) {
 	engine ->huartx = huartx;
@@ -29,10 +30,10 @@ void cli_process(cli_engine_t *engine) {
 
   if (engine->prompt_trigger) {
 	  engine->prompt_trigger = 0;
-	  cli_puts(engine->huartx, PROMPT);
+	  printf(PROMPT);
   }
 
-  if (HAL_OK == HAL_UART_Receive(engine->huartx, engine->buf + engine->pos, 1, UART_RECEIVE_TIMEOUT)) {
+  if (HAL_OK == HAL_UART_Receive_IT(engine->huartx, engine->buf + engine->pos, 1)) {
 	  const uint8_t key = engine->buf[engine->pos];
 
 	  // handling each key

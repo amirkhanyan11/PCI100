@@ -16,7 +16,7 @@
 
 void bsp_run(bsp_t * const bsp) {
 	bsp_blink_led(bsp);
-	cli_process(&bsp->engine);
+//	cli_process(&bsp->engine);
 }
 
 uint8_t bsp_exec(bsp_t * const bsp, char *input) {
