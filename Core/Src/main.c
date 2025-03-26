@@ -140,8 +140,6 @@ int main(void)
   // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
   bsp_init(&bsp, &hdac, &huart1);
-  HAL_UART_Transmit_IT(bsp.engine.huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
-  HAL_UART_Receive_IT(bsp.engine.huartx, bsp.engine.buf + bsp.engine.pos, 1);
 
   while (1)
   {

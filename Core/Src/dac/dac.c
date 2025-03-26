@@ -29,26 +29,30 @@ uint8_t exec_dac(cmd_t * const cmd) {
 uint8_t dac_write(cmd_t * const cmd) {
 
 	if (cmd->argc != 3) {
-		printf(CLI_INVALID_OPTIONS);
+		printf("dac: write: %s", CLI_INVALID_OPTIONS);
 		return EINVAL;
 	}
 
 	const uint8_t dac_id = atoi(cmd->args[1]);
 
 	if (dac_id != 1) {
-		printf(CLI_INVALID_OPTIONS);
+		printf(CLI_DAC_INVALID_ID);
 		return EINVAL;
 	}
 
 	const uint16_t dac_value = atoi(cmd->args[2]);
 
 	// the value is 0 but the user entered a different value or is in invalid range
-	if ((0 == dac_value && cmd->args[1][0] != '0') || dac_value < 0 || dac_value > DAC12_MAX) {
-		printf(CLI_INVALID_OPTIONS);
+	if ((0 == dac_value && strcmp(cmd->args[2], "0"))) {
+		printf(CLI_DAC_INVALID_OPTION);
+		return EINVAL;
+	} else if (dac_value < 0 || dac_value > DAC12_MAX) {
+		printf(CLI_DAC_INVALID_VALUE);
 		return EINVAL;
 	}
 
 	HAL_DAC_SetValue(cmd->bsp->hdacx, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
+	printf("Dac output set to %d\r\n", dac_value);
 
 	return 0;
 }

@@ -61,6 +61,11 @@ uint8_t bsp_init(
 	bsp_cmd_add(bsp, "pex",  &exec_pex);
 
 	set_led_config(bsp);
+
+	HAL_UART_Transmit_IT(bsp->engine.huartx, (const uint8_t *)"\r\n", 2);
+	HAL_UART_Transmit_IT(bsp->engine.huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
+	HAL_UART_Receive_IT(bsp->engine.huartx, bsp->engine.buf + bsp->engine.pos, 1);
+
 	return 0;
 }
 

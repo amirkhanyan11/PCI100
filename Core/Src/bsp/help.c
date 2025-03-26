@@ -21,7 +21,7 @@ uint8_t exec_help(cmd_t * const cmd) {
 	printf("  led get                  - Get the current state of the LED\r\n");
 	printf("  pex write <addr> <val>   - Write a value to the PEX register at the specified address\r\n");
 	printf("  pex read <addr>          - Read a value from the PEX register at the specified address\r\n");
-	printf("  dac write <dac_id> <val> - Write a value to the DAC with the specified ID\r\n");
+	printf("  dac write <dac_id> <val> - Write a value to the DAC with the specified ID. Available id's : [ 1 ]. Available value range: [ 0 ... 4095 ]\r\n");
 	printf("  led blink <hz>           - Set the LED blink frequency (in Hz). Available frequency range: [ 1 ... 1000 ] \r\n");
 	printf("\r\n");
 
