@@ -40,7 +40,8 @@ uint8_t bsp_exec(bsp_t * const bsp, char *input) {
 uint8_t bsp_init(
 		bsp_t * const bsp,
 		DAC_HandleTypeDef * const hdacx,
-		UART_HandleTypeDef * const huartx
+		UART_HandleTypeDef * const huartx,
+		I2C_HandleTypeDef * const hi2cx
 ) {
 	HAL_DAC_Start(hdacx, DAC_CHANNEL_1);
 	engine_init(&bsp->engine, huartx);
@@ -50,6 +51,7 @@ uint8_t bsp_init(
 	bsp->engine.bsp = bsp;
 
 	bsp->hdacx = hdacx;
+	bsp->hi2cx = hi2cx;
 
 	bsp->blink_frequency = 0;
 	bsp->blink_mode = BLINK_OFF;
@@ -65,6 +67,9 @@ uint8_t bsp_init(
 	HAL_UART_Transmit_IT(bsp->engine.huartx, (const uint8_t *)"\r\n", 2);
 	HAL_UART_Transmit_IT(bsp->engine.huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
 	HAL_UART_Receive_IT(bsp->engine.huartx, bsp->engine.buf + bsp->engine.pos, 1);
+
+	// for i2c
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
 	return 0;
 }

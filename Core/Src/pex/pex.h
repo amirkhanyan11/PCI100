@@ -10,6 +10,8 @@
 
 #include "../cmd/cmd.h"
 
+#define PEX_SLAVE_ADDRESS (0x5E << 1)
+
 uint8_t exec_pex(cmd_t * const cmd);
 uint8_t pex_write(cmd_t * const cmd);
 uint8_t pex_read(cmd_t * const cmd);

@@ -26,6 +26,8 @@
 #include "bsp/bsp.h"
 #include "cmd/cmd.h"
 #include <string.h>
+#include "./pex/pex.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -84,6 +86,7 @@ PUTCHAR_PROTOTYPE
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
+	// processing each input key
 	cli_process(&bsp.engine);
 	HAL_UART_Receive_IT(bsp.engine.huartx, bsp.engine.buf + bsp.engine.pos, 1);
 }
@@ -136,17 +139,14 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  // uint8_t TX_Buffer = 5;
-  // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
-  bsp_init(&bsp, &hdac, &huart1);
+  bsp_init(&bsp, &hdac, &huart1, &hi2c1);
 
   while (1)
   {
 
-	  //	  bsp_run(&bsp);
-	  // HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
-//    HAL_Delay(1000);
+
+//	HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 
     /* USER CODE END WHILE */
 
