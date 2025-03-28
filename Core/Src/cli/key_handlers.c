@@ -35,8 +35,6 @@ uint8_t handle_bs(cli_engine_t * const engine) {
 	engine->buf[engine->pos] = '\0';
 	engine->pos -= 1;
 	cli_puts(engine->huartx, "\b \b");
-//	cli_puts(engine->huartx, " ");
-//	cli_puts(engine->huartx, "\b");
 
 	return 0;
 }

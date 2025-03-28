@@ -11,7 +11,7 @@
 #include "../utils/utils.h"
 #include "../led/led.h"
 
-#define DAC12_MAX 4095
+#define DAC_MAX_VALUE 3.3f
 #define DAC_COUNT 1
 
 uint8_t exec_dac(cmd_t * const cmd);

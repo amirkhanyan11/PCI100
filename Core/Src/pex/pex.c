@@ -78,7 +78,6 @@ uint8_t pex_read(cmd_t * const cmd) {
 
 	if (!register_addr && strcmp(cmd->args[1], "0")) {
 		printf("pex: write: Invalid dev address format\r\n");
-		printf("wrong input: %lu\r\n", register_addr);
 		return EINVAL;
 	}
 
