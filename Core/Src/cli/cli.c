@@ -15,7 +15,7 @@ void engine_init(cli_engine_t *engine, UART_HandleTypeDef *huartx) {
 	memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
 
 	for (uint16_t i = 0; i < UINT8_MAX; ++i) {
-		if (isalnum(i) || i == ' ') {
+		if (isalnum(i) || isspace(i) || i == '_' || i == '.') {
 			engine->handlers[i] = &handle_alnum;
 		} else {
 			engine->handlers[i] = &handle_no_op;
