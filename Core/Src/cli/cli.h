@@ -17,7 +17,7 @@
 #define UART_TRANSMIT_TIMEOUT 100
 #define CMD_MAX_LENGTH 128
 
-#define PROMPT "PCI100$> "
+#define PROMPT "Tyom@PCI100$> "
 #define CLI_WHITESPACE_DELIMITERS " \t"
 
 // error codes

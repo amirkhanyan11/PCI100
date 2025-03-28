@@ -142,11 +142,11 @@ int main(void)
 
   bsp_init(&bsp, &hdac, &huart1, &hi2c1);
 
+  // 135 20 16 181
+
   while (1)
   {
 
-
-//	HAL_I2C_Master_Transmit(&hi2c1, PEX_SLAVE_ADDRESS, &TX_Buffer, sizeof(TX_Buffer), 1000);
 
     /* USER CODE END WHILE */
 

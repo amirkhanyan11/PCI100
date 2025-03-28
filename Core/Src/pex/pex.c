@@ -37,24 +37,29 @@ uint8_t pex_write(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	uint8_t register_addr = atoi(cmd->args[1]);
+	uint32_t register_addr = strtol(cmd->args[1], NULL, 16);
 
 	if (!register_addr && strcmp(cmd->args[1], "0")) {
 		printf("pex: write: Invalid dev address format\r\n");
 		return EINVAL;
 	}
 
-	uint8_t val = atoi(cmd->args[2]);
+	uint32_t val = atoi(cmd->args[2]);
 
 	if (!val && strcmp(cmd->args[2], "0")) {
 		printf("pex: write: Invalid value\r\n");
 		return EINVAL;
 	}
 
-	uint8_t payload[]= { register_addr, val };
+	// the remaining 4 bytes of the payload are initialized with user input
+	uint8_t payload[8] = { PEX_CB1_WRITE_REGISTER, PEX_CB2_TRANSPARENT_PORTS, PEX_CB3_ENABLE_ALL, register_addr };
 
-	if (HAL_OK == HAL_I2C_Master_Transmit(cmd->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, 2, 1000)) {
-		printf("pex: write: OK!\r\n");
+	for (uint8_t i = 4, shift_offset = 24; i < 8; ++i, shift_offset -= 8) {
+		payload[i] = (val >> shift_offset);
+	}
+
+	if (HAL_OK == HAL_I2C_Master_Transmit(cmd->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, sizeof(payload), 1000)) {
+		printf("pex: write: success!\r\n");
 	} else {
 		printf("pex: write: something went wrong\r\n");
 	}
@@ -69,21 +74,53 @@ uint8_t pex_read(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	uint8_t register_addr = atoi(cmd->args[1]);
+	uint32_t register_addr = strtol(cmd->args[1], NULL, 16);
 
 	if (!register_addr && strcmp(cmd->args[1], "0")) {
 		printf("pex: write: Invalid dev address format\r\n");
+		printf("wrong input: %lu\r\n", register_addr);
 		return EINVAL;
 	}
 
-	uint8_t payload[] = { register_addr, 0 };
+	uint8_t payload[] = { PEX_CB1_READ_REGISTER, PEX_CB2_TRANSPARENT_PORTS, PEX_CB3_ENABLE_ALL, register_addr };
+	HAL_I2C_Master_Transmit(cmd->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, sizeof(payload), 1000);
 
-	if (HAL_OK == HAL_I2C_Master_Transmit(cmd->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, 2, 1000)) {
-		const uint8_t data = payload[1];
-		printf("pex: read: %d\r\n", data);
-	} else {
-		printf("pex: write: something went wrong\r\n");
+	uint8_t RX_Buf[4] = {0};
+
+	HAL_I2C_Master_Receive(cmd->bsp->hi2cx, PEX_SLAVE_ADDRESS, RX_Buf, sizeof(RX_Buf), 1000);
+	printf("pex: read: success!\r\n");
+
+	uint32_t res = 0;
+
+	for (uint8_t i = 0; i < 4; ++i) {
+		res = (res << 8) | RX_Buf[i];
 	}
+
+	printf("read value: %lu\r\n", res);
+
+
+//	uint16_t deviceId = res[0];
+//	deviceId <<= 8;
+//	deviceId |= res[1];
+//
+//	uint16_t vendorId = res[2];
+//	vendorId <<= 8;
+//	vendorId |= res[3];
+//
+//
+//	printf("Device ID: %u\r\n", deviceId);
+//	printf("Vendor ID: %u\r\n", vendorId);
+
+
+//
+//	uint8_t payload[] = { register_addr, 0 };
+//
+//	if (HAL_OK == HAL_I2C_Master_Transmit(cmd->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, 2, 1000)) {
+//		const uint8_t data = payload[1];
+//		printf("pex: read: %d\r\n", data);
+//	} else {
+//		printf("pex: write: something went wrong\r\n");
+//	}
 
 
 	return 0;
