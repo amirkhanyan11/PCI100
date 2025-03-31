@@ -23,7 +23,7 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 	 engine->pos = 0;
 	 engine->prompt_trigger = 1;
 
-	 HAL_UART_Transmit_IT(engine->huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
+	 HAL_UART_Transmit(engine->huartx, (const uint8_t *)PROMPT, strlen(PROMPT), UART_TRANSMIT_TIMEOUT);
 
 	 return 0;
 }
