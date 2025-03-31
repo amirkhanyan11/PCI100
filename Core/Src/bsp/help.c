@@ -14,8 +14,7 @@ uint8_t exec_help(cmd_t * const cmd) {
 		printf("help: error: invalid options\r\n");
 		return EINVAL;
 	}
-	printf("\r\n");
-	printf("Available commands:"
+	printf("\r\nAvailable commands:\r\n"
 		   "\r\n  pex write <addr> <val>   - Write a value to the PEX register at the specified address"
 		   "\r\n  pex read <addr>          - Read a value from the PEX register at the specified address"
 		   "\r\n  led <on/off>             - Turn the LED ON or OFF"
