@@ -140,14 +140,29 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
 
-  bsp_init(&bsp, &hdac, &huart1, &hi2c1);
 
-  // 135 20 16 181
+//  bsp_init(&bsp, &hdac, &huart1, &hi2c1);
 
+  if (HAL_OK == HAL_DAC_Start(&hdac, DAC_CHANNEL_1)) {
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+  }
+  uint16_t dac_value = 0;
   while (1)
   {
 
+	  HAL_Delay(200);
 
+	   if (HAL_OK == HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value)) {
+
+		   if (dac_value < 4095) {
+			 ++dac_value;
+		   } else {
+			 dac_value = 0;
+		   }
+
+	   }
+
+	   HAL_Delay(200);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
