@@ -55,6 +55,8 @@ DMA_HandleTypeDef hdma_i2c1_tx;
 DMA_HandleTypeDef hdma_i2c1_rx;
 
 UART_HandleTypeDef huart1;
+DMA_HandleTypeDef hdma_usart1_rx;
+DMA_HandleTypeDef hdma_usart1_tx;
 
 /* USER CODE BEGIN PV */
 
@@ -141,28 +143,11 @@ int main(void)
 
 
 
-//  bsp_init(&bsp, &hdac, &huart1, &hi2c1);
+  bsp_init(&bsp, &hdac, &huart1, &hi2c1);
 
-  if (HAL_OK == HAL_DAC_Start(&hdac, DAC_CHANNEL_1)) {
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-  }
-  uint16_t dac_value = 0;
   while (1)
   {
-
-	  HAL_Delay(200);
-
-	   if (HAL_OK == HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value)) {
-
-		   if (dac_value < 4095) {
-			 ++dac_value;
-		   } else {
-			 dac_value = 0;
-		   }
-
-	   }
-
-	   HAL_Delay(200);
+	  bsp_run(&bsp);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -396,6 +381,7 @@ static void MX_DMA_Init(void)
 
   /* DMA controller clock enable */
   __HAL_RCC_DMA1_CLK_ENABLE();
+  __HAL_RCC_DMA2_CLK_ENABLE();
 
   /* DMA interrupt init */
   /* DMA1_Stream0_IRQn interrupt configuration */
@@ -404,6 +390,12 @@ static void MX_DMA_Init(void)
   /* DMA1_Stream6_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
+  /* DMA2_Stream2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
+  /* DMA2_Stream7_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream7_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream7_IRQn);
 
 }
 

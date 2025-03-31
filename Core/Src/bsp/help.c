@@ -23,7 +23,7 @@ uint8_t exec_help(cmd_t * const cmd) {
 		   "\r\n  led blink <hz>           - Set the LED blink frequency (in Hz). Available frequency range: [ 1 ... 1000 ]"
 		   "\r\n			    Available frequency range: [ 1 ... 1000 ] \r\n"
 		   "  dac write <dac_id> <val> - Write a value to the DAC with the specified ID."
-		   "\r\n			    Available id's : [ 1 ]. Available value range: [ 0 ... 4095 ]\r\n\r\n"
+		   "\r\n			    Available id's : [ 1 ]. Available floating point value range: [ 0 ... 1 ]\r\n\r\n"
 	);
 
 

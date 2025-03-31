@@ -43,7 +43,7 @@ uint8_t bsp_init(
 		UART_HandleTypeDef * const huartx,
 		I2C_HandleTypeDef * const hi2cx
 ) {
-	HAL_DAC_Start(hdacx, DAC_CHANNEL_1);
+	HAL_DAC_Start(hdacx, DAC_CHANNEL_2);
 	engine_init(&bsp->engine, huartx);
 
 	bsp->cmds_length = 0;

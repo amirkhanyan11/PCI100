@@ -51,9 +51,9 @@ uint8_t dac_write(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	const uint16_t dac_value = (dac_value_f * 4095) / DAC_MAX_VALUE;
+	const uint16_t dac_value = (dac_value_f * 4095);
 
-	HAL_DAC_SetValue(cmd->bsp->hdacx, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_value);
+	HAL_DAC_SetValue(cmd->bsp->hdacx, DAC_CHANNEL_2, DAC_ALIGN_12B_R, dac_value);
 	printf("dac: write: success!\r\n");
 	printf("output set to %d\r\n", dac_value);
 
