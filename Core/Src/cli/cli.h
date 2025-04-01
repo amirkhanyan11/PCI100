@@ -6,6 +6,7 @@
 #define CLI_H
 
 #include "main.h"
+#include "../filo/filo.h"
 #include "typedefs.h"
 
 
@@ -26,12 +27,11 @@
 
 struct cli_engine_s
 {
-	uint8_t prompt_trigger;
-	UART_HandleTypeDef *huartx;
-	uint32_t 	pos;
-	uint8_t 	buf[ENGINE_BUFFER_SIZE];
-	handle_key	handlers[UINT8_MAX];
-	struct bsp_s		*bsp;
+	uint8_t 	prompt_trigger;
+	fifo_t		*uart_buffer;
+	bsp_t		*bsp;
+
+	filo_t		line;
 };
 
 
@@ -39,14 +39,11 @@ void cli_process(cli_engine_t *engine);
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s);
 void cli_puts(UART_HandleTypeDef *huartx, const char *s);
 void cli_putnl(UART_HandleTypeDef *huartx);
-void engine_init(cli_engine_t *engine, UART_HandleTypeDef *huartx);
-cli_engine_t *get_engine(void);
+void engine_init(cli_engine_t *engine, fifo_t *fifo);
 
 
 // handle keys
 uint8_t handle_nl(cli_engine_t * const engine);
 uint8_t handle_bs(cli_engine_t * const engine);
-uint8_t handle_no_op(cli_engine_t * const engine);
-uint8_t handle_alnum(cli_engine_t * const engine);
 
 #endif //CLI_H

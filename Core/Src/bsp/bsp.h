@@ -26,14 +26,16 @@ struct bsp_cmd_s
 
 struct bsp_s
 {
-	uint32_t blink_frequency;
-	uint8_t blink_mode;
-	uint8_t led_state;
+	uint8_t				current_char;
+	uint32_t 			blink_frequency;
+	uint8_t 			blink_mode;
+	uint8_t 			led_state;
 	struct cli_engine_s engine;
-	bsp_cmd_t cmds[BSP_MAX_CMDS];
-	DAC_HandleTypeDef *hdacx;
-	I2C_HandleTypeDef *hi2cx;
-	uint8_t cmds_length;
+	bsp_cmd_t 			cmds[BSP_MAX_CMDS];
+	UART_HandleTypeDef  *huartx;
+	DAC_HandleTypeDef 	*hdacx;
+	I2C_HandleTypeDef 	*hi2cx;
+	uint8_t 			cmds_length;
 };
 
 uint8_t bsp_exec(bsp_t * const bsp, char *input);

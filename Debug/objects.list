@@ -5,6 +5,7 @@
 "./Core/Src/cmd/cmd.o"
 "./Core/Src/dac/dac.o"
 "./Core/Src/fifo/fifo.o"
+"./Core/Src/filo/filo.o"
 "./Core/Src/led/led.o"
 "./Core/Src/lexer/lexer.o"
 "./Core/Src/main.o"

@@ -21,12 +21,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "./led/led.h"
-#include "./dac/dac.h"
+#include <string.h>
+#include "led/led.h"
+#include "dac/dac.h"
 #include "bsp/bsp.h"
 #include "cmd/cmd.h"
-#include <string.h>
-#include "./pex/pex.h"
+#include "pex/pex.h"
+#include "fifo/fifo.h"
 
 /* USER CODE END Includes */
 
@@ -82,15 +83,15 @@ static bsp_t bsp;
 
 PUTCHAR_PROTOTYPE
 {
-  HAL_UART_Transmit(bsp.engine.huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
+  HAL_UART_Transmit(bsp.huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
   return ch;
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	// processing each input key
-	cli_process(&bsp.engine);
-	HAL_UART_Receive_DMA(bsp.engine.huartx, bsp.engine.buf + bsp.engine.pos, 1);
+	fifo_set(bsp.engine.uart_buffer, bsp.current_char);
+	HAL_UART_Receive_DMA(bsp.huartx, &bsp.current_char, 1);
 }
 
 

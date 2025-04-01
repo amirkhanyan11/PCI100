@@ -12,7 +12,6 @@
 
 // cli.h
 typedef struct cli_engine_s cli_engine_t;
-typedef uint8_t (*handle_key)(cli_engine_t *const);
 
 // cmd.h
 typedef struct cmd_s cmd_t;
@@ -24,5 +23,8 @@ typedef struct bsp_cmd_s bsp_cmd_t;
 
 // fifo.h
 typedef struct fifo_s fifo_t;
+
+// filo.h
+typedef struct filo_s filo_t;
 
 #endif /* INC_TYPEDEFS_H_ */

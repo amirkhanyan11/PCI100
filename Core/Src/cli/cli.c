@@ -6,28 +6,34 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
+#include "../fifo/fifo.h"
+#include "../bsp/bsp.h"
+#include "typedefs.h"
 
-void engine_init(cli_engine_t *engine, UART_HandleTypeDef *huartx) {
-	engine ->huartx = huartx;
+void engine_init(cli_engine_t *engine, fifo_t *fifo) {
 	engine->prompt_trigger = 1;
-	engine->pos = 0;
 	engine->bsp = NULL;
-	memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
-
-	for (uint16_t i = 0; i < UINT8_MAX; ++i) {
-		if (isalnum(i) || isspace(i) || i == '_' || i == '.') {
-			engine->handlers[i] = &handle_alnum;
-		} else {
-			engine->handlers[i] = &handle_no_op;
-		}
-	}
-
-	engine->handlers['\r'] = &handle_nl;
-	engine->handlers['\b'] = &handle_bs;
+	engine->uart_buffer = fifo;
+	filo_init(&engine->line);
 }
 
 void cli_process(cli_engine_t *engine) {
-  engine->handlers[engine->buf[engine->pos]](engine);
+	while(!fifo_is_empty(engine->uart_buffer)) {
+		const uint8_t key = (uint8_t) fifo_get(engine->uart_buffer);
+		if (key == '\r')
+		{
+			handle_nl(engine);
+		}
+		else if (key == '\b')
+		{
+			handle_bs(engine);
+		}
+		else if (isprint(key) || isspace(key))
+		{
+			filo_set(&engine->line, key);
+			HAL_UART_Transmit_DMA(engine->bsp->huartx, &key, 1);
+		}
+	}
 }
 
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s) {

@@ -7,6 +7,19 @@
 #include <ctype.h>
 #include <string.h>
 
+void strncpy_if(char *dst, const char *src, size_t n, int(*f)(int)) {
+	uint32_t i = 0;
+	uint32_t j = 0;
+	while (i < n && src[i]) {
+		if (f(src[i])) {
+			dst[j] = src[i];
+			++j;
+		}
+		++i;
+	}
+	dst[j] = '\0';
+}
+
 void strtrim(char *str, const char *set) {
 	if (!str || !set) {
 		return;

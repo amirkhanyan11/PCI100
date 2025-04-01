@@ -13,22 +13,25 @@
 #include "../dac/dac.h"
 #include "../led/led.h"
 #include "../pex/pex.h"
+#include "../fifo/fifo.h"
+
+static fifo_t UART_FIFO;
 
 void bsp_run(bsp_t * const bsp) {
 	bsp_blink_led(bsp);
-//	cli_process(&bsp->engine);
+	cli_process(&bsp->engine);
 }
 
-uint8_t bsp_exec(bsp_t * const bsp, char *input) {
-	strtrim(input, WHITESPACE);
+uint8_t bsp_exec(bsp_t * const bsp, char *line) {
+	strtrim(line, WHITESPACE);
 
-	if (strlen(input) == 0) {
+	if (strlen(line) == 0) {
 	 return 0;
 	}
 
 	cmd_t cmd;
 
-	if (ESRCH == make_cmd(&cmd, bsp, (char *)bsp->engine.buf)) {
+	if (ESRCH == make_cmd(&cmd, bsp, line)) {
 	 printf("error: command not found\r\n");
 	} else {
 	 cmd.exec(&cmd);
@@ -44,15 +47,17 @@ uint8_t bsp_init(
 		I2C_HandleTypeDef * const hi2cx
 ) {
 	HAL_DAC_Start(hdacx, DAC_CHANNEL_2);
-	engine_init(&bsp->engine, huartx);
+	fifo_init(&UART_FIFO);
+	engine_init(&bsp->engine, &UART_FIFO);
 
+	bsp->current_char = 0;
 	bsp->cmds_length = 0;
 
 	bsp->engine.bsp = bsp;
 
 	bsp->hdacx = hdacx;
 	bsp->hi2cx = hi2cx;
-
+	bsp->huartx = huartx;
 	bsp->blink_frequency = 0;
 	bsp->blink_mode = BLINK_OFF;
 	bsp->led_state = LED_OFF;
@@ -64,9 +69,12 @@ uint8_t bsp_init(
 
 	set_led_config(bsp);
 
-	HAL_UART_Transmit_IT(bsp->engine.huartx, (const uint8_t *)"\r\n", 2);
-	HAL_UART_Transmit_IT(bsp->engine.huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
-	HAL_UART_Receive_IT(bsp->engine.huartx, bsp->engine.buf + bsp->engine.pos, 1);
+	HAL_UART_Transmit_IT(bsp->huartx, (const uint8_t *)"\r\n", 2);
+	HAL_UART_Transmit_IT(bsp->huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
+
+
+
+	HAL_UART_Receive_IT(bsp->huartx, &bsp->current_char, 1);
 
 	// for i2c
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);

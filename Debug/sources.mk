@@ -27,6 +27,7 @@ Core/Src/cli \
 Core/Src/cmd \
 Core/Src/dac \
 Core/Src/fifo \
+Core/Src/filo \
 Core/Src/led \
 Core/Src/lexer \
 Core/Src \

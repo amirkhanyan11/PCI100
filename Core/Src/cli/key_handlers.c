@@ -11,47 +11,34 @@
 #include "../cmd/cmd.h"
 #include "../lexer/lexer.h"
 #include "../utils/utils.h"
+#include "../fifo/fifo.h"
+#include <ctype.h>
 
 uint8_t handle_nl(cli_engine_t * const engine) {
-	 engine->buf[engine->pos] = '\0';
-	 cli_putnl(engine->huartx);
 
-	 bsp_exec(engine->bsp, (char *)engine->buf);
+	filo_set(&engine->line, '\0');
 
-	 fflush(stdout);
-	 memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
-	 engine->pos = 0;
-	 engine->prompt_trigger = 1;
+	cli_putnl(engine->bsp->huartx);
 
-	 HAL_UART_Transmit(engine->huartx, (const uint8_t *)PROMPT, strlen(PROMPT), UART_TRANSMIT_TIMEOUT);
+	bsp_exec(engine->bsp, engine->line.buffer);
 
-	 return 0;
+	fflush(stdout);
+
+	HAL_UART_Transmit(engine->bsp->huartx, (const uint8_t *)PROMPT, strlen(PROMPT), UART_TRANSMIT_TIMEOUT);
+
+	filo_clear(&engine->line);
+
+	return 0;
 }
 
 uint8_t handle_bs(cli_engine_t * const engine) {
-	if (0 == engine->pos) {
+
+	if (filo_is_empty(&engine->line)) {
 		return EAGAIN;
 	}
-	engine->buf[engine->pos] = '\0';
-	engine->pos -= 1;
-	cli_puts(engine->huartx, "\b \b");
+	filo_get(&engine->line);
+	cli_puts(engine->bsp->huartx, "\b \b");
 
 	return 0;
 }
 
-uint8_t handle_no_op(cli_engine_t * const engine) {
-	return 0;
-}
-
-uint8_t handle_alnum(cli_engine_t * const engine) {
-	if (engine->pos == ENGINE_BUFFER_SIZE - 1) {
-		 memset(engine->buf, 0, ENGINE_BUFFER_SIZE);
-		 engine->pos = 0;
-		 return EAGAIN;
-	}
-
-	HAL_UART_Transmit(engine->huartx, engine->buf + engine->pos, 1, UART_TRANSMIT_TIMEOUT);
-	engine->pos += 1;
-
-	return 0;
-}
