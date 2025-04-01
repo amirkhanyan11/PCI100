@@ -90,7 +90,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	// processing each input key
 	cli_process(&bsp.engine);
-	HAL_UART_Receive_IT(bsp.engine.huartx, bsp.engine.buf + bsp.engine.pos, 1);
+	HAL_UART_Receive_DMA(bsp.engine.huartx, bsp.engine.buf + bsp.engine.pos, 1);
 }
 
 

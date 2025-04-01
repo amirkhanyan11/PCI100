@@ -15,6 +15,7 @@ RM := rm -rf
 -include Core/Src/pex/subdir.mk
 -include Core/Src/lexer/subdir.mk
 -include Core/Src/led/subdir.mk
+-include Core/Src/fifo/subdir.mk
 -include Core/Src/dac/subdir.mk
 -include Core/Src/cmd/subdir.mk
 -include Core/Src/cli/subdir.mk

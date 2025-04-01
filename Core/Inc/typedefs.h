@@ -22,4 +22,7 @@ typedef uint8_t (*exec_t) (cmd_t * const);
 typedef struct bsp_s bsp_t;
 typedef struct bsp_cmd_s bsp_cmd_t;
 
+// fifo.h
+typedef struct fifo_s fifo_t;
+
 #endif /* INC_TYPEDEFS_H_ */
