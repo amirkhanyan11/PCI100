@@ -25,8 +25,12 @@ void bsp_run(bsp_t * const bsp) {
 uint8_t bsp_exec(bsp_t * const bsp, char *line) {
 	strtrim(line, WHITESPACE);
 
-	if (strlen(line) == 0) {
-	 return 0;
+	const uint16_t line_length = strlen(line);
+	if (line_length == 0) {
+		return 0;
+	} else if (line_length >= FILO_BUFFER_SIZE) {
+		printf("error: line too long\r\n");
+		return -1;
 	}
 
 	cmd_t cmd;

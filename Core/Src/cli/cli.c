@@ -31,7 +31,7 @@ void cli_process(cli_engine_t *engine) {
 		else if (isprint(key) || isspace(key))
 		{
 			filo_set(&engine->line, key);
-			HAL_UART_Transmit_DMA(engine->bsp->huartx, &key, 1);
+			HAL_UART_Transmit_IT(engine->bsp->huartx, &key, 1);
 		}
 	}
 }
