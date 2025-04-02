@@ -89,9 +89,10 @@ PUTCHAR_PROTOTYPE
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	// processing each input key
-	fifo_set(bsp.engine.uart_buffer, bsp.current_char);
-	HAL_UART_Receive_DMA(bsp.huartx, &bsp.current_char, 1);
+	for (uint32_t i = 0; i < RX_BUFFER_SIZE; ++i) {
+		fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[i]);
+	}
+	HAL_UART_Receive_DMA(bsp.huartx, bsp.rx_buf, RX_BUFFER_SIZE);
 }
 
 

@@ -13,8 +13,12 @@ void fifo_init(fifo_t *fifo) {
 	fifo->end = 0;
 }
 
+void fifo_reset(fifo_t *fifo) {
+	fifo_init(fifo);
+}
+
 uint8_t fifo_is_empty(fifo_t *fifo) {
-	return (fifo->pos >= fifo->end);
+	return (fifo->pos == fifo->end);
 }
 
 char fifo_get(fifo_t *fifo) {

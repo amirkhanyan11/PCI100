@@ -34,11 +34,13 @@ uint8_t bsp_exec(bsp_t * const bsp, char *line) {
 	}
 
 	cmd_t cmd;
-
-	if (ESRCH == make_cmd(&cmd, bsp, line)) {
-	 printf("error: command not found\r\n");
+	const uint8_t status = make_cmd(&cmd, bsp, line);
+	if (ESRCH == status) {
+		printf("error: command not found\r\n");
+	} else if (E2BIG == status) {
+		printf("error: token too large\r\n");
 	} else {
-	 cmd.exec(&cmd);
+		cmd.exec(&cmd);
 	}
 
 	return 0;
@@ -54,7 +56,6 @@ uint8_t bsp_init(
 	fifo_init(&UART_FIFO);
 	engine_init(&bsp->engine, &UART_FIFO);
 
-	bsp->current_char = 0;
 	bsp->cmds_length = 0;
 
 	bsp->engine.bsp = bsp;
@@ -78,7 +79,7 @@ uint8_t bsp_init(
 
 
 
-	HAL_UART_Receive_IT(bsp->huartx, &bsp->current_char, 1);
+	HAL_UART_Receive_DMA(bsp->huartx, bsp->rx_buf, RX_BUFFER_SIZE);
 
 	// for i2c
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);

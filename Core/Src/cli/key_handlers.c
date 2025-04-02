@@ -16,8 +16,6 @@
 
 uint8_t handle_nl(cli_engine_t * const engine) {
 
-	filo_set(&engine->line, '\0');
-
 	cli_putnl(engine->bsp->huartx);
 
 	bsp_exec(engine->bsp, engine->line.buffer);
@@ -26,7 +24,9 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 
 	HAL_UART_Transmit(engine->bsp->huartx, (const uint8_t *)PROMPT, strlen(PROMPT), UART_TRANSMIT_TIMEOUT);
 
-	filo_clear(&engine->line);
+	filo_reset(&engine->line);
+
+	fifo_reset(engine->uart_buffer);
 
 	return 0;
 }

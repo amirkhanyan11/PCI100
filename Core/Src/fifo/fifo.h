@@ -23,6 +23,7 @@ struct fifo_s
 
 void fifo_init(fifo_t *fifo);
 char fifo_get(fifo_t *fifo);
+void fifo_reset(fifo_t *fifo);
 void fifo_set(fifo_t *fifo, const char c);
 uint8_t fifo_is_empty(fifo_t *fifo);
 

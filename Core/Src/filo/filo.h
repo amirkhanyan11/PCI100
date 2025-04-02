@@ -24,7 +24,7 @@ void 	filo_init(filo_t *filo);
 char 	filo_get(filo_t *filo);
 uint8_t filo_set(filo_t *filo, const char c);
 uint8_t filo_is_empty(filo_t *filo);
-void 	filo_clear(filo_t *filo);
+void 	filo_reset(filo_t *filo);
 
 
 #endif /* SRC_FILO_FILO_H_ */

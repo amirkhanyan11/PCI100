@@ -13,7 +13,7 @@ void filo_init(filo_t *filo) {
 	filo->buffer[filo->end] = '\0';
 }
 
-void filo_clear(filo_t *filo) {
+void filo_reset(filo_t *filo) {
 	filo_init(filo);
 }
 

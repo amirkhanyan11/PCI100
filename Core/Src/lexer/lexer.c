@@ -48,11 +48,17 @@ uint8_t tokenize(char tokens[ARG_MAX_COUNT][TOKEN_MAX_LENGTH], char *input) {
 	char *t = NULL;
 	uint8_t i = 0;
 	t = strtok(input, WHITESPACE);
+	if (strlen(t) >= TOKEN_MAX_LENGTH) {
+		return E2BIG;
+	}
 	if (t) {
 		strcpy(tokens[i++], t);
 	}
 	// tokenizing the user input
 	while((t = strtok(NULL, WHITESPACE)) != NULL && i < ARG_MAX_COUNT) {
+		if (strlen(t) >= TOKEN_MAX_LENGTH) {
+			return E2BIG;
+		}
 		strcpy(tokens[i++], t);
 	}
 
