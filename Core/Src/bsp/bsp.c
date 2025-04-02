@@ -19,7 +19,7 @@ static fifo_t UART_FIFO;
 
 void bsp_run(bsp_t * const bsp) {
 	bsp_blink_led(bsp);
-	cli_process(&bsp->engine);
+	cli_poll(&bsp->engine);
 }
 
 uint8_t bsp_exec(bsp_t * const bsp, char *line) {
@@ -74,10 +74,8 @@ uint8_t bsp_init(
 
 	set_led_config(bsp);
 
-	HAL_UART_Transmit_IT(bsp->huartx, (const uint8_t *)"\r\n", 2);
-	HAL_UART_Transmit_IT(bsp->huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
-
-
+	printf("\r\n%s", PROMPT);
+	fflush(stdout);
 
 	HAL_UART_Receive_DMA(bsp->huartx, bsp->rx_buf, RX_BUFFER_SIZE);
 

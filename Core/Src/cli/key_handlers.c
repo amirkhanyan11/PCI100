@@ -22,7 +22,7 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 
 	fflush(stdout);
 
-	HAL_UART_Transmit(engine->bsp->huartx, (const uint8_t *)PROMPT, strlen(PROMPT), UART_TRANSMIT_TIMEOUT);
+	HAL_UART_Transmit_DMA(engine->bsp->huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
 
 	filo_reset(&engine->line);
 

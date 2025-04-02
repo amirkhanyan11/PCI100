@@ -35,7 +35,7 @@ struct cli_engine_s
 };
 
 
-void cli_process(cli_engine_t *engine);
+void cli_poll(cli_engine_t *engine);
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s);
 void cli_puts(UART_HandleTypeDef *huartx, const char *s);
 void cli_putnl(UART_HandleTypeDef *huartx);
