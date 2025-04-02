@@ -95,7 +95,9 @@ uint8_t pex_read(cmd_t * const cmd) {
 		res = (res << 8) | RX_Buf[i];
 	}
 
-	printf("read value: %lu\r\n", res);
+	printf("read value:\r\n");
+	printf("decimal - %lu\r\n", res);
+	printf("hex - %lX\r\n", res);
 
 
 //	uint16_t deviceId = res[0];
