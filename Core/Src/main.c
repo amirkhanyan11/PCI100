@@ -95,6 +95,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	HAL_UART_Receive_DMA(bsp.huartx, bsp.rx_buf, RX_BUFFER_SIZE);
 }
 
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+	HAL_UART_RxCpltCallback(huart);
+}
+
 
 /* USER CODE END 0 */
 

@@ -33,8 +33,7 @@ struct history_s
 {
 	char		buffer[HISTORY_SIZE][FILO_BUFFER_SIZE];
 	uint16_t	pivot;
-	bool		pivot_passed_shift;
-	bool		pivot_passed_unshift;
+	bool		shifted;
 	uint16_t	pos;
 };
 
@@ -43,6 +42,7 @@ void history_set(history_t * const history, const char *str);
 char *history_shift(history_t *const history);
 char *history_unshift(history_t * const history);
 void history_roll(history_t * const history);
+bool history_can_shift(history_t * const history);
 
 
 struct cli_engine_s

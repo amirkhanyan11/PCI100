@@ -61,7 +61,7 @@ uint8_t handle_esc(cli_engine_t * const engine) {
 
 	next = fifo_get(engine->uart_buffer);
 
-	if (next != 'A' && next != 'B') {
+	if (!(next == 'A' && history_can_shift(&engine->history)) && next != 'B') {
 		return -1;
 	}
 
