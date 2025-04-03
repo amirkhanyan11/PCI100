@@ -27,13 +27,14 @@ static uint16_t next(history_t * const history) {
 	return res;
 }
 
-static uint16_t prev(history_t * const history) {
-	decrement_pos(history);
-	const uint16_t res = history->pos;
-	increment_pos(history);
-	return res;
+static int32_t history_find(history_t * const history, const char *s) {
+	for (int32_t i = HISTORY_SIZE - 1; i > -1 && history->buffer[i][0]; --i) {
+		if (strcmp(history->buffer[i], s) == 0) {
+			return i;
+		}
+	}
+	return -1;
 }
-
 
 void history_init(history_t * const history) {
 	memset(history->buffer, 0, HISTORY_SIZE * FILO_BUFFER_SIZE);
@@ -42,13 +43,34 @@ void history_init(history_t * const history) {
 	history->shifted = false;
 }
 
-void history_set(history_t * const history, const char *str) {
-	decrement_pos(history);
-	strncpy(history->buffer[history->pos % HISTORY_SIZE], str, FILO_BUFFER_SIZE);
+void history_set(history_t * const history, const char *s) {
+
+	const int32_t j = history_find(history, s);
+
+	if (j == history->pivot) {
+		return;
+	}
+
+	if (-1 == j) {
+		decrement_pos(history);
+		strncpy(history->buffer[history->pos], s, FILO_BUFFER_SIZE);
+		return;
+	}
+
+	int32_t i = j - 1;
+	while (i > -1 && history->buffer[i][0]) {
+		strcpy(history->buffer[i + 1], history->buffer[i]);
+		--i;
+	}
+
+	++i;
+
+	strncpy(history->buffer[i], s, FILO_BUFFER_SIZE);
+
 }
 
 bool history_can_shift(history_t * const history) {
-	return (next(history) != history->pivot);
+	return (next(history) != history->pivot) && ((!history->shifted && history->buffer[history->pos][0]) != '\0' || (history->shifted && history->buffer[next(history)][0]) != '\0');
 }
 
 char *history_shift(history_t *const history) {
@@ -89,3 +111,10 @@ void history_roll(history_t * const history) {
 	history->pivot = history->pos;
 	history->shifted = false;
 }
+
+
+void history_reset_pos(history_t * const history) {
+	history->pos = history->pivot;
+	history->shifted = false;
+}
+

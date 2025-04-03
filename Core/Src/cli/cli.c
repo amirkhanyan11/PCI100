@@ -42,7 +42,8 @@ void cli_poll(cli_engine_t *engine) {
 
 void cli_clear_output(cli_engine_t *engine) {
 	while(!filo_is_empty(&engine->line)) {
-		handle_bs(engine);
+		filo_get(&engine->line);
+		cli_puts(engine->bsp->huartx, "\b \b");
 	}
 }
 

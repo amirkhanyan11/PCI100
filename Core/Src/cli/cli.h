@@ -27,7 +27,7 @@
 #define CLI_OK 0
 #define CLI_ERROR 1
 
-#define HISTORY_SIZE 4
+#define HISTORY_SIZE 32
 
 struct history_s
 {
@@ -42,6 +42,7 @@ void history_set(history_t * const history, const char *str);
 char *history_shift(history_t *const history);
 char *history_unshift(history_t * const history);
 void history_roll(history_t * const history);
+void history_reset_pos(history_t * const history);
 bool history_can_shift(history_t * const history);
 
 

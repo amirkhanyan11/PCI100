@@ -43,6 +43,7 @@ uint8_t handle_bs(cli_engine_t * const engine) {
 	if (filo_is_empty(&engine->line)) {
 		return EAGAIN;
 	}
+	history_reset_pos(&engine->history);
 	filo_get(&engine->line);
 	cli_puts(engine->bsp->huartx, "\b \b");
 
