@@ -11,10 +11,10 @@
 #include "typedefs.h"
 
 void engine_init(cli_engine_t *engine, fifo_t *fifo) {
-	engine->prompt_trigger = 1;
 	engine->bsp = NULL;
 	engine->uart_buffer = fifo;
 	filo_init(&engine->line);
+	history_init(&engine->history);
 }
 
 void cli_poll(cli_engine_t *engine) {
@@ -28,11 +28,21 @@ void cli_poll(cli_engine_t *engine) {
 		{
 			handle_bs(engine);
 		}
+		else if (key == '\e')
+		{
+			handle_esc(engine);
+		}
 		else if (isprint(key) || isspace(key))
 		{
 			filo_set(&engine->line, key);
-			HAL_UART_Transmit_DMA(engine->bsp->huartx, &key, 1);
+			HAL_UART_Transmit(engine->bsp->huartx, &key, 1, UART_TRANSMIT_TIMEOUT);
 		}
+	}
+}
+
+void cli_clear_output(cli_engine_t *engine) {
+	while(!filo_is_empty(&engine->line)) {
+		handle_bs(engine);
 	}
 }
 

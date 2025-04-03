@@ -30,6 +30,12 @@ char fifo_get(fifo_t *fifo) {
 	return c;
 }
 
+void fifo_unshift(fifo_t *fifo) {
+	if (!fifo_is_empty(fifo)) {
+		fifo->pos -= 1;
+	}
+}
+
 void fifo_set(fifo_t *fifo, const char c) {
 	fifo->buffer[fifo->end % FIFO_BUFFER_SIZE] = c;
 	fifo->end += 1;

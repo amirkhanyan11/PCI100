@@ -27,7 +27,7 @@ uint8_t bsp_exec(bsp_t * const bsp, char *line) {
 
 	const uint16_t line_length = strlen(line);
 	if (line_length == 0) {
-		return 0;
+		return 1;
 	} else if (line_length >= FILO_BUFFER_SIZE) {
 		printf("error: line too long\r\n");
 		return -1;
@@ -37,13 +37,13 @@ uint8_t bsp_exec(bsp_t * const bsp, char *line) {
 	const uint8_t status = make_cmd(&cmd, bsp, line);
 	if (ESRCH == status) {
 		printf("error: command not found\r\n");
+		return 1;
 	} else if (E2BIG == status) {
 		printf("error: token too large\r\n");
-	} else {
-		cmd.exec(&cmd);
+		return 2;
 	}
 
-	return 0;
+	return cmd.exec(&cmd);
 }
 
 uint8_t bsp_init(

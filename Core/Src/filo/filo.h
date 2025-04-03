@@ -25,6 +25,6 @@ char 	filo_get(filo_t *filo);
 uint8_t filo_set(filo_t *filo, const char c);
 uint8_t filo_is_empty(filo_t *filo);
 void 	filo_reset(filo_t *filo);
-
+uint8_t filo_set_many(filo_t *filo, const char *s);
 
 #endif /* SRC_FILO_FILO_H_ */

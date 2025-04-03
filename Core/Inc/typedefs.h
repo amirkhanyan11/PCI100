@@ -27,4 +27,7 @@ typedef struct fifo_s fifo_t;
 // filo.h
 typedef struct filo_s filo_t;
 
+// history.h
+typedef struct history_s history_t;
+
 #endif /* INC_TYPEDEFS_H_ */
