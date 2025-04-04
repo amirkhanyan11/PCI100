@@ -23,14 +23,10 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 
 	const uint8_t status = bsp_exec(engine->bsp, line);
 
-	switch (status)
-	{
 	/* At least the name of the command is correct
 	 **/
-	case 0:
-	case BSP_INVALID_OPTIONS:
+	if (BSP_LINE_TOO_LONG != status && BSP_COMMAND_NOT_FOUND != status) {
 		history_set(&engine->history, engine->line.buffer);
-		break;
 	}
 
 	printf(PROMPT);

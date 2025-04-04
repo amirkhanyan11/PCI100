@@ -19,8 +19,9 @@
 #define BSP_MAX_CMDS 128
 #define UART_RX_BUFFER_SIZE 1
 
-#define BSP_INVALID_OPTIONS 166
+#define BSP_COMMAND_NOT_FOUND 127
 #define BSP_LINE_TOO_LONG 139
+#define BSP_INVALID_OPTIONS 166
 
 struct bsp_supported_cmd_s
 {
