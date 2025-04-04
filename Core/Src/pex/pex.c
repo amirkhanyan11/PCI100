@@ -26,8 +26,8 @@ uint8_t exec_pex(cmd_t * const cmd) {
 		return pex_read(cmd);
 	}
 
-	printf("pex: "CLI_COMMAND_NOT_FOUND);
-	return 127;
+	printf("pex: %s", CLI_INVALID_OPTIONS);
+	return BSP_INVALID_OPTIONS;
 }
 
 uint8_t pex_write(cmd_t * const cmd) {

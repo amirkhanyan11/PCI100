@@ -31,7 +31,7 @@ uint8_t bsp_exec(bsp_t * const bsp, char *line) {
 		return 1;
 	} else if (line_length >= FILO_BUFFER_SIZE) {
 		printf("error: line too long\r\n");
-		return -1;
+		return BSP_LINE_TOO_LONG;
 	}
 
 	cmd_t cmd;

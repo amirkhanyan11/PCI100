@@ -21,8 +21,16 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 	char line[FILO_BUFFER_SIZE] = {0};
 	strcpy(line, engine->line.buffer);
 
-	if (!bsp_exec(engine->bsp, line)) {
+	const uint8_t status = bsp_exec(engine->bsp, line);
+
+	switch (status)
+	{
+	/* At least the name of the command is correct
+	 **/
+	case 0:
+	case BSP_INVALID_OPTIONS:
 		history_set(&engine->history, engine->line.buffer);
+		break;
 	}
 
 	printf(PROMPT);

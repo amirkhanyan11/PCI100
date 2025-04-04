@@ -33,9 +33,9 @@ uint8_t exec_led(cmd_t * const cmd) {
 		return led_get(cmd);
 	}
 
-	printf(CLI_COMMAND_NOT_FOUND);
+	printf("led: %s", CLI_INVALID_OPTIONS);
 
-	return 127;
+	return BSP_INVALID_OPTIONS;
 }
 
 uint8_t led_get(cmd_t *const cmd) {

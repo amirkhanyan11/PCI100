@@ -87,6 +87,6 @@ uint8_t exec_adc(cmd_t * const cmd)
 		return adc_read(cmd);
 	}
 
-	printf(CLI_COMMAND_NOT_FOUND);
-	return 127;
+	printf("adc: %s", CLI_INVALID_OPTIONS);
+	return BSP_INVALID_OPTIONS;
 }

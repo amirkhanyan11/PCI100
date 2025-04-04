@@ -22,8 +22,8 @@ uint8_t exec_dac(cmd_t * const cmd) {
 		return dac_write(cmd);
 	}
 
-	printf(CLI_COMMAND_NOT_FOUND);
-	return 127;
+	printf("dac: %s", CLI_INVALID_OPTIONS);
+	return BSP_INVALID_OPTIONS;
 }
 
 uint8_t dac_write(cmd_t * const cmd) {

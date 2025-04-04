@@ -92,11 +92,7 @@ PUTCHAR_PROTOTYPE
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-//	fifo_set(bsp.engine.uart_buffer, s_uartRx);
-
-////	for (uint32_t i = 0; i < RX_BUFFER_SIZE; ++i) {
-		fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[0]);
-////	}
+	fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[0]);
 }
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)

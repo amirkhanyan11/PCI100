@@ -71,8 +71,8 @@ all: main-build
 main-build: PCI100.elf secondary-outputs
 
 # Tool invocations
-PCI100.elf PCI100.map: $(OBJS) $(USER_OBJS) F:\workspace\tigran_p\PCI100\STM32F722RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "PCI100.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"F:\workspace\tigran_p\PCI100\STM32F722RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PCI100.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+PCI100.elf PCI100.map: $(OBJS) $(USER_OBJS) F:\workspace\artyom\PCI100\STM32F722RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "PCI100.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"F:\workspace\artyom\PCI100\STM32F722RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PCI100.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

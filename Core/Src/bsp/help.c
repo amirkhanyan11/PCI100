@@ -7,12 +7,13 @@
 
 
 #include "bsp.h"
+#include "../cli/cli_string_literals.h"
 #include <errno.h>
 
 uint8_t exec_help(cmd_t * const cmd) {
 	if (cmd->argc != 0) {
-		printf("help: error: invalid options\r\n");
-		return EINVAL;
+		printf("help: %s", CLI_INVALID_OPTIONS);
+		return BSP_INVALID_OPTIONS;
 	}
 	printf("\r\nAvailable commands:\r\n"
 		   "\r\n  pex write <addr> <val>   - Write a value to the PEX register at the specified address"
