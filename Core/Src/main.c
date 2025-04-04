@@ -80,7 +80,6 @@ static void MX_DAC_Init(void);
 /* USER CODE BEGIN 0 */
 
 static bsp_t bsp;
-//static uint8_t s_uartRx;
 
 PUTCHAR_PROTOTYPE
 {

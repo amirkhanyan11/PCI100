@@ -31,6 +31,7 @@ typedef struct filo_s filo_t;
 typedef struct history_s history_t;
 
 // utils.h
-typedef struct optional_s optional_t;
+typedef struct uint32_optional_s uint32_optional_t;
+typedef struct double_optional_s double_optional_t;
 
 #endif /* INC_TYPEDEFS_H_ */

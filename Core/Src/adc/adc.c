@@ -58,7 +58,7 @@ static uint8_t adc_read(cmd_t * const cmd)
 	if (cmd->argc != 2) {
 		return __adc_helper();
 	}
-	optional_t channel = satoi(cmd->argv[1]);
+	uint32_optional_t channel = satoi(cmd->argv[1]);
 
 	if (!channel.has_val || !adc_supported_channel(channel.val)) {
 		return __adc_helper();

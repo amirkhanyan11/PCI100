@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "../utils/utils.h"
 
 uint8_t exec_pex(cmd_t * const cmd) {
 
@@ -44,9 +45,10 @@ uint8_t pex_write(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	uint32_t val = atoi(cmd->argv[2]);
+	const uint32_optional_t res = satoi(cmd->argv[2]);
+	const uint32_t val = res.val;
 
-	if (!val && strcmp(cmd->argv[2], "0")) {
+	if (!res.has_val) {
 		printf("pex: write: Invalid value\r\n");
 		return EINVAL;
 	}

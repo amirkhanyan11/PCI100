@@ -68,7 +68,7 @@ uint8_t led_blink(cmd_t *const cmd) {
 	}
 
 	bsp_t * const bsp = cmd->bsp;
-	const uint32_t frequency = atoi(cmd->argv[1]);
+	const uint32_t frequency = satoi(cmd->argv[1]).val;
 
 	if (frequency > 1 && frequency < 1000) {
 		bsp->blink_mode = BLINK_ON;
