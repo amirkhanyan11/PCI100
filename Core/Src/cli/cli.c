@@ -30,9 +30,10 @@ void cli_poll(cli_engine_t *engine) {
 		}
 		else if (key == '\e')
 		{
+			HAL_Delay(1);
 			handle_esc(engine);
 		}
-		else if (isprint(key) || isspace(key))
+		else if (isprint(key))
 		{
 			filo_set(&engine->line, key);
 			HAL_UART_Transmit(engine->bsp->huartx, &key, 1, UART_TRANSMIT_TIMEOUT);
