@@ -58,7 +58,7 @@ uint8_t pex_write(cmd_t * const cmd) {
 		payload[i] = (val >> shift_offset);
 	}
 
-	if (HAL_OK == HAL_I2C_Master_Transmit(cmd->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, sizeof(payload), 1000)) {
+	if (HAL_OK == HAL_I2C_Master_Transmit(cmd->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, sizeof(payload), HAL_MAX_DELAY)) {
 		printf("pex: write: success!\r\n");
 	} else {
 		printf("pex: write: something went wrong\r\n");

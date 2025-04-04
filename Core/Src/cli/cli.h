@@ -66,6 +66,6 @@ void cli_clear_output(cli_engine_t *engine);
 // handle keys
 uint8_t handle_nl(cli_engine_t * const engine);
 uint8_t handle_bs(cli_engine_t * const engine);
-uint8_t handle_esc(cli_engine_t * const engine);
+uint8_t handle_arrows(cli_engine_t * const engine);
 
 #endif //CLI_H

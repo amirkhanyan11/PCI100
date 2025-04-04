@@ -31,7 +31,7 @@ void cli_poll(cli_engine_t *engine) {
 		else if (key == '\e')
 		{
 			HAL_Delay(1);
-			handle_esc(engine);
+			handle_arrows(engine);
 		}
 		else if (isprint(key))
 		{

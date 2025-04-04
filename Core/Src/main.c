@@ -80,7 +80,7 @@ static void MX_DAC_Init(void);
 /* USER CODE BEGIN 0 */
 
 static bsp_t bsp;
-static uint8_t s_uartRx;
+//static uint8_t s_uartRx;
 
 PUTCHAR_PROTOTYPE
 {
@@ -92,10 +92,10 @@ PUTCHAR_PROTOTYPE
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	fifo_set(bsp.engine.uart_buffer, s_uartRx);
+//	fifo_set(bsp.engine.uart_buffer, s_uartRx);
 
 ////	for (uint32_t i = 0; i < RX_BUFFER_SIZE; ++i) {
-//		fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[0]);
+		fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[0]);
 ////	}
 }
 
@@ -135,6 +135,8 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
+  bsp_init(&bsp, &hdac, &huart1, &hi2c1);
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -151,10 +153,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
-
-
-  bsp_init(&bsp, &hdac, &huart1, &hi2c1);
 
   while (1)
   {
@@ -345,6 +343,8 @@ static void MX_I2C1_Init(void)
   }
   /* USER CODE BEGIN I2C1_Init 2 */
 
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+
   /* USER CODE END I2C1_Init 2 */
 
 }
@@ -382,7 +382,7 @@ static void MX_USART1_UART_Init(void)
   }
   /* USER CODE BEGIN USART1_Init 2 */
 
-	HAL_UART_Receive_DMA(&huart1, &s_uartRx, 1);
+	HAL_UART_Receive_DMA(&huart1, bsp.rx_buf, UART_RX_BUFFER_SIZE);
 
   /* USER CODE END USART1_Init 2 */
 

@@ -25,9 +25,9 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 		history_set(&engine->history, engine->line.buffer);
 	}
 
-	fflush(stdout);
+	printf(PROMPT);
 
-	HAL_UART_Transmit_DMA(engine->bsp->huartx, (const uint8_t *)PROMPT, strlen(PROMPT));
+	fflush(stdout);
 
 	filo_reset(&engine->line);
 
@@ -50,7 +50,7 @@ uint8_t handle_bs(cli_engine_t * const engine) {
 	return 0;
 }
 
-uint8_t handle_esc(cli_engine_t * const engine) {
+uint8_t handle_arrows(cli_engine_t * const engine) {
 
 	char next = fifo_get(engine->uart_buffer);
 	if (next != '[') {

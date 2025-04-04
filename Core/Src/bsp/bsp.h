@@ -17,7 +17,7 @@
 #include <stdio.h>
 
 #define BSP_MAX_CMDS 128
-#define RX_BUFFER_SIZE 1
+#define UART_RX_BUFFER_SIZE 1
 
 struct bsp_supported_cmd_s
 {
@@ -27,7 +27,7 @@ struct bsp_supported_cmd_s
 
 struct bsp_s
 {
-	uint8_t				rx_buf[RX_BUFFER_SIZE];
+	uint8_t				rx_buf[UART_RX_BUFFER_SIZE];
 	uint32_t 			blink_frequency;
 	uint8_t 			blink_mode;
 	uint8_t 			led_state;

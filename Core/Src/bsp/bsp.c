@@ -77,10 +77,10 @@ uint8_t bsp_init(
 	printf("\r\n%s", PROMPT);
 	fflush(stdout);
 
-	HAL_UART_Receive_DMA(bsp->huartx, bsp->rx_buf, RX_BUFFER_SIZE);
+//	HAL_UART_Receive_DMA(bsp->huartx, bsp->rx_buf, RX_BUFFER_SIZE);
 
 	// for i2c
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+//	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
 	return 0;
 }
