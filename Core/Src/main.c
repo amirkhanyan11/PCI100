@@ -80,6 +80,7 @@ static void MX_DAC_Init(void);
 /* USER CODE BEGIN 0 */
 
 static bsp_t bsp;
+static uint8_t s_uartRx;
 
 PUTCHAR_PROTOTYPE
 {
@@ -87,12 +88,15 @@ PUTCHAR_PROTOTYPE
   return ch;
 }
 
+#define UART_BAUD_RATE 115200
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	for (uint32_t i = 0; i < RX_BUFFER_SIZE; ++i) {
-		fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[i]);
-	}
-	HAL_UART_Receive_DMA(bsp.huartx, bsp.rx_buf, RX_BUFFER_SIZE);
+	fifo_set(bsp.engine.uart_buffer, s_uartRx);
+
+////	for (uint32_t i = 0; i < RX_BUFFER_SIZE; ++i) {
+//		fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[0]);
+////	}
 }
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
@@ -345,6 +349,8 @@ static void MX_I2C1_Init(void)
 
 }
 
+
+
 /**
   * @brief USART1 Initialization Function
   * @param None
@@ -361,7 +367,7 @@ static void MX_USART1_UART_Init(void)
 
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 57600;
+  huart1.Init.BaudRate = UART_BAUD_RATE;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -375,6 +381,8 @@ static void MX_USART1_UART_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN USART1_Init 2 */
+
+	HAL_UART_Receive_DMA(&huart1, &s_uartRx, 1);
 
   /* USER CODE END USART1_Init 2 */
 
