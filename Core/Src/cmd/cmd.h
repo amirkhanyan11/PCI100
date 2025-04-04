@@ -17,7 +17,7 @@ struct cmd_s
 {
 	char name[TOKEN_MAX_LENGTH];
 	bsp_t *bsp;
-	char args[ARG_MAX_COUNT][TOKEN_MAX_LENGTH];
+	char argv[ARG_MAX_COUNT][TOKEN_MAX_LENGTH];
 	uint8_t argc;
 	exec_t exec;
 };

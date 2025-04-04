@@ -16,7 +16,7 @@
 
 uint8_t exec_pex(cmd_t * const cmd) {
 
-	const char * const option = cmd->args[0];
+	const char * const option = cmd->argv[0];
 
 	if (!strcmp(option, "write")) {
 		return pex_write(cmd);
@@ -37,16 +37,16 @@ uint8_t pex_write(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	uint32_t register_addr = strtol(cmd->args[1], NULL, 16);
+	uint32_t register_addr = strtol(cmd->argv[1], NULL, 16);
 
-	if (!register_addr && strcmp(cmd->args[1], "0")) {
+	if (!register_addr && strcmp(cmd->argv[1], "0")) {
 		printf("pex: write: Invalid dev address format\r\n");
 		return EINVAL;
 	}
 
-	uint32_t val = atoi(cmd->args[2]);
+	uint32_t val = atoi(cmd->argv[2]);
 
-	if (!val && strcmp(cmd->args[2], "0")) {
+	if (!val && strcmp(cmd->argv[2], "0")) {
 		printf("pex: write: Invalid value\r\n");
 		return EINVAL;
 	}
@@ -74,9 +74,9 @@ uint8_t pex_read(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	uint32_t register_addr = strtol(cmd->args[1], NULL, 16);
+	uint32_t register_addr = strtol(cmd->argv[1], NULL, 16);
 
-	if (!register_addr && strcmp(cmd->args[1], "0")) {
+	if (!register_addr && strcmp(cmd->argv[1], "0")) {
 		printf("pex: write: Invalid dev address format\r\n");
 		return EINVAL;
 	}

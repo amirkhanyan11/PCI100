@@ -15,7 +15,7 @@
 
 uint8_t exec_led(cmd_t * const cmd) {
 
-	const char * const option = cmd->args[0];
+	const char * const option = cmd->argv[0];
 
 	if (!strcmp(option, "on")) {
 		return led_on(cmd);
@@ -68,13 +68,13 @@ uint8_t led_blink(cmd_t *const cmd) {
 	}
 
 	bsp_t * const bsp = cmd->bsp;
-	const uint32_t frequency = atoi(cmd->args[1]);
+	const uint32_t frequency = atoi(cmd->argv[1]);
 
 	if (frequency > 1 && frequency < 1000) {
 		bsp->blink_mode = BLINK_ON;
 		bsp->led_state = LED_ON;
 		bsp->blink_frequency = frequency;
-		printf("Led frequency set to %s hz\r\n", cmd->args[1]);
+		printf("Led frequency set to %s hz\r\n", cmd->argv[1]);
 	} else {
 		printf(CLI_LED_INVALID_BLINK_VALUE);
 	}

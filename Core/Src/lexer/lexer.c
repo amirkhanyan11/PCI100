@@ -30,7 +30,7 @@ uint8_t parse(cmd_t * const cmd, char *input) {
 
 	uint8_t i = 1;
 	while (tokens[i][0] != '\0') {
-		strcpy(cmd->args[i - 1], tokens[i]);
+		strcpy(cmd->argv[i - 1], tokens[i]);
 		++i;
 	}
 

@@ -16,7 +16,7 @@ extern DAC_HandleTypeDef hdac;
 
 uint8_t exec_dac(cmd_t * const cmd) {
 
-	const char * const option = cmd->args[0];
+	const char * const option = cmd->argv[0];
 
 	if (!strcmp(option, "write")) {
 		return dac_write(cmd);
@@ -33,17 +33,17 @@ uint8_t dac_write(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	const uint8_t dac_id = atoi(cmd->args[1]);
+	const uint8_t dac_id = atoi(cmd->argv[1]);
 
 	if (dac_id != 1) {
 		printf(CLI_DAC_INVALID_ID);
 		return EINVAL;
 	}
 
-	const float dac_value_f = atof(cmd->args[2]);
+	const float dac_value_f = atof(cmd->argv[2]);
 
 	// the value is 0 but the user entered a different value or is in invalid range
-	if ((0 == dac_value_f && strcmp(cmd->args[2], "0"))) {
+	if ((0 == dac_value_f && strcmp(cmd->argv[2], "0"))) {
 		printf(CLI_DAC_INVALID_OPTION);
 		return EINVAL;
 	} else if (dac_value_f < 0 || dac_value_f > DAC_MAX_VALUE) {
