@@ -30,4 +30,7 @@ typedef struct filo_s filo_t;
 // history.h
 typedef struct history_s history_t;
 
+// utils.h
+typedef struct optional_s optional_t;
+
 #endif /* INC_TYPEDEFS_H_ */

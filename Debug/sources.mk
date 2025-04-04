@@ -22,6 +22,7 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/Src/adc \
 Core/Src/bsp \
 Core/Src/cli \
 Core/Src/cmd \
