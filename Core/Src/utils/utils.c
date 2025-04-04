@@ -125,3 +125,17 @@ const char *static_itoa(uint32_t n) {
 
   return res;
 }
+
+optional_t satoi(const char * const s)
+{
+	optional_t res = { .has_val = false, .val = -1 };
+
+	for(uint8_t i = 0; s[i]; ++i) {
+		if (!isdigit((uint8_t)s[i])) {
+			return res;
+		}
+	}
+	res.has_val = true;
+	res.val = atoi(s);
+	return res;
+}

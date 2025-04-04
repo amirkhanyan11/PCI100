@@ -36,6 +36,7 @@ struct bsp_s
 	UART_HandleTypeDef  *huartx;
 	DAC_HandleTypeDef 	*hdacx;
 	I2C_HandleTypeDef 	*hi2cx;
+	ADC_HandleTypeDef	*hadcx;
 	uint8_t 			cmds_length;
 };
 
@@ -43,7 +44,7 @@ uint8_t bsp_exec(bsp_t * const bsp, char *input);
 uint8_t bsp_cmd_add(bsp_t * const bsp, const char *name, exec_t exec);
 exec_t bsp_cmd_get(bsp_t * const bsp, const char *name);
 void bsp_run(bsp_t * const bsp);
-uint8_t bsp_init(bsp_t * const bsp, DAC_HandleTypeDef *hdacx, UART_HandleTypeDef * const huartx, I2C_HandleTypeDef * const hi2cx);
+uint8_t bsp_init(bsp_t * const bsp, DAC_HandleTypeDef * const hdacx, ADC_HandleTypeDef * const hadcx, UART_HandleTypeDef * const huartx, I2C_HandleTypeDef * const hi2cx);
 void bsp_blink_led(bsp_t * const bsp);
 uint8_t exec_help(cmd_t * const cmd);
 

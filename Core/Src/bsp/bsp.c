@@ -14,6 +14,7 @@
 #include "../led/led.h"
 #include "../pex/pex.h"
 #include "../fifo/fifo.h"
+#include "../adc/adc.h"
 
 static fifo_t UART_FIFO;
 
@@ -49,6 +50,7 @@ uint8_t bsp_exec(bsp_t * const bsp, char *line) {
 uint8_t bsp_init(
 		bsp_t * const bsp,
 		DAC_HandleTypeDef * const hdacx,
+		ADC_HandleTypeDef * const hadcx,
 		UART_HandleTypeDef * const huartx,
 		I2C_HandleTypeDef * const hi2cx
 ) {
@@ -61,6 +63,7 @@ uint8_t bsp_init(
 	bsp->engine.bsp = bsp;
 
 	bsp->hdacx = hdacx;
+	bsp->hadcx = hadcx;
 	bsp->hi2cx = hi2cx;
 	bsp->huartx = huartx;
 	bsp->blink_frequency = 0;
@@ -71,6 +74,7 @@ uint8_t bsp_init(
 	bsp_cmd_add(bsp, "dac",  &exec_dac);
 	bsp_cmd_add(bsp, "help", &exec_help);
 	bsp_cmd_add(bsp, "pex",  &exec_pex);
+	bsp_cmd_add(bsp, "adc",  &exec_adc);
 
 	set_led_config(bsp);
 

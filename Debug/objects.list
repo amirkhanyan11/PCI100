@@ -1,3 +1,4 @@
+"./Core/Src/adc/adc.o"
 "./Core/Src/bsp/bsp.o"
 "./Core/Src/bsp/help.o"
 "./Core/Src/cli/cli.o"
