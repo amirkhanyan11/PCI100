@@ -107,7 +107,7 @@ char *history_unshift(history_t * const history) {
 	return res;
 }
 
-void history_roll(history_t * const history) {
+void history_set_pivot(history_t * const history) {
 	history->pivot = history->pos;
 	history->shifted = false;
 }

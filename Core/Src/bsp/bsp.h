@@ -19,7 +19,7 @@
 #define BSP_MAX_CMDS 128
 #define RX_BUFFER_SIZE 1
 
-struct bsp_cmd_s
+struct bsp_supported_cmd_s
 {
 	char name[TOKEN_MAX_LENGTH];
 	exec_t exec;
@@ -32,7 +32,7 @@ struct bsp_s
 	uint8_t 			blink_mode;
 	uint8_t 			led_state;
 	struct cli_engine_s engine;
-	bsp_cmd_t 			cmds[BSP_MAX_CMDS];
+	bsp_supported_cmd_t cmds[BSP_MAX_CMDS];
 	UART_HandleTypeDef  *huartx;
 	DAC_HandleTypeDef 	*hdacx;
 	I2C_HandleTypeDef 	*hi2cx;

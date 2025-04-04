@@ -33,7 +33,7 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 
 	fifo_reset(engine->uart_buffer);
 
-	history_roll(&engine->history);
+	history_set_pivot(&engine->history);
 
 	return 0;
 }

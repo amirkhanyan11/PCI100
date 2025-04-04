@@ -19,7 +19,7 @@ typedef uint8_t (*exec_t) (cmd_t * const);
 
 // bsp.h
 typedef struct bsp_s bsp_t;
-typedef struct bsp_cmd_s bsp_cmd_t;
+typedef struct bsp_supported_cmd_s bsp_supported_cmd_t;
 
 // fifo.h
 typedef struct fifo_s fifo_t;

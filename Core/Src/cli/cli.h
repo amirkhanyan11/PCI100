@@ -41,7 +41,7 @@ void history_init(history_t * const history);
 void history_set(history_t * const history, const char *str);
 char *history_shift(history_t *const history);
 char *history_unshift(history_t * const history);
-void history_roll(history_t * const history);
+void history_set_pivot(history_t * const history);
 void history_reset_pos(history_t * const history);
 bool history_can_shift(history_t * const history);
 
