@@ -1,6 +1,5 @@
 ./cmake-build-debug/
 **/*.{o,exe,elf}
-./Debug/
-Debug/*
+Debug/
 *.launch
 .settings/
