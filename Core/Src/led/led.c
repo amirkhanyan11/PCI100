@@ -23,8 +23,8 @@ uint8_t exec_led(cmd_t * const cmd) {
 
 	uint8_t status = 0;
 
-	if (!strcmp(option, "on")) {
-		status = led_on(cmd);
+	if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
+		printchunk("Usage:", CLI_LED_HELP, NULL);
 	}
 	else if (!strcmp(option, "off")) {
 		status = led_off(cmd);
@@ -32,13 +32,14 @@ uint8_t exec_led(cmd_t * const cmd) {
 	else if (!strcmp(option, "blink")) {
 		status = led_blink(cmd);
 	}
+	else if (!strcmp(option, "on")) {
+		status = led_on(cmd);
+	}
 	else if (!strcmp(option, "reset")) {
 		status = led_reset(cmd);
 	}
 	else if (!strcmp(option, "get")) {
 		status = led_get(cmd);
-	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		printchunk("Usage:", CLI_LED_HELP, NULL);
 	} else {
 		printf("led: error: invalid option `%s`. See led -h\r\n", option);
 		status = BSP_INVALID_OPTIONS;
@@ -49,7 +50,8 @@ uint8_t exec_led(cmd_t * const cmd) {
 
 uint8_t led_get(cmd_t *const cmd) {
 	if (cmd->argc != 1) {
-		printf("led: %s", CLI_INVALID_OPTIONS);
+		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
+		printchunk("Usage:", CLI_LED_HELP, NULL);
 		return EINVAL;
 	}
 	printf("%s\n\r", get_led_state(cmd->bsp));
@@ -59,7 +61,8 @@ uint8_t led_get(cmd_t *const cmd) {
 uint8_t led_reset(cmd_t *const cmd) {
 
 	if (cmd->argc != 1) {
-		printf("led: %s", CLI_INVALID_OPTIONS);
+		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
+		printchunk("Usage:", CLI_LED_HELP, NULL);
 		return EINVAL;
 	}
 
@@ -72,7 +75,8 @@ uint8_t led_reset(cmd_t *const cmd) {
 
 uint8_t led_blink(cmd_t *const cmd) {
 	if (cmd->argc != 2) {
-		printf("led: %s", CLI_INVALID_OPTIONS);
+		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
+		printchunk("Usage:", CLI_LED_HELP, NULL);
 		return EINVAL;
 	}
 
@@ -94,7 +98,8 @@ uint8_t led_blink(cmd_t *const cmd) {
 uint8_t led_off(cmd_t * const cmd) {
 
 	if (cmd->argc != 1) {
-		printf("led: %s", CLI_INVALID_OPTIONS);
+		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
+		printchunk("Usage:", CLI_LED_HELP, NULL);
 		return EINVAL;
 	}
 
@@ -110,7 +115,8 @@ uint8_t led_off(cmd_t * const cmd) {
 uint8_t led_on(cmd_t * const cmd) {
 
 	if (cmd->argc != 1) {
-		printf("led: %s", CLI_INVALID_OPTIONS);
+		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
+		printchunk("Usage:", CLI_LED_HELP, NULL);
 		return EINVAL;
 	}
 

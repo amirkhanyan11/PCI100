@@ -24,15 +24,14 @@ uint8_t exec_dac(cmd_t * const cmd) {
 
 	uint8_t status = 0;
 
-	if (!strcmp(option, "write")) {
-		status = dac_write(cmd);
-	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
+	if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
 		printchunk("Usage:", CLI_DAC_HELP, NULL);
+	} else if (!strcmp(option, "write")) {
+		status = dac_write(cmd);
 	} else {
 		printf("dac: error: invalid option `%s`. See dac -h\r\n", option);
 		status = BSP_INVALID_OPTIONS;
 	}
-
 
 	return status;
 }
@@ -40,7 +39,8 @@ uint8_t exec_dac(cmd_t * const cmd) {
 uint8_t dac_write(cmd_t * const cmd) {
 
 	if (cmd->argc != 3) {
-		printf("dac: write: %s", CLI_INVALID_OPTIONS);
+		printf("dac: write: %s\r\n", CLI_INVALID_OPTIONS);
+		printchunk("Usage:", CLI_DAC_HELP, NULL);
 		return EINVAL;
 	}
 
