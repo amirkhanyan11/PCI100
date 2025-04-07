@@ -23,10 +23,10 @@ static void write_handler(bool mod, SPI_HandleTypeDef *hspi1)
     chip_select(false);
 }
 
-static uint8_t __eeprom_helper(const char * const cmd, const char * const s)
+static uint8_t __eeprom_err(const char * const cmd, const char * const s)
 {
 	printf("eeprom: %s: %s", cmd, CLI_INVALID_OPTIONS);
-	printf("%s", s);
+	printf("%s\r\n\n", s);
 	return EINVAL;
 }
 
@@ -37,12 +37,12 @@ static uint8_t eeprom_write(cmd_t * const cmd)
 {
 
 	if (cmd->argc != 3) {
-		return __eeprom_helper(cmd->argv[0], HELP_CLI_EEPROM_WRITE);
+		return __eeprom_err(cmd->argv[0], CLI_EEPROM_WRITE_HELP);
 	}
 	uint32_optional_t val_o = satoi(cmd->argv[1]);
 
 	if (!val_o.has_val) {
-		return __eeprom_helper(cmd->argv[0], HELP_CLI_EEPROM_WRITE);
+		return __eeprom_err(cmd->argv[0], CLI_EEPROM_WRITE_HELP);
 	}
 
 	uint16_t address = val_o.val;
@@ -50,7 +50,7 @@ static uint8_t eeprom_write(cmd_t * const cmd)
 	val_o = satoi(cmd->argv[2]);
 
 	if (!val_o.has_val) {
-		return __eeprom_helper(cmd->argv[0], HELP_CLI_EEPROM_READ_BULK);
+		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_BULK_HELP);
 	}
 
     uint8_t data = val_o.val;
@@ -75,12 +75,12 @@ static uint8_t eeprom_write(cmd_t * const cmd)
 static uint8_t eeprom_read(cmd_t * const cmd)
 {
 	if (cmd->argc != 2) {
-		return __eeprom_helper(cmd->argv[0], HELP_CLI_EEPROM_READ);
+		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_HELP);
 	}
 	uint32_optional_t val_o = satoi(cmd->argv[1]);
 
 	if (!val_o.has_val) {
-		return __eeprom_helper(cmd->argv[0], HELP_CLI_EEPROM_READ);
+		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_HELP);
 	}
 
 	uint16_t address = val_o.val;
@@ -105,12 +105,12 @@ static uint8_t eeprom_read_bulk(cmd_t * const cmd)
 {
 
 	if (cmd->argc != 3) {
-		return __eeprom_helper(cmd->argv[0], HELP_CLI_EEPROM_READ_BULK);
+		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_BULK_HELP);
 	}
 	uint32_optional_t val_o = satoi(cmd->argv[1]);
 
 	if (!val_o.has_val) {
-		return __eeprom_helper(cmd->argv[0], HELP_CLI_EEPROM_READ_BULK);
+		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_BULK_HELP);
 	}
 
 	uint16_t address = val_o.val;
@@ -118,7 +118,7 @@ static uint8_t eeprom_read_bulk(cmd_t * const cmd)
 	val_o = satoi(cmd->argv[2]);
 
 	if (!val_o.has_val) {
-		return __eeprom_helper(cmd->argv[0], HELP_CLI_EEPROM_READ_BULK);
+		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_BULK_HELP);
 	}
 
     uint16_t size = val_o.val;
@@ -142,20 +142,28 @@ static uint8_t eeprom_read_bulk(cmd_t * const cmd)
 
 uint8_t exec_eeprom(cmd_t * const cmd)
 {
-	const char * const option = cmd->argv[0];
+	const char * option = NULL;
 
-	if (!strcmp(option, "write")) {
-		return eeprom_write(cmd);
-	} else if (!strcmp(option, "read")) {
-		return eeprom_read(cmd);
-	} else if (!strcmp(option, "read_bulk")) {
-		return eeprom_read_bulk(cmd);
+	if (cmd->argc > 0) {
+		option = cmd->argv[0];
 	}
 
-	printf(CLI_COMMAND_NOT_FOUND);
-	printf(HELP_CLI_EEPROM_WRITE);
-	printf(HELP_CLI_EEPROM_READ);
-	printf(HELP_CLI_EEPROM_READ_BULK);
+	uint8_t status = 0;
 
-	return 127;
+	if (!strcmp(option, "write")) {
+		status = eeprom_write(cmd);
+	} else if (!strcmp(option, "read")) {
+		status = eeprom_read(cmd);
+	} else if (!strcmp(option, "read_bulk")) {
+		status = eeprom_read_bulk(cmd);
+	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
+		printf(CLI_EEPROM_WRITE_HELP);
+		printf(CLI_EEPROM_READ_HELP);
+		printf(CLI_EEPROM_READ_BULK_HELP);
+	} else {
+		printf("eeprom: error: invalid option `%s`. See eeprom -h\r\n", option);
+		status = BSP_INVALID_OPTIONS;
+	}
+
+	return status;
 }

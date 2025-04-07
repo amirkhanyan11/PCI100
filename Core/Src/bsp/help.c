@@ -15,7 +15,13 @@ uint8_t exec_help(cmd_t * const cmd) {
 		printf("help: %s", CLI_INVALID_OPTIONS);
 		return BSP_INVALID_OPTIONS;
 	}
-	printf("\r\nAvailable commands:\r\n%s%s%s", CLI_PEX_HELP, CLI_LED_HELP, CLI_DAC_HELP);
+
+	const char *messages[] = { CLI_PEX_HELP, CLI_LED_HELP, CLI_DAC_HELP, CLI_ADC_HELP, CLI_EEPROM_HELP };
+	printf("\r\nAvailable commands:\r\n");
+
+	for (uint8_t i = 0; i < sizeof(messages) / sizeof(messages[0]); ++i) {
+		printf("%s", messages[i]);
+	}
 
 	return 0;
 }

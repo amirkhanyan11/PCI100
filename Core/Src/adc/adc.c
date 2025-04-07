@@ -11,9 +11,9 @@ static uint32_t adc_channels[ADC_SUPPORTED_CHANNELS_SIZE] = {ADC_CHANNEL_10};
 
 static void adc_supported_ids(uint8_t max_id)
 {
-	printf("Supported channel's IDs are:\r\n");
+	printf("\r\n  Supported channel's IDs are:\t\t");
 	for (uint8_t i = 1; i <= max_id; ++i){
-			printf(((i == max_id) ? "%d\r\n" : "%d, "), i);
+			printf(((i == max_id) ? "%d\r\n\n" : "%d, "), i);
 	}
 }
 
@@ -24,7 +24,7 @@ static bool adc_supported_channel(uint8_t channel_id)
 
 static void adc_error_handle(void)
 {
-	printf("Something went wrong in channel select process.\r\n");
+	printf("  Something went wrong in channel select process.\r\n");
 	__disable_irq();
 	while (1)
 	{
@@ -44,10 +44,10 @@ static void adc_channels_handler(ADC_HandleTypeDef *hadc1, uint8_t channel_id)
 	}
 }
 
-static uint8_t __adc_helper(void)
+static uint8_t __adc_err(void)
 {
 	printf("adc: read: %s", CLI_INVALID_OPTIONS);
-	printf("%s", HELP_CLI_ADC);
+	printf("%s", CLI_ADC_HELP);
 	adc_supported_ids(ADC_SUPPORTED_CHANNELS_SIZE);
 	return EINVAL;
 }
@@ -56,12 +56,12 @@ static uint8_t adc_read(cmd_t * const cmd)
 {
 
 	if (cmd->argc != 2) {
-		return __adc_helper();
+		return __adc_err();
 	}
 	uint32_optional_t channel = satoi(cmd->argv[1]);
 
 	if (!channel.has_val || !adc_supported_channel(channel.val)) {
-		return __adc_helper();
+		return __adc_err();
 	}
 	adc_channels_handler(cmd->bsp->hadcx, channel.val);
 	HAL_ADC_Start(cmd->bsp->hadcx);
@@ -81,12 +81,22 @@ static uint8_t adc_read(cmd_t * const cmd)
 // ADC_Handler - handles received analog, convert to digital and shows voltage
 uint8_t exec_adc(cmd_t * const cmd)
 {
-	const char * const option = cmd->argv[0];
+	const char * option = NULL;
 
-	if (!strcmp(option, "read")) {
-		return adc_read(cmd);
+	if (cmd->argc > 0) {
+		option = cmd->argv[0];
 	}
 
-	printf("adc: %s", CLI_INVALID_OPTIONS);
-	return BSP_INVALID_OPTIONS;
+	uint8_t status = 0;
+
+	if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
+		printf("%s\r\n", CLI_ADC_HELP);
+	} else if (!strcmp(option, "read")) {
+		status = adc_read(cmd);
+	} else {
+		printf("adc: error: invalid option `%s`. See adc -h\r\n", option);
+		status = BSP_INVALID_OPTIONS;
+	}
+
+	return status;
 }

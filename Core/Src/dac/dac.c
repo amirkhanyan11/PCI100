@@ -27,21 +27,14 @@ uint8_t exec_dac(cmd_t * const cmd) {
 	if (!strcmp(option, "write")) {
 		status = dac_write(cmd);
 	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		status = dac_help();
+		printf("%s\r\n", CLI_DAC_HELP);
 	} else {
+		printf("dac: error: invalid option `%s`. See dac -h\r\n", option);
 		status = BSP_INVALID_OPTIONS;
 	}
 
-	if (BSP_INVALID_OPTIONS == status) {
-		printf("dac: error: invalid option `%s`. See dac -h\r\n", option);
-	}
 
 	return status;
-}
-
-uint8_t dac_help(void) {
-	printf(CLI_DAC_HELP);
-	return 0;
 }
 
 uint8_t dac_write(cmd_t * const cmd) {

@@ -30,21 +30,14 @@ uint8_t exec_pex(cmd_t * const cmd) {
 	} else if (!strcmp(option, "read")) {
 		status = pex_read(cmd);
 	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		status = pex_help();
+		printf("%s\r\n", CLI_PEX_HELP);
 	} else {
+		printf("pex: error: invalid option `%s`. See pex -h\r\n", option);
 		status = BSP_INVALID_OPTIONS;
 	}
 
-	if (BSP_INVALID_OPTIONS == status) {
-		printf("pex: error: invalid option `%s`. See pex -h\r\n", option);
-	}
 
 	return status;
-}
-
-uint8_t pex_help(void) {
-	printf(CLI_PEX_HELP);
-	return 0;
 }
 
 uint8_t pex_write(cmd_t * const cmd) {
@@ -116,31 +109,6 @@ uint8_t pex_read(cmd_t * const cmd) {
 	printf("read value:\r\n");
 	printf("decimal - %lu\r\n", res);
 	printf("hex - %lX\r\n", res);
-
-
-//	uint16_t deviceId = res[0];
-//	deviceId <<= 8;
-//	deviceId |= res[1];
-//
-//	uint16_t vendorId = res[2];
-//	vendorId <<= 8;
-//	vendorId |= res[3];
-//
-//
-//	printf("Device ID: %u\r\n", deviceId);
-//	printf("Vendor ID: %u\r\n", vendorId);
-
-
-//
-//	uint8_t payload[] = { register_addr, 0 };
-//
-//	if (HAL_OK == HAL_I2C_Master_Transmit(cmd->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, 2, 1000)) {
-//		const uint8_t data = payload[1];
-//		printf("pex: read: %d\r\n", data);
-//	} else {
-//		printf("pex: write: something went wrong\r\n");
-//	}
-
 
 	return 0;
 }
