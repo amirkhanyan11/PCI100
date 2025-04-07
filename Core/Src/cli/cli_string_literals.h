@@ -18,6 +18,9 @@
 #define CLI_DAC_INVALID_OPTION "dac: write: error: Enter a decimal number\r\n"
 #define CLI_DAC_INVALID_ID "dac: write: error: Invalid DAC id. Avalidable id's: [ 1 ]\r\n"
 #define HELP_CLI_ADC "adc read <adc_id>\t\tShows the digital voltage of the specified ID\r\n"
+#define HELP_CLI_EEPROM_WRITE "eeprom write <addr> <val>\tWrites 1 byte data to eeprom's specified address\r\n"
+#define HELP_CLI_EEPROM_READ "eeprom read <addr>\t\tReads 1 byte data from eeprom's specified address\r\n"
+#define HELP_CLI_EEPROM_READ_BULK "eeprom read_bulk <addr> <len>\tReads specified length byte data starting from eeprom's specified address\r\n"
 
 // help messages
 #define CLI_LED_HELP "\r\n  led <on/off>             - Turn the LED ON or OFF" \

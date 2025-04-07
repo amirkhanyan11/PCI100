@@ -15,6 +15,7 @@
 #include "../pex/pex.h"
 #include "../fifo/fifo.h"
 #include "../adc/adc.h"
+#include "../eeprom/eeprom.h"
 
 static fifo_t UART_FIFO;
 
@@ -54,7 +55,8 @@ uint8_t bsp_init(
 		DAC_HandleTypeDef * const hdacx,
 		ADC_HandleTypeDef * const hadcx,
 		UART_HandleTypeDef * const huartx,
-		I2C_HandleTypeDef * const hi2cx
+		I2C_HandleTypeDef * const hi2cx,
+		I2C_HandleTypeDef * const hspix
 ) {
 	HAL_DAC_Start(hdacx, DAC_CHANNEL_2);
 	fifo_init(&UART_FIFO);
@@ -77,6 +79,7 @@ uint8_t bsp_init(
 	bsp_cmd_add(bsp, "help", &exec_help);
 	bsp_cmd_add(bsp, "pex",  &exec_pex);
 	bsp_cmd_add(bsp, "adc",  &exec_adc);
+	bsp_cmd_add(bsp, "eeprom",  &exec_eeprom);
 
 	set_led_config(bsp);
 

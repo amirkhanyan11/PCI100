@@ -41,6 +41,7 @@ struct bsp_s
 	DAC_HandleTypeDef 	*hdacx;
 	I2C_HandleTypeDef 	*hi2cx;
 	ADC_HandleTypeDef	*hadcx;
+	SPI_HandleTypeDef	*hadcx;
 	uint8_t 			cmds_length;
 };
 
