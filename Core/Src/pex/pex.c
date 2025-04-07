@@ -17,18 +17,34 @@
 
 uint8_t exec_pex(cmd_t * const cmd) {
 
-	const char * const option = cmd->argv[0];
+	const char * option = NULL;
+
+	if (cmd->argc > 0) {
+		option = cmd->argv[0];
+	}
+
+	uint8_t status = 0;
 
 	if (!strcmp(option, "write")) {
-		return pex_write(cmd);
+		status = pex_write(cmd);
+	} else if (!strcmp(option, "read")) {
+		status = pex_read(cmd);
+	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
+		status = pex_help();
+	} else {
+		status = BSP_INVALID_OPTIONS;
 	}
 
-	else if (!strcmp(option, "read")) {
-		return pex_read(cmd);
+	if (BSP_INVALID_OPTIONS == status) {
+		printf("pex: error: invalid option `%s`. See pex -h\r\n", option);
 	}
 
-	printf("pex: %s", CLI_INVALID_OPTIONS);
-	return BSP_INVALID_OPTIONS;
+	return status;
+}
+
+uint8_t pex_help(void) {
+	printf(CLI_PEX_HELP);
+	return 0;
 }
 
 uint8_t pex_write(cmd_t * const cmd) {
