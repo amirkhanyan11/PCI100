@@ -10,6 +10,24 @@
 #include "../bsp/bsp.h"
 #include "typedefs.h"
 
+extern bsp_t bsp;
+
+PUTCHAR_PROTOTYPE
+{
+  HAL_UART_Transmit(bsp.huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
+  return ch;
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[0]);
+}
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+	HAL_UART_RxCpltCallback(huart);
+}
+
 void engine_init(cli_engine_t *engine, fifo_t *fifo) {
 	engine->bsp = NULL;
 	engine->uart_buffer = fifo;

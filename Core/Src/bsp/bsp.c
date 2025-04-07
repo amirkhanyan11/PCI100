@@ -18,6 +18,8 @@
 
 static fifo_t UART_FIFO;
 
+bsp_t bsp;
+
 void bsp_run(bsp_t * const bsp) {
 	bsp_blink_led(bsp);
 	cli_poll(&bsp->engine);
