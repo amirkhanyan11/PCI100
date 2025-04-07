@@ -1520,7 +1520,6 @@ HAL_StatusTypeDef HAL_UART_DMAStop(UART_HandleTypeDef *huart)
   const HAL_UART_StateTypeDef rxstate = huart->RxState;
 
   /* Stop UART DMA Tx request if ongoing */
-
   if ((HAL_IS_BIT_SET(huart->Instance->CR3, USART_CR3_DMAT)) &&
       (gstate == HAL_UART_STATE_BUSY_TX))
   {
