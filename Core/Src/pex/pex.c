@@ -30,7 +30,7 @@ uint8_t exec_pex(cmd_t * const cmd) {
 	} else if (!strcmp(option, "read")) {
 		status = pex_read(cmd);
 	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		printf("%s\r\n", CLI_PEX_HELP);
+		printchunk("Usage:", CLI_PEX_HELP, NULL);
 	} else {
 		printf("pex: error: invalid option `%s`. See pex -h\r\n", option);
 		status = BSP_INVALID_OPTIONS;

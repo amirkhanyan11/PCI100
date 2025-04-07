@@ -9,6 +9,7 @@
 #include "main.h"
 #include "../filo/filo.h"
 #include <stdbool.h>
+#include <stdio.h>
 #include "typedefs.h"
 
 #define UART_BAUD_RATE 115200
@@ -61,6 +62,8 @@ void cli_puts(UART_HandleTypeDef *huartx, const char *s);
 void cli_putnl(UART_HandleTypeDef *huartx);
 void engine_init(cli_engine_t *engine, fifo_t *fifo);
 void cli_clear_output(cli_engine_t *engine);
+
+void __attribute__((sentinel)) printchunk(const char *s, ...);
 
 
 // handle keys

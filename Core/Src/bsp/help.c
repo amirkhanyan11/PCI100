@@ -7,8 +7,10 @@
 
 
 #include "bsp.h"
+#include <stdarg.h>
 #include "../cli/cli_string_literals.h"
 #include <errno.h>
+#include "../cli/cli.h"
 
 uint8_t exec_help(cmd_t * const cmd) {
 	if (cmd->argc != 0) {
@@ -16,12 +18,17 @@ uint8_t exec_help(cmd_t * const cmd) {
 		return BSP_INVALID_OPTIONS;
 	}
 
-	const char *messages[] = { CLI_PEX_HELP, CLI_LED_HELP, CLI_DAC_HELP, CLI_ADC_HELP, CLI_EEPROM_HELP };
 	printf("\r\nAvailable commands:\r\n");
 
-	for (uint8_t i = 0; i < sizeof(messages) / sizeof(messages[0]); ++i) {
-		printf("%s", messages[i]);
-	}
+	printchunk("Led:", CLI_LED_HELP, NULL);
+
+	printchunk("Eeprom:", CLI_EEPROM_HELP, NULL);
+
+	printchunk("Pex:", CLI_PEX_HELP, NULL);
+
+	printchunk("DAC:", CLI_DAC_HELP, NULL);
+
+	printchunk("ADC:", CLI_ADC_HELP, NULL);
 
 	return 0;
 }

@@ -38,7 +38,7 @@ uint8_t exec_led(cmd_t * const cmd) {
 	else if (!strcmp(option, "get")) {
 		status = led_get(cmd);
 	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		printf(CLI_LED_HELP);
+		printchunk("Usage:", CLI_LED_HELP, NULL);
 	} else {
 		printf("led: error: invalid option `%s`. See led -h\r\n", option);
 		status = BSP_INVALID_OPTIONS;

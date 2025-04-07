@@ -90,7 +90,7 @@ uint8_t exec_adc(cmd_t * const cmd)
 	uint8_t status = 0;
 
 	if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		printf("%s\r\n", CLI_ADC_HELP);
+		printchunk("Usage:", CLI_ADC_HELP, NULL);
 	} else if (!strcmp(option, "read")) {
 		status = adc_read(cmd);
 	} else {

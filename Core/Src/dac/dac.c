@@ -27,7 +27,7 @@ uint8_t exec_dac(cmd_t * const cmd) {
 	if (!strcmp(option, "write")) {
 		status = dac_write(cmd);
 	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		printf("%s\r\n", CLI_DAC_HELP);
+		printchunk("Usage:", CLI_DAC_HELP, NULL);
 	} else {
 		printf("dac: error: invalid option `%s`. See dac -h\r\n", option);
 		status = BSP_INVALID_OPTIONS;

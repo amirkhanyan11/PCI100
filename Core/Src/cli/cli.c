@@ -9,6 +9,7 @@
 #include "../fifo/fifo.h"
 #include "../bsp/bsp.h"
 #include "typedefs.h"
+#include <stdarg.h>
 
 extern bsp_t bsp;
 
@@ -80,4 +81,25 @@ void cli_puts(UART_HandleTypeDef *huartx, const char *s) {
 void cli_putnl(UART_HandleTypeDef *huartx) {
   HAL_UART_Transmit(huartx, (const uint8_t *)"\r\n", 2, UART_TRANSMIT_TIMEOUT);
 }
+
+void __attribute__((sentinel)) printchunk(const char *s, ...) {
+
+	printf("\r\n");
+
+	printf("%s\r\n", s);
+
+	va_list list;
+	va_start(list, s);
+
+	const char *p = NULL;
+
+	while ((p = va_arg(list, char *)) != NULL) {
+		printf("  %s\r\n", p);
+	}
+
+	printf("\r\n");
+}
+
+
+
 

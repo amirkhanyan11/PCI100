@@ -20,29 +20,36 @@
 
 // help messages
 
-// led
-#define CLI_LED_HELP "\r\n  led <on/off>                       - Turn the LED ON or OFF" \
-				     "\r\n  led get                            - Get the current state of the LED" \
-		   	   	   	 "\r\n  led reset                          - Reset the LED mode to the one selected by MCU_CFG" \
-					 "\r\n  led blink <hz>                     - Set the LED blink frequency (in Hz). Available frequency range: [ 1 ... 1000 ]" \
-		   	   	     "\r\n			                         Available frequency range: [ 1 ... 1000 ]\r\n"
+// Led
+#define CLI_LED_ON_OFF_HELP "led <on/off>                       - Turn the LED ON or OFF"
+#define CLI_LED_GET_HELP	"led get                            - Get the current state of the LED"
+#define CLI_LED_RESET_HELP	"led reset                          - Reset the LED mode to the one selected by MCU_CFG"
+#define CLI_LED_BLINK_HELP	"led blink <hz>                     - Set the LED blink frequency (in Hz). Available frequency range: [ 1 ... 1000 ]" \
+		   	   	     	 	"\r\n			                         Available frequency range: [ 1 ... 1000 ]\r\n"
 
-// pex
-#define CLI_PEX_HELP "\r\n  pex write <addr> <val>             - Write a value to the PEX register at the specified address" \
-		   	   	   	 "\r\n  pex read <addr>                    - Read a value from the PEX register at the specified address\r\n"
+#define CLI_LED_HELP CLI_LED_ON_OFF_HELP, CLI_LED_GET_HELP, CLI_LED_RESET_HELP, CLI_LED_BLINK_HELP
 
-// dac
-#define CLI_DAC_HELP "\r\n  dac write <dac_id> <val>           - Write a value to the DAC with the specified ID." \
-		   	   	   	 "\r\n			                         Available id's : [ 1 ]. Available floating point value range: [ 0 ... 1 ]\r\n"
+// Pex
+#define CLI_PEX_WRITE_HELP  "pex write <addr> <val>             - Write a value to the PEX register at the specified address"
+#define CLI_PEX_READ_HELP	"pex read <addr>                    - Read a value from the PEX register at the specified address"
 
-// adc
-#define CLI_ADC_HELP "\r\n  adc read <adc_id>                  - Shows the digital voltage of the specified ID\r\n"
+#define CLI_PEX_HELP CLI_PEX_WRITE_HELP, CLI_PEX_READ_HELP
 
+// DAC
+#define CLI_DAC_WRITE_HELP "dac write <dac_id> <val>           - Write a value to the DAC with the specified ID." \
+		   	   	   	 	   "\r\n			                         Available id's : [ 1 ]. Available floating point value range: [ 0 ... 1 ]"
 
-// eeprom
-#define CLI_EEPROM_WRITE_HELP 	  "\r\n  eeprom write <addr> <val>          - Writes 1 byte data to eeprom's specified address"
-#define CLI_EEPROM_READ_HELP  	  "\r\n  eeprom read <addr>                 - Reads 1 byte data from eeprom's specified address"
-#define CLI_EEPROM_READ_BULK_HELP "\r\n  eeprom read_bulk <addr> <len>      - Reads specified length byte data starting from eeprom's specified address\r\n\r\n"
+#define CLI_DAC_HELP CLI_DAC_WRITE_HELP
+
+// ADC
+#define CLI_ADC_READ_HELP "adc read <adc_id>                  - Shows the digital voltage of the specified ID"
+
+#define CLI_ADC_HELP CLI_ADC_READ_HELP
+
+// Eeprom
+#define CLI_EEPROM_WRITE_HELP 	  "eeprom write <addr> <val>          - Writes 1 byte data to eeprom's specified address"
+#define CLI_EEPROM_READ_HELP  	  "eeprom read <addr>                 - Reads 1 byte data from eeprom's specified address"
+#define CLI_EEPROM_READ_BULK_HELP "eeprom read_bulk <addr> <len>      - Reads specified length byte data starting from eeprom's specified address"
 
 #define CLI_EEPROM_HELP CLI_EEPROM_WRITE_HELP, CLI_EEPROM_READ_HELP, CLI_EEPROM_READ_BULK_HELP
 
