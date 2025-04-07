@@ -51,7 +51,7 @@ uint8_t exec_led(cmd_t * const cmd) {
 uint8_t led_get(cmd_t *const cmd) {
 	if (cmd->argc != 1) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_LED_HELP, NULL);
+		printchunk("Usage:", CLI_LED_GET_HELP, NULL);
 		return EINVAL;
 	}
 	printf("%s\n\r", get_led_state(cmd->bsp));
@@ -62,7 +62,7 @@ uint8_t led_reset(cmd_t *const cmd) {
 
 	if (cmd->argc != 1) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_LED_HELP, NULL);
+		printchunk("Usage:", CLI_LED_RESET_HELP, NULL);
 		return EINVAL;
 	}
 
@@ -76,7 +76,7 @@ uint8_t led_reset(cmd_t *const cmd) {
 uint8_t led_blink(cmd_t *const cmd) {
 	if (cmd->argc != 2) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_LED_HELP, NULL);
+		printchunk("Usage:", CLI_LED_BLINK_HELP, NULL);
 		return EINVAL;
 	}
 
@@ -89,7 +89,8 @@ uint8_t led_blink(cmd_t *const cmd) {
 		bsp->blink_frequency = frequency;
 		printf("Led frequency set to %s hz\r\n", cmd->argv[1]);
 	} else {
-		printf(CLI_LED_INVALID_BLINK_VALUE);
+		printf("%s\r\n", CLI_LED_INVALID_BLINK_VALUE);
+		printchunk("Usage:", CLI_LED_BLINK_HELP, NULL);
 	}
 
 	return 0;
@@ -99,7 +100,7 @@ uint8_t led_off(cmd_t * const cmd) {
 
 	if (cmd->argc != 1) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_LED_HELP, NULL);
+		printchunk("Usage:", CLI_LED_ON_OFF_HELP, NULL);
 		return EINVAL;
 	}
 
@@ -116,7 +117,7 @@ uint8_t led_on(cmd_t * const cmd) {
 
 	if (cmd->argc != 1) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_LED_HELP, NULL);
+		printchunk("Usage:", CLI_LED_ON_OFF_HELP, NULL);
 		return EINVAL;
 	}
 

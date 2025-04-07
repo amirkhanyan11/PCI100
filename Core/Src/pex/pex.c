@@ -15,6 +15,14 @@
 #include <stdlib.h>
 #include "../utils/utils.h"
 
+static uint8_t __pex_err(const char * const cmd, const char * const option, const char * const s)
+{
+	printf("pex: %s: %s\r\n", cmd, option);
+	printchunk("Usage:", s, NULL);
+	return EINVAL;
+}
+
+
 uint8_t exec_pex(cmd_t * const cmd) {
 
 	const char * option = NULL;
@@ -43,24 +51,21 @@ uint8_t pex_write(cmd_t * const cmd) {
 
 	if (cmd->argc != 3)
 	{
-		printf("pex: write: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_PEX_WRITE_HELP, NULL);
-		return EINVAL;
+		return __pex_err(cmd->argv[0], CLI_INVALID_OPTIONS, CLI_PEX_WRITE_HELP);
 	}
 
 	uint32_t register_addr = strtol(cmd->argv[1], NULL, 16);
 
 	if (!register_addr && strcmp(cmd->argv[1], "0")) {
-		printf("pex: write: Invalid dev address format\r\n");
-		return EINVAL;
+		return __pex_err(cmd->argv[0], CLI_PEX_INVALID_ADDRESS, CLI_PEX_WRITE_HELP);
 	}
 
 	const uint32_optional_t res = satoi(cmd->argv[2]);
 	const uint32_t val = res.val;
 
 	if (!res.has_val) {
-		printf("pex: write: Invalid value\r\n");
-		return EINVAL;
+		return __pex_err(cmd->argv[0], "Invalid value", CLI_PEX_WRITE_HELP);
+
 	}
 
 	// the remaining 4 bytes of the payload are initialized with user input
@@ -83,16 +88,13 @@ uint8_t pex_read(cmd_t * const cmd) {
 
 	if (cmd->argc != 2)
 	{
-		printf("pex: read: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_PEX_READ_HELP, NULL);
-		return EINVAL;
+		return __pex_err(cmd->argv[0], CLI_INVALID_OPTIONS, CLI_PEX_WRITE_HELP);
 	}
 
 	uint32_t register_addr = strtol(cmd->argv[1], NULL, 16);
 
 	if (!register_addr && strcmp(cmd->argv[1], "0")) {
-		printf("pex: write: Invalid dev address format\r\n");
-		return EINVAL;
+		return __pex_err(cmd->argv[0], CLI_PEX_INVALID_ADDRESS, CLI_PEX_WRITE_HELP);
 	}
 
 	uint8_t payload[] = { PEX_CB1_READ_REGISTER, PEX_CB2_TRANSPARENT_PORTS, PEX_CB3_ENABLE_ALL, register_addr };

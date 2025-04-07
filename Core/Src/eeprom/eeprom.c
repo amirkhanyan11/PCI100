@@ -25,8 +25,8 @@ static void write_handler(bool mod, SPI_HandleTypeDef *hspi1)
 
 static uint8_t __eeprom_err(const char * const cmd, const char * const s)
 {
-	printf("eeprom: %s: %s", cmd, CLI_INVALID_OPTIONS);
-	printf("%s\r\n\n", s);
+	printf("eeprom: %s: %s\r\n", cmd, CLI_INVALID_OPTIONS);
+	printchunk("Usage:", s, NULL);
 	return EINVAL;
 }
 
@@ -157,12 +157,11 @@ uint8_t exec_eeprom(cmd_t * const cmd)
 	} else if (!strcmp(option, "read_bulk")) {
 		status = eeprom_read_bulk(cmd);
 	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		printf(CLI_EEPROM_WRITE_HELP);
-		printf(CLI_EEPROM_READ_HELP);
-		printf(CLI_EEPROM_READ_BULK_HELP);
+		printchunk("eeprom:", CLI_EEPROM_HELP, NULL);
 	} else {
 		printf("eeprom: error: invalid option `%s`. See eeprom -h\r\n", option);
 		status = BSP_INVALID_OPTIONS;
+
 	}
 
 	return status;

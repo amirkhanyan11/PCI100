@@ -9,14 +9,6 @@
 #define ADC_SUPPORTED_CHANNELS_SIZE 1
 static uint32_t adc_channels[ADC_SUPPORTED_CHANNELS_SIZE] = {ADC_CHANNEL_10};
 
-static void adc_supported_ids(uint8_t max_id)
-{
-	printf("\r\n  Supported channel's IDs are:\t\t");
-	for (uint8_t i = 1; i <= max_id; ++i){
-			printf(((i == max_id) ? "%d\r\n\n" : "%d, "), i);
-	}
-}
-
 static bool adc_supported_channel(uint8_t channel_id)
 {
 	return (channel_id > 0 && channel_id <= ADC_SUPPORTED_CHANNELS_SIZE);
@@ -46,9 +38,8 @@ static void adc_channels_handler(ADC_HandleTypeDef *hadc1, uint8_t channel_id)
 
 static uint8_t __adc_err(void)
 {
-	printf("adc: read: %s", CLI_INVALID_OPTIONS);
-	printf("%s", CLI_ADC_HELP);
-	adc_supported_ids(ADC_SUPPORTED_CHANNELS_SIZE);
+	printf("adc: read: %s\r\n", CLI_INVALID_OPTIONS);
+	printchunk("Usage:", CLI_ADC_HELP, NULL);
 	return EINVAL;
 }
 
