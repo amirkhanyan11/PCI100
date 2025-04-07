@@ -16,5 +16,6 @@
 
 uint8_t exec_dac(cmd_t * const cmd);
 uint8_t dac_write(cmd_t * const cmd);
+uint8_t dac_help(void);
 
 #endif //DAC_H
