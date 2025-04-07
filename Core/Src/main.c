@@ -112,7 +112,7 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
-  bsp_init(&bsp, &hdac, &hadc1, &huart1, &hi2c1, &hspi3);
+  bsp_init(&bsp, &hdac, &hadc1, &huart1, &hi2c1, NULL);
 
   /* USER CODE END SysInit */
 

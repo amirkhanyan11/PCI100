@@ -70,6 +70,7 @@ uint8_t bsp_init(
 	bsp->hadcx = hadcx;
 	bsp->hi2cx = hi2cx;
 	bsp->huartx = huartx;
+//	bsp->hspix = hspix;
 	bsp->blink_frequency = 0;
 	bsp->blink_mode = BLINK_OFF;
 	bsp->led_state = LED_OFF;
@@ -79,7 +80,7 @@ uint8_t bsp_init(
 	bsp_cmd_add(bsp, "help", &exec_help);
 	bsp_cmd_add(bsp, "pex",  &exec_pex);
 	bsp_cmd_add(bsp, "adc",  &exec_adc);
-	bsp_cmd_add(bsp, "eeprom",  &exec_eeprom);
+//	bsp_cmd_add(bsp, "eeprom",  &exec_eeprom);
 
 	set_led_config(bsp);
 

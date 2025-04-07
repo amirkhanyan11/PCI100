@@ -27,6 +27,7 @@ Core/Src/bsp \
 Core/Src/cli \
 Core/Src/cmd \
 Core/Src/dac \
+Core/Src/eeprom \
 Core/Src/fifo \
 Core/Src/filo \
 Core/Src/led \

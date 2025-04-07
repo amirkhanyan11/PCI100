@@ -6,6 +6,7 @@
 "./Core/Src/cli/key_handlers.o"
 "./Core/Src/cmd/cmd.o"
 "./Core/Src/dac/dac.o"
+"./Core/Src/eeprom/eeprom.o"
 "./Core/Src/fifo/fifo.o"
 "./Core/Src/filo/filo.o"
 "./Core/Src/led/led.o"
