@@ -15,27 +15,44 @@
 
 uint8_t exec_led(cmd_t * const cmd) {
 
-	const char * const option = cmd->argv[0];
+	const char * option = NULL;
+
+	if (cmd->argc > 0) {
+		option = cmd->argv[0];
+	}
+
+	uint8_t status = 0;
 
 	if (!strcmp(option, "on")) {
-		return led_on(cmd);
+		status = led_on(cmd);
 	}
 	else if (!strcmp(option, "off")) {
-		return led_off(cmd);
+		status = led_off(cmd);
 	}
 	else if (!strcmp(option, "blink")) {
-		return led_blink(cmd);
+		status = led_blink(cmd);
 	}
 	else if (!strcmp(option, "reset")) {
-		return led_reset(cmd);
+		status = led_reset(cmd);
 	}
 	else if (!strcmp(option, "get")) {
-		return led_get(cmd);
+		status = led_get(cmd);
+	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
+		status = led_help();
+	} else {
+		status = BSP_INVALID_OPTIONS;
 	}
 
-	printf("led: %s", CLI_INVALID_OPTIONS);
+	if (BSP_INVALID_OPTIONS == status) {
+		printf("led: error: invalid option `%s`. See led -h\r\n", option);
+	}
 
-	return BSP_INVALID_OPTIONS;
+	return status;
+}
+
+uint8_t led_help(void) {
+	printf(CLI_LED_HELP);
+	return 0;
 }
 
 uint8_t led_get(cmd_t *const cmd) {

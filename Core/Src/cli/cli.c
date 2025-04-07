@@ -20,7 +20,9 @@ PUTCHAR_PROTOTYPE
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[0]);
+	if (huart->Instance == USART1) {
+		fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[0]);
+	}
 }
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
