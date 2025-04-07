@@ -10,7 +10,7 @@
 
 // error messages
 #define CLI_COMMAND_NOT_FOUND "error: command not found\r\n"
-#define CLI_INVALID_OPTIONS "error: invalid options\r\n"
+#define CLI_INVALID_OPTIONS "error: invalid options"
 #define CLI_LED_INVALID_BLINK_VALUE "led: error: invalid blink frequency. Valid frequency range: [1 ... 1000]\r\n"
 #define CLI_LED_ON "Led is on"
 #define CLI_LED_OFF "Led is off"
@@ -24,8 +24,7 @@
 #define CLI_LED_ON_OFF_HELP "led <on/off>                       - Turn the LED ON or OFF"
 #define CLI_LED_GET_HELP	"led get                            - Get the current state of the LED"
 #define CLI_LED_RESET_HELP	"led reset                          - Reset the LED mode to the one selected by MCU_CFG"
-#define CLI_LED_BLINK_HELP	"led blink <hz>                     - Set the LED blink frequency (in Hz). Available frequency range: [ 1 ... 1000 ]" \
-		   	   	     	 	"\r\n			                         Available frequency range: [ 1 ... 1000 ]\r\n"
+#define CLI_LED_BLINK_HELP	"led blink <hz>                     - Set the LED blink frequency (in Hz). Available frequency range: [ 1 ... 1000 ]"
 
 #define CLI_LED_HELP CLI_LED_ON_OFF_HELP, CLI_LED_GET_HELP, CLI_LED_RESET_HELP, CLI_LED_BLINK_HELP
 
@@ -36,8 +35,7 @@
 #define CLI_PEX_HELP CLI_PEX_WRITE_HELP, CLI_PEX_READ_HELP
 
 // DAC
-#define CLI_DAC_WRITE_HELP "dac write <dac_id> <val>           - Write a value to the DAC with the specified ID." \
-		   	   	   	 	   "\r\n			                         Available id's : [ 1 ]. Available floating point value range: [ 0 ... 1 ]"
+#define CLI_DAC_WRITE_HELP "dac write <dac_id> <val>           - Write a value to the DAC with the specified ID. Available id's : [ 1 ]. Available floating point value range: [ 0 ... 1 ]"
 
 #define CLI_DAC_HELP CLI_DAC_WRITE_HELP
 

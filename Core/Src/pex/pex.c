@@ -25,25 +25,26 @@ uint8_t exec_pex(cmd_t * const cmd) {
 
 	uint8_t status = 0;
 
-	if (!strcmp(option, "write")) {
-		status = pex_write(cmd);
+	if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
+		printchunk("Usage:", CLI_PEX_HELP, NULL);
 	} else if (!strcmp(option, "read")) {
 		status = pex_read(cmd);
-	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		printchunk("Usage:", CLI_PEX_HELP, NULL);
+	} else if (!strcmp(option, "write")) {
+		status = pex_write(cmd);
 	} else {
 		printf("pex: error: invalid option `%s`. See pex -h\r\n", option);
 		status = BSP_INVALID_OPTIONS;
 	}
-
 
 	return status;
 }
 
 uint8_t pex_write(cmd_t * const cmd) {
 
-	if (cmd->argc != 3) {
-		printf(CLI_INVALID_OPTIONS);
+	if (cmd->argc != 3)
+	{
+		printf("pex: write: %s\r\n", CLI_INVALID_OPTIONS);
+		printchunk("Usage:", CLI_PEX_WRITE_HELP, NULL);
 		return EINVAL;
 	}
 
@@ -80,8 +81,10 @@ uint8_t pex_write(cmd_t * const cmd) {
 
 uint8_t pex_read(cmd_t * const cmd) {
 
-	if (cmd->argc != 2) {
-		printf(CLI_INVALID_OPTIONS);
+	if (cmd->argc != 2)
+	{
+		printf("pex: read: %s\r\n", CLI_INVALID_OPTIONS);
+		printchunk("Usage:", CLI_PEX_READ_HELP, NULL);
 		return EINVAL;
 	}
 
