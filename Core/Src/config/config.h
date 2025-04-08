@@ -22,7 +22,7 @@ void MX_I2C_Init(I2C_HandleTypeDef * const hi2cx);
 void MX_ADC_Init(ADC_HandleTypeDef * const hadcx);
 
 
-//void MX_DAC_Init(DAC_HandleTypeDef * const hdacx);
+void MX_DAC_Init(DAC_HandleTypeDef * const hdacx);
 
 
 

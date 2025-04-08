@@ -46,21 +46,12 @@ uint8_t dac_write(cmd_t * const cmd) {
 	}
 
 	const uint8_t dac_id = satoi(cmd->argv[1]).val;
-
-	if (dac_id != 1) {
-		printf(CLI_DAC_INVALID_ID);
-		return EINVAL;
-	}
-
 	const double_optional_t res = satof(cmd->argv[2]);
-
 	const double value = res.val;
 
-	if (!res.has_val) {
-		printf(CLI_DAC_INVALID_OPTION);
-		return EINVAL;
-	} else if (value < 0 || value > DAC_MAX_VALUE) {
-		printf(CLI_DAC_INVALID_VALUE);
+	if (dac_id != 1 || !res.has_val || value < 0 || value > DAC_MAX_VALUE) {
+		printf("dac: write: %s\r\n", CLI_INVALID_OPTIONS);
+		printchunk("Usage:", CLI_DAC_HELP, NULL);
 		return EINVAL;
 	}
 

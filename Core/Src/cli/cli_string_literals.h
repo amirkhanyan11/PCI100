@@ -17,8 +17,6 @@
 #define CLI_LED_INVALID_BLINK_VALUE "led: error: invalid blink frequency."
 #define CLI_LED_ON "Led is on"
 #define CLI_LED_OFF "Led is off"
-#define CLI_DAC_INVALID_VALUE "dac: write: error: Invalid DAC value. Avaliable DAC value range: [ 0 ... 1 ]\r\n"
-#define CLI_DAC_INVALID_OPTION "dac: write: error: Enter a decimal number\r\n"
 #define CLI_DAC_INVALID_ID "dac: write: error: Invalid DAC id. Avalidable id's: [ 1 ]\r\n"
 
 // help messages

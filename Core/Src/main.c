@@ -52,7 +52,7 @@
 /* Private variables ---------------------------------------------------------*/
 extern ADC_HandleTypeDef hadc1;
 
-DAC_HandleTypeDef hdac;
+extern DAC_HandleTypeDef hdac;
 
 extern I2C_HandleTypeDef hi2c1;
 DMA_HandleTypeDef hdma_i2c1_tx;
@@ -74,7 +74,6 @@ static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init();
 static void MX_USART1_UART_Init();
-static void MX_DAC_Init();
 
 /* USER CODE BEGIN PFP */
 
@@ -126,7 +125,7 @@ int main(void)
   MX_I2C_Init(&hi2c1);
   MX_USART1_UART_Init();
   MX_ADC_Init(&hadc1);
-  MX_DAC_Init();
+  MX_DAC_Init(&hdac);
   MX_SPI_Init(&hspi2);
   /* USER CODE BEGIN 2 */
 
@@ -190,48 +189,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-
-
-/**
-  * @brief DAC Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_DAC_Init(void)
-{
-
-  /* USER CODE BEGIN DAC_Init 0 */
-
-  /* USER CODE END DAC_Init 0 */
-
-  DAC_ChannelConfTypeDef sConfig = {0};
-
-  /* USER CODE BEGIN DAC_Init 1 */
-
-  /* USER CODE END DAC_Init 1 */
-
-  /** DAC Initialization
-  */
-  hdac.Instance = DAC;
-  if (HAL_DAC_Init(&hdac) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** DAC channel OUT2 config
-  */
-  sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
-  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
-  if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN DAC_Init 2 */
-
-  /* USER CODE END DAC_Init 2 */
-
 }
 
 

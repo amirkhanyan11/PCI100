@@ -144,10 +144,21 @@ double_optional_t satof(const char * const s)
 {
 	double_optional_t res = { .has_val = false, .val = -1 };
 
-	for(uint8_t i = 0; s[i]; ++i) {
-		if (!isdigit((uint8_t)s[i])) {
+	const uint8_t * t = (uint8_t *)s;
+
+	while (*t && isdigit(*t)) {
+		++t;
+	}
+
+	if (*t && *t == '.') {
+		++t;
+	}
+
+	while(*t) {
+		if (!isdigit(*t)) {
 			return res;
 		}
+		++t;
 	}
 	res.has_val = true;
 	res.val = atof(s);
