@@ -20,8 +20,6 @@
 
 static fifo_t UART_FIFO;
 
-app_t app;
-
 void app_run(app_t * const app) {
 	blink_led(&app->led);
 	cli_poll(&app->engine);
@@ -51,15 +49,7 @@ uint8_t app_exec(app_t * const app, char *line) {
 	return cmd.exec(&cmd);
 }
 
-uint8_t app_init(
-		app_t * const app,
-		DAC_HandleTypeDef * const hdacx,
-		ADC_HandleTypeDef * const hadcx,
-		UART_HandleTypeDef * const huartx,
-		I2C_HandleTypeDef * const hi2cx,
-		SPI_HandleTypeDef * const hspix
-) {
-	HAL_DAC_Start(hdacx, DAC_CHANNEL_2);
+uint8_t app_init(app_t * const app, bsp_t * const bsp) {
 	fifo_init(&UART_FIFO);
 	engine_init(&app->engine, &UART_FIFO);
 
@@ -67,28 +57,19 @@ uint8_t app_init(
 
 	app->engine.app = app;
 
-	app->hdacx = hdacx;
-	app->hadcx = hadcx;
-	app->hi2cx = hi2cx;
-	app->huartx = huartx;
-	app->hspix = hspix;
+	app->bsp = bsp;
 
 	led_init(&app->led);
 
-	app_cmd_add(app, "led",  &exec_led);
-	app_cmd_add(app, "dac",  &exec_dac);
-	app_cmd_add(app, "help", &exec_help);
-	app_cmd_add(app, "pex",  &exec_pex);
-	app_cmd_add(app, "adc",  &exec_adc);
+	app_cmd_add(app, "led", 	&exec_led);
+	app_cmd_add(app, "dac",  	&exec_dac);
+	app_cmd_add(app, "help",	&exec_help);
+	app_cmd_add(app, "pex",  	&exec_pex);
+	app_cmd_add(app, "adc",  	&exec_adc);
 	app_cmd_add(app, "eeprom",  &exec_eeprom);
 
 	printf("\r\n%s", PROMPT);
 	fflush(stdout);
-
-//	HAL_UART_Receive_DMA(app->huartx, app->rx_buf, RX_BUFFER_SIZE);
-
-	// for i2c
-//	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
 	return 0;
 }

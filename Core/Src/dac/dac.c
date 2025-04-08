@@ -4,6 +4,7 @@
 
 #include "dac.h"
 #include "cli.h"
+#include "bsp.h"
 #include "cli_string_literals.h"
 #include <stdio.h>
 #include <ctype.h>
@@ -65,7 +66,7 @@ uint8_t dac_write(cmd_t * const cmd) {
 
 	const uint16_t dac_value = (value * 4095);
 
-	HAL_DAC_SetValue(cmd->app->hdacx, DAC_CHANNEL_2, DAC_ALIGN_12B_R, dac_value);
+	HAL_DAC_SetValue(cmd->app->bsp->hdacx, DAC_CHANNEL_2, DAC_ALIGN_12B_R, dac_value);
 	printf("dac: write: success!\r\n");
 	printf("output set to %d\r\n", dac_value);
 

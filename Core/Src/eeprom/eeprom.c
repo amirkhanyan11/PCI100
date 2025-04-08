@@ -3,13 +3,14 @@
 #include <string.h>
 #include "utils.h"
 #include "cli_string_literals.h"
+#include "bsp.h"
 
 static void chip_select(bool mod)
 {
 	if (mod) {
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
 	} else {
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
 	}
 	HAL_Delay(1);
 }
@@ -57,16 +58,16 @@ static uint8_t eeprom_write(cmd_t * const cmd)
 
     uint8_t arr[SPI_SIZE] = {SPI_WRITE, address >> 8, address, data};
 
-    write_handler(true, cmd->app->hspix);
+    write_handler(true, cmd->app->bsp->hspix);
     chip_select(true);
 
-    if ( HAL_SPI_Transmit(cmd->app->hspix, arr, SPI_SIZE, 1000) == HAL_OK) {
+    if ( HAL_SPI_Transmit(cmd->app->bsp->hspix, arr, SPI_SIZE, 1000) == HAL_OK) {
         printf("Message successfully transmitted.\r\n");
     } else {
     	printf("Error occurred during write process.\r\n");
     }
     chip_select(false);
-    write_handler(true, cmd->app->hspix);
+    write_handler(true, cmd->app->bsp->hspix);
     return HAL_OK;
 }
 
@@ -89,7 +90,7 @@ static uint8_t eeprom_read(cmd_t * const cmd)
 
     chip_select(true);
 
-    if (HAL_SPI_TransmitReceive(cmd->app->hspix, arr, data, SPI_SIZE, 1000) == HAL_OK) {
+    if (HAL_SPI_TransmitReceive(cmd->app->bsp->hspix, arr, data, SPI_SIZE, 1000) == HAL_OK) {
    		printf("%d\r\n", data[SPI_SIZE - 1]);
     } else {
     	printf("Error occurred during read process.\r\n");
@@ -129,7 +130,7 @@ static uint8_t eeprom_read_bulk(cmd_t * const cmd)
     memset(receive, 0, SPI_SIZE + size);
 
     chip_select(true);
-    if (size != 0 && HAL_SPI_TransmitReceive(cmd->app->hspix, transmit, receive, SPI_SIZE + size, 1000) == HAL_OK) {
+    if (size != 0 && HAL_SPI_TransmitReceive(cmd->app->bsp->hspix, transmit, receive, SPI_SIZE + size, 1000) == HAL_OK) {
         for (uint8_t i = SPI_SIZE - 1; i < SPI_SIZE + size - 1; ++i) {
         	printf(((i != SPI_SIZE + size - 2) ? "%d, " : "%d\r\n"), receive[i]);
         }

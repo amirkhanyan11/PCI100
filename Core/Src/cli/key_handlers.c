@@ -12,12 +12,13 @@
 #include "lexer.h"
 #include "utils.h"
 #include "fifo.h"
+#include "bsp.h"
 #include "cli_string_literals.h"
 #include <ctype.h>
 
 uint8_t handle_nl(cli_engine_t * const engine) {
 
-	cli_putnl(engine->app->huartx);
+	cli_putnl(engine->app->bsp->huartx);
 
 	char line[FILO_BUFFER_SIZE] = {0};
 	strcpy(line, engine->line.buffer);
@@ -50,7 +51,7 @@ uint8_t handle_bs(cli_engine_t * const engine) {
 	}
 	history_reset_pos(&engine->history);
 	filo_get(&engine->line);
-	cli_puts(engine->app->huartx, "\b \b");
+	cli_puts(engine->app->bsp->huartx, "\b \b");
 
 	return 0;
 }

@@ -4,6 +4,7 @@
 #include <string.h>
 #include "utils.h"
 #include "cli_string_literals.h"
+#include "bsp.h"
 
 #define COUNTER 10
 #define ADC_SUPPORTED_CHANNELS_SIZE 1
@@ -54,19 +55,19 @@ static uint8_t adc_read(cmd_t * const cmd)
 	if (!channel.has_val || !adc_supported_channel(channel.val)) {
 		return __adc_err();
 	}
-	adc_channels_handler(cmd->app->hadcx, channel.val);
-	HAL_ADC_Start(cmd->app->hadcx);
+	adc_channels_handler(cmd->app->bsp->hadcx, channel.val);
+	HAL_ADC_Start(cmd->app->bsp->hadcx);
 	float res = 0;
 	uint16_t i = 0;
 	while (i++ < COUNTER) {
-		HAL_ADC_PollForConversion(cmd->app->hadcx, 10);
-		res += HAL_ADC_GetValue(cmd->app->hadcx);
+		HAL_ADC_PollForConversion(cmd->app->bsp->hadcx, 10);
+		res += HAL_ADC_GetValue(cmd->app->bsp->hadcx);
 	}
 	res /= COUNTER;
 	res *= VOLTAGE_MAX / BIT_RANGE_12;
 
 	printf("%.2fV\r\n", res);
-	return (HAL_ADC_Stop(cmd->app->hadcx));
+	return (HAL_ADC_Stop(cmd->app->bsp->hadcx));
 }
 
 // ADC_Handler - handles received analog, convert to digital and shows voltage

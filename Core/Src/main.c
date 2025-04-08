@@ -29,6 +29,7 @@
 #include "cmd.h"
 #include "pex.h"
 #include "fifo.h"
+#include "bsp.h"
 
 /* USER CODE END Includes */
 
@@ -83,7 +84,8 @@ static void MX_SPI2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-extern app_t app;
+app_t app;
+bsp_t bsp;
 
 /* USER CODE END 0 */
 
@@ -114,8 +116,8 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
-  app_init(&app, &hdac, &hadc1, &huart1, &hi2c1, &hspi2);
+  bsp_config(&bsp, &hdac, &hadc1, &huart1, &hi2c1, &hspi2);
+  app_init(&app, &bsp);
 
   /* USER CODE END SysInit */
 

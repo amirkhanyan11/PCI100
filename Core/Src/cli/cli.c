@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "fifo.h"
 #include "app.h"
+#include "bsp.h"
 #include "typedefs.h"
 #include <stdarg.h>
 
@@ -15,7 +16,7 @@ extern app_t app;
 
 PUTCHAR_PROTOTYPE
 {
-  HAL_UART_Transmit(app.huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
+  HAL_UART_Transmit(app.bsp->huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
   return ch;
 }
 
@@ -57,7 +58,7 @@ void cli_poll(cli_engine_t *engine) {
 		else if (isprint(key))
 		{
 			filo_set(&engine->line, key);
-			HAL_UART_Transmit(engine->app->huartx, &key, 1, UART_TRANSMIT_TIMEOUT);
+			HAL_UART_Transmit(engine->app->bsp->huartx, &key, 1, UART_TRANSMIT_TIMEOUT);
 		}
 	}
 }
@@ -65,7 +66,7 @@ void cli_poll(cli_engine_t *engine) {
 void cli_clear_output(cli_engine_t *engine) {
 	while(!filo_is_empty(&engine->line)) {
 		filo_get(&engine->line);
-		cli_puts(engine->app->huartx, "\b \b");
+		cli_puts(engine->app->bsp->huartx, "\b \b");
 	}
 }
 

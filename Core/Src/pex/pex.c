@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "bsp.h"
 
 static uint8_t __pex_err(const char * const cmd, const char * const option, const char * const s)
 {
@@ -75,7 +76,7 @@ uint8_t pex_write(cmd_t * const cmd) {
 		payload[i] = (val >> shift_offset);
 	}
 
-	if (HAL_OK == HAL_I2C_Master_Transmit(cmd->app->hi2cx, PEX_SLAVE_ADDRESS, payload, sizeof(payload), HAL_MAX_DELAY)) {
+	if (HAL_OK == HAL_I2C_Master_Transmit(cmd->app->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, sizeof(payload), HAL_MAX_DELAY)) {
 		printf("pex: write: success!\r\n");
 	} else {
 		printf("pex: write: something went wrong\r\n");
@@ -98,11 +99,11 @@ uint8_t pex_read(cmd_t * const cmd) {
 	}
 
 	uint8_t payload[] = { PEX_CB1_READ_REGISTER, PEX_CB2_TRANSPARENT_PORTS, PEX_CB3_ENABLE_ALL, register_addr };
-	HAL_I2C_Master_Transmit(cmd->app->hi2cx, PEX_SLAVE_ADDRESS, payload, sizeof(payload), 1000);
+	HAL_I2C_Master_Transmit(cmd->app->bsp->hi2cx, PEX_SLAVE_ADDRESS, payload, sizeof(payload), 1000);
 
 	uint8_t RX_Buf[4] = {0};
 
-	HAL_I2C_Master_Receive(cmd->app->hi2cx, PEX_SLAVE_ADDRESS, RX_Buf, sizeof(RX_Buf), 1000);
+	HAL_I2C_Master_Receive(cmd->app->bsp->hi2cx, PEX_SLAVE_ADDRESS, RX_Buf, sizeof(RX_Buf), 1000);
 	printf("pex: read: success!\r\n");
 
 	uint32_t res = 0;
