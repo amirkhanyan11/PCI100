@@ -58,7 +58,7 @@ uint8_t app_init(app_t * const app, bsp_t * const bsp) {
 
 	led_init(&app->led);
 
-	app_config(&app);
+	app_config(app);
 
 	printf("\r\n%s", PROMPT);
 	fflush(stdout);

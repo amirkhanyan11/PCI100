@@ -6,35 +6,12 @@
 #include "cli_string_literals.h"
 #include "bsp.h"
 
-#define COUNTER 10
-#define ADC_SUPPORTED_CHANNELS_SIZE 1
-static uint32_t adc_channels[ADC_SUPPORTED_CHANNELS_SIZE] = {ADC_CHANNEL_10};
+
+extern uint32_t adc_channels[ADC_SUPPORTED_CHANNELS_SIZE];
 
 static bool adc_supported_channel(uint8_t channel_id)
 {
 	return (channel_id > 0 && channel_id <= ADC_SUPPORTED_CHANNELS_SIZE);
-}
-
-static void adc_error_handle(void)
-{
-	printf("  Something went wrong in channel select process.\r\n");
-	__disable_irq();
-	while (1)
-	{
-	}
-}
-
-static void adc_channels_handler(ADC_HandleTypeDef *hadc1, uint8_t channel_id)
-{
-	ADC_ChannelConfTypeDef sConfig = {0};
-
-	sConfig.Channel = adc_channels[channel_id - 1];
-	sConfig.Rank = ADC_REGULAR_RANK_1;
-	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-	if (HAL_ADC_ConfigChannel(hadc1, &sConfig) != HAL_OK)
-	{
-		adc_error_handle();
-	}
 }
 
 static uint8_t __adc_err(void)
