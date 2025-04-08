@@ -42,7 +42,7 @@ uint8_t exec_led(cmd_t * const cmd) {
 		status = led_get(cmd);
 	} else {
 		printf("led: error: invalid option `%s`. See led -h\r\n", option);
-		status = BSP_INVALID_OPTIONS;
+		status = APP_INVALID_OPTIONS;
 	}
 
 	return status;
@@ -54,7 +54,7 @@ uint8_t led_get(cmd_t *const cmd) {
 		printchunk("Usage:", CLI_LED_GET_HELP, NULL);
 		return EINVAL;
 	}
-	printf("%s\n\r", get_led_state(cmd->bsp));
+	printf("%s\n\r", get_led_state(cmd->app));
 	return 0;
 }
 
@@ -66,9 +66,9 @@ uint8_t led_reset(cmd_t *const cmd) {
 		return EINVAL;
 	}
 
-	set_led_config(cmd->bsp);
+	set_led_config(cmd->app);
 	printf("led mode is now configured by MCU_CFG. ");
-	printf("%s\n\r", get_led_state(cmd->bsp));
+	printf("%s\n\r", get_led_state(cmd->app));
 	return 0;
 }
 
@@ -80,13 +80,13 @@ uint8_t led_blink(cmd_t *const cmd) {
 		return EINVAL;
 	}
 
-	bsp_t * const bsp = cmd->bsp;
+	app_t * const app = cmd->app;
 	const uint32_t frequency = satoi(cmd->argv[1]).val;
 
 	if (frequency > 1 && frequency < 1000) {
-		bsp->blink_mode = BLINK_ON;
-		bsp->led_state = LED_ON;
-		bsp->blink_frequency = frequency;
+		app->blink_mode = BLINK_ON;
+		app->led_state = LED_ON;
+		app->blink_frequency = frequency;
 		printf("Led frequency set to %s hz\r\n", cmd->argv[1]);
 	} else {
 		printf("%s\r\n", CLI_LED_INVALID_BLINK_VALUE);
@@ -104,11 +104,11 @@ uint8_t led_off(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	cmd->bsp->led_state = LED_OFF;
-	cmd->bsp->blink_mode = BLINK_OFF;
+	cmd->app->led_state = LED_OFF;
+	cmd->app->blink_mode = BLINK_OFF;
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
 
-	printf("%s\n\r", get_led_state(cmd->bsp));
+	printf("%s\n\r", get_led_state(cmd->app));
 	return 0;
 }
 
@@ -121,14 +121,14 @@ uint8_t led_on(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	cmd->bsp->led_state = LED_ON;
-	cmd->bsp->blink_mode = BLINK_OFF;
+	cmd->app->led_state = LED_ON;
+	cmd->app->blink_mode = BLINK_OFF;
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-	printf("%s\n\r", get_led_state(cmd->bsp));
+	printf("%s\n\r", get_led_state(cmd->app));
 	return 0;
 }
 
-void set_led_config(bsp_t * const bsp) {
+void set_led_config(app_t * const app) {
   uint8_t input = 0;
 
   input |= !HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
@@ -155,36 +155,36 @@ void set_led_config(bsp_t * const bsp) {
   switch (input) {
   case 0:
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-    bsp->blink_frequency = 0;
-    bsp->blink_mode = BLINK_OFF;
+    app->blink_frequency = 0;
+    app->blink_mode = BLINK_OFF;
     break;
   case 1:
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-	bsp->blink_frequency = 1;
-	bsp->blink_mode = BLINK_ON;
+	app->blink_frequency = 1;
+	app->blink_mode = BLINK_ON;
     break;
   case 2 ... 8:
-	bsp->blink_mode = BLINK_ON;
-  	bsp->blink_frequency = fmap[input];
+	app->blink_mode = BLINK_ON;
+  	app->blink_frequency = fmap[input];
   	break;
   default:
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-	bsp->blink_frequency = 0;
-	bsp->blink_mode = BLINK_OFF;
+	app->blink_frequency = 0;
+	app->blink_mode = BLINK_OFF;
   }
 }
 
 
-const char *get_led_state(bsp_t * const bsp) {
+const char *get_led_state(app_t * const app) {
 
 	static char message[128];
 
-	if (bsp->led_state == LED_OFF) {
+	if (app->led_state == LED_OFF) {
 		sprintf(message, CLI_LED_OFF);
-	} else if (bsp->led_state == LED_ON && bsp->blink_mode == BLINK_OFF) {
+	} else if (app->led_state == LED_ON && app->blink_mode == BLINK_OFF) {
 		sprintf(message, CLI_LED_ON);
 	} else {
-		sprintf(message, "Led is blinking at %lu hz", bsp->blink_frequency);
+		sprintf(message, "Led is blinking at %lu hz", app->blink_frequency);
 	}
 
 	return message;

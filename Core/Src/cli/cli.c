@@ -7,22 +7,22 @@
 #include <ctype.h>
 #include <stdio.h>
 #include "fifo.h"
-#include "bsp.h"
+#include "app.h"
 #include "typedefs.h"
 #include <stdarg.h>
 
-extern bsp_t bsp;
+extern app_t app;
 
 PUTCHAR_PROTOTYPE
 {
-  HAL_UART_Transmit(bsp.huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
+  HAL_UART_Transmit(app.huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
   return ch;
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if (huart->Instance == USART1) {
-		fifo_set(bsp.engine.uart_buffer, bsp.rx_buf[0]);
+		fifo_set(app.engine.buffer, app.rx_buf[0]);
 	}
 }
 
@@ -32,15 +32,15 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 }
 
 void engine_init(cli_engine_t *engine, fifo_t *fifo) {
-	engine->bsp = NULL;
-	engine->uart_buffer = fifo;
+	engine->app = NULL;
+	engine->buffer = fifo;
 	filo_init(&engine->line);
 	history_init(&engine->history);
 }
 
 void cli_poll(cli_engine_t *engine) {
-	while(!fifo_is_empty(engine->uart_buffer)) {
-		const uint8_t key = (uint8_t) fifo_get(engine->uart_buffer);
+	while(!fifo_is_empty(engine->buffer)) {
+		const uint8_t key = (uint8_t) fifo_get(engine->buffer);
 		if (key == '\r')
 		{
 			handle_nl(engine);
@@ -57,7 +57,7 @@ void cli_poll(cli_engine_t *engine) {
 		else if (isprint(key))
 		{
 			filo_set(&engine->line, key);
-			HAL_UART_Transmit(engine->bsp->huartx, &key, 1, UART_TRANSMIT_TIMEOUT);
+			HAL_UART_Transmit(engine->app->huartx, &key, 1, UART_TRANSMIT_TIMEOUT);
 		}
 	}
 }
@@ -65,7 +65,7 @@ void cli_poll(cli_engine_t *engine) {
 void cli_clear_output(cli_engine_t *engine) {
 	while(!filo_is_empty(&engine->line)) {
 		filo_get(&engine->line);
-		cli_puts(engine->bsp->huartx, "\b \b");
+		cli_puts(engine->app->huartx, "\b \b");
 	}
 }
 

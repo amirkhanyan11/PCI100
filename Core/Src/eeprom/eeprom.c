@@ -57,16 +57,16 @@ static uint8_t eeprom_write(cmd_t * const cmd)
 
     uint8_t arr[SPI_SIZE] = {SPI_WRITE, address >> 8, address, data};
 
-    write_handler(true, cmd->bsp->hspix);
+    write_handler(true, cmd->app->hspix);
     chip_select(true);
 
-    if ( HAL_SPI_Transmit(cmd->bsp->hspix, arr, SPI_SIZE, 1000) == HAL_OK) {
+    if ( HAL_SPI_Transmit(cmd->app->hspix, arr, SPI_SIZE, 1000) == HAL_OK) {
         printf("Message successfully transmitted.\r\n");
     } else {
     	printf("Error occurred during write process.\r\n");
     }
     chip_select(false);
-    write_handler(true, cmd->bsp->hspix);
+    write_handler(true, cmd->app->hspix);
     return HAL_OK;
 }
 
@@ -89,7 +89,7 @@ static uint8_t eeprom_read(cmd_t * const cmd)
 
     chip_select(true);
 
-    if (HAL_SPI_TransmitReceive(cmd->bsp->hspix, arr, data, SPI_SIZE, 1000) == HAL_OK) {
+    if (HAL_SPI_TransmitReceive(cmd->app->hspix, arr, data, SPI_SIZE, 1000) == HAL_OK) {
    		printf("%d\r\n", data[SPI_SIZE - 1]);
     } else {
     	printf("Error occurred during read process.\r\n");
@@ -129,7 +129,7 @@ static uint8_t eeprom_read_bulk(cmd_t * const cmd)
     memset(receive, 0, SPI_SIZE + size);
 
     chip_select(true);
-    if (size != 0 && HAL_SPI_TransmitReceive(cmd->bsp->hspix, transmit, receive, SPI_SIZE + size, 1000) == HAL_OK) {
+    if (size != 0 && HAL_SPI_TransmitReceive(cmd->app->hspix, transmit, receive, SPI_SIZE + size, 1000) == HAL_OK) {
         for (uint8_t i = SPI_SIZE - 1; i < SPI_SIZE + size - 1; ++i) {
         	printf(((i != SPI_SIZE + size - 2) ? "%d, " : "%d\r\n"), receive[i]);
         }
@@ -160,7 +160,7 @@ uint8_t exec_eeprom(cmd_t * const cmd)
 		printchunk("eeprom:", CLI_EEPROM_HELP, NULL);
 	} else {
 		printf("eeprom: error: invalid option `%s`. See eeprom -h\r\n", option);
-		status = BSP_INVALID_OPTIONS;
+		status = APP_INVALID_OPTIONS;
 
 	}
 

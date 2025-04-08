@@ -6,7 +6,7 @@
  */
 
 
-#include "bsp.h"
+#include "app.h"
 #include <stdarg.h>
 #include "cli_string_literals.h"
 #include <errno.h>
@@ -15,7 +15,7 @@
 uint8_t exec_help(cmd_t * const cmd) {
 	if (cmd->argc != 0) {
 		printf("help: %s", CLI_INVALID_OPTIONS);
-		return BSP_INVALID_OPTIONS;
+		return APP_INVALID_OPTIONS;
 	}
 
 	printf("\r\nAvailable commands:\r\n");

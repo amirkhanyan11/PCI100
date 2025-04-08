@@ -6,7 +6,7 @@
  */
 
 #include "cmd.h"
-#include "bsp.h"
+#include "app.h"
 #include "led.h"
 #include "lexer.h"
 #include <string.h>
@@ -14,7 +14,7 @@
 
 static uint8_t bind_exec(cmd_t * const cmd) {
 
-	exec_t e = bsp_cmd_get(cmd->bsp, cmd->name);
+	exec_t e = app_cmd_get(cmd->app, cmd->name);
 
 	if (NULL == e) {
 		return ESRCH;
@@ -29,14 +29,14 @@ static uint8_t bind_exec(cmd_t * const cmd) {
  * cmd - pointer to already allocated command structure
  * input - user input string
  * */
-uint8_t make_cmd(cmd_t * const cmd, bsp_t * const bsp, char *input) {
+uint8_t make_cmd(cmd_t * const cmd, app_t * const app, char *input) {
 	if (!cmd || !input) {
 		return EINVAL;
 	}
 
 	memset(cmd, 0, sizeof(cmd_t));
 
-	cmd->bsp = bsp;
+	cmd->app = app;
 
 	const uint8_t parse_status = parse(cmd, input);
 

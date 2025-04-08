@@ -26,11 +26,11 @@
 uint8_t led_on(cmd_t * const cmd);
 uint8_t led_off(cmd_t * const cmd);
 uint8_t led_blink(cmd_t * const cmd);
-const char *get_led_mode(bsp_t * const bsp);
-void set_led_config(bsp_t * const bsp);
+const char *get_led_mode(app_t * const app);
+void set_led_config(app_t * const app);
 uint8_t exec_led(cmd_t * const cmd);
 uint8_t led_reset(cmd_t *const cmd);
 uint8_t led_get(cmd_t *const cmd);
-const char *get_led_state(bsp_t * const bsp);
+const char *get_led_state(app_t * const app);
 
 #endif // UTILS_H

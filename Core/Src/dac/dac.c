@@ -30,7 +30,7 @@ uint8_t exec_dac(cmd_t * const cmd) {
 		status = dac_write(cmd);
 	} else {
 		printf("dac: error: invalid option `%s`. See dac -h\r\n", option);
-		status = BSP_INVALID_OPTIONS;
+		status = APP_INVALID_OPTIONS;
 	}
 
 	return status;
@@ -65,7 +65,7 @@ uint8_t dac_write(cmd_t * const cmd) {
 
 	const uint16_t dac_value = (value * 4095);
 
-	HAL_DAC_SetValue(cmd->bsp->hdacx, DAC_CHANNEL_2, DAC_ALIGN_12B_R, dac_value);
+	HAL_DAC_SetValue(cmd->app->hdacx, DAC_CHANNEL_2, DAC_ALIGN_12B_R, dac_value);
 	printf("dac: write: success!\r\n");
 	printf("output set to %d\r\n", dac_value);
 

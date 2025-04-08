@@ -5,9 +5,8 @@
 #ifndef CLI_H
 #define CLI_H
 
-//#include "history.h"
 #include "main.h"
-#include "../filo/filo.h"
+#include "filo.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include "typedefs.h"
@@ -16,16 +15,8 @@
 
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 
-#define ENGINE_BUFFER_SIZE 1024
 #define UART_RECEIVE_TIMEOUT 100
 #define UART_TRANSMIT_TIMEOUT 100
-#define CMD_MAX_LENGTH 128
-
-#define CLI_WHITESPACE_DELIMITERS " \t"
-
-// error codes
-#define CLI_OK 0
-#define CLI_ERROR 1
 
 #define HISTORY_SIZE 32
 
@@ -48,8 +39,8 @@ bool history_can_shift(history_t * const history);
 
 struct cli_engine_s
 {
-	bsp_t		*bsp;
-	fifo_t		*uart_buffer;
+	app_t		*app;
+	fifo_t		*buffer;
 	filo_t		line;
 	history_t	history;
 };

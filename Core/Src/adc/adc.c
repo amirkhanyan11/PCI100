@@ -54,19 +54,19 @@ static uint8_t adc_read(cmd_t * const cmd)
 	if (!channel.has_val || !adc_supported_channel(channel.val)) {
 		return __adc_err();
 	}
-	adc_channels_handler(cmd->bsp->hadcx, channel.val);
-	HAL_ADC_Start(cmd->bsp->hadcx);
+	adc_channels_handler(cmd->app->hadcx, channel.val);
+	HAL_ADC_Start(cmd->app->hadcx);
 	float res = 0;
 	uint16_t i = 0;
 	while (i++ < COUNTER) {
-		HAL_ADC_PollForConversion(cmd->bsp->hadcx, 10);
-		res += HAL_ADC_GetValue(cmd->bsp->hadcx);
+		HAL_ADC_PollForConversion(cmd->app->hadcx, 10);
+		res += HAL_ADC_GetValue(cmd->app->hadcx);
 	}
 	res /= COUNTER;
 	res *= VOLTAGE_MAX / BIT_RANGE_12;
 
 	printf("%.2fV\r\n", res);
-	return (HAL_ADC_Stop(cmd->bsp->hadcx));
+	return (HAL_ADC_Stop(cmd->app->hadcx));
 }
 
 // ADC_Handler - handles received analog, convert to digital and shows voltage
@@ -86,7 +86,7 @@ uint8_t exec_adc(cmd_t * const cmd)
 		status = adc_read(cmd);
 	} else {
 		printf("adc: error: invalid option `%s`. See adc -h\r\n", option);
-		status = BSP_INVALID_OPTIONS;
+		status = APP_INVALID_OPTIONS;
 	}
 
 	return status;

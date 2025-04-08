@@ -25,7 +25,7 @@
 #include "led.h"
 #include "dac.h"
 #include "cli.h"
-#include "bsp.h"
+#include "app.h"
 #include "cmd.h"
 #include "pex.h"
 #include "fifo.h"
@@ -83,7 +83,7 @@ static void MX_SPI2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-extern bsp_t bsp;
+extern app_t app;
 
 /* USER CODE END 0 */
 
@@ -115,7 +115,7 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
-  bsp_init(&bsp, &hdac, &hadc1, &huart1, &hi2c1, &hspi2);
+  app_init(&app, &hdac, &hadc1, &huart1, &hi2c1, &hspi2);
 
   /* USER CODE END SysInit */
 
@@ -137,7 +137,7 @@ int main(void)
 
   while (1)
   {
-	  bsp_run(&bsp);
+	  app_run(&app);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -401,7 +401,7 @@ static void MX_USART1_UART_Init(void)
   }
   /* USER CODE BEGIN USART1_Init 2 */
 
-	HAL_UART_Receive_DMA(&huart1, bsp.rx_buf, UART_RX_BUFFER_SIZE);
+	HAL_UART_Receive_DMA(&huart1, app.rx_buf, UART_RX_BUFFER_SIZE);
 
   /* USER CODE END USART1_Init 2 */
 

@@ -17,9 +17,9 @@ typedef struct cli_engine_s cli_engine_t;
 typedef struct cmd_s cmd_t;
 typedef uint8_t (*exec_t) (cmd_t * const);
 
-// bsp.h
-typedef struct bsp_s bsp_t;
-typedef struct bsp_supported_cmd_s bsp_supported_cmd_t;
+// app.h
+typedef struct app_s app_t;
+typedef struct app_supported_cmds_s app_supported_cmds_t;
 
 // fifo.h
 typedef struct fifo_s fifo_t;
