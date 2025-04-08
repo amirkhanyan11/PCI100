@@ -9,7 +9,7 @@
 #include "lexer.h"
 #include <errno.h>
 #include <string.h>
-#include "../cmd/cmd.h"
+#include "cmd.h"
 
 
 uint8_t parse(cmd_t * const cmd, char *input) {

@@ -7,11 +7,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "main.h"
-#include "../cli/cli.h"
-#include "../utils/utils.h"
+#include "cli.h"
+#include "utils.h"
 #include <errno.h>
 #include "led.h"
-#include "../cli/cli_string_literals.h"
+#include "cli_string_literals.h"
 
 uint8_t exec_led(cmd_t * const cmd) {
 

@@ -6,7 +6,7 @@
  */
 
 #include "cli.h"
-#include "../filo/filo.h"
+#include "filo.h"
 #include "typedefs.h"
 #include <stdlib.h>
 #include <string.h>

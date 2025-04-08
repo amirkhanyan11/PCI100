@@ -8,15 +8,15 @@
 #include "bsp.h"
 #include "string.h"
 #include <errno.h>
-#include "../cmd/cmd.h"
-#include "../led/led.h"
-#include "../dac/dac.h"
-#include "../led/led.h"
-#include "../pex/pex.h"
-#include "../fifo/fifo.h"
-#include "../adc/adc.h"
-#include "../eeprom/eeprom.h"
-#include "../cli/cli_string_literals.h"
+#include "cmd.h"
+#include "led.h"
+#include "dac.h"
+#include "led.h"
+#include "pex.h"
+#include "fifo.h"
+#include "adc.h"
+#include "eeprom.h"
+#include "cli_string_literals.h"
 
 static fifo_t UART_FIFO;
 

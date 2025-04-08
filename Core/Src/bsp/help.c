@@ -8,9 +8,9 @@
 
 #include "bsp.h"
 #include <stdarg.h>
-#include "../cli/cli_string_literals.h"
+#include "cli_string_literals.h"
 #include <errno.h>
-#include "../cli/cli.h"
+#include "cli.h"
 
 uint8_t exec_help(cmd_t * const cmd) {
 	if (cmd->argc != 0) {

@@ -22,13 +22,13 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <string.h>
-#include "led/led.h"
-#include "dac/dac.h"
-#include "cli/cli.h"
-#include "bsp/bsp.h"
-#include "cmd/cmd.h"
-#include "pex/pex.h"
-#include "fifo/fifo.h"
+#include "led.h"
+#include "dac.h"
+#include "cli.h"
+#include "bsp.h"
+#include "cmd.h"
+#include "pex.h"
+#include "fifo.h"
 
 /* USER CODE END Includes */
 

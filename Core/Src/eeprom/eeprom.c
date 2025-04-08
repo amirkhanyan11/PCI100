@@ -1,8 +1,8 @@
 #include "eeprom.h"
 #include <errno.h>
 #include <string.h>
-#include "../utils/utils.h"
-#include "../cli/cli_string_literals.h"
+#include "utils.h"
+#include "cli_string_literals.h"
 
 static void chip_select(bool mod)
 {

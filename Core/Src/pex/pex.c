@@ -7,13 +7,13 @@
 
 
 #include "pex.h"
-#include "../cmd/cmd.h"
-#include "../cli/cli_string_literals.h"
+#include "cmd.h"
+#include "cli_string_literals.h"
 #include <errno.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../utils/utils.h"
+#include "utils.h"
 
 static uint8_t __pex_err(const char * const cmd, const char * const option, const char * const s)
 {

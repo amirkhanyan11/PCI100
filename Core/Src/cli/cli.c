@@ -6,8 +6,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
-#include "../fifo/fifo.h"
-#include "../bsp/bsp.h"
+#include "fifo.h"
+#include "bsp.h"
 #include "typedefs.h"
 #include <stdarg.h>
 

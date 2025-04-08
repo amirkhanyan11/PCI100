@@ -8,11 +8,11 @@
 #include "cli.h"
 #include <errno.h>
 #include <string.h>
-#include "../cmd/cmd.h"
-#include "../lexer/lexer.h"
-#include "../utils/utils.h"
-#include "../fifo/fifo.h"
-#include "../cli/cli_string_literals.h"
+#include "cmd.h"
+#include "lexer.h"
+#include "utils.h"
+#include "fifo.h"
+#include "cli_string_literals.h"
 #include <ctype.h>
 
 uint8_t handle_nl(cli_engine_t * const engine) {

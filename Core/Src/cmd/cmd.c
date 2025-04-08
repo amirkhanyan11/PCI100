@@ -6,9 +6,9 @@
  */
 
 #include "cmd.h"
-#include "../bsp/bsp.h"
-#include "../led/led.h"
-#include "../lexer/lexer.h"
+#include "bsp.h"
+#include "led.h"
+#include "lexer.h"
 #include <string.h>
 #include <errno.h>
 

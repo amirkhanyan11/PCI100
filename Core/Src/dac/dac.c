@@ -3,8 +3,8 @@
 //
 
 #include "dac.h"
-#include "../cli/cli.h"
-#include "../cli/cli_string_literals.h"
+#include "cli.h"
+#include "cli_string_literals.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <errno.h>

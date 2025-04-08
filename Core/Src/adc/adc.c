@@ -2,8 +2,8 @@
 #include "typedefs.h"
 #include <errno.h>
 #include <string.h>
-#include "../utils/utils.h"
-#include "../cli/cli_string_literals.h"
+#include "utils.h"
+#include "cli_string_literals.h"
 
 #define COUNTER 10
 #define ADC_SUPPORTED_CHANNELS_SIZE 1
