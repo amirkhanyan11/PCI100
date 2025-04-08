@@ -7,7 +7,7 @@
 
 #include "bsp.h"
 #include "typedefs.h"
-#include "main.h"
+#include "config.h"
 
 void bsp_config(bsp_t * const bsp,
 		DAC_HandleTypeDef *  const hdacx,
@@ -22,6 +22,14 @@ void bsp_config(bsp_t * const bsp,
 	bsp->huartx = huartx;
 	bsp->hi2cx = hi2cx;
 	bsp->hspix = hspix;
+
+	MX_GPIO_Init();
+	MX_DMA_Init();
+	MX_I2C_Init(bsp->hi2cx);
+	MX_USART_UART_Init(bsp->huartx);
+	MX_ADC_Init(bsp->hadcx);
+	MX_DAC_Init(bsp->hdacx);
+	MX_SPI_Init(bsp->hspix);
 
 	HAL_DAC_Start(bsp->hdacx, DAC_CHANNEL_2);
 }
