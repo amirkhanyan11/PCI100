@@ -17,7 +17,7 @@ void MX_SPI_Init(SPI_HandleTypeDef * const hspix);
 
 void MX_I2C_Init(I2C_HandleTypeDef * const hi2cx);
 
-//void MX_USART_UART_Init(UART_HandleTypeDef * const huartx);
+void MX_USART_UART_Init(UART_HandleTypeDef * const huartx);
 
 void MX_ADC_Init(ADC_HandleTypeDef * const hadcx);
 

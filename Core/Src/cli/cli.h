@@ -12,8 +12,6 @@
 #include "typedefs.h"
 #include "fifo.h"
 
-#define UART_BAUD_RATE 115200
-
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 
 #define UART_RECEIVE_TIMEOUT 100

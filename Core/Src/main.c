@@ -60,7 +60,7 @@ DMA_HandleTypeDef hdma_i2c1_rx;
 
 extern SPI_HandleTypeDef hspi2;
 
-UART_HandleTypeDef huart1;
+extern UART_HandleTypeDef huart1;
 DMA_HandleTypeDef hdma_usart1_rx;
 DMA_HandleTypeDef hdma_usart1_tx;
 
@@ -73,7 +73,6 @@ void SystemClock_Config(void);
 static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init();
-static void MX_USART1_UART_Init();
 
 /* USER CODE BEGIN PFP */
 
@@ -123,7 +122,7 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_I2C_Init(&hi2c1);
-  MX_USART1_UART_Init();
+  MX_USART_UART_Init(&huart1);
   MX_ADC_Init(&hadc1);
   MX_DAC_Init(&hdac);
   MX_SPI_Init(&hspi2);
@@ -194,41 +193,7 @@ void SystemClock_Config(void)
 
 
 
-/**
-  * @brief USART1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART1_UART_Init(void)
-{
 
-  /* USER CODE BEGIN USART1_Init 0 */
-
-  /* USER CODE END USART1_Init 0 */
-
-  /* USER CODE BEGIN USART1_Init 1 */
-
-  /* USER CODE END USART1_Init 1 */
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = UART_BAUD_RATE;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART1_Init 2 */
-
-
-  /* USER CODE END USART1_Init 2 */
-
-}
 
 /**
   * Enable DMA controller clock
