@@ -2,11 +2,12 @@
 // Created by Artyom on 3/13/2025.
 //
 
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef SRC_CMD_LED_H
+#define SRC_CMD_LED_H
 
 #include <stdint.h>
-#include "../cmd/cmd.h"
+//#include "cmd.h"
+#include "typedefs.h"
 
 #define LED_ON 0
 #define LED_OFF 1
@@ -19,18 +20,24 @@
 #define BLINK_50 20
 #define BLINK_100 10
 #define BLINK_1000 1
-#define CFG_PIN_MAX 8
 
-#define BUFFER_SIZE 1024
+struct led_s
+{
+	uint32_t 			blink_frequency;
+	uint8_t 			blink_mode;
+	uint8_t 			state;
+};
 
-uint8_t led_on(cmd_t * const cmd);
-uint8_t led_off(cmd_t * const cmd);
-uint8_t led_blink(cmd_t * const cmd);
-const char *get_led_mode(app_t * const app);
-void set_led_config(app_t * const app);
-uint8_t exec_led(cmd_t * const cmd);
-uint8_t led_reset(cmd_t *const cmd);
-uint8_t led_get(cmd_t *const cmd);
-const char *get_led_state(app_t * const app);
+void		led_init(led_t * const led);
 
-#endif // UTILS_H
+void 		set_led_config(led_t * const led);
+uint8_t 	led_on(cmd_t * const cmd);
+uint8_t 	led_off(cmd_t * const cmd);
+uint8_t 	led_set_blink(cmd_t * const cmd);
+uint8_t 	exec_led(cmd_t * const cmd);
+uint8_t 	led_reset(cmd_t *const cmd);
+uint8_t 	led_get(cmd_t *const cmd);
+const char  *get_led_state(led_t * const led);
+void blink_led(led_t * const led);
+
+#endif // SRC_CMD_LED_H

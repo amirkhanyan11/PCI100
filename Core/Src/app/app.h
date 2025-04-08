@@ -15,6 +15,7 @@
 #include "typedefs.h"
 #include "lexer.h"
 #include <stdio.h>
+#include "led.h"
 
 #define APP_MAX_CMDS 128
 #define UART_RX_BUFFER_SIZE 1
@@ -39,9 +40,7 @@ struct app_s
 	uint8_t				rx_buf[UART_RX_BUFFER_SIZE];
 	cli_engine_t		engine;
 
-	uint32_t 			blink_frequency;
-	uint8_t 			blink_mode;
-	uint8_t 			led_state;
+	struct led_s				led;
 
 	UART_HandleTypeDef  *huartx;
 	DAC_HandleTypeDef 	*hdacx;
@@ -57,7 +56,6 @@ uint8_t app_cmd_add(app_t * const app, const char *name, exec_t exec);
 exec_t app_cmd_get(app_t * const app, const char *name);
 void app_run(app_t * const app);
 uint8_t app_init(app_t * const app, DAC_HandleTypeDef * const hdacx, ADC_HandleTypeDef * const hadcx, UART_HandleTypeDef * const huartx, I2C_HandleTypeDef * const hi2cx, SPI_HandleTypeDef * const hspix);
-void app_blink_led(app_t * const app);
 uint8_t exec_help(cmd_t * const cmd);
 
 #endif /* SRC_APP_APP_H_ */

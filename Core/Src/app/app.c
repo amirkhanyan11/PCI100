@@ -23,7 +23,7 @@ static fifo_t UART_FIFO;
 app_t app;
 
 void app_run(app_t * const app) {
-	app_blink_led(app);
+	blink_led(&app->led);
 	cli_poll(&app->engine);
 }
 
@@ -72,9 +72,8 @@ uint8_t app_init(
 	app->hi2cx = hi2cx;
 	app->huartx = huartx;
 	app->hspix = hspix;
-	app->blink_frequency = 0;
-	app->blink_mode = BLINK_OFF;
-	app->led_state = LED_OFF;
+
+	led_init(&app->led);
 
 	app_cmd_add(app, "led",  &exec_led);
 	app_cmd_add(app, "dac",  &exec_dac);
@@ -82,8 +81,6 @@ uint8_t app_init(
 	app_cmd_add(app, "pex",  &exec_pex);
 	app_cmd_add(app, "adc",  &exec_adc);
 	app_cmd_add(app, "eeprom",  &exec_eeprom);
-
-	set_led_config(app);
 
 	printf("\r\n%s", PROMPT);
 	fflush(stdout);
@@ -127,20 +124,4 @@ exec_t app_cmd_get(app_t * const app, const char *name) {
 	}
 
 	return NULL;
-}
-
-void app_blink_led(app_t * const app) {
-
-	if (app->blink_mode == BLINK_OFF) {
-		return;
-	}
-
-	static uint32_t start = 0;
-
-	const uint32_t current_tick = HAL_GetTick();
-
-	if (current_tick >= start + app->blink_frequency) {
-		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
-		start = HAL_GetTick();
-	}
 }

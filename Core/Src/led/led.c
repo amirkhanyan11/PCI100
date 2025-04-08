@@ -11,7 +11,15 @@
 #include "utils.h"
 #include <errno.h>
 #include "led.h"
+#include "cmd.h"
 #include "cli_string_literals.h"
+
+void led_init(led_t * const led) {
+	led->blink_frequency = 0;
+	led->blink_mode = BLINK_OFF;
+	led->state = LED_OFF;
+	set_led_config(led);
+}
 
 uint8_t exec_led(cmd_t * const cmd) {
 
@@ -30,7 +38,7 @@ uint8_t exec_led(cmd_t * const cmd) {
 		status = led_off(cmd);
 	}
 	else if (!strcmp(option, "blink")) {
-		status = led_blink(cmd);
+		status = led_set_blink(cmd);
 	}
 	else if (!strcmp(option, "on")) {
 		status = led_on(cmd);
@@ -54,7 +62,7 @@ uint8_t led_get(cmd_t *const cmd) {
 		printchunk("Usage:", CLI_LED_GET_HELP, NULL);
 		return EINVAL;
 	}
-	printf("%s\n\r", get_led_state(cmd->app));
+	printf("%s\n\r", get_led_state(&cmd->app->led));
 	return 0;
 }
 
@@ -66,14 +74,14 @@ uint8_t led_reset(cmd_t *const cmd) {
 		return EINVAL;
 	}
 
-	set_led_config(cmd->app);
+	set_led_config(&cmd->app->led);
 	printf("led mode is now configured by MCU_CFG. ");
-	printf("%s\n\r", get_led_state(cmd->app));
+	printf("%s\n\r", get_led_state(&cmd->app->led));
 	return 0;
 }
 
 
-uint8_t led_blink(cmd_t *const cmd) {
+uint8_t led_set_blink(cmd_t *const cmd) {
 	if (cmd->argc != 2) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
 		printchunk("Usage:", CLI_LED_BLINK_HELP, NULL);
@@ -84,9 +92,9 @@ uint8_t led_blink(cmd_t *const cmd) {
 	const uint32_t frequency = satoi(cmd->argv[1]).val;
 
 	if (frequency > 1 && frequency < 1000) {
-		app->blink_mode = BLINK_ON;
-		app->led_state = LED_ON;
-		app->blink_frequency = frequency;
+		app->led.blink_mode = BLINK_ON;
+		app->led.state = LED_ON;
+		app->led.blink_frequency = frequency;
 		printf("Led frequency set to %s hz\r\n", cmd->argv[1]);
 	} else {
 		printf("%s\r\n", CLI_LED_INVALID_BLINK_VALUE);
@@ -104,11 +112,11 @@ uint8_t led_off(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	cmd->app->led_state = LED_OFF;
-	cmd->app->blink_mode = BLINK_OFF;
+	cmd->app->led.state = LED_OFF;
+	cmd->app->led.blink_mode = BLINK_OFF;
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
 
-	printf("%s\n\r", get_led_state(cmd->app));
+	printf("%s\n\r", get_led_state(&cmd->app->led));
 	return 0;
 }
 
@@ -121,14 +129,14 @@ uint8_t led_on(cmd_t * const cmd) {
 		return EINVAL;
 	}
 
-	cmd->app->led_state = LED_ON;
-	cmd->app->blink_mode = BLINK_OFF;
+	cmd->app->led.state = LED_ON;
+	cmd->app->led.blink_mode = BLINK_OFF;
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-	printf("%s\n\r", get_led_state(cmd->app));
+	printf("%s\n\r", get_led_state(&cmd->app->led));
 	return 0;
 }
 
-void set_led_config(app_t * const app) {
+void set_led_config(led_t * const led) {
   uint8_t input = 0;
 
   input |= !HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
@@ -155,37 +163,53 @@ void set_led_config(app_t * const app) {
   switch (input) {
   case 0:
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-    app->blink_frequency = 0;
-    app->blink_mode = BLINK_OFF;
+    led->blink_frequency = 0;
+    led->blink_mode = BLINK_OFF;
     break;
   case 1:
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
-	app->blink_frequency = 1;
-	app->blink_mode = BLINK_ON;
+	led->blink_frequency = 1;
+	led->blink_mode = BLINK_ON;
     break;
   case 2 ... 8:
-	app->blink_mode = BLINK_ON;
-  	app->blink_frequency = fmap[input];
+	led->blink_mode = BLINK_ON;
+  	led->blink_frequency = fmap[input];
   	break;
   default:
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
-	app->blink_frequency = 0;
-	app->blink_mode = BLINK_OFF;
+	led->blink_frequency = 0;
+	led->blink_mode = BLINK_OFF;
   }
 }
 
 
-const char *get_led_state(app_t * const app) {
+const char *get_led_state(led_t * const led) {
 
 	static char message[128];
 
-	if (app->led_state == LED_OFF) {
+	if (led->state == LED_OFF) {
 		sprintf(message, CLI_LED_OFF);
-	} else if (app->led_state == LED_ON && app->blink_mode == BLINK_OFF) {
+	} else if (led->state == LED_ON && led->blink_mode == BLINK_OFF) {
 		sprintf(message, CLI_LED_ON);
 	} else {
-		sprintf(message, "Led is blinking at %lu hz", app->blink_frequency);
+		sprintf(message, "Led is blinking at %lu hz", led->blink_frequency);
 	}
 
 	return message;
+}
+
+void blink_led(led_t * const led) {
+
+	if (led->blink_mode == BLINK_OFF) {
+		return;
+	}
+
+	static uint32_t start = 0;
+
+	const uint32_t current_tick = HAL_GetTick();
+
+	if (current_tick >= start + led->blink_frequency) {
+		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
+		start = HAL_GetTick();
+	}
 }

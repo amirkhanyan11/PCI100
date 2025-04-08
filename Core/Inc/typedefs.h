@@ -34,4 +34,7 @@ typedef struct history_s history_t;
 typedef struct uint32_optional_s uint32_optional_t;
 typedef struct double_optional_s double_optional_t;
 
+// led.h
+typedef struct led_s led_t;
+
 #endif /* INC_TYPEDEFS_H_ */

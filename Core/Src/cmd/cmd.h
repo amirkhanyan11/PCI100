@@ -9,8 +9,8 @@
 #define SRC_CMD_CMD_H_
 
 #include "main.h"
-#include "../app/app.h"
-#include "../lexer/lexer.h"
+#include "app.h"
+#include "lexer.h"
 #include "typedefs.h"
 
 struct cmd_s
