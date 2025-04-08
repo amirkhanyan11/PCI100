@@ -268,27 +268,27 @@
   */
 
 #ifdef HAL_RCC_MODULE_ENABLED
-  #include "stm32f7xx_hal_rcc.h"
+  #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h"
 #endif /* HAL_RCC_MODULE_ENABLED */
 
 #ifdef HAL_EXTI_MODULE_ENABLED
-  #include "stm32f7xx_hal_exti.h"
+  #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_exti.h"
 #endif /* HAL_EXTI_MODULE_ENABLED */
 
 #ifdef HAL_GPIO_MODULE_ENABLED
-  #include "stm32f7xx_hal_gpio.h"
+  #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
 #endif /* HAL_GPIO_MODULE_ENABLED */
 
 #ifdef HAL_DMA_MODULE_ENABLED
-  #include "stm32f7xx_hal_dma.h"
+  #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
 #endif /* HAL_DMA_MODULE_ENABLED */
 
 #ifdef HAL_CORTEX_MODULE_ENABLED
-  #include "stm32f7xx_hal_cortex.h"
+  #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h"
 #endif /* HAL_CORTEX_MODULE_ENABLED */
 
 #ifdef HAL_ADC_MODULE_ENABLED
-  #include "stm32f7xx_hal_adc.h"
+  #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_adc.h"
 #endif /* HAL_ADC_MODULE_ENABLED */
 
 #ifdef HAL_CAN_MODULE_ENABLED
@@ -312,7 +312,7 @@
 #endif /* HAL_DMA2D_MODULE_ENABLED */
 
 #ifdef HAL_DAC_MODULE_ENABLED
-  #include "stm32f7xx_hal_dac.h"
+  #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dac.h"
 #endif /* HAL_DAC_MODULE_ENABLED */
 
 #ifdef HAL_DCMI_MODULE_ENABLED
@@ -328,7 +328,7 @@
 #endif /* HAL_ETH_LEGACY_MODULE_ENABLED */
 
 #ifdef HAL_FLASH_MODULE_ENABLED
-  #include "stm32f7xx_hal_flash.h"
+  #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash.h"
 #endif /* HAL_FLASH_MODULE_ENABLED */
 
 #ifdef HAL_SRAM_MODULE_ENABLED
@@ -352,7 +352,7 @@
 #endif /* HAL_HASH_MODULE_ENABLED */
 
 #ifdef HAL_I2C_MODULE_ENABLED
- #include "stm32f7xx_hal_i2c.h"
+ #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h"
 #endif /* HAL_I2C_MODULE_ENABLED */
 
 #ifdef HAL_I2S_MODULE_ENABLED
@@ -372,7 +372,7 @@
 #endif /* HAL_LTDC_MODULE_ENABLED */
 
 #ifdef HAL_PWR_MODULE_ENABLED
- #include "stm32f7xx_hal_pwr.h"
+ #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h"
 #endif /* HAL_PWR_MODULE_ENABLED */
 
 #ifdef HAL_QSPI_MODULE_ENABLED
@@ -404,7 +404,7 @@
 #endif /* HAL_SPDIFRX_MODULE_ENABLED */
 
 #ifdef HAL_SPI_MODULE_ENABLED
- #include "stm32f7xx_hal_spi.h"
+ #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
 #endif /* HAL_SPI_MODULE_ENABLED */
 
 #ifdef HAL_TIM_MODULE_ENABLED
@@ -412,7 +412,7 @@
 #endif /* HAL_TIM_MODULE_ENABLED */
 
 #ifdef HAL_UART_MODULE_ENABLED
- #include "stm32f7xx_hal_uart.h"
+ #include "../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
 #endif /* HAL_UART_MODULE_ENABLED */
 
 #ifdef HAL_USART_MODULE_ENABLED
