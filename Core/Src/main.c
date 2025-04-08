@@ -84,8 +84,8 @@ static void MX_SPI2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+bsp_t bsp1;
 app_t app;
-bsp_t bsp;
 
 /* USER CODE END 0 */
 
@@ -116,8 +116,8 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  bsp_config(&bsp, &hdac, &hadc1, &huart1, &hi2c1, &hspi2);
-  app_init(&app, &bsp);
+
+
 
   /* USER CODE END SysInit */
 
@@ -131,6 +131,9 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
 
+  bsp_config(&bsp1, &hdac, &hadc1, &huart1, &hi2c1, &hspi2);
+  app_init(&app, &bsp1);
+  app_config(&app);
 
   /* USER CODE END 2 */
 
@@ -403,7 +406,6 @@ static void MX_USART1_UART_Init(void)
   }
   /* USER CODE BEGIN USART1_Init 2 */
 
-	HAL_UART_Receive_DMA(&huart1, app.rx_buf, UART_RX_BUFFER_SIZE);
 
   /* USER CODE END USART1_Init 2 */
 

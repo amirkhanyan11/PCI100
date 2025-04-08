@@ -6,15 +6,15 @@
  */
 
 #include "fifo.h"
-#include "typedefs.h"
+
 
 void fifo_init(fifo_t *fifo) {
-	fifo->pos = 0;
-	fifo->end = 0;
+	fifo_reset(fifo);
 }
 
 void fifo_reset(fifo_t *fifo) {
-	fifo_init(fifo);
+	fifo->pos = 0;
+	fifo->end = 0;
 }
 
 uint8_t fifo_is_empty(fifo_t *fifo) {

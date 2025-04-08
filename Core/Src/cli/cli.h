@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "typedefs.h"
+#include "fifo.h"
 
 #define UART_BAUD_RATE 115200
 
@@ -50,11 +51,10 @@ void cli_poll(cli_engine_t *engine);
 void cli_writeline(UART_HandleTypeDef *huartx, const char *s);
 void cli_puts(UART_HandleTypeDef *huartx, const char *s);
 void cli_putnl(UART_HandleTypeDef *huartx);
-void engine_init(cli_engine_t *engine, fifo_t *fifo);
+void engine_init(cli_engine_t *engine, app_t * const app, fifo_t *fifo, UART_HandleTypeDef * const huartx);
 void cli_clear_output(cli_engine_t *engine);
 
 void __attribute__((sentinel)) printchunk(const char *s, ...);
-
 
 // handle keys
 uint8_t handle_nl(cli_engine_t * const engine);

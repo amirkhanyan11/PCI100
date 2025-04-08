@@ -5,23 +5,21 @@
  *      Author: artyom
  */
 
+#include <errno.h>
 #include "app.h"
 #include "string.h"
-#include <errno.h>
-#include "cmd.h"
-#include "led.h"
-#include "dac.h"
-#include "led.h"
-#include "pex.h"
 #include "fifo.h"
-#include "adc.h"
-#include "eeprom.h"
+#include "cmd.h"
+#include "utils.h"
 #include "cli_string_literals.h"
+#include "bsp.h"
 
-static fifo_t UART_FIFO;
+extern fifo_t UART_FIFO1;
 
 void app_run(app_t * const app) {
+
 	blink_led(&app->led);
+
 	cli_poll(&app->engine);
 }
 
@@ -50,23 +48,17 @@ uint8_t app_exec(app_t * const app, char *line) {
 }
 
 uint8_t app_init(app_t * const app, bsp_t * const bsp) {
-	fifo_init(&UART_FIFO);
-	engine_init(&app->engine, &UART_FIFO);
-
 	app->sc_arr.length = 0;
-
-	app->engine.app = app;
 
 	app->bsp = bsp;
 
+	engine_init(&app->engine, app, &UART_FIFO1, app->bsp->huartx);
+
+	fifo_init(&UART_FIFO1);
+
 	led_init(&app->led);
 
-	app_cmd_add(app, "led", 	&exec_led);
-	app_cmd_add(app, "dac",  	&exec_dac);
-	app_cmd_add(app, "help",	&exec_help);
-	app_cmd_add(app, "pex",  	&exec_pex);
-	app_cmd_add(app, "adc",  	&exec_adc);
-	app_cmd_add(app, "eeprom",  &exec_eeprom);
+	app_config(&app);
 
 	printf("\r\n%s", PROMPT);
 	fflush(stdout);

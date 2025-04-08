@@ -9,34 +9,18 @@
 #include "fifo.h"
 #include "app.h"
 #include "bsp.h"
-#include "typedefs.h"
+
 #include <stdarg.h>
 
-extern app_t app;
+extern uint8_t rx_buf[UART_RX_BUFFER_SIZE];
 
-PUTCHAR_PROTOTYPE
-{
-  HAL_UART_Transmit(app.bsp->huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
-  return ch;
-}
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	if (huart->Instance == USART1) {
-		fifo_set(app.engine.buffer, app.rx_buf[0]);
-	}
-}
-
-void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
-{
-	HAL_UART_RxCpltCallback(huart);
-}
-
-void engine_init(cli_engine_t *engine, fifo_t *fifo) {
-	engine->app = NULL;
+void engine_init(cli_engine_t *engine, app_t * const app, fifo_t *fifo, UART_HandleTypeDef * const huartx) {
+	engine->app = app;
 	engine->buffer = fifo;
 	filo_init(&engine->line);
 	history_init(&engine->history);
+
+	HAL_UART_Receive_DMA(huartx, rx_buf, UART_RX_BUFFER_SIZE);
 }
 
 void cli_poll(cli_engine_t *engine) {

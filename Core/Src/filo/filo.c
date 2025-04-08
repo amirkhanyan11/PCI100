@@ -6,7 +6,7 @@
  */
 
 #include "filo.h"
-#include "typedefs.h"
+
 #include <string.h>
 
 void filo_init(filo_t *filo) {
