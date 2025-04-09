@@ -59,6 +59,7 @@
 									<listOptionValue builtIn="false" value="../Core/Src/filo"/>
 									<listOptionValue builtIn="false" value="../Core/Src/led"/>
 									<listOptionValue builtIn="false" value="../Core/Src/lexer"/>
+									<listOptionValue builtIn="false" value="../Core/Src/pex"/>
 									<listOptionValue builtIn="false" value="../Core/Src/utils"/>
 									<listOptionValue builtIn="false" value="../PSP/STM32F7xx_HAL_Driver/Inc"/>
 									<listOptionValue builtIn="false" value="../PSP/STM32F7xx_HAL_Driver/Inc/Legacy"/>
@@ -72,8 +73,8 @@
 									<listOptionValue builtIn="false" value="../Core/Drivers/dac"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_eeprom"/>
 									<listOptionValue builtIn="false" value="../Core/Drivers/spi"/>
-									<listOptionValue builtIn="false" value="../Core/Drivers/pex"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_pex"/>
+									<listOptionValue builtIn="false" value="../Core/Drivers/pex"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1907972757" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -177,6 +178,7 @@
 									<listOptionValue builtIn="false" value="../Core/Src/filo"/>
 									<listOptionValue builtIn="false" value="../Core/Src/led"/>
 									<listOptionValue builtIn="false" value="../Core/Src/lexer"/>
+									<listOptionValue builtIn="false" value="../Core/Src/pex"/>
 									<listOptionValue builtIn="false" value="../Core/Src/utils"/>
 									<listOptionValue builtIn="false" value="../PSP/STM32F7xx_HAL_Driver/Inc"/>
 									<listOptionValue builtIn="false" value="../PSP/STM32F7xx_HAL_Driver/Inc/Legacy"/>
@@ -188,13 +190,10 @@
 									<listOptionValue builtIn="false" value="../Core/Src/cli/chain"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_dac"/>
 									<listOptionValue builtIn="false" value="../Core/Drivers/dac"/>
-<<<<<<< HEAD
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_eeprom"/>
 									<listOptionValue builtIn="false" value="../Core/Drivers/spi"/>
-=======
-									<listOptionValue builtIn="false" value="../Core/Drivers/pex"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_pex"/>
->>>>>>> c3e5896 (added pex)
+									<listOptionValue builtIn="false" value="../Core/Drivers/pex"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.414412279" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
