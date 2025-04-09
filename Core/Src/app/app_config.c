@@ -6,7 +6,7 @@
  */
 
 #include "app.h"
-#include "led.h"
+#include "cli_led.h"
 #include "pex.h"
 #include "cli_pex.h"
 #include "cli_adc.h"
@@ -19,5 +19,5 @@ __attribute__((weak)) void app_config(app_t * const app)
 	app_cmd_add(app, "adc",  	&cli_adc);
 	app_cmd_add(app, "eeprom",  &cli_eeprom);
 	app_cmd_add(app, "help",	&exec_help);
-	app_cmd_add(app, "led", 	&exec_led);
+	app_cmd_add(app, "led", 	&cli_led);
 }

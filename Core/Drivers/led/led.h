@@ -6,7 +6,6 @@
 #define SRC_CMD_LED_H
 
 #include <stdint.h>
-//#include "cmd.h"
 #include "typedefs.h"
 
 #define LED_ON 0
@@ -30,14 +29,11 @@ struct led_s
 
 void		led_init(led_t * const led);
 
-void 		set_led_config(led_t * const led);
-uint8_t 	led_on(cmd_t * const cmd);
-uint8_t 	led_off(cmd_t * const cmd);
-uint8_t 	led_set_blink(cmd_t * const cmd);
-uint8_t 	exec_led(cmd_t * const cmd);
-uint8_t 	led_reset(cmd_t *const cmd);
-uint8_t 	led_get(cmd_t *const cmd);
-const char  *get_led_state(led_t * const led);
-void blink_led(led_t * const led);
+void		led_blink(led_t * const led);
+
+uint8_t 	led_mcu_cfg(led_t * const led);
+uint8_t 	led_on(led_t * const led);
+uint8_t 	led_off(led_t * const led);
+uint8_t		led_set_blink(led_t * const led, const uint32_t frequency);
 
 #endif // SRC_CMD_LED_H

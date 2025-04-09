@@ -18,7 +18,7 @@ extern fifo_t UART_FIFO1;
 
 void app_run(app_t * const app) {
 
-	blink_led(&app->led);
+	led_blink(&app->led);
 
 	cli_poll(&app->engine);
 }
