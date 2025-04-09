@@ -12,6 +12,7 @@
 #include "app.h"
 #include "lexer.h"
 #include "typedefs.h"
+#include "chain/chain.h"
 
 struct cmd_s
 {
@@ -23,5 +24,6 @@ struct cmd_s
 };
 
 uint8_t make_cmd(cmd_t * const cmd, app_t * const app, char *input);
+uint8_t __attribute__((sentinel)) start_chain(cmd_t * const cmd, chain_fn_t first, ...);
 
 #endif /* SRC_CMD_CMD_H_ */
