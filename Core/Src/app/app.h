@@ -47,7 +47,7 @@ struct app_s
 	cmd_config_t  		  sc_arr;
 };
 
-uint8_t app_exec(app_t * const app, char *input);
+uint8_t app_router(app_t * const app, char *input);
 uint8_t app_cmd_add(app_t * const app, const char *name, exec_t exec);
 exec_t 	app_cmd_get(app_t * const app, const char *name);
 uint8_t app_init(app_t * const app, bsp_t * const bsp);

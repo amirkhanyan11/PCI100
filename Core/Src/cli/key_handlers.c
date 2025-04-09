@@ -23,7 +23,7 @@ uint8_t handle_nl(cli_engine_t * const engine) {
 	char line[FILO_BUFFER_SIZE] = {0};
 	strcpy(line, engine->line.buffer);
 
-	const uint8_t status = app_exec(engine->app, line);
+	const uint8_t status = app_router(engine->app, line);
 
 	/* At least the name of the command is correct
 	 **/

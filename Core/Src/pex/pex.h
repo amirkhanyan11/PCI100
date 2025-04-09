@@ -17,8 +17,8 @@
 #define PEX_CB2_TRANSPARENT_PORTS 0x00
 #define PEX_CB3_ENABLE_ALL 0xBC
 
-uint8_t exec_pex(cmd_t * const cmd);
-uint8_t pex_write(cmd_t * const cmd);
-uint8_t pex_read(cmd_t * const cmd);
+uint8_t cli_pex(cmd_t * const cmd);
+uint8_t cli_pex_write(cmd_t * const cmd);
+uint8_t cli_pex_read(cmd_t * const cmd);
 
 #endif /* SRC_PEX_PEX_H_ */

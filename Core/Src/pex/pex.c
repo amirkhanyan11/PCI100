@@ -24,7 +24,7 @@ static uint8_t __pex_err(const char * const cmd, const char * const option, cons
 }
 
 
-uint8_t exec_pex(cmd_t * const cmd) {
+uint8_t cli_pex(cmd_t * const cmd) {
 
 	const char * option = NULL;
 
@@ -37,9 +37,9 @@ uint8_t exec_pex(cmd_t * const cmd) {
 	if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
 		printchunk("Usage:", CLI_PEX_HELP, NULL);
 	} else if (!strcmp(option, "read")) {
-		status = pex_read(cmd);
+		status = cli_pex_read(cmd);
 	} else if (!strcmp(option, "write")) {
-		status = pex_write(cmd);
+		status = cli_pex_write(cmd);
 	} else {
 		printf("pex: error: invalid option `%s`. See pex -h\r\n", option);
 		status = APP_INVALID_OPTIONS;
@@ -48,7 +48,7 @@ uint8_t exec_pex(cmd_t * const cmd) {
 	return status;
 }
 
-uint8_t pex_write(cmd_t * const cmd) {
+uint8_t cli_pex_write(cmd_t * const cmd) {
 
 	if (cmd->argc != 3)
 	{
@@ -85,7 +85,7 @@ uint8_t pex_write(cmd_t * const cmd) {
 	return 0;
 }
 
-uint8_t pex_read(cmd_t * const cmd) {
+uint8_t cli_pex_read(cmd_t * const cmd) {
 
 	if (cmd->argc != 2)
 	{

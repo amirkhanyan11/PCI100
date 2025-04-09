@@ -11,5 +11,3 @@ uint8_t dac_write(DAC_HandleTypeDef * const hdacx, const uint32_t channel, const
 	return 0;
 }
 
-
-

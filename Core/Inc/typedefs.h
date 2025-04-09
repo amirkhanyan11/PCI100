@@ -40,4 +40,8 @@ typedef struct double_optional_s double_optional_t;
 // led.h
 typedef struct led_s led_t;
 
+// chain.h
+typedef struct chain_s chain_t;
+typedef uint8_t (*chain_fn_t)();
+
 #endif /* INC_TYPEDEFS_H_ */

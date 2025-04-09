@@ -23,7 +23,7 @@ void app_run(app_t * const app) {
 	cli_poll(&app->engine);
 }
 
-uint8_t app_exec(app_t * const app, char *line) {
+uint8_t app_router(app_t * const app, char *line) {
 	strtrim(line, WHITESPACE);
 
 	const uint16_t line_length = strlen(line);

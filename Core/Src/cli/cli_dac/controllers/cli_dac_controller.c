@@ -14,33 +14,9 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
+#include "chain.h"
 
-static uint8_t cli_dac_write(cmd_t * const cmd);
-
-uint8_t cli_dac(cmd_t * const cmd) {
-
-	const char * option = NULL;
-
-	if (cmd->argc > 0) {
-		option = cmd->argv[0];
-	}
-
-	uint8_t status = 0;
-
-	if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
-		printchunk("Usage:", CLI_DAC_HELP, NULL);
-	} else if (!strcmp(option, "write")) {
-		status = cli_dac_write(cmd);
-	} else {
-		printf("dac: error: invalid option `%s`. See dac -h\r\n", option);
-		status = APP_INVALID_OPTIONS;
-	}
-
-	return status;
-}
-
-
-static uint8_t cli_dac_write(cmd_t * const cmd) {
+uint8_t cli_dac_write_controller(cmd_t * const cmd, chain_t *const chain) {
 
 	if (cmd->argc != 3) {
 		printf("dac: write: %s\r\n", CLI_INVALID_OPTIONS);
@@ -60,10 +36,18 @@ static uint8_t cli_dac_write(cmd_t * const cmd) {
 
 	const uint16_t value = d_value * 4095;
 
-	dac_write(cmd->app->bsp->hdacx, DAC_CHANNEL_2, DAC_ALIGN_12B_R, value);
+	const chain_fn_t next = chain_get_next(chain);
+
+	if (!next) {
+		printf("dac: write: something went wrong\r\n");
+		return EINVAL;
+	}
+
+	next(cmd->app->bsp->hdacx, DAC_CHANNEL_2, DAC_ALIGN_12B_R, value);
 
 	printf("dac: write: success!\r\n");
 	printf("output set to %d\r\n", value);
 
 	return 0;
 }
+
