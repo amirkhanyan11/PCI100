@@ -7,10 +7,10 @@
 
 #include "app.h"
 #include "led.h"
-#include "dac.h"
 #include "pex.h"
 #include "adc.h"
 #include "eeprom.h"
+#include "cli_pex.h"
 
 __attribute__((weak)) void app_config(app_t * const app)
 {

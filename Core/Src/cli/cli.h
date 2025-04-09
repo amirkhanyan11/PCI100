@@ -12,6 +12,7 @@
 #include "typedefs.h"
 #include "fifo.h"
 #include "cli_string_literals.h"
+#include "chain/chain.h"
 
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 

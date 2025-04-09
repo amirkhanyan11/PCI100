@@ -27,6 +27,6 @@ chain_fn_t chain_get_next(chain_t *const chain);
 uint8_t chain_add(chain_t *const chain, chain_fn_t fn);
 uint8_t chain_pop(chain_t *const chain);
 
-uint8_t chain_add_many(chain_t *const chain, chain_fn_t first,  ...);
+uint8_t __attribute__((sentinel)) chain_add_many(chain_t *const chain, chain_fn_t first,  ...);
 
 #endif /* SRC_CLI_CHAIN_CHAIN_H_ */

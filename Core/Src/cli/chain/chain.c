@@ -62,3 +62,4 @@ chain_fn_t chain_get_next(chain_t *const chain) {
 bool chain_is_empty(chain_t *const chain) {
 	return (chain->pos >= chain->end);
 }
+
