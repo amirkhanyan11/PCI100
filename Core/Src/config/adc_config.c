@@ -23,27 +23,50 @@ ADC_HandleTypeDef hadc1 = {
 	.Init.EOCSelection = ADC_EOC_SINGLE_CONV
 };
 
-uint32_t adc_channels[ADC_SUPPORTED_CHANNELS_SIZE] = {ADC_CHANNEL_10};
+uint32_t adc_channels[ADC_SUPPORTED_MAX_CHANNELS_SIZE] = {0};
+static uint8_t adc_channels_size;
 
 /**
   * @brief ADC1 Initialization Function
   * @param None
   * @retval None
   */
-void MX_ADC_Init(ADC_HandleTypeDef * const hadcx)
+void MX_ADC_Init(ADC_HandleTypeDef * const hadcx, const uint32_t * const channels)
 {
-  if (HAL_ADC_Init(hadcx) != HAL_OK)
-  {
+  if (HAL_ADC_Init(hadcx) != HAL_OK) {
     Error_Handler();
   }
 
   /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
   */
-  adc_channels_handler(hadcx, 1);
+  if (adc_channels_init(hadcx, channels) != HAL_OK) {
+	Error_Handler();
+  }
 
 }
 
-void adc_channels_handler(ADC_HandleTypeDef *hadcx, uint8_t channel_id)
+HAL_StatusTypeDef adc_channels_init(ADC_HandleTypeDef * const hadcx, const uint32_t * const channels)
+{
+	if (channels == NULL || *channels == 0) {
+		return HAL_ERROR;
+	}
+	for (; channels[adc_channels_size] != 0; ++adc_channels_size){
+		if (adc_channels_size == ADC_SUPPORTED_MAX_CHANNELS_SIZE) {
+			return HAL_ERROR;
+		}
+		adc_channels[adc_channels_size] = channels[adc_channels_size];
+	}
+	adc_channels_size += 1;
+	adc_channels_handler(hadcx, 1);
+	return HAL_OK;
+}
+
+uint8_t adc_get_channels_size(void)
+{
+	return adc_channels_size;
+}
+
+void adc_channels_handler(ADC_HandleTypeDef * const hadcx, uint8_t channel_id)
 {
 	ADC_ChannelConfTypeDef sConfig = {0};
 
