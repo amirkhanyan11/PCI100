@@ -59,4 +59,10 @@ uint8_t handle_nl(cli_engine_t * const engine);
 uint8_t handle_bs(cli_engine_t * const engine);
 uint8_t handle_arrows(cli_engine_t * const engine);
 
+
+
+// commands
+
+uint8_t cli_dac(cmd_t * const cmd);
+
 #endif //CLI_H

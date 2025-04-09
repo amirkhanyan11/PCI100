@@ -7,6 +7,13 @@
 
 #include "config.h"
 
+//
+//{LED1, PORTB, 11, OUTPUT, FALSE}
+//
+//gpio_set(LED1, ON)
+//gpio_get(LED1);
+
+
 /**
   * @brief GPIO Initialization Function
   * @param None

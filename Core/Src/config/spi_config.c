@@ -24,13 +24,23 @@ SPI_HandleTypeDef hspi2 = {
 };
 
 
+
+//SPI_Init(TT_SPI2, POLARITY_LOW,  );
+
+//#define POLARITY_LOW 0
+//#define POLARITY_HIGH 1
 /**
   * @brief SPI2 Initialization Function
   * @param None
   * @retval None
   */
-void MX_SPI_Init(SPI_HandleTypeDef * const hspix)
+void MX_SPI_Init(SPI_HandleTypeDef * const hspix, int pol )
 {
+
+//	switch(pol) {
+//	case POLARITY_LOW:
+//		Init.CLKPolarity = SPI_POLARITY_LOW;
+//	}
 
   /* USER CODE BEGIN SPI2_Init 0 */
 
