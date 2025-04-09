@@ -6,6 +6,7 @@
  */
 
 #include "cli_eeprom.h"
+#include "spi.h"
 #include "app.h"
 #include <string.h>
 
@@ -20,11 +21,11 @@ uint8_t cli_eeprom(cmd_t * const cmd)
 	uint8_t status = 0;
 
 	if (!strcmp(option, "write")) {
-		status = cli_eeprom_write_route(cmd);
+		status = start_chain(cmd, cli_eeprom_write_middleware, spi_write, NULL);
 	} else if (!strcmp(option, "read")) {
-		status = cli_eeprom_read_route(cmd);
+		status = start_chain(cmd, cli_eeprom_read_middleware, spi_read, NULL);
 	} else if (!strcmp(option, "read_bulk")) {
-		status = cli_eeprom_read_bulk_route(cmd);
+		status = start_chain(cmd, cli_eeprom_read_bulk_middleware, spi_read_bulk, NULL);
 	} else if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
 		printchunk("eeprom:", CLI_EEPROM_HELP, NULL);
 	} else {

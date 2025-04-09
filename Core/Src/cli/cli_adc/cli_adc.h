@@ -12,10 +12,13 @@
 #include <stdbool.h>
 
 uint8_t cli_adc(cmd_t * const cmd);
+
+// utils
 uint8_t __adc_err(void);
 bool 	adc_supported_channel(uint8_t channel_id);
+
+// middlewares
 uint8_t cli_adc_read_middleware(cmd_t * const cmd, chain_t *const chain);
-uint8_t cli_adc_read_route(cmd_t * const cmd);
 
 
 

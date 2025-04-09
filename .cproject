@@ -192,13 +192,10 @@
 									<listOptionValue builtIn="false" value="../Core/Drivers/dac"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_eeprom"/>
 									<listOptionValue builtIn="false" value="../Core/Drivers/spi"/>
-<<<<<<< HEAD
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_pex"/>
 									<listOptionValue builtIn="false" value="../Core/Drivers/pex"/>
-=======
 									<listOptionValue builtIn="false" value="../Core/Drivers/adc"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_adc"/>
->>>>>>> refactoring/adc
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.414412279" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>

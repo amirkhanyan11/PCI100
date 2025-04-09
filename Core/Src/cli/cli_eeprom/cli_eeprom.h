@@ -15,11 +15,6 @@
 uint8_t cli_eeprom(cmd_t * const cmd);
 uint8_t __eeprom_err(const char * const cmd, const char * const s);
 
-// routes
-uint8_t cli_eeprom_write_route(cmd_t * const cmd);
-uint8_t cli_eeprom_read_route(cmd_t * const cmd);
-uint8_t cli_eeprom_read_bulk_route(cmd_t * const cmd);
-
 // middlewares
 uint8_t cli_eeprom_write_middleware(cmd_t * const cmd, chain_t *const chain);
 uint8_t cli_eeprom_read_middleware(cmd_t * const cmd, chain_t *const chain);
