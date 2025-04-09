@@ -10,7 +10,7 @@
 #include "dac.h"
 #include "pex.h"
 #include "adc.h"
-#include "eeprom.h"
+#include "cli_eeprom.h"
 
 __attribute__((weak)) void app_config(app_t * const app)
 {
@@ -19,5 +19,5 @@ __attribute__((weak)) void app_config(app_t * const app)
 	app_cmd_add(app, "help",	&exec_help);
 	app_cmd_add(app, "pex",  	&cli_pex);
 	app_cmd_add(app, "adc",  	&exec_adc);
-	app_cmd_add(app, "eeprom",  &exec_eeprom);
+	app_cmd_add(app, "eeprom",  &cli_eeprom);
 }
