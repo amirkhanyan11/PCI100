@@ -24,7 +24,7 @@ uint8_t cli_dac(cmd_t * const cmd) {
 	if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
 		printchunk("Usage:", CLI_DAC_HELP, NULL);
 	} else if (!strcmp(option, "write")) {
-		status = cli_dac_write_route(cmd);
+		status = start_chain(cmd, cli_dac_write_middleware, dac_write, NULL);
 	} else {
 		printf("dac: error: invalid option `%s`. See dac -h\r\n", option);
 		status = APP_INVALID_OPTIONS;

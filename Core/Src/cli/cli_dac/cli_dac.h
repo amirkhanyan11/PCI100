@@ -11,7 +11,7 @@
 #include "cli.h"
 
 // controllers
-uint8_t cli_dac_write_controller(cmd_t * const cmd, chain_t *const chain);
+uint8_t cli_dac_write_middleware(cmd_t * const cmd, chain_t *const chain);
 
 
 // routers

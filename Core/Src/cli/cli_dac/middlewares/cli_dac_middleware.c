@@ -16,7 +16,7 @@
 #include <string.h>
 #include "chain.h"
 
-uint8_t cli_dac_write_controller(cmd_t * const cmd, chain_t *const chain) {
+uint8_t cli_dac_write_middleware(cmd_t * const cmd, chain_t *const chain) {
 
 	if (cmd->argc != 3) {
 		printf("dac: write: %s\r\n", CLI_INVALID_OPTIONS);
