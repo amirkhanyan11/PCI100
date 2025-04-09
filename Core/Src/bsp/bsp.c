@@ -28,10 +28,12 @@ void bsp_config(bsp_t * const bsp,
 	MX_I2C_Init(bsp->hi2cx);
 	MX_USART_UART_Init(bsp->huartx);
 	MX_DAC_Init(bsp->hdacx);
-	MX_SPI_Init(bsp->hspix);
+
+
+	MX_SPI_Init(bsp->hspix, SPI2, SPI_DATASIZE_8BIT, SPI_POLARITY_LOW, SPI_PHASE_1EDGE);
 
 	uint32_t adc_channel[2] = {ADC_CHANNEL_10, 0};
-	MX_ADC_Init(bsp->hadcx, adc_channel);
+	MX_ADC_Init(bsp->hadcx, ADC1, ADC_RESOLUTION_12B, adc_channel);
 
 	HAL_DAC_Start(bsp->hdacx, DAC_CHANNEL_2);
 }

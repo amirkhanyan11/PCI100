@@ -9,6 +9,7 @@
 #include "fifo.h"
 #include "app.h"
 #include "bsp.h"
+#include "uart.h"
 
 #include <stdarg.h>
 

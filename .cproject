@@ -66,7 +66,6 @@
 									<listOptionValue builtIn="false" value="../PSP/CMSIS/Include"/>
 									<listOptionValue builtIn="false" value="../Core/Src/app"/>
 									<listOptionValue builtIn="false" value="../Core/Src/bsp"/>
-									<listOptionValue builtIn="false" value="../Core/Src/config"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/chain"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_dac"/>
 									<listOptionValue builtIn="false" value="../Core/Drivers/dac"/>
@@ -76,6 +75,8 @@
 									<listOptionValue builtIn="false" value="../Core/Drivers/pex"/>
 									<listOptionValue builtIn="false" value="../Core/Drivers/adc"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_adc"/>
+									<listOptionValue builtIn="false" value="../PSP/config"/>
+									<listOptionValue builtIn="false" value="../PSP/uart"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1907972757" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -186,7 +187,6 @@
 									<listOptionValue builtIn="false" value="../PSP/CMSIS/Include"/>
 									<listOptionValue builtIn="false" value="../Core/Src/app"/>
 									<listOptionValue builtIn="false" value="../Core/Src/bsp"/>
-									<listOptionValue builtIn="false" value="../Core/Src/config"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/chain"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_dac"/>
 									<listOptionValue builtIn="false" value="../Core/Drivers/dac"/>
@@ -196,6 +196,8 @@
 									<listOptionValue builtIn="false" value="../Core/Drivers/pex"/>
 									<listOptionValue builtIn="false" value="../Core/Drivers/adc"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_adc"/>
+									<listOptionValue builtIn="false" value="../PSP/config"/>
+									<listOptionValue builtIn="false" value="../PSP/uart"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.414412279" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>

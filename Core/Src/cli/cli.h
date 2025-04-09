@@ -14,11 +14,6 @@
 #include "cli_string_literals.h"
 #include "chain/chain.h"
 
-#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-
-#define UART_RECEIVE_TIMEOUT 100
-#define UART_TRANSMIT_TIMEOUT 100
-
 #define HISTORY_SIZE 32
 
 struct history_s

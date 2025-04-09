@@ -11,7 +11,13 @@
 #include "main.h"
 
 
-void MX_SPI_Init(SPI_HandleTypeDef * const hspix);
+void MX_SPI_Init(
+		SPI_HandleTypeDef * const hspix,
+		SPI_TypeDef * const instance,
+		uint32_t data_size,
+		uint32_t clk_polarity,
+		uint32_t clk_phase
+		);
 
 void MX_DMA_Init(void);
 
@@ -19,7 +25,12 @@ void MX_I2C_Init(I2C_HandleTypeDef * const hi2cx);
 
 void MX_USART_UART_Init(UART_HandleTypeDef * const huartx);
 
-void MX_ADC_Init(ADC_HandleTypeDef * const hadcx, const uint32_t * const channels);
+void MX_ADC_Init(
+		ADC_HandleTypeDef * const hadcx,
+		ADC_TypeDef * const instance,
+		uint32_t resolution,
+		const uint32_t * const channels
+		);
 
 
 void MX_DAC_Init(DAC_HandleTypeDef * const hdacx);

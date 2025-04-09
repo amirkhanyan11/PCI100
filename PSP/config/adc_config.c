@@ -8,34 +8,32 @@
 #include "config.h"
 #include "adc.h"
 
-ADC_HandleTypeDef hadc1 = {
-	.Instance = ADC1,
-	.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2,
-	.Init.Resolution = ADC_RESOLUTION_12B,
-	.Init.ScanConvMode = ADC_SCAN_DISABLE,
-	.Init.ContinuousConvMode = DISABLE,
-	.Init.DiscontinuousConvMode = DISABLE,
-	.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE,
-	.Init.ExternalTrigConv = ADC_SOFTWARE_START,
-	.Init.DataAlign = ADC_DATAALIGN_RIGHT,
-	.Init.NbrOfConversion = 1,
-	.Init.DMAContinuousRequests = DISABLE,
-	.Init.EOCSelection = ADC_EOC_SINGLE_CONV
-};
-
 uint32_t adc_channels[ADC_SUPPORTED_MAX_CHANNELS_SIZE] = {0};
 static uint8_t adc_channels_size;
 
 /**
-  * @brief ADC1 Initialization Function
+  * @brief ADC Initialization Function
   * @param None
   * @retval None
   */
-void MX_ADC_Init(ADC_HandleTypeDef * const hadcx, const uint32_t * const channels)
+void MX_ADC_Init(ADC_HandleTypeDef * const hadcx, ADC_TypeDef * const instance, uint32_t resolution, const uint32_t * const channels)
 {
-  if (HAL_ADC_Init(hadcx) != HAL_OK) {
-    Error_Handler();
-  }
+	hadcx->Instance = instance;
+	hadcx->Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
+	hadcx->Init.Resolution = resolution;
+	hadcx->Init.ScanConvMode = ADC_SCAN_DISABLE;
+	hadcx->Init.ContinuousConvMode = DISABLE;
+	hadcx->Init.DiscontinuousConvMode = DISABLE;
+	hadcx->Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+	hadcx->Init.ExternalTrigConv = ADC_SOFTWARE_START;
+	hadcx->Init.DataAlign = ADC_DATAALIGN_RIGHT;
+	hadcx->Init.NbrOfConversion = 1;
+	hadcx->Init.DMAContinuousRequests = DISABLE;
+	hadcx->Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+
+	if (HAL_ADC_Init(hadcx) != HAL_OK) {
+	Error_Handler();
+	}
 
   /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
   */

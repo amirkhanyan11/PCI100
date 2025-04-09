@@ -9,6 +9,7 @@
 #include "bsp.h"
 #include "fifo.h"
 #include <stdio.h>
+#include "uart.h"
 
 extern app_t app;
 
