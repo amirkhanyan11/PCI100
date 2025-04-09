@@ -8,7 +8,7 @@
 #include "config.h"
 #include "adc.h"
 
-uint32_t adc_channels[ADC_SUPPORTED_MAX_CHANNELS_SIZE] = {0};
+static uint32_t adc_channels[ADC_SUPPORTED_MAX_CHANNELS_SIZE] = {0};
 static uint8_t adc_channels_size;
 
 /**

@@ -32,7 +32,7 @@ void bsp_config(bsp_t * const bsp,
 
 	MX_SPI_Init(bsp->hspix, SPI2, SPI_DATASIZE_8BIT, SPI_POLARITY_LOW, SPI_PHASE_1EDGE);
 
-	uint32_t adc_channel[2] = {ADC_CHANNEL_10, 0};
+	uint32_t adc_channel[] = {ADC_CHANNEL_10, 0};
 	MX_ADC_Init(bsp->hadcx, ADC1, ADC_RESOLUTION_12B, adc_channel);
 
 	HAL_DAC_Start(bsp->hdacx, DAC_CHANNEL_2);
