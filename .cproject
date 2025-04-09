@@ -56,7 +56,6 @@
 									<listOptionValue builtIn="false" value="../Core/Src/cmd"/>
 									<listOptionValue builtIn="false" value="../Core/Src/fifo"/>
 									<listOptionValue builtIn="false" value="../Core/Src/filo"/>
-									<listOptionValue builtIn="false" value="../Core/Src/led"/>
 									<listOptionValue builtIn="false" value="../Core/Src/lexer"/>
 									<listOptionValue builtIn="false" value="../Core/Src/pex"/>
 									<listOptionValue builtIn="false" value="../Core/Src/utils"/>
@@ -68,15 +67,17 @@
 									<listOptionValue builtIn="false" value="../Core/Src/bsp"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/chain"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_dac"/>
-									<listOptionValue builtIn="false" value="../Core/Drivers/dac"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_eeprom"/>
-									<listOptionValue builtIn="false" value="../Core/Drivers/spi"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_pex"/>
-									<listOptionValue builtIn="false" value="../Core/Drivers/pex"/>
-									<listOptionValue builtIn="false" value="../Core/Drivers/adc"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_adc"/>
 									<listOptionValue builtIn="false" value="../PSP/config"/>
 									<listOptionValue builtIn="false" value="../PSP/uart"/>
+									<listOptionValue builtIn="false" value="../Drivers/pex"/>
+									<listOptionValue builtIn="false" value="../Drivers/adc"/>
+									<listOptionValue builtIn="false" value="../Drivers/spi"/>
+									<listOptionValue builtIn="false" value="../Drivers/dac"/>
+									<listOptionValue builtIn="false" value="../Drivers/led"/>
+									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_led"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1907972757" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -102,7 +103,7 @@
 							<tool id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec.765963111" name="MCU Output Converter Motorola S-rec with symbols" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec"/>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.914922383.1661522611" name="/" resourcePath="Core/Drivers/dac">
+					<folderInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.914922383.1661522611" name="/" resourcePath="Drivers/dac">
 						<toolChain id="com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.exe.debug.661999579" name="MCU ARM GCC" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.toolchain.exe.debug" unusedChildren="">
 							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.target_mcu.324569990.2138048056" name="MCU" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.target_mcu.324569990"/>
 							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.target_cpuid.1890055621.1266082033" name="CPU" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.target_cpuid.1890055621"/>
@@ -177,7 +178,6 @@
 									<listOptionValue builtIn="false" value="../Core/Src/cmd"/>
 									<listOptionValue builtIn="false" value="../Core/Src/fifo"/>
 									<listOptionValue builtIn="false" value="../Core/Src/filo"/>
-									<listOptionValue builtIn="false" value="../Core/Src/led"/>
 									<listOptionValue builtIn="false" value="../Core/Src/lexer"/>
 									<listOptionValue builtIn="false" value="../Core/Src/pex"/>
 									<listOptionValue builtIn="false" value="../Core/Src/utils"/>
@@ -189,15 +189,17 @@
 									<listOptionValue builtIn="false" value="../Core/Src/bsp"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/chain"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_dac"/>
-									<listOptionValue builtIn="false" value="../Core/Drivers/dac"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_eeprom"/>
-									<listOptionValue builtIn="false" value="../Core/Drivers/spi"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_pex"/>
-									<listOptionValue builtIn="false" value="../Core/Drivers/pex"/>
-									<listOptionValue builtIn="false" value="../Core/Drivers/adc"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_adc"/>
 									<listOptionValue builtIn="false" value="../PSP/config"/>
 									<listOptionValue builtIn="false" value="../PSP/uart"/>
+									<listOptionValue builtIn="false" value="../Drivers/pex"/>
+									<listOptionValue builtIn="false" value="../Drivers/adc"/>
+									<listOptionValue builtIn="false" value="../Drivers/spi"/>
+									<listOptionValue builtIn="false" value="../Drivers/dac"/>
+									<listOptionValue builtIn="false" value="../Drivers/led"/>
+									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_led"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.414412279" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -216,6 +218,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="PSP"/>
 					</sourceEntries>
 				</configuration>
@@ -292,6 +295,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="PSP"/>
 					</sourceEntries>
 				</configuration>
