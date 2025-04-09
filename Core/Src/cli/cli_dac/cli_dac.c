@@ -11,7 +11,7 @@
 #include "dac.h"
 #include <string.h>
 
-uint8_t cli_dac_router(cmd_t * const cmd) {
+uint8_t cli_dac(cmd_t * const cmd) {
 
 	const char * option = NULL;
 

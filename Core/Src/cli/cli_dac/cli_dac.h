@@ -15,7 +15,7 @@ uint8_t cli_dac_write_controller(cmd_t * const cmd, chain_t *const chain);
 
 
 // routers
-uint8_t cli_dac_router(cmd_t * const cmd);
+uint8_t cli_dac(cmd_t * const cmd);
 uint8_t cli_dac_write_route(cmd_t * const cmd);
 
 #endif /* SRC_CLI_CLI_DAC_CLI_DAC_H_ */

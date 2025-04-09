@@ -64,6 +64,6 @@ uint8_t handle_arrows(cli_engine_t * const engine);
 
 // commands
 
-uint8_t cli_dac_router(cmd_t * const cmd);
+uint8_t cli_dac(cmd_t * const cmd);
 
 #endif //CLI_H
