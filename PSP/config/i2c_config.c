@@ -12,18 +12,18 @@
   * @param None
   * @retval None
   */
-void MX_I2C_Init(I2C_HandleTypeDef * const hi2cx)
+void MX_I2C_Init(I2C_HandleTypeDef * const hi2cx, uint32_t timing, uint32_t address_mode)
 {
 
-	hi2cx.Instance = I2C1;
-	hi2cx.Init.Timing = 0x00303D5B;
-	hi2cx.Init.OwnAddress1 = 0;
-	hi2cx.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-	hi2cx.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-	hi2cx.Init.OwnAddress2 = 0;
-	hi2cx.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
-	hi2cx.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-	hi2cx.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+	hi2cx->Instance = I2C1;
+	hi2cx->Init.Timing = timing;
+	hi2cx->Init.OwnAddress1 = 0;
+	hi2cx->Init.AddressingMode = address_mode;
+	hi2cx->Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+	hi2cx->Init.OwnAddress2 = 0;
+	hi2cx->Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+	hi2cx->Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+	hi2cx->Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
 
 	if (HAL_I2C_Init(hi2cx) != HAL_OK)
 	{
@@ -43,10 +43,8 @@ void MX_I2C_Init(I2C_HandleTypeDef * const hi2cx)
 	{
 		Error_Handler();
 	}
-	/* USER CODE BEGIN I2C1_Init 2 */
 
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
-	/* USER CODE END I2C1_Init 2 */
 
 }

@@ -51,7 +51,7 @@
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
 
-extern DAC_HandleTypeDef hdac;
+DAC_HandleTypeDef hdac;
 
 I2C_HandleTypeDef hi2c1;
 

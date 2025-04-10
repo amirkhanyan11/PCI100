@@ -8,8 +8,6 @@
 #include "bsp.h"
 #include "typedefs.h"
 #include "config.h"
-#include "spi.h"
-#include "adc.h"
 
 void bsp_config(bsp_t * const bsp,
 		DAC_HandleTypeDef *  const hdacx,
@@ -25,9 +23,26 @@ void bsp_config(bsp_t * const bsp,
 	bsp->hi2cx = hi2cx;
 	bsp->hspix = hspix;
 
-	MX_GPIO_Init();
+	gpio_init();
+	/* START INIT GPIO PINS INITIALIZATION */
+
+	gpio_set(PCI_RESET, GPIOC, GPIO_PIN_2, GPIO_OUTPUT_PP, 0);
+	gpio_set(PG, GPIOC, GPIO_PIN_3, GPIO_INPUT, 0);
+	gpio_set(LED_CONFIG1, GPIOA, GPIO_PIN_1, GPIO_INPUT, 0);
+	gpio_set(LED_CONFIG2, GPIOA, GPIO_PIN_2, GPIO_INPUT, 0);
+	gpio_set(LED_CONFIG3, GPIOA, GPIO_PIN_3, GPIO_INPUT, 0);
+	gpio_set(LED_CONFIG4, GPIOA, GPIO_PIN_4, GPIO_INPUT, 0);
+	gpio_set(LED_CONFIG5, GPIOA, GPIO_PIN_6, GPIO_INPUT, 0);
+	gpio_set(LED_CONFIG6, GPIOA, GPIO_PIN_7, GPIO_INPUT, 0);
+	gpio_set(LED, GPIOB, GPIO_PIN_11, GPIO_OUTPUT_PP, 0);
+	gpio_set(SPI_CS, GPIOB, GPIO_PIN_12, GPIO_OUTPUT_PP, 0);
+	gpio_set(DAC_EXIT, GPIOB, GPIO_PIN_9, GPIO_IT_RISING, 0);
+	gpio_set(PCIE_PERST, GPIOB, GPIO_PIN_4, GPIO_INPUT, 0);
+
+	/* END INIT GPIO PINS INITIALIZATION */
+
 	MX_DMA_Init();
-	MX_I2C_Init(bsp->hi2cx);
+	MX_I2C_Init(bsp->hi2cx, I2C_TIMING, I2C_ADDRESS_7BIT);
 	MX_USART_UART_Init(bsp->huartx);
 	MX_DAC_Init(bsp->hdacx);
 
@@ -38,5 +53,4 @@ void bsp_config(bsp_t * const bsp,
 
 	HAL_DAC_Start(bsp->hdacx, DAC_CHANNEL_2);
 }
-
 

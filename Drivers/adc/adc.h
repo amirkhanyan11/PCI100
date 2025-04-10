@@ -16,19 +16,6 @@
 
 #include "main.h"
 
-enum {
-	ADC_CLOCK_SYNC_2 = ADC_CLOCK_SYNC_PCLK_DIV2,
-	ADC_CLOCK_SYNC_4 = ADC_CLOCK_SYNC_PCLK_DIV4,
-	ADC_CLOCK_SYNC_6 = ADC_CLOCK_SYNC_PCLK_DIV6,
-	ADC_CLOCK_SYNC_8 = ADC_CLOCK_SYNC_PCLK_DIV8,
-
-	ADC_RES_12B = ADC_RESOLUTION_12B,
-	ADC_RES_10B = ADC_RESOLUTION_10B,
-	ADC_RES_8B = ADC_RESOLUTION_8B,
-	ADC_RES_6B = ADC_RESOLUTION_6B,
-
-};
-
 void 				adc_channels_handler(ADC_HandleTypeDef * const hadcx, uint8_t channel_id);
 uint8_t 			adc_get_channels_size(void);
 HAL_StatusTypeDef 	adc_channels_init(ADC_HandleTypeDef * const hadcx, const uint32_t * const channels);
