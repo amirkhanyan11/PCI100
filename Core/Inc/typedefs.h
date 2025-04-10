@@ -22,7 +22,7 @@ typedef struct app_s app_t;
 typedef struct cmd_config_s cmd_config_t;
 
 // bsp.h
-typedef struct bsp_s bsp_t;
+typedef struct pci100_bsp_s pci100_bsp_t;
 
 // fifo.h
 typedef struct fifo_s fifo_t;

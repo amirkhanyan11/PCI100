@@ -7,7 +7,6 @@
 
 #include "dac.h"
 #include "cli.h"
-#include "bsp.h"
 #include "cli_string_literals.h"
 #include <stdio.h>
 #include <ctype.h>
@@ -15,6 +14,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "chain.h"
+
+#include "../../../../../BSP/PCI100/bsp.h"
 
 uint8_t cli_dac_write_middleware(cmd_t * const cmd, chain_t *const chain) {
 

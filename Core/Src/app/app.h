@@ -38,19 +38,19 @@ struct cmd_config_s
 
 struct app_s
 {
-	cli_engine_t		  engine;
+	cli_engine_t	engine;
 
-	led_t		 		  led;
+	led_t			led;
 
-	bsp_t				  *bsp;
+	pci100_bsp_t	*bsp;
 
-	cmd_config_t  		  sc_arr;
+	cmd_config_t  	sc_arr;
 };
 
 uint8_t app_router(app_t * const app, char *input);
 uint8_t app_cmd_add(app_t * const app, const char *name, exec_t exec);
 exec_t 	app_cmd_get(app_t * const app, const char *name);
-uint8_t app_init(app_t * const app, bsp_t * const bsp);
+uint8_t app_init(app_t * const app);
 uint8_t exec_help(cmd_t * const cmd);
 void 	app_run(app_t * const app);
 void 	app_config(app_t * const app);

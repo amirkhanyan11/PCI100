@@ -6,22 +6,31 @@
  */
 
 #include "bsp.h"
+
 #include "typedefs.h"
 #include "config.h"
 
-void bsp_init(bsp_t * const bsp,
-		DAC_HandleTypeDef *  const hdacx,
-		ADC_HandleTypeDef *  const hadcx,
-		UART_HandleTypeDef * const huartx,
-		I2C_HandleTypeDef * const hi2cx,
-		SPI_HandleTypeDef * const hspix
-) {
+ADC_HandleTypeDef hadc1;
 
-	bsp->hdacx = hdacx;
-	bsp->hadcx = hadcx;
-	bsp->huartx = huartx;
-	bsp->hi2cx = hi2cx;
-	bsp->hspix = hspix;
+DAC_HandleTypeDef hdac;
+
+I2C_HandleTypeDef hi2c1;
+
+SPI_HandleTypeDef hspi2;
+
+UART_HandleTypeDef huart1;
+
+static pci100_bsp_t bsp = {
+	.hdacx = &hdac,
+	.hadcx = &hadc1,
+	.huartx = &huart1,
+	.hi2cx = &hi2c1,
+	.hspix = &hspi2
+};
+
+void bsp_init(void)
+{
+
 
 	gpio_init();
 	/* START INIT GPIO PINS INITIALIZATION */
@@ -43,17 +52,21 @@ void bsp_init(bsp_t * const bsp,
 
 	dma_init();
 
-	i2c_init(bsp->hi2cx, I2C1, I2C_TIMING, I2C_ADDRESS_7BIT);
+	i2c_init(bsp.hi2cx, I2C1, I2C_TIMING_DEFAULT, I2C_ADDRESS_7BIT);
 
-	uart_init(bsp->huartx, USART1 ,UART_BAUD_RATE_115200, UART_STOPBIT_1);
+	uart_init(bsp.huartx, USART1 ,UART_BAUD_RATE_115200, UART_STOPBIT_1);
 
-	dac_init(bsp->hdacx, DAC);
+	dac_init(bsp.hdacx, DAC);
 
-	spi_init(bsp->hspix, SPI2, SPI_DATA_8BIT, SPI_CLK_POLARITY_LOW, SPI_CLK_PHASE_1EDGE, SPI_BAUD_RATE_2);
+	spi_init(bsp.hspix, SPI2, SPI_DATA_8BIT, SPI_CLK_POLARITY_LOW, SPI_CLK_PHASE_1EDGE, SPI_BAUD_RATE_2);
 
 	uint32_t adc_channel[] = {ADC_CHANNEL_10, 0};
-	adc_init(bsp->hadcx, ADC1, ADC_CLOCK_SYNC_2, ADC_RES_12B, adc_channel);
+	adc_init(bsp.hadcx, ADC1, ADC_CLOCK_SYNC_2, ADC_RES_12B, adc_channel);
 
 
 }
 
+pci100_bsp_t *bsp_get(void)
+{
+	return &bsp;
+}

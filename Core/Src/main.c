@@ -29,8 +29,9 @@
 #include "cmd.h"
 #include "pex.h"
 #include "fifo.h"
-#include "bsp.h"
 #include "psp.h"
+
+#include "../../BSP/PCI100/bsp.h"
 
 /* USER CODE END Includes */
 
@@ -50,15 +51,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc1;
 
-DAC_HandleTypeDef hdac;
-
-I2C_HandleTypeDef hi2c1;
-
-SPI_HandleTypeDef hspi2;
-
-UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 
@@ -73,7 +66,6 @@ UART_HandleTypeDef huart1;
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-bsp_t bsp1;
 app_t app;
 
 /* USER CODE END 0 */
@@ -89,8 +81,8 @@ int main(void)
 	/* Initialize MPU, HAL and Sysclock*/
 	psp_init();
 
-	bsp_init(&bsp1, &hdac, &hadc1, &huart1, &hi2c1, &hspi2);
-	app_init(&app, &bsp1);
+	bsp_init();
+	app_init(&app);
 	app_config(&app);
 
 	while (1)

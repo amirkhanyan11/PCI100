@@ -64,7 +64,6 @@
 									<listOptionValue builtIn="false" value="../PSP/CMSIS/Device/ST/STM32F7xx/Include"/>
 									<listOptionValue builtIn="false" value="../PSP/CMSIS/Include"/>
 									<listOptionValue builtIn="false" value="../Core/Src/app"/>
-									<listOptionValue builtIn="false" value="../Core/Src/bsp"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/chain"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_dac"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_eeprom"/>
@@ -79,6 +78,7 @@
 									<listOptionValue builtIn="false" value="../Drivers/led"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_led"/>
 									<listOptionValue builtIn="false" value="../PSP/"/>
+									<listOptionValue builtIn="false" value="../BSP/PCI100"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1907972757" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -187,7 +187,6 @@
 									<listOptionValue builtIn="false" value="../PSP/CMSIS/Device/ST/STM32F7xx/Include"/>
 									<listOptionValue builtIn="false" value="../PSP/CMSIS/Include"/>
 									<listOptionValue builtIn="false" value="../Core/Src/app"/>
-									<listOptionValue builtIn="false" value="../Core/Src/bsp"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/chain"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_dac"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_eeprom"/>
@@ -202,6 +201,7 @@
 									<listOptionValue builtIn="false" value="../Drivers/led"/>
 									<listOptionValue builtIn="false" value="../Core/Src/cli/cli_led"/>
 									<listOptionValue builtIn="false" value="../PSP/"/>
+									<listOptionValue builtIn="false" value="../BSP/PCI100"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.414412279" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -219,6 +219,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="BSP"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="PSP"/>
@@ -296,6 +297,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="BSP"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="PSP"/>

@@ -12,7 +12,8 @@
 #include "cmd.h"
 #include "utils.h"
 #include "cli_string_literals.h"
-#include "bsp.h"
+
+#include "../../../BSP/PCI100/bsp.h"
 
 extern fifo_t UART_FIFO1;
 
@@ -47,10 +48,10 @@ uint8_t app_router(app_t * const app, char *line) {
 	return cmd.exec(&cmd);
 }
 
-uint8_t app_init(app_t * const app, bsp_t * const bsp) {
+uint8_t app_init(app_t * const app) {
 	app->sc_arr.length = 0;
 
-	app->bsp = bsp;
+	app->bsp = bsp_get();
 
 	engine_init(&app->engine, app, &UART_FIFO1, app->bsp->huartx);
 
