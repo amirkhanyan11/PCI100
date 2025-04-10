@@ -9,7 +9,7 @@
 #define PSP_H_
 
 void psp_init(void);
-void SystemClock_Config(void);
-void MPU_Config(void);
+void system_clock_config(void);
+void mpu_config(void);
 
 #endif /* PSP_H_ */

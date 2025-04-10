@@ -10,18 +10,18 @@
 
 
 void psp_init(void) {
-	MPU_Config();
+	mpu_config();
 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
 	HAL_Init();
 	/* Configure the system clock */
-	SystemClock_Config();
+	system_clock_config();
 }
 
 /**
   * @brief System Clock Configuration
   * @retval None
   */
-void SystemClock_Config(void)
+void system_clock_config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
@@ -66,7 +66,7 @@ void SystemClock_Config(void)
 
  /* MPU Configuration */
 
-void MPU_Config(void)
+void mpu_config(void)
 {
   MPU_Region_InitTypeDef MPU_InitStruct = {0};
 
