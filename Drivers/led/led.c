@@ -13,6 +13,7 @@
 #include "led.h"
 #include "cmd.h"
 #include "cli_string_literals.h"
+#include "config.h"
 
 void led_init(led_t * const led) {
 	led->blink_frequency = 0;
@@ -36,14 +37,14 @@ uint8_t led_set_blink(led_t * const led, const uint32_t frequency) {
 uint8_t led_off(led_t *const led) {
 	led->state = LED_OFF;
 	led->blink_mode = BLINK_OFF;
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+	gpio_pin_set(LED, ON);
 	return 0;
 }
 
 uint8_t led_on(led_t *const led) {
 	led->state = LED_ON;
 	led->blink_mode = BLINK_OFF;
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+	gpio_pin_set(LED, OFF);
 	return 0;
 }
 
@@ -73,12 +74,12 @@ uint8_t led_mcu_cfg(led_t * const led) {
 
   switch (input) {
   case 0:
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+	gpio_pin_set(LED, ON);
     led->blink_frequency = 0;
     led->blink_mode = BLINK_OFF;
     break;
   case 1:
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+	gpio_pin_set(LED, OFF);
 	led->blink_frequency = 1;
 	led->blink_mode = BLINK_ON;
     break;
@@ -87,7 +88,7 @@ uint8_t led_mcu_cfg(led_t * const led) {
   	led->blink_frequency = fmap[input];
   	break;
   default:
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+	gpio_pin_set(LED, ON);
 	led->blink_frequency = 0;
 	led->blink_mode = BLINK_OFF;
   }

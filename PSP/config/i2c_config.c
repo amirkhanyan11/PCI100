@@ -12,10 +12,10 @@
   * @param None
   * @retval None
   */
-void MX_I2C_Init(I2C_HandleTypeDef * const hi2cx, uint32_t timing, uint32_t address_mode)
+void i2c_init(I2C_HandleTypeDef * const hi2cx, I2C_TypeDef * const instance, uint32_t timing, uint32_t address_mode)
 {
 
-	hi2cx->Instance = I2C1;
+	hi2cx->Instance = instance;
 	hi2cx->Init.Timing = timing;
 	hi2cx->Init.OwnAddress1 = 0;
 	hi2cx->Init.AddressingMode = address_mode;
@@ -44,7 +44,7 @@ void MX_I2C_Init(I2C_HandleTypeDef * const hi2cx, uint32_t timing, uint32_t addr
 		Error_Handler();
 	}
 
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+	gpio_pin_set(PCI_RESET, ON);
 
 
 }

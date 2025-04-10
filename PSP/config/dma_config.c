@@ -15,7 +15,7 @@ DMA_HandleTypeDef hdma_usart1_tx;
 /**
   * Enable DMA controller clock
   */
-void MX_DMA_Init(void)
+void dma_init(void)
 {
 
   /* DMA controller clock enable */

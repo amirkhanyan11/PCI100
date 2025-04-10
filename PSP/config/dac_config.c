@@ -12,11 +12,11 @@
   * @param None
   * @retval None
   */
-void MX_DAC_Init(DAC_HandleTypeDef * const hdacx)
+void dac_init(DAC_HandleTypeDef * const hdacx, DAC_TypeDef * const instance)
 {
   DAC_ChannelConfTypeDef sConfig = {0};
 
-  hdacx->Instance = DAC;
+  hdacx->Instance = instance;
 
   /** DAC Initialization
   */
@@ -34,6 +34,6 @@ void MX_DAC_Init(DAC_HandleTypeDef * const hdacx)
     Error_Handler();
   }
 
-
+  HAL_DAC_Start(hdacx, DAC_CHANNEL_2);
 
 }

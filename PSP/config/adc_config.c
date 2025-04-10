@@ -16,7 +16,7 @@ static uint8_t adc_channels_size;
   * @param None
   * @retval None
   */
-void MX_ADC_Init(ADC_HandleTypeDef * const hadcx, ADC_TypeDef * const instance, uint32_t resolution, uint32_t clock_prescaler, const uint32_t * const channels)
+void adc_init(ADC_HandleTypeDef * const hadcx, ADC_TypeDef * const instance, uint32_t resolution, uint32_t clock_prescaler, const uint32_t * const channels)
 {
 	hadcx->Instance = instance;
 	hadcx->Init.ClockPrescaler = clock_prescaler;

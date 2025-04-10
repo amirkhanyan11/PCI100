@@ -10,7 +10,7 @@
   * @param None
   * @retval None
   */
-void MX_SPI_Init(SPI_HandleTypeDef * const hspix, SPI_TypeDef * const instance, uint32_t data_size, uint32_t clk_polarity, uint32_t clk_phase,
+void spi_init(SPI_HandleTypeDef * const hspix, SPI_TypeDef * const instance, uint32_t data_size, uint32_t clk_polarity, uint32_t clk_phase,
 		uint32_t baud_rate_prescaler)
 {
 

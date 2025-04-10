@@ -10,7 +10,7 @@
 
 #define GPIO_PIN_COUNT 48
 #define GPIO_PORT_COUNT 3
-#define GPIO_PINS_IN_PORT GPIO_PIN_COUNT / GPIO_PORT_COUNT
+#define GPIO_PINS_IN_PORT 16
 
 #include "main.h"
 
@@ -20,6 +20,7 @@ typedef enum e_gpio_pull_mode gpio_pull_mode_e;
 typedef enum e_gpio_mode gpio_mode_e;
 typedef struct gpio_mode_s gpio_mode_t;
 
+// SPI configs
 enum {
 	SPI_CLK_POLARITY_LOW = SPI_POLARITY_LOW,
 	SPI_CLK_POLARITY_HIGH = SPI_POLARITY_HIGH,
@@ -52,7 +53,24 @@ enum {
 
 };
 
+// UART configs
+enum {
+	UART_BAUD_RATE_4800 = 4800,
+	UART_BAUD_RATE_9600 = 9600,
+	UART_BAUD_RATE_19200 = 19200,
+	UART_BAUD_RATE_38400 = 38400,
+	UART_BAUD_RATE_57600 = 57600,
+	UART_BAUD_RATE_115200 = 115200,
 
+
+	UART_STOPBIT_0_5 = UART_STOPBITS_0_5,
+	UART_STOPBIT_1 = UART_STOPBITS_1,
+	UART_STOPBIT_1_5 = UART_STOPBITS_1_5,
+	UART_STOPBIT_2 = UART_STOPBITS_2,
+
+};
+
+// I2C configs
 enum {
 	I2C_TIMING = 0x00303D5B,
 
@@ -60,6 +78,7 @@ enum {
 	I2C_ADDRESS_10BIT = I2C_ADDRESSINGMODE_10BIT,
 };
 
+// ADC configs
 enum {
 	ADC_CLOCK_SYNC_2 = ADC_CLOCK_SYNC_PCLK_DIV2,
 	ADC_CLOCK_SYNC_4 = ADC_CLOCK_SYNC_PCLK_DIV4,
@@ -73,6 +92,7 @@ enum {
 
 };
 
+// DAC configs
 enum {
 	DAC_CHNL_1 = DAC_CHANNEL_1,
 	DAC_CHNL_2 = DAC_CHANNEL_2,
@@ -129,7 +149,7 @@ struct gpio_mode_s {
 };
 
 
-void MX_SPI_Init(
+void spi_init(
 		SPI_HandleTypeDef * const hspix,
 		SPI_TypeDef * const instance,
 		uint32_t data_size,
@@ -138,13 +158,22 @@ void MX_SPI_Init(
 		uint32_t baud_rate_prescaler
 		);
 
-void MX_DMA_Init(void);
+void dma_init(void);
 
-void MX_I2C_Init(I2C_HandleTypeDef * const hi2cx, uint32_t timing, uint32_t address_mode);
+void i2c_init(
+		I2C_HandleTypeDef * const hi2cx,
+		I2C_TypeDef * const instance,
+		uint32_t timing,
+		uint32_t address_mode
+		);
 
-void MX_USART_UART_Init(UART_HandleTypeDef * const huartx);
+void uart_init(
+		UART_HandleTypeDef * const huartx,
+		USART_TypeDef * const instance,
+		uint32_t baud_rate,
+		uint32_t stop_bits);
 
-void MX_ADC_Init(
+void adc_init(
 		ADC_HandleTypeDef * const hadcx,
 		ADC_TypeDef * const instance,
 		uint32_t clock_prescaler,
@@ -153,14 +182,13 @@ void MX_ADC_Init(
 		);
 
 
-void MX_DAC_Init(DAC_HandleTypeDef * const hdacx);
+void dac_init(DAC_HandleTypeDef * const hdacx, DAC_TypeDef * const instance);
 
 
 void			gpio_init(void);
 gpio_pin_mode_e	gpio_pin_get(user_label_e label);
 void			gpio_pin_set(user_label_e label, gpio_pin_mode_e mode);
-void			gpio_set(user_label_e label, GPIO_TypeDef *port, uint16_t pin, gpio_mode_e mode, uint8_t index);
-//void MX_GPIO_Init(void);
+void			gpio_set(user_label_e label, GPIO_TypeDef * const port, uint16_t pin, gpio_mode_e mode);
 
 
 #endif /* SRC_CONFIG_CONFIG_H_ */
