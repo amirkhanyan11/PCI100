@@ -10,7 +10,8 @@
   * @param None
   * @retval None
   */
-void MX_SPI_Init(SPI_HandleTypeDef * const hspix, SPI_TypeDef * const instance, uint32_t data_size, uint32_t clk_polarity, uint32_t clk_phase)
+void MX_SPI_Init(SPI_HandleTypeDef * const hspix, SPI_TypeDef * const instance, uint32_t data_size, uint32_t clk_polarity, uint32_t clk_phase,
+		uint32_t baud_rate_prescaler)
 {
 
 	hspix->Instance = instance;
@@ -20,7 +21,7 @@ void MX_SPI_Init(SPI_HandleTypeDef * const hspix, SPI_TypeDef * const instance, 
 	hspix->Init.CLKPolarity = clk_polarity;
 	hspix->Init.CLKPhase = clk_phase;
 	hspix->Init.NSS = SPI_NSS_SOFT;
-	hspix->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+	hspix->Init.BaudRatePrescaler = baud_rate_prescaler;
 	hspix->Init.FirstBit = SPI_FIRSTBIT_MSB;
 	hspix->Init.TIMode = SPI_TIMODE_DISABLE;
 	hspix->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;

@@ -16,7 +16,8 @@ void MX_SPI_Init(
 		SPI_TypeDef * const instance,
 		uint32_t data_size,
 		uint32_t clk_polarity,
-		uint32_t clk_phase
+		uint32_t clk_phase,
+		uint32_t baud_rate_prescaler
 		);
 
 void MX_DMA_Init(void);
