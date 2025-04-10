@@ -16,10 +16,10 @@ static uint8_t adc_channels_size;
   * @param None
   * @retval None
   */
-void MX_ADC_Init(ADC_HandleTypeDef * const hadcx, ADC_TypeDef * const instance, uint32_t resolution, const uint32_t * const channels)
+void MX_ADC_Init(ADC_HandleTypeDef * const hadcx, ADC_TypeDef * const instance, uint32_t resolution, uint32_t clock_prescaler, const uint32_t * const channels)
 {
 	hadcx->Instance = instance;
-	hadcx->Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
+	hadcx->Init.ClockPrescaler = clock_prescaler;
 	hadcx->Init.Resolution = resolution;
 	hadcx->Init.ScanConvMode = ADC_SCAN_DISABLE;
 	hadcx->Init.ContinuousConvMode = DISABLE;

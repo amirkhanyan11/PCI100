@@ -53,7 +53,7 @@ ADC_HandleTypeDef hadc1;
 
 extern DAC_HandleTypeDef hdac;
 
-extern I2C_HandleTypeDef hi2c1;
+I2C_HandleTypeDef hi2c1;
 
 SPI_HandleTypeDef hspi2;
 

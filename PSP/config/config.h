@@ -29,6 +29,7 @@ void MX_USART_UART_Init(UART_HandleTypeDef * const huartx);
 void MX_ADC_Init(
 		ADC_HandleTypeDef * const hadcx,
 		ADC_TypeDef * const instance,
+		uint32_t clock_prescaler,
 		uint32_t resolution,
 		const uint32_t * const channels
 		);

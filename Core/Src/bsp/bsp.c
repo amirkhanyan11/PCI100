@@ -8,6 +8,8 @@
 #include "bsp.h"
 #include "typedefs.h"
 #include "config.h"
+#include "spi.h"
+#include "adc.h"
 
 void bsp_config(bsp_t * const bsp,
 		DAC_HandleTypeDef *  const hdacx,
@@ -29,11 +31,10 @@ void bsp_config(bsp_t * const bsp,
 	MX_USART_UART_Init(bsp->huartx);
 	MX_DAC_Init(bsp->hdacx);
 
-
-	MX_SPI_Init(bsp->hspix, SPI2, SPI_DATASIZE_8BIT, SPI_POLARITY_LOW, SPI_PHASE_1EDGE, SPI_BAUDRATEPRESCALER_2);
+	MX_SPI_Init(bsp->hspix, SPI2, SPI_DATA_8BIT, SPI_CLK_POLARITY_LOW, SPI_CLK_PHASE_1EDGE, SPI_BAUD_RATE_2);
 
 	uint32_t adc_channel[] = {ADC_CHANNEL_10, 0};
-	MX_ADC_Init(bsp->hadcx, ADC1, ADC_RESOLUTION_12B, adc_channel);
+	MX_ADC_Init(bsp->hadcx, ADC1, ADC_CLOCK_SYNC_2, ADC_RES_12B, adc_channel);
 
 	HAL_DAC_Start(bsp->hdacx, DAC_CHANNEL_2);
 }
