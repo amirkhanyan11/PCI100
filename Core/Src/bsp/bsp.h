@@ -20,7 +20,7 @@ struct bsp_s
 	SPI_HandleTypeDef 	*hspix;
 };
 
-void bsp_config(bsp_t * const bsp,
+void bsp_init(bsp_t * const bsp,
 		DAC_HandleTypeDef * const hdacx,
 		ADC_HandleTypeDef * const hadcx,
 		UART_HandleTypeDef * const huartx,
