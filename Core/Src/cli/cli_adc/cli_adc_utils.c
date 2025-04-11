@@ -21,5 +21,5 @@ uint8_t __adc_err(void)
 
 bool adc_supported_channel(uint8_t channel_id)
 {
-	return (channel_id > 0 && channel_id < adc_get_channels_size());
+	return (channel_id > 0 && channel_id <= adc_get_channels_size());
 }

@@ -5,6 +5,7 @@
  *      Author: artyom
  */
 
+#include "cli_dac.h"
 #include "dac.h"
 #include "cli.h"
 #include "cli_string_literals.h"
@@ -29,7 +30,7 @@ uint8_t cli_dac_write_middleware(cmd_t * const cmd, chain_t *const chain) {
 	const double_optional_t res = satof(cmd->argv[2]);
 	const double d_value = res.val;
 
-	if (dac_id != 1 || !res.has_val || d_value < 0 || d_value > DAC_MAX_VALUE) {
+	if (!dac_supported_channel(dac_id) || !res.has_val || d_value < 0 || d_value > DAC_MAX_VALUE) {
 		printf("dac: write: %s\r\n", CLI_INVALID_OPTIONS);
 		printchunk("Usage:", CLI_DAC_HELP, NULL);
 		return EINVAL;

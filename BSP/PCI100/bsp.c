@@ -9,6 +9,8 @@
 
 #include "typedefs.h"
 #include "config.h"
+#include "adc.h"
+#include "dac.h"
 
 ADC_HandleTypeDef hadc1;
 
@@ -52,17 +54,27 @@ void bsp_init(void)
 
 	dma_init();
 
-	i2c_init(bsp.hi2cx, I2C1, I2C_TIMING_DEFAULT, I2C_ADDRESS_7BIT);
+	i2c_init(bsp.hi2cx, I2C1, I2C_SPEED_100KHZ, I2C_ADDRESS_7BIT);
 
 	uart_init(bsp.huartx, USART1 ,UART_BAUD_RATE_115200, UART_STOPBIT_1);
 
-	dac_init(bsp.hdacx, DAC);
-
 	spi_init(bsp.hspix, SPI2, SPI_DATA_8BIT, SPI_CLK_POLARITY_LOW, SPI_CLK_PHASE_1EDGE, SPI_BAUD_RATE_2);
 
-	uint32_t adc_channel[] = {ADC_CHANNEL_10, 0};
-	adc_init(bsp.hadcx, ADC1, ADC_CLOCK_SYNC_2, ADC_RES_12B, adc_channel);
+	dac_init(bsp.hdacx, DAC);
 
+	/* START INIT DAC CHANNELS*/
+
+	dac_channel_init(bsp.hdacx, DAC_CHNL_2);
+
+	/* END INIT DAC CHANNELS*/
+
+	adc_init(bsp.hadcx, ADC1, ADC_CLOCK_SYNC_2, ADC_RES_12B);
+
+	/* START INIT ADC CHANNELS*/
+
+	adc_channel_init(bsp.hadcx, ADC_CHNL_10);
+
+	/* END INIT ADC CHANNELS*/
 
 }
 

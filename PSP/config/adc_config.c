@@ -8,7 +8,7 @@
 #include "config.h"
 #include "adc.h"
 
-static uint32_t adc_channels[ADC_SUPPORTED_MAX_CHANNELS_SIZE] = {0};
+static uint32_t adc_channels[ADC_SUPPORTED_MAX_CHANNELS_SIZE];
 static uint8_t adc_channels_size;
 
 /**
@@ -16,7 +16,7 @@ static uint8_t adc_channels_size;
   * @param None
   * @retval None
   */
-void adc_init(ADC_HandleTypeDef * const hadcx, ADC_TypeDef * const instance, uint32_t resolution, uint32_t clock_prescaler, const uint32_t * const channels)
+void adc_init(ADC_HandleTypeDef * const hadcx, ADC_TypeDef * const instance, uint32_t resolution, uint32_t clock_prescaler)
 {
 	hadcx->Instance = instance;
 	hadcx->Init.ClockPrescaler = clock_prescaler;
@@ -35,27 +35,21 @@ void adc_init(ADC_HandleTypeDef * const hadcx, ADC_TypeDef * const instance, uin
 	Error_Handler();
 	}
 
-  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
-  */
-  if (adc_channels_init(hadcx, channels) != HAL_OK) {
-	Error_Handler();
-  }
-
 }
 
-HAL_StatusTypeDef adc_channels_init(ADC_HandleTypeDef * const hadcx, const uint32_t * const channels)
+HAL_StatusTypeDef adc_channel_init(ADC_HandleTypeDef * const hadcx, uint32_t channel)
 {
-	if (channels == NULL || *channels == 0) {
+	if (adc_channels_size == ADC_SUPPORTED_MAX_CHANNELS_SIZE) {
 		return HAL_ERROR;
 	}
-	for (; channels[adc_channels_size] != 0; ++adc_channels_size){
-		if (adc_channels_size == ADC_SUPPORTED_MAX_CHANNELS_SIZE) {
-			return HAL_ERROR;
-		}
-		adc_channels[adc_channels_size] = channels[adc_channels_size];
-	}
+
+	adc_channels[adc_channels_size] = channel;
+
+
 	adc_channels_size += 1;
-	adc_channels_handler(hadcx, 1);
+
+	adc_channels_handler(hadcx, adc_channels_size);
+
 	return HAL_OK;
 }
 
