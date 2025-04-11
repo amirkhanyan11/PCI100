@@ -125,6 +125,31 @@ enum {
 	DAC_CHNL_2 = DAC_CHANNEL_2,
 };
 
+enum {
+	GPIO_PORT_A,
+	GPIO_PORT_B,
+	GPIO_PORT_C,
+};
+
+enum {
+	PIN_0,
+	PIN_1,
+	PIN_2,
+	PIN_3,
+	PIN_4,
+	PIN_5,
+	PIN_6,
+	PIN_7,
+	PIN_8,
+	PIN_9,
+	PIN_10,
+	PIN_11,
+	PIN_12,
+	PIN_13,
+	PIN_14,
+	PIN_15,
+};
+
 enum e_gpio_mode{
 	GPIO_INPUT = GPIO_MODE_INPUT,
 	GPIO_OUTPUT_PP = GPIO_MODE_OUTPUT_PP,
@@ -213,7 +238,7 @@ void dac_init(DAC_HandleTypeDef * const hdacx, DAC_TypeDef * const instance);
 void			gpio_init(void);
 gpio_pin_mode_e	gpio_pin_get(user_label_e label);
 void			gpio_pin_set(user_label_e label, gpio_pin_mode_e mode);
-void			gpio_set(user_label_e label, GPIO_TypeDef * const port, uint16_t pin, gpio_mode_e mode);
+void 			gpio_set(const user_label_e label, const uint8_t port, const uint8_t pin, const gpio_mode_e mode);
 
 
 #endif /* SRC_CONFIG_CONFIG_H_ */

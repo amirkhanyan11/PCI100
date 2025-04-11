@@ -50,16 +50,13 @@ extern "C" {
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
+void error_handler(void);
 
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define MCU_ACT_LED_Pin GPIO_PIN_11
-#define MCU_ACT_LED_GPIO_Port GPIOB
-
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

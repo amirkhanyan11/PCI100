@@ -13,7 +13,7 @@
 #include "utils.h"
 #include "cli_string_literals.h"
 
-#include "../../../BSP/PCI100/bsp.h"
+#include "bsp.h"
 
 extern fifo_t UART_FIFO1;
 
@@ -59,43 +59,10 @@ uint8_t app_init(app_t * const app) {
 
 	led_init(&app->led);
 
-	app_config(app);
+	cli_config(app);
 
 	printf("\r\n%s", PROMPT);
 	fflush(stdout);
 
 	return 0;
-}
-
-uint8_t app_cmd_add(app_t * const app, const char *name, exec_t exec) {
-	if (!app || !name || !exec) {
-		return EINVAL;
-	}
-
-	if (app->sc_arr.length == APP_MAX_CMDS || strlen(name) > TOKEN_MAX_LENGTH) {
-		return EINVAL;
-	}
-
-	strcpy(app->sc_arr.cmds[app->sc_arr.length].name, name);
-
-	app->sc_arr.cmds[app->sc_arr.length].exec = exec;
-
-	app->sc_arr.length += 1;
-
-	return 0;
-}
-
-
-exec_t app_cmd_get(app_t * const app, const char *name) {
-	if (!app || !name) {
-		return NULL;
-	}
-
-	for (uint8_t i = 0; i < app->sc_arr.length; ++i) {
-		if (!strcmp(app->sc_arr.cmds[i].name, name)) {
-			return app->sc_arr.cmds[i].exec;
-		}
-	}
-
-	return NULL;
 }

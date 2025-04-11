@@ -6,10 +6,6 @@
 #define DAC_H
 
 #include "main.h"
-#include "../cmd/cmd.h"
-#include "../cli/cli.h"
-#include "../utils/utils.h"
-#include "../led/led.h"
 
 #define DAC_MAX_VALUE 1
 #define DAC_COUNT 1

@@ -29,7 +29,7 @@ void uart_init(UART_HandleTypeDef * const huartx, USART_TypeDef * const instance
 
 	if (HAL_UART_Init(huartx) != HAL_OK)
 	{
-		Error_Handler();
+		error_handler();
 	}
 
 }

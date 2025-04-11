@@ -5,8 +5,8 @@
  *      Author: Tigran
  */
 
-#include "cli_dac.h"
-#include "dac.h"
+#include <cli_dac.h>
+#include <dac.h>
 
 bool dac_supported_channel(uint8_t channel_id)
 {

@@ -12,7 +12,7 @@
 #include <errno.h>
 #include "cli.h"
 
-uint8_t exec_help(cmd_t * const cmd) {
+uint8_t cli_help(cmd_t * const cmd) {
 	if (cmd->argc != 0) {
 		printf("help: %s. Try `help` without options\r\n", CLI_INVALID_OPTIONS);
 		return APP_INVALID_OPTIONS;

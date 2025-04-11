@@ -56,6 +56,10 @@ uint8_t handle_nl(cli_engine_t * const engine);
 uint8_t handle_bs(cli_engine_t * const engine);
 uint8_t handle_arrows(cli_engine_t * const engine);
 
+// cli_config
+void 	cli_config(app_t * const app);
+uint8_t cli_cmd_add(app_t * const app, const char *name, exec_t exec);
+exec_t 	cli_cmd_get(app_t * const app, const char *name);
 
 
 // commands

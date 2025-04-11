@@ -5,8 +5,8 @@
  *      Author: artyom
  */
 
+#include <dac.h>
 #include "config.h"
-#include "dac.h"
 
 static uint32_t	dac_channels[DAC_SUPPORTED_MAX_CHANNELS_SIZE];
 static uint8_t	dac_channels_size;
@@ -25,7 +25,7 @@ void dac_init(DAC_HandleTypeDef * const hdacx, DAC_TypeDef * const instance)
 	*/
 	if (HAL_DAC_Init(hdacx) != HAL_OK)
 	{
-	Error_Handler();
+		error_handler();
 	}
 }
 
@@ -61,7 +61,7 @@ void dac_channels_handler(DAC_HandleTypeDef * const hdacx, uint8_t channel_id)
 
 	if (HAL_DAC_ConfigChannel(hdacx, &sConfig, dac_channels[channel_id - 1]) != HAL_OK)
 	{
-		Error_Handler();
+		error_handler();
 	}
 
 	HAL_DAC_Start(hdacx, dac_channels[channel_id - 1]);

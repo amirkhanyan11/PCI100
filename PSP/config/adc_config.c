@@ -32,7 +32,7 @@ void adc_init(ADC_HandleTypeDef * const hadcx, ADC_TypeDef * const instance, uin
 	hadcx->Init.EOCSelection = ADC_EOC_SINGLE_CONV;
 
 	if (HAL_ADC_Init(hadcx) != HAL_OK) {
-	Error_Handler();
+	error_handler();
 	}
 
 }
@@ -67,6 +67,6 @@ void adc_channels_handler(ADC_HandleTypeDef * const hadcx, uint8_t channel_id)
 	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(hadcx, &sConfig) != HAL_OK)
 	{
-		Error_Handler();
+		error_handler();
 	}
 }

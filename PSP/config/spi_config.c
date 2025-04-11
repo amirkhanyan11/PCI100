@@ -29,12 +29,12 @@ void spi_init(SPI_HandleTypeDef * const hspix, SPI_TypeDef * const instance, uin
 	hspix->Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
 	hspix->Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
 
-  /* SPI parameter configuration*/
+	/* SPI parameter configuration*/
 
-  if (HAL_SPI_Init(hspix) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, RESET);
+	if (HAL_SPI_Init(hspix) != HAL_OK)
+	{
+		error_handler();
+	}
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, RESET);
 
 }

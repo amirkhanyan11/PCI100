@@ -18,8 +18,8 @@ uint8_t rx_buf[UART_RX_BUFFER_SIZE];
 
 PUTCHAR_PROTOTYPE
 {
-  HAL_UART_Transmit(app.bsp->huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
-  return ch;
+	HAL_UART_Transmit(app.bsp->huartx, (uint8_t *)&ch, 1, UART_TRANSMIT_TIMEOUT);
+	return ch;
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)

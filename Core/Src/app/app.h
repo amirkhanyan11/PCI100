@@ -15,7 +15,7 @@
 #include "typedefs.h"
 #include "lexer.h"
 #include <stdio.h>
-#include "../../Drivers/led/led.h"
+#include "led.h"
 
 #define APP_MAX_CMDS 128
 
@@ -48,11 +48,8 @@ struct app_s
 };
 
 uint8_t app_router(app_t * const app, char *input);
-uint8_t app_cmd_add(app_t * const app, const char *name, exec_t exec);
-exec_t 	app_cmd_get(app_t * const app, const char *name);
 uint8_t app_init(app_t * const app);
-uint8_t exec_help(cmd_t * const cmd);
+uint8_t cli_help(cmd_t * const cmd);
 void 	app_run(app_t * const app);
-void 	app_config(app_t * const app);
 
 #endif /* SRC_APP_APP_H_ */

@@ -5,12 +5,12 @@
  *      Author: artyom
  */
 
+#include <dac.h>
 #include "bsp.h"
 
 #include "typedefs.h"
 #include "config.h"
 #include "adc.h"
-#include "dac.h"
 
 ADC_HandleTypeDef hadc1;
 
@@ -32,25 +32,24 @@ static pci100_bsp_t bsp = {
 
 void bsp_init(void)
 {
+	/* START SET GPIO PINS CONFIGS */
 
+	gpio_set(PCI_RESET, GPIO_PORT_C, PIN_2, GPIO_OUTPUT_PP);
+	gpio_set(PG, GPIO_PORT_C, PIN_3, GPIO_INPUT);
+	gpio_set(LED_CONFIG1, GPIO_PORT_A, PIN_1, GPIO_INPUT);
+	gpio_set(LED_CONFIG2, GPIO_PORT_A, PIN_2, GPIO_INPUT);
+	gpio_set(LED_CONFIG3, GPIO_PORT_A, PIN_3, GPIO_INPUT);
+	gpio_set(LED_CONFIG4, GPIO_PORT_A, PIN_4, GPIO_INPUT);
+	gpio_set(LED_CONFIG5, GPIO_PORT_A, PIN_6, GPIO_INPUT);
+	gpio_set(LED_CONFIG6, GPIO_PORT_A, PIN_7, GPIO_INPUT);
+	gpio_set(LED, GPIO_PORT_B, PIN_11, GPIO_OUTPUT_PP);
+	gpio_set(SPI_CS, GPIO_PORT_B, PIN_12, GPIO_OUTPUT_PP);
+	gpio_set(DAC_EXIT, GPIO_PORT_B, PIN_9, GPIO_IT_RISING);
+	gpio_set(PCIE_PERST, GPIO_PORT_B, PIN_4, GPIO_INPUT);
+
+	/* END SET GPIO PINS CONFIGS */
 
 	gpio_init();
-	/* START INIT GPIO PINS INITIALIZATION */
-
-	gpio_set(PCI_RESET, GPIOC, GPIO_PIN_2, GPIO_OUTPUT_PP);
-	gpio_set(PG, GPIOC, GPIO_PIN_3, GPIO_INPUT);
-	gpio_set(LED_CONFIG1, GPIOA, GPIO_PIN_1, GPIO_INPUT);
-	gpio_set(LED_CONFIG2, GPIOA, GPIO_PIN_2, GPIO_INPUT);
-	gpio_set(LED_CONFIG3, GPIOA, GPIO_PIN_3, GPIO_INPUT);
-	gpio_set(LED_CONFIG4, GPIOA, GPIO_PIN_4, GPIO_INPUT);
-	gpio_set(LED_CONFIG5, GPIOA, GPIO_PIN_6, GPIO_INPUT);
-	gpio_set(LED_CONFIG6, GPIOA, GPIO_PIN_7, GPIO_INPUT);
-	gpio_set(LED, GPIOB, GPIO_PIN_11, GPIO_OUTPUT_PP);
-	gpio_set(SPI_CS, GPIOB, GPIO_PIN_12, GPIO_OUTPUT_PP);
-	gpio_set(DAC_EXIT, GPIOB, GPIO_PIN_9, GPIO_IT_RISING);
-	gpio_set(PCIE_PERST, GPIOB, GPIO_PIN_4, GPIO_INPUT);
-
-	/* END INIT GPIO PINS INITIALIZATION */
 
 	dma_init();
 
@@ -75,7 +74,6 @@ void bsp_init(void)
 	adc_channel_init(bsp.hadcx, ADC_CHNL_10);
 
 	/* END INIT ADC CHANNELS*/
-
 }
 
 pci100_bsp_t *bsp_get(void)

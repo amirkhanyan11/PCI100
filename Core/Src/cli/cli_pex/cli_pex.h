@@ -20,7 +20,7 @@
 #include "bsp.h"
 #include "cli_pex.h"
 
-#include "../cmd/cmd.h"
+#include "cmd.h"
 #include "cli.h"
 
 uint8_t cli_pex(cmd_t * const cmd);

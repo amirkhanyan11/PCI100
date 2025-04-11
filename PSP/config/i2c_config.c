@@ -27,21 +27,21 @@ void i2c_init(I2C_HandleTypeDef * const hi2cx, I2C_TypeDef * const instance, uin
 
 	if (HAL_I2C_Init(hi2cx) != HAL_OK)
 	{
-		Error_Handler();
+		error_handler();
 	}
 
 	/** Configure Analogue filter
 	*/
 	if (HAL_I2CEx_ConfigAnalogFilter(hi2cx, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
 	{
-		Error_Handler();
+		error_handler();
 	}
 
 	/** Configure Digital filter
 	*/
 	if (HAL_I2CEx_ConfigDigitalFilter(hi2cx, 0) != HAL_OK)
 	{
-		Error_Handler();
+		error_handler();
 	}
 
 	gpio_pin_set(PCI_RESET, ON);
