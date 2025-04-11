@@ -48,12 +48,12 @@ uint8_t cli_eeprom_write_middleware(cmd_t * const cmd, chain_t *const chain)
 {
 
 	if (cmd->argc != 3) {
-		return __eeprom_err(cmd->argv[0], CLI_EEPROM_WRITE_HELP);
+		return __eeprom_err(cmd->argv[0], cli_get_help(cmd->name, cmd->argv[0]));
 	}
 	uint32_optional_t val_o = satoi(cmd->argv[1]);
 
 	if (!val_o.has_val) {
-		return __eeprom_err(cmd->argv[0], CLI_EEPROM_WRITE_HELP);
+		return __eeprom_err(cmd->argv[0], cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
 	uint16_t address = val_o.val;
@@ -61,7 +61,7 @@ uint8_t cli_eeprom_write_middleware(cmd_t * const cmd, chain_t *const chain)
 	val_o = satoi(cmd->argv[2]);
 
 	if (!val_o.has_val) {
-		return __eeprom_err(cmd->argv[0], CLI_EEPROM_WRITE_HELP);
+		return __eeprom_err(cmd->argv[0], cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
 	uint8_t data = val_o.val;
@@ -88,12 +88,12 @@ uint8_t cli_eeprom_write_middleware(cmd_t * const cmd, chain_t *const chain)
 uint8_t cli_eeprom_read_middleware(cmd_t * const cmd, chain_t *const chain)
 {
 	if (cmd->argc != 2) {
-		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_HELP);
+		return __eeprom_err(cmd->argv[0], cli_get_help(cmd->name, cmd->argv[0]));
 	}
 	uint32_optional_t val_o = satoi(cmd->argv[1]);
 
 	if (!val_o.has_val) {
-		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_HELP);
+		return __eeprom_err(cmd->argv[0], cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
 	uint16_t address = val_o.val;
@@ -124,12 +124,12 @@ uint8_t cli_eeprom_read_bulk_middleware(cmd_t * const cmd, chain_t *const chain)
 {
 
 	if (cmd->argc != 3) {
-		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_BULK_HELP);
+		return __eeprom_err(cmd->argv[0], cli_get_help(cmd->name, cmd->argv[0]));
 	}
 	uint32_optional_t val_o = satoi(cmd->argv[1]);
 
 	if (!val_o.has_val) {
-		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_BULK_HELP);
+		return __eeprom_err(cmd->argv[0], cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
 	uint16_t address = val_o.val;
@@ -137,7 +137,7 @@ uint8_t cli_eeprom_read_bulk_middleware(cmd_t * const cmd, chain_t *const chain)
 	val_o = satoi(cmd->argv[2]);
 
 	if (!val_o.has_val || val_o.val == 0) {
-		return __eeprom_err(cmd->argv[0], CLI_EEPROM_READ_BULK_HELP);
+		return __eeprom_err(cmd->argv[0], cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
     uint16_t size = val_o.val;

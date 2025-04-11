@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "cli.h"
 #include "utils.h"
+#include <stdarg.h>
 #include <errno.h>
 #include "led.h"
 #include "cmd.h"
@@ -23,7 +24,6 @@ uint8_t cli_led(cmd_t * const cmd) {
 	if (cmd->argc > 0) {
 		option = cmd->argv[0];
 	}
-
 	uint8_t status = 0;
 
 	if (NULL == option || !strcmp(option, "-h") || !strcmp(option, "--help")) {
@@ -32,17 +32,17 @@ uint8_t cli_led(cmd_t * const cmd) {
 	else if (!strcmp(option, "off")) {
 		status = start_chain(cmd, cli_led_toggle_middleware, led_off, NULL);
 	}
-	else if (!strcmp(option, "blink")) {
-		status = start_chain(cmd, cli_led_set_blink_middleware, led_set_blink, NULL);
-	}
 	else if (!strcmp(option, "on")) {
 		status = start_chain(cmd, cli_led_toggle_middleware, led_on, NULL);
+	}
+	else if (!strcmp(option, "get")) {
+		status = start_chain(cmd, cli_led_get_middleware, cli_led_get, NULL);
 	}
 	else if (!strcmp(option, "reset")) {
 		status = start_chain(cmd, cli_led_reset_middleware, led_mcu_cfg, NULL);
 	}
-	else if (!strcmp(option, "get")) {
-		status = start_chain(cmd, cli_led_get_middleware, cli_led_get, NULL);
+	else if (!strcmp(option, "blink")) {
+		status = start_chain(cmd, cli_led_set_blink_middleware, led_set_blink, NULL);
 	}
 	else {
 		printf("led: error: invalid option `%s`. See led -h\r\n", option);
@@ -68,7 +68,7 @@ uint8_t cli_led_get(led_t * const led) {
 uint8_t cli_led_get_middleware(cmd_t *const cmd, chain_t *const chain) {
 	if (cmd->argc != 1) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_LED_GET_HELP, NULL);
+		printchunk("Usage:", cli_get_help(cmd->name, cmd->argv[0]), NULL);
 		return EINVAL;
 	}
 	const chain_fn_t next = chain_get_next(chain);
@@ -78,11 +78,11 @@ uint8_t cli_led_get_middleware(cmd_t *const cmd, chain_t *const chain) {
 	return next(&cmd->app->led);
 }
 
-uint8_t cli_led_reset_middleware(cmd_t *const cmd, chain_t * const chain) {
+uint8_t cli_led_reset_middleware(cmd_t *const cmd, chain_t *const chain) {
 
 	if (cmd->argc != 1) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_LED_RESET_HELP, NULL);
+		printchunk("Usage:", cli_get_help(cmd->name, cmd->argv[0]), NULL);
 		return EINVAL;
 	}
 
@@ -103,7 +103,7 @@ uint8_t cli_led_toggle_middleware(cmd_t * const cmd, chain_t *const chain) {
 
 	if (cmd->argc != 1) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_LED_ON_OFF_HELP, NULL);
+		printchunk("Usage:", cli_get_help(cmd->name, cmd->argv[0]), NULL);
 		return EINVAL;
 	}
 
@@ -119,10 +119,10 @@ uint8_t cli_led_toggle_middleware(cmd_t * const cmd, chain_t *const chain) {
 	return 0;
 }
 
-uint8_t cli_led_set_blink_middleware(cmd_t *const cmd, chain_t * const chain) {
+uint8_t cli_led_set_blink_middleware(cmd_t *const cmd, chain_t *const chain) {
 	if (cmd->argc != 2) {
 		printf("led: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_LED_BLINK_HELP, NULL);
+		printchunk("Usage:", cli_get_help(cmd->name, cmd->argv[0]), NULL);
 		return EINVAL;
 	}
 
@@ -138,7 +138,7 @@ uint8_t cli_led_set_blink_middleware(cmd_t *const cmd, chain_t * const chain) {
 
 	if (status) {
 		printf("%s\r\n", CLI_LED_INVALID_BLINK_VALUE);
-		printchunk("Usage:", CLI_LED_BLINK_HELP, NULL);
+		printchunk("Usage:", cli_get_help(cmd->name, cmd->argv[0]), NULL);
 		return -1;
 	}
 

@@ -44,7 +44,7 @@ uint8_t cli_dac_write_middleware(cmd_t * const cmd, chain_t *const chain) {
 
 	if (cmd->argc != 3) {
 		printf("dac: write: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_DAC_HELP, NULL);
+		printchunk("Usage:", cli_get_help(cmd->name, cmd->argv[0]), NULL);
 		return EINVAL;
 	}
 
@@ -54,7 +54,7 @@ uint8_t cli_dac_write_middleware(cmd_t * const cmd, chain_t *const chain) {
 
 	if (!dac_supported_channel(dac_id) || !res.has_val || d_value < 0 || d_value > DAC_MAX_VALUE) {
 		printf("dac: write: %s\r\n", CLI_INVALID_OPTIONS);
-		printchunk("Usage:", CLI_DAC_HELP, NULL);
+		printchunk("Usage:", cli_get_help(cmd->name, cmd->argv[0]), NULL);
 		return EINVAL;
 	}
 
@@ -67,7 +67,7 @@ uint8_t cli_dac_write_middleware(cmd_t * const cmd, chain_t *const chain) {
 		return EINVAL;
 	}
 
-	next(cmd->app->bsp->hdacx, DAC_CHANNEL_2, DAC_ALIGN_12B_R, value);
+	next(cmd->app->bsp->hdacx, dac_get_channel(dac_id), DAC_ALIGN_12B_R, value);
 
 	printf("dac: write: success!\r\n");
 	printf("output set to %d\r\n", value);

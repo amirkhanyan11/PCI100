@@ -11,6 +11,8 @@
 #include <stdint.h>
 #include "typedefs.h"
 
+#define LED_SUPPORTED_OPTIONS_COUNT 8
+
 
 uint8_t cli_led_get(led_t * const led);
 uint8_t cli_led(cmd_t * const cmd);

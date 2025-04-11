@@ -14,7 +14,7 @@
 uint8_t cli_adc(cmd_t * const cmd);
 
 // utils
-uint8_t __adc_err(void);
+uint8_t __adc_err(const char * help);
 bool 	adc_supported_channel(uint8_t channel_id);
 
 // middlewares

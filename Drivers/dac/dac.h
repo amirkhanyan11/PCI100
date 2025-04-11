@@ -15,4 +15,6 @@ uint8_t 			dac_write(DAC_HandleTypeDef * const hdacx, const uint32_t channel, co
 void				dac_channels_handler(DAC_HandleTypeDef * const hdacx, uint8_t channel_id);
 HAL_StatusTypeDef	dac_channel_init(DAC_HandleTypeDef * const hdacx, uint32_t channel);
 uint8_t				dac_get_channels_size(void);
+uint32_t			dac_get_channel(uint8_t channel_id);
+
 #endif //DAC_H

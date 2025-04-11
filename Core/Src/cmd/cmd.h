@@ -10,6 +10,7 @@
 
 #include "main.h"
 #include "app.h"
+#include "cli.h"
 #include "lexer.h"
 #include "typedefs.h"
 #include "chain/chain.h"
@@ -21,6 +22,7 @@ struct cmd_s
 	char argv[ARG_MAX_COUNT][TOKEN_MAX_LENGTH];
 	uint8_t argc;
 	exec_t exec;
+	const char **help;
 };
 
 uint8_t make_cmd(cmd_t * const cmd, app_t * const app, char *input);

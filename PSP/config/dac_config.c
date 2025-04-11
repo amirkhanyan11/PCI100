@@ -50,6 +50,15 @@ uint8_t dac_get_channels_size(void)
 	return dac_channels_size;
 }
 
+uint32_t dac_get_channel(uint8_t channel_id)
+{
+	if (channel_id >= dac_channels_size) {
+		return -1;
+	}
+
+	return dac_channels[channel_id - 1];
+}
+
 void dac_channels_handler(DAC_HandleTypeDef * const hdacx, uint8_t channel_id)
 {
 	DAC_ChannelConfTypeDef sConfig = {0};

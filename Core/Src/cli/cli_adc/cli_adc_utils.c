@@ -12,10 +12,10 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-uint8_t __adc_err(void)
+uint8_t __adc_err(const char * help)
 {
 	printf("adc: read: %s\r\n", CLI_INVALID_OPTIONS);
-	printchunk("Usage:", CLI_ADC_HELP, NULL);
+	printchunk("Usage:", help, NULL);
 	return EINVAL;
 }
 

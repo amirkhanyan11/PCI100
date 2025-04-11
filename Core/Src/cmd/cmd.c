@@ -7,6 +7,7 @@
 
 #include "cmd.h"
 #include "app.h"
+#include "cli.h"
 #include "led.h"
 #include "lexer.h"
 #include <string.h>
@@ -16,7 +17,7 @@
 
 static uint8_t bind_exec(cmd_t * const cmd) {
 
-	exec_t e = cli_cmd_get(cmd->app, cmd->name);
+	exec_t e = cli_cmd_get_exec(cmd->app, cmd->name);
 
 	if (NULL == e) {
 		return ESRCH;

@@ -34,17 +34,17 @@ uint8_t cli_pex(cmd_t * const cmd) {
 	return status;
 }
 
-uint8_t cli_pex_read_middleware(cmd_t * const cmd, chain_t * const chain) {
+uint8_t cli_pex_read_middleware(cmd_t * const cmd, chain_t *const chain) {
 
 	if (cmd->argc != 2)
 	{
-		return __pex_err(cmd->argv[0], CLI_INVALID_OPTIONS, CLI_PEX_WRITE_HELP);
+		return __pex_err(cmd->argv[0], CLI_INVALID_OPTIONS, cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
 	uint32_t register_addr = strtol(cmd->argv[1], NULL, 16);
 
 	if (!register_addr && strcmp(cmd->argv[1], "0")) {
-		return __pex_err(cmd->argv[0], CLI_PEX_INVALID_ADDRESS, CLI_PEX_WRITE_HELP);
+		return __pex_err(cmd->argv[0], CLI_PEX_INVALID_ADDRESS, cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
 	const chain_fn_t next = chain_get_next(chain);
@@ -67,20 +67,20 @@ uint8_t cli_pex_write_middleware(cmd_t * const cmd, chain_t *const chain) {
 
 	if (cmd->argc != 3)
 	{
-		return __pex_err(cmd->argv[0], CLI_INVALID_OPTIONS, CLI_PEX_WRITE_HELP);
+		return __pex_err(cmd->argv[0], CLI_INVALID_OPTIONS, cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
 	uint32_t register_addr = strtol(cmd->argv[1], NULL, 16);
 
 	if (!register_addr && strcmp(cmd->argv[1], "0")) {
-		return __pex_err(cmd->argv[0], CLI_PEX_INVALID_ADDRESS, CLI_PEX_WRITE_HELP);
+		return __pex_err(cmd->argv[0], CLI_PEX_INVALID_ADDRESS, cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
 	const uint32_optional_t res = satoi(cmd->argv[2]);
 	const uint32_t val = res.val;
 
 	if (!res.has_val) {
-		return __pex_err(cmd->argv[0], "Invalid value", CLI_PEX_WRITE_HELP);
+		return __pex_err(cmd->argv[0], "Invalid value", cli_get_help(cmd->name, cmd->argv[0]));
 
 	}
 

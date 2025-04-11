@@ -43,12 +43,12 @@ uint8_t cli_adc_read_middleware(cmd_t * const cmd, chain_t *const chain)
 {
 
 	if (cmd->argc != 2) {
-		return __adc_err();
+		return __adc_err(cli_get_help(cmd->name, cmd->argv[0]));
 	}
 	uint32_optional_t channel = satoi(cmd->argv[1]);
 
 	if (!channel.has_val || !adc_supported_channel(channel.val)) {
-		return __adc_err();
+		return __adc_err(cli_get_help(cmd->name, cmd->argv[0]));
 	}
 
 	float data;

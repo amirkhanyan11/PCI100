@@ -16,6 +16,10 @@
 
 #define HISTORY_SIZE 32
 
+#define HELP_MAX_COUNT 32
+#define CMD_MAX_COUNT 256
+
+
 struct history_s
 {
 	char		buffer[HISTORY_SIZE][FILO_BUFFER_SIZE];
@@ -58,12 +62,18 @@ uint8_t handle_arrows(cli_engine_t * const engine);
 
 // cli_config
 void 	cli_config(app_t * const app);
-uint8_t cli_cmd_add(app_t * const app, const char *name, exec_t exec);
-exec_t 	cli_cmd_get(app_t * const app, const char *name);
-
+uint8_t  cli_cmd_add(app_t * const app, const char *name, exec_t exec);
+exec_t 	cli_cmd_get_exec(app_t * const app, const char *name);
 
 // commands
-
 uint8_t cli_dac(cmd_t * const cmd);
+//
+
+
+void cli_set_help(const char *cmd, const char *option, const char *help);
+const char *cli_get_help(const char *cmd, const char *option);
+
+
+
 
 #endif //CLI_H
