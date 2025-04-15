@@ -10,15 +10,13 @@
 #include <string.h>
 
 struct mruct{
-		const char *help;
-		const char *option;
+	const char *help;
+	const char *option;
 };
 
 static struct {
 	const char *cmd;
 	struct mruct options[HELP_MAX_COUNT];
-
-
 } cli_help_table[CMD_MAX_COUNT];
 static uint16_t size;
 
@@ -32,8 +30,7 @@ const char *cli_get_help(const char *cmd, const char *option)
 					return cli_help_table[i].options[j].help;
 				}
 			}
-
-			break ;
+			break;
 		}
 	}
 

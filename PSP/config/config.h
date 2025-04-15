@@ -18,7 +18,9 @@ typedef enum e_user_label user_label_e;
 typedef enum e_gpio_pin_mode gpio_pin_mode_e;
 typedef enum e_gpio_pull_mode gpio_pull_mode_e;
 typedef enum e_gpio_mode gpio_mode_e;
+typedef enum e_gpio_ports gpio_ports_e;
 typedef struct gpio_mode_s gpio_mode_t;
+typedef struct gpio_info_s gpio_info_t;
 
 // SPI configs
 enum {
@@ -125,7 +127,7 @@ enum {
 	DAC_CHNL_2 = DAC_CHANNEL_2,
 };
 
-enum {
+enum e_gpio_ports{
 	GPIO_PORT_A,
 	GPIO_PORT_B,
 	GPIO_PORT_C,
@@ -195,9 +197,11 @@ enum e_user_label{
 	PCIE_PERST,
 };
 
-struct gpio_mode_s {
-	gpio_mode_e			mode;
-	gpio_pull_mode_e	pull_mode;
+struct gpio_info_s {
+	user_label_e	user_label;
+	gpio_ports_e	port;
+	uint16_t		pin;
+	gpio_mode_e		mode;
 };
 
 

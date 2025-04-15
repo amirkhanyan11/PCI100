@@ -7,19 +7,10 @@
 
 #include "config.h"
 
+static uint16_t _get_pin(const uint8_t pin_id);
 static uint8_t gpio_get_index(user_label_e label);
-
-static struct {
-
-	GPIO_TypeDef	*port;
-	uint16_t		pin;
-	user_label_e	user_label;
-	gpio_mode_t		mode;
-
-
-} gpio_table[GPIO_PIN_COUNT];
+extern const gpio_info_t *gpio_table;
 static GPIO_TypeDef * ports[] = {GPIOA, GPIOB, GPIOC};
-static uint8_t gpio_table_size;
 
 /**
   * @brief GPIO Initialization Function
@@ -36,43 +27,18 @@ void gpio_init(void)
 
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 
-	for (uint8_t i = 0; i < gpio_table_size; ++i) {
-		GPIO_InitStruct.Mode = gpio_table[i].mode.mode;
-		GPIO_InitStruct.Pull = gpio_table[i].mode.pull_mode;
-		GPIO_InitStruct.Pin = gpio_table[i].pin;
+	for (uint8_t i = 0; gpio_table[i].user_label != DEFAULT; ++i) {
+		GPIO_InitStruct.Mode = gpio_table[i].mode;
+		GPIO_InitStruct.Pull = PULLUP;
+		GPIO_InitStruct.Pin = _get_pin(gpio_table[i].pin);
 
 		if (GPIO_InitStruct.Mode == GPIO_OUTPUT_OD || GPIO_InitStruct.Mode == GPIO_OUTPUT_PP) {
-			HAL_GPIO_WritePin(gpio_table[i].port, gpio_table[i].pin, OFF);
+			HAL_GPIO_WritePin(ports[gpio_table[i].port], gpio_table[i].pin, OFF);
 			GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 		}
 
-		HAL_GPIO_Init(gpio_table[i].port, &GPIO_InitStruct);
+		HAL_GPIO_Init(ports[gpio_table[i].port], &GPIO_InitStruct);
 	}
-}
-
-static uint16_t _get_pin(const uint8_t pin_id)
-{
-	uint16_t pin = GPIO_PIN_0;
-	for (uint8_t i = 0; i < pin_id; ++i) {
-		pin <<= 1;
-	}
-
-	return pin;
-}
-
-void gpio_set(const user_label_e label, const uint8_t port, const uint8_t pin, const gpio_mode_e mode)
-{
-	if (label == DEFAULT || gpio_table_size >= GPIO_PIN_COUNT || pin >= GPIO_PINS_IN_PORT) {
-		return ;
-	}
-
-	gpio_table[gpio_table_size].port = ports[port];
-	gpio_table[gpio_table_size].pin = _get_pin(pin);
-	gpio_table[gpio_table_size].user_label = label;
-	gpio_table[gpio_table_size].mode.mode = mode;
-	gpio_table[gpio_table_size].mode.pull_mode = PULLUP;
-
-	gpio_table_size += 1;
 }
 
 
@@ -84,7 +50,7 @@ void gpio_pin_set(user_label_e label, gpio_pin_mode_e mode)
 		return ;
 	}
 
-	HAL_GPIO_WritePin(gpio_table[index].port, gpio_table[index].pin, mode);
+	HAL_GPIO_WritePin(ports[gpio_table[index].port], gpio_table[index].pin, mode);
 }
 
 
@@ -95,15 +61,20 @@ gpio_pin_mode_e gpio_pin_get(user_label_e label)
 		return -1;
 	}
 
-	return HAL_GPIO_ReadPin(gpio_table[index].port, gpio_table[index].pin);
+	return HAL_GPIO_ReadPin(ports[gpio_table[index].port], gpio_table[index].pin);
 }
 
 static uint8_t gpio_get_index(user_label_e label)
 {
-	for (uint8_t i = 0; i < gpio_table_size; ++i) {
+	for (uint8_t i = 0; gpio_table[i].user_label != DEFAULT; ++i) {
 		if (gpio_table[i].user_label == label) {
 			return i;
 		}
 	}
 	return -1;
+}
+
+static uint16_t _get_pin(const uint8_t pin_id)
+{
+	return GPIO_PIN_0 << pin_id;;
 }

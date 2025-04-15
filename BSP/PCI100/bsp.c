@@ -13,13 +13,9 @@
 #include "adc.h"
 
 ADC_HandleTypeDef hadc1;
-
 DAC_HandleTypeDef hdac;
-
 I2C_HandleTypeDef hi2c1;
-
 SPI_HandleTypeDef hspi2;
-
 UART_HandleTypeDef huart1;
 
 static pci100_bsp_t bsp = {
@@ -30,25 +26,33 @@ static pci100_bsp_t bsp = {
 	.hspix = &hspi2
 };
 
+const gpio_info_t gpio_table[] = {
+	{PCI_RESET, GPIO_PORT_C, PIN_2, GPIO_OUTPUT_PP},
+	{PG, GPIO_PORT_C, PIN_3, GPIO_INPUT},
+	{LED_CONFIG1, GPIO_PORT_A, PIN_1, GPIO_INPUT},
+	{LED_CONFIG2, GPIO_PORT_A, PIN_2, GPIO_INPUT},
+	{LED_CONFIG3, GPIO_PORT_A, PIN_3, GPIO_INPUT},
+	{LED_CONFIG4, GPIO_PORT_A, PIN_4, GPIO_INPUT},
+	{LED_CONFIG5, GPIO_PORT_A, PIN_6, GPIO_INPUT},
+	{LED_CONFIG6, GPIO_PORT_A, PIN_7, GPIO_INPUT},
+	{LED, GPIO_PORT_B, PIN_11, GPIO_OUTPUT_PP},
+	{SPI_CS, GPIO_PORT_B, PIN_12, GPIO_OUTPUT_PP},
+	{DAC_EXIT, GPIO_PORT_B, PIN_9, GPIO_IT_RISING},
+	{PCIE_PERST, GPIO_PORT_B, PIN_4, GPIO_INPUT},
+	{0, 0, 0, 0}
+};
+
+
+//const struct AdcInfo adc_table[] = {
+//	{VMON, ADC1, CH1, GPIO_OUTPUT_PP},
+//	{0, 0, 0, 0}
+//};
+
 void bsp_init(void)
 {
 	/* START SET GPIO PINS CONFIGS */
 
-	gpio_set(PCI_RESET, GPIO_PORT_C, PIN_2, GPIO_OUTPUT_PP);
-	gpio_set(PG, GPIO_PORT_C, PIN_3, GPIO_INPUT);
-	gpio_set(LED_CONFIG1, GPIO_PORT_A, PIN_1, GPIO_INPUT);
-	gpio_set(LED_CONFIG2, GPIO_PORT_A, PIN_2, GPIO_INPUT);
-	gpio_set(LED_CONFIG3, GPIO_PORT_A, PIN_3, GPIO_INPUT);
-	gpio_set(LED_CONFIG4, GPIO_PORT_A, PIN_4, GPIO_INPUT);
-	gpio_set(LED_CONFIG5, GPIO_PORT_A, PIN_6, GPIO_INPUT);
-	gpio_set(LED_CONFIG6, GPIO_PORT_A, PIN_7, GPIO_INPUT);
-	gpio_set(LED, GPIO_PORT_B, PIN_11, GPIO_OUTPUT_PP);
-	gpio_set(SPI_CS, GPIO_PORT_B, PIN_12, GPIO_OUTPUT_PP);
-	gpio_set(DAC_EXIT, GPIO_PORT_B, PIN_9, GPIO_IT_RISING);
-	gpio_set(PCIE_PERST, GPIO_PORT_B, PIN_4, GPIO_INPUT);
-
 	/* END SET GPIO PINS CONFIGS */
-
 	gpio_init();
 
 	dma_init();

@@ -51,7 +51,7 @@ uint8_t cli_cmd_add(app_t * const app, const char *name, exec_t exec)
 __attribute__((weak)) void cli_config(app_t * const app)
 {
 
-	cli_cmd_add(app, "led", 	&cli_led);
+	cli_cmd_add(app, "led",	&cli_led);
 	cli_set_help("led", "on", CLI_LED_ON_OFF_HELP);
 	cli_set_help("led", "off", CLI_LED_ON_OFF_HELP);
 	cli_set_help("led", "get", CLI_LED_GET_HELP);
