@@ -8,26 +8,32 @@
 
 #include "config.h"
 
+UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart2;
+UART_HandleTypeDef huart3;
+
+static USART_TypeDef * instance_table[] = {USART1, USART2, USART3};
+
 /**
   * @brief USART1 Initialization Function
   * @param None
   * @retval None
   */
-void uart_init(UART_HandleTypeDef * const huartx, USART_TypeDef * const instance, uint32_t baud_rate, uint32_t stop_bits)
+void uart_init(uint8_t instance, uint32_t baud_rate, uint32_t stop_bits)
 {
 
-	huartx->Instance = instance;
-	huartx->Init.BaudRate = baud_rate;
-	huartx->Init.StopBits = stop_bits;
-	huartx->Init.WordLength = UART_WORDLENGTH_8B;
-	huartx->Init.Mode = UART_MODE_TX_RX;
-	huartx->Init.Parity = UART_PARITY_NONE;
-	huartx->Init.HwFlowCtl = UART_HWCONTROL_NONE;
-	huartx->Init.OverSampling = UART_OVERSAMPLING_16;
-	huartx->Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-	huartx->AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+	huart1.Instance = instance_table[instance];
+	huart1.Init.BaudRate = baud_rate;
+	huart1.Init.StopBits = stop_bits;
+	huart1.Init.WordLength = UART_WORDLENGTH_8B;
+	huart1.Init.Mode = UART_MODE_TX_RX;
+	huart1.Init.Parity = UART_PARITY_NONE;
+	huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+	huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+	huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+	huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
 
-	if (HAL_UART_Init(huartx) != HAL_OK)
+	if (HAL_UART_Init(&huart1) != HAL_OK)
 	{
 		error_handler();
 	}

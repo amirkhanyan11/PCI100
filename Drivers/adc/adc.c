@@ -9,22 +9,27 @@
 #include <string.h>
 #include "bsp.h"
 
-uint8_t adc_read(ADC_HandleTypeDef * const hadcx, uint32_t adc_channel, float * const res)
-{
-	adc_channels_handler(hadcx, adc_channel);
+extern ADC_HandleTypeDef hadc1;
+extern ADC_HandleTypeDef hadc2;
 
-	HAL_ADC_Start(hadcx);
+static ADC_HandleTypeDef * adc[] = {&hadc1, &hadc2};
+
+uint8_t adc_read(uint8_t hadcx, uint32_t adc_channel, float * const res)
+{
+	adc_channels_handler(adc[hadcx], adc_channel);
+
+	HAL_ADC_Start(adc[hadcx]);
 
 	*res = 0;
 
 	for (uint8_t i = 0; i < COUNTER; ++i) {
-		HAL_ADC_PollForConversion(hadcx, 10);
-		*res += HAL_ADC_GetValue(hadcx);
+		HAL_ADC_PollForConversion(adc[hadcx], 10);
+		*res += HAL_ADC_GetValue(adc[hadcx]);
 	}
 	*res /= COUNTER;
 	*res *= VOLTAGE_MAX / BIT_RANGE_12;
 
-	return (HAL_ADC_Stop(hadcx));
+	return (HAL_ADC_Stop(adc[hadcx]));
 }
 
 

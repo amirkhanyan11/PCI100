@@ -9,7 +9,7 @@
 
 static uint16_t _get_pin(const uint8_t pin_id);
 static uint8_t gpio_get_index(user_label_e label);
-extern const gpio_info_t *gpio_table;
+static const gpio_info_t *gpio_table;
 static GPIO_TypeDef * ports[] = {GPIOA, GPIOB, GPIOC};
 
 /**
@@ -17,13 +17,15 @@ static GPIO_TypeDef * ports[] = {GPIOA, GPIOB, GPIOC};
   * @param None
   * @retval None
   */
-void gpio_init(void)
+void gpio_init(const gpio_info_t *table)
 {
 	/* GPIO Ports Clock Enable */
 	__HAL_RCC_GPIOH_CLK_ENABLE();
 	__HAL_RCC_GPIOC_CLK_ENABLE();
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_GPIOB_CLK_ENABLE();
+
+	gpio_table = table;
 
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 

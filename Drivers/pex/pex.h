@@ -18,7 +18,7 @@
 #define PEX_CB2_TRANSPARENT_PORTS 0x00
 #define PEX_CB3_ENABLE_ALL 0xBC
 
-uint8_t pex_write(I2C_HandleTypeDef * const hi2cx, const uint32_t register_addr, const uint32_t val);
-uint32_t pex_read(I2C_HandleTypeDef * const hi2cx, const uint32_t register_addr);
+uint8_t pex_write(uint8_t hi2cx, const uint32_t register_addr, const uint32_t val);
+uint32_t pex_read(uint8_t hi2cx, const uint32_t register_addr);
 
 #endif /* DRIVERS_PEX_PEX_H_ */

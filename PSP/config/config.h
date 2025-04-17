@@ -21,6 +21,35 @@ typedef enum e_gpio_mode gpio_mode_e;
 typedef enum e_gpio_ports gpio_ports_e;
 typedef struct gpio_mode_s gpio_mode_t;
 typedef struct gpio_info_s gpio_info_t;
+typedef struct chnl_info_s chnl_info_t;
+
+
+enum {
+	ADC1_HANDLER = 1,
+	ADC2_HANDLER
+};
+
+enum {
+	DAC_HANDLER = 1,
+};
+
+enum {
+	I2C1_HANDLER = 1,
+	I2C2_HANDLER,
+	I2C3_HANDLER,
+};
+
+enum {
+	SPI1_HANDLER = 1,
+	SPI2_HANDLER,
+	SPI3_HANDLER,
+};
+
+enum {
+	USART1_HANDLER = 1,
+	USART2_HANDLER,
+	USART3_HANDLER,
+};
 
 // SPI configs
 enum {
@@ -204,10 +233,13 @@ struct gpio_info_s {
 	gpio_mode_e		mode;
 };
 
+struct chnl_info_s {
+	uint8_t			typedef_handler;
+	uint8_t 		*chnl_table;
+};
 
 void spi_init(
-		SPI_HandleTypeDef * const hspix,
-		SPI_TypeDef * const instance,
+		uint8_t instance,
 		uint32_t data_size,
 		uint32_t clk_polarity,
 		uint32_t clk_phase,
@@ -217,29 +249,26 @@ void spi_init(
 void dma_init(void);
 
 void i2c_init(
-		I2C_HandleTypeDef * const hi2cx,
-		I2C_TypeDef * const instance,
+		uint8_t instance,
 		uint32_t timing,
 		uint32_t address_mode
 		);
 
 void uart_init(
-		UART_HandleTypeDef * const huartx,
-		USART_TypeDef * const instance,
+		uint8_t instance,
 		uint32_t baud_rate,
 		uint32_t stop_bits);
 
 void adc_init(
-		ADC_HandleTypeDef * const hadcx,
-		ADC_TypeDef * const instance,
+		const chnl_info_t *table,
 		uint32_t clock_prescaler,
 		uint32_t resolution
 		);
 
 
-void dac_init(DAC_HandleTypeDef * const hdacx, DAC_TypeDef * const instance);
+void dac_init(const chnl_info_t *table);
 
-void			gpio_init(void);
+void			gpio_init(const gpio_info_t *table);
 gpio_pin_mode_e	gpio_pin_get(user_label_e label);
 void			gpio_pin_set(user_label_e label, gpio_pin_mode_e mode);
 void 			gpio_set(const user_label_e label, const uint8_t port, const uint8_t pin, const gpio_mode_e mode);

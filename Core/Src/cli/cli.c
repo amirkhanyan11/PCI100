@@ -13,15 +13,13 @@
 
 #include <stdarg.h>
 
-extern uint8_t rx_buf[UART_RX_BUFFER_SIZE];
-
-void engine_init(cli_engine_t *engine, app_t * const app, fifo_t *fifo, UART_HandleTypeDef * const huartx) {
+void engine_init(cli_engine_t *engine, app_t * const app, fifo_t *fifo, uint8_t huartx) {
 	engine->app = app;
 	engine->buffer = fifo;
 	filo_init(&engine->line);
 	history_init(&engine->history);
 
-	HAL_UART_Receive_DMA(huartx, rx_buf, UART_RX_BUFFER_SIZE);
+	start_uart_receive_dma(huartx);
 }
 
 void cli_poll(cli_engine_t *engine) {
@@ -43,7 +41,7 @@ void cli_poll(cli_engine_t *engine) {
 		else if (isprint(key))
 		{
 			filo_set(&engine->line, key);
-			HAL_UART_Transmit(engine->app->bsp->huartx, &key, 1, UART_TRANSMIT_TIMEOUT);
+			uart_transmit(engine->app->bsp->huartx, &key, 1);
 		}
 	}
 }
@@ -55,17 +53,18 @@ void cli_clear_output(cli_engine_t *engine) {
 	}
 }
 
-void cli_writeline(UART_HandleTypeDef *huartx, const char *s) {
+void cli_writeline(uint8_t huartx, const char *s) {
   cli_puts(huartx, s);
   cli_putnl(huartx);
 }
 
-void cli_puts(UART_HandleTypeDef *huartx, const char *s) {
-  HAL_UART_Transmit(huartx, (const uint8_t *)s, strlen(s), UART_TRANSMIT_TIMEOUT);
+void cli_puts(uint8_t huartx, const char *s) {
+	uart_transmit(huartx, (const uint8_t *)s, strlen(s));
+
 }
 
-void cli_putnl(UART_HandleTypeDef *huartx) {
-  HAL_UART_Transmit(huartx, (const uint8_t *)"\r\n", 2, UART_TRANSMIT_TIMEOUT);
+void cli_putnl(uint8_t huartx) {
+	uart_transmit(huartx, (const uint8_t *)"\r\n", 2);
 }
 
 void __attribute__((sentinel)) printchunk(const char *s, ...) {

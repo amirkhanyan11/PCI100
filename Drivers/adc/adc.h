@@ -16,9 +16,8 @@
 
 #include "main.h"
 
-void 				adc_channels_handler(ADC_HandleTypeDef * const hadcx, uint8_t channel_id);
+void 				adc_channels_handler(ADC_HandleTypeDef * const hadcx, uint8_t channel);
 uint8_t 			adc_get_channels_size(void);
-HAL_StatusTypeDef 	adc_channel_init(ADC_HandleTypeDef * const hadcx, uint32_t channel);
-uint8_t				adc_read(ADC_HandleTypeDef * const hadcx, uint32_t adc_channel, float * const res);
+uint8_t				adc_read(uint8_t hadcx, uint32_t adc_channel, float * const res);
 
 #endif /* DRIVERS_ADC_ADC_H_ */

@@ -47,10 +47,10 @@ struct cli_engine_s
 
 
 void cli_poll(cli_engine_t *engine);
-void cli_writeline(UART_HandleTypeDef *huartx, const char *s);
-void cli_puts(UART_HandleTypeDef *huartx, const char *s);
-void cli_putnl(UART_HandleTypeDef *huartx);
-void engine_init(cli_engine_t *engine, app_t * const app, fifo_t *fifo, UART_HandleTypeDef * const huartx);
+void cli_writeline(uint8_t huartx, const char *s);
+void cli_puts(uint8_t huartx, const char *s);
+void cli_putnl(uint8_t huartx);
+void engine_init(cli_engine_t *engine, app_t * const app, fifo_t *fifo, uint8_t huartx);
 void cli_clear_output(cli_engine_t *engine);
 
 void __attribute__((sentinel)) printchunk(const char *s, ...);

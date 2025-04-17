@@ -6,8 +6,12 @@
 #include "main.h"
 #include "cli.h"
 
-uint8_t dac_write(DAC_HandleTypeDef * const hdacx, const uint32_t channel, const uint32_t alignment, const uint16_t value) {
-	HAL_DAC_SetValue(hdacx, channel, alignment, value);
+extern DAC_HandleTypeDef hdac;
+static DAC_HandleTypeDef *dac[] = {&hdac};
+
+
+uint8_t dac_write(uint8_t hdacx, const uint32_t channel, const uint32_t alignment, const uint16_t value) {
+	HAL_DAC_SetValue(dac[hdacx], channel, alignment, value);
 	return 0;
 }
 

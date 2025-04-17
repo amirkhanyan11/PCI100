@@ -13,5 +13,7 @@
 #define UART_RECEIVE_TIMEOUT 100
 #define UART_TRANSMIT_TIMEOUT 100
 
+void start_uart_receive_dma (uint8_t huartx);
+void uart_transmit(uint8_t huartx, const uint8_t *s, uint32_t len);
 
 #endif /* UART_UART_H_ */

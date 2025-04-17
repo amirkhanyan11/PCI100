@@ -12,21 +12,15 @@
 #include "config.h"
 #include "adc.h"
 
-ADC_HandleTypeDef hadc1;
-DAC_HandleTypeDef hdac;
-I2C_HandleTypeDef hi2c1;
-SPI_HandleTypeDef hspi2;
-UART_HandleTypeDef huart1;
-
 static pci100_bsp_t bsp = {
-	.hdacx = &hdac,
-	.hadcx = &hadc1,
-	.huartx = &huart1,
-	.hi2cx = &hi2c1,
-	.hspix = &hspi2
+	.hdacx = DAC_HANDLER,
+	.hadcx = ADC1_HANDLER,
+	.huartx = USART1_HANDLER,
+	.hi2cx = I2C1_HANDLER,
+	.hspix = SPI2_HANDLER
 };
 
-const gpio_info_t gpio_table[] = {
+static const gpio_info_t gpio_table[] = {
 	{PCI_RESET, GPIO_PORT_C, PIN_2, GPIO_OUTPUT_PP},
 	{PG, GPIO_PORT_C, PIN_3, GPIO_INPUT},
 	{LED_CONFIG1, GPIO_PORT_A, PIN_1, GPIO_INPUT},
@@ -42,42 +36,35 @@ const gpio_info_t gpio_table[] = {
 	{0, 0, 0, 0}
 };
 
+static uint8_t adc1_chnl_table[] = {ADC_CHNL_10, 0};
 
-//const struct AdcInfo adc_table[] = {
-//	{VMON, ADC1, CH1, GPIO_OUTPUT_PP},
-//	{0, 0, 0, 0}
-//};
+static const chnl_info_t adc1_table[] = {
+	{ADC1_HANDLER, adc1_chnl_table},
+	{0, 0}
+};
+
+static uint8_t dac_chnl_table[] = {DAC_CHNL_2, 0};
+
+static const chnl_info_t dac_table[] = {
+	{DAC_HANDLER, dac_chnl_table},
+	{0, 0}
+};
 
 void bsp_init(void)
 {
-	/* START SET GPIO PINS CONFIGS */
-
-	/* END SET GPIO PINS CONFIGS */
-	gpio_init();
+	gpio_init(gpio_table);
 
 	dma_init();
 
-	i2c_init(bsp.hi2cx, I2C1, I2C_SPEED_100KHZ, I2C_ADDRESS_7BIT);
+	i2c_init(bsp.hi2cx, I2C_SPEED_100KHZ, I2C_ADDRESS_7BIT);
 
-	uart_init(bsp.huartx, USART1 ,UART_BAUD_RATE_115200, UART_STOPBIT_1);
+	uart_init(bsp.huartx, UART_BAUD_RATE_115200, UART_STOPBIT_1);
 
-	spi_init(bsp.hspix, SPI2, SPI_DATA_8BIT, SPI_CLK_POLARITY_LOW, SPI_CLK_PHASE_1EDGE, SPI_BAUD_RATE_2);
+	spi_init(bsp.hspix, SPI_DATA_8BIT, SPI_CLK_POLARITY_LOW, SPI_CLK_PHASE_1EDGE, SPI_BAUD_RATE_2);
 
-	dac_init(bsp.hdacx, DAC);
+	dac_init(dac_table);
 
-	/* START INIT DAC CHANNELS*/
-
-	dac_channel_init(bsp.hdacx, DAC_CHNL_2);
-
-	/* END INIT DAC CHANNELS*/
-
-	adc_init(bsp.hadcx, ADC1, ADC_CLOCK_SYNC_2, ADC_RES_12B);
-
-	/* START INIT ADC CHANNELS*/
-
-	adc_channel_init(bsp.hadcx, ADC_CHNL_10);
-
-	/* END INIT ADC CHANNELS*/
+	adc_init(adc1_table, ADC_CLOCK_SYNC_2, ADC_RES_12B);
 }
 
 pci100_bsp_t *bsp_get(void)

@@ -13,11 +13,11 @@
 
 struct pci100_bsp_s
 {
-	UART_HandleTypeDef * const huartx;
-	DAC_HandleTypeDef * const hdacx;
-	I2C_HandleTypeDef * const hi2cx;
-	ADC_HandleTypeDef * const hadcx;
-	SPI_HandleTypeDef * const hspix;
+	const uint8_t huartx;
+	const uint8_t hdacx;
+	const uint8_t hi2cx;
+	const uint8_t hadcx;
+	const uint8_t hspix;
 };
 
 void			bsp_init(void);
