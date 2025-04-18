@@ -25,7 +25,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+#include "stm32f7xx_hal_def.h"
 
 /** @addtogroup STM32F7xx_HAL_Driver
   * @{
@@ -587,7 +587,7 @@ typedef  void (*pI2C_AddrCallbackTypeDef)(I2C_HandleTypeDef *hi2c, uint8_t Trans
   */
 
 /* Include I2C HAL Extended module */
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c_ex.h"
+#include "stm32f7xx_hal_i2c_ex.h"
 
 /* Exported functions --------------------------------------------------------*/
 /** @addtogroup I2C_Exported_Functions

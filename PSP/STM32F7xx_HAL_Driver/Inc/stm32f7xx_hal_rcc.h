@@ -24,11 +24,11 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+#include "stm32f7xx_hal_def.h"
    
 /* Include RCC HAL Extended module */
 /* (include on top of file since RCC structures are defined in extended file) */
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h"   
+#include "stm32f7xx_hal_rcc_ex.h"   
 
 /** @addtogroup STM32F7xx_HAL_Driver
   * @{
@@ -1121,7 +1121,7 @@ typedef struct
   */
 
 /* Include RCC HAL Extension module */
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h"
+#include "stm32f7xx_hal_rcc_ex.h"
 
 /* Exported functions --------------------------------------------------------*/
  /** @addtogroup RCC_Exported_Functions

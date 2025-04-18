@@ -29,7 +29,7 @@ extern "C" {
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+#include "stm32f7xx_hal_def.h"
 
 #if defined(DAC)
 
@@ -371,7 +371,7 @@ typedef void (*pDAC_CallbackTypeDef)(DAC_HandleTypeDef *hdac);
   */
 
 /* Include DAC HAL Extended module */
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dac_ex.h"
+#include "stm32f7xx_hal_dac_ex.h"
 
 /* Exported functions --------------------------------------------------------*/
 

@@ -25,7 +25,7 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+#include "stm32f7xx_hal_def.h"
 
 /** @addtogroup STM32F7xx_HAL_Driver
   * @{
@@ -588,7 +588,7 @@ typedef  void (*pADC_CallbackTypeDef)(ADC_HandleTypeDef *hadc); /*!< pointer to 
   */
 
 /* Include ADC HAL Extension module */
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_adc_ex.h"
+#include "stm32f7xx_hal_adc_ex.h"
 
 /* Exported functions --------------------------------------------------------*/
 /** @addtogroup ADC_Exported_Functions

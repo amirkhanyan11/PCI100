@@ -40,7 +40,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "../../../PSP/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h"
+#include "stm32f7xx.h"
 
 /** @addtogroup STM32F7xx_LL_Driver
   * @{

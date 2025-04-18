@@ -26,8 +26,8 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "../../../PSP/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h"
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h"
+#include "stm32f7xx.h"
+#include "Legacy/stm32_hal_legacy.h"
 #include <stddef.h>
 
 /* Exported types ------------------------------------------------------------*/

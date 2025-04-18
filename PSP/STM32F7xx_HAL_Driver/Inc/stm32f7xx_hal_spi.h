@@ -25,7 +25,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+#include "stm32f7xx_hal_def.h"
 
 /** @addtogroup STM32F7xx_HAL_Driver
   * @{
@@ -759,7 +759,7 @@ typedef  void (*pSPI_CallbackTypeDef)(SPI_HandleTypeDef *hspi); /*!< pointer to 
   */
 
 /* Include SPI HAL Extended module */
-#include "../../../PSP/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi_ex.h"
+#include "stm32f7xx_hal_spi_ex.h"
 
 /* Exported functions --------------------------------------------------------*/
 /** @addtogroup SPI_Exported_Functions
