@@ -54,6 +54,7 @@ int main(void)
 	/* Infinite loop */
 	while (1)
 	{
+//		app_run(&app);
 	}
 }
 

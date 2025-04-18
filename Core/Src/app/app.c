@@ -34,15 +34,18 @@ void app_run(app_t * const app) {
 	osThreadDef(led_task, start_led_blink_task, osPriorityNormal, 0, 1280);
 	led_blink_task_hadnle = osThreadCreate(osThread(led_task), NULL);
 
-	osThreadDef(cli_task, start_cli_task, osPriorityAboveNormal, 0, 1280);
+	osThreadDef(cli_task, start_cli_task, osPriorityRealtime, 0, 1280);
 	cli_task_hadnle = osThreadCreate(osThread(cli_task), NULL);
 
-
-	/* We should never get here as control is now taken by the scheduler */
-#endif
 	/* Start scheduler */
 	osKernelStart();
 
+#else
+	/* We should never get here as control is now taken by the scheduler */
+	led_blink(&app->led);
+	cli_poll(&app->engine);
+
+#endif
 
 }
 
