@@ -57,6 +57,17 @@ uint8_t adc_get_channels_size(void)
 	return adc_channels_size;
 }
 
+uint8_t adc_get_channel(uint8_t typedef_handler, uint8_t id)
+{
+	for (uint8_t i = 0; adc_table[i].typedef_handler != 0; ++i) {
+		if (typedef_handler == adc_table[i].typedef_handler) {
+			return (adc_table[i].chnl_table[id - 1]);
+		}
+	}
+
+	return -1;
+}
+
 void adc_channels_handler(ADC_HandleTypeDef * const hadcx, uint8_t channel)
 {
 	ADC_ChannelConfTypeDef sConfig = {0};
