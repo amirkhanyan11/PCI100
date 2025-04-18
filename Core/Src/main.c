@@ -28,13 +28,8 @@
 #include "fifo.h"
 #include "psp.h"
 #include "bsp.h"
-#include "cmsis_os.h"
-
-
-void StartDefaultTask(void const * argument);
 
 app_t app;
-osThreadId defaultTaskHandle;
 
 /**
   * @brief  The application entry point.
@@ -54,37 +49,14 @@ int main(void)
 	/* Configure command line interface*/
 	cli_config(&app);
 
-	/* Create the thread(s) */
-	/* definition and creation of defaultTask */
-#if 0 //TODO: Integrate FreeRTOS
-	osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
-	defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+	app_run(&app);
 
-	/* Start scheduler */
-	osKernelStart();
-
-	/* We should never get here as control is now taken by the scheduler */
-#endif
 	/* Infinite loop */
 	while (1)
 	{
-	  app_run(&app);
 	}
 }
 
-/**
-  * @brief  Function implementing the defaultTask thread.
-  * @param  argument: Not used
-  * @retval None
-  */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void const * argument)
-{
-	for(;;)
-	{
-		osDelay(1);
-	}
-}
 
 /**
   * @brief  Period elapsed callback in non blocking mode
