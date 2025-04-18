@@ -14,9 +14,9 @@ extern ADC_HandleTypeDef hadc2;
 
 static ADC_HandleTypeDef * adc[] = {&hadc1, &hadc2};
 
-uint8_t adc_read(uint8_t hadcx, uint32_t adc_channel, float * const res)
+uint8_t adc_read(uint8_t hadcx, uint8_t adc_channel_id, float * const res)
 {
-	adc_channels_handler(adc[hadcx], adc_channel);
+	adc_channels_handler(adc[hadcx], adc_get_channel(hadcx, adc_channel_id));
 
 	HAL_ADC_Start(adc[hadcx]);
 
